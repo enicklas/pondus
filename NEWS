@@ -1,0 +1,45 @@
+ChangeLog for Version 0.1.0
+=============================
+ * Pondus now has an icon/logo
+ * add/edit dialog: pressing 'Enter' in one of the entry fields has the
+   same effect as clicking 'OK', i.e. adds/edits the dataset
+ * fix bugs in plot if no datasets are selected
+ * code cleanup
+
+ChangeLog for Version 0.0.6
+=============================
+ * plotting weight vs time is enabled
+ * '+' and '-' can be used to increment/decrement date and weight in
+   the add/edit dataset dialog
+ * ',' can be used instead of '.' as the decimal separator in the
+   add/edit dataset dialog
+ * code cleanup and documentation updates
+ * a Windows installer is provided
+ * install manpage and documentation
+ * requires Python >= 2.4 due to use of generator expressions
+
+ChangeLog for Version 0.0.5
+=============================
+ * enable command line option parsing
+ * code cleanup, performance improvements and documentation updates
+
+ChangeLog for Version 0.0.4
+=============================
+ * add ability to edit datasets
+ * alternate background color of rows in main window
+ * add desktop file
+
+ChangeLog for Version 0.0.3
+=============================
+ * use uimanager for the toolbar to have keybindings and tooltips
+ * include a manpage
+ * remove button only active when a dataset is selected
+
+ChangeLog for Version 0.0.2
+=============================
+ * disable tooltips for now as they require pygtk >= 2.12, which is not
+   yet available on every system
+
+ChangeLog for Version 0.0.1
+=============================
+ * initial release

@@ -1,0 +1,54 @@
+Pondus is a personal weight manager that keeps track of your body
+weight. It aims to be simple to use, lightweight and fast. The data is
+stored in xml-files for easy access and modification with other
+programs.
+
+
+Requirements:
+===============
+ * python (>= 2.4)
+ * pygtk (>= 2.4)
+ * matplotlib
+
+
+For installation instructions read INSTALL.
+
+
+Please report comments, suggestions and bugs to:
+    Eike Nicklas <eike@ephys.de>
+
+The current version can be found at:
+    http://www.ephys.de/software/pondus/
+
+
+Usage:
+========
+Pondus can be started from the command line with 'pondus' or from the
+menu of your desktop environment.
+
+The following command line options are available:
+
+    --version
+        show program's version number and exit
+    -h, --help
+        show a help message and exit
+    -i FILE, --input=FILE
+        read data from FILE instead of the standard location
+
+By default, the user data is stored in ~/.pondus/datasets.xml and is
+written to this file automatically on exit, so you don't have to worry
+about saving the data you entered.
+
+All functionality is available via the toolbar or via keyboard/mouse
+shortcuts. The following shortcuts are currently used:
+
+    CTR-a                           add new dataset
+    CTR-d, Delete                   delete selected dataset
+    CTR-e, Return, Double-click     edit selected dataset
+    CTR-p                           plot weight vs time
+
+To improve the workflow, the add dialog is initialized with the current
+date and the last measured weight. Both date and weight can be
+incremented/decremented by one day/0.1kg by pressing '+' or '-',
+respectively. Pressing 'Enter' in one of the entry fields is a shortcut
+for clicking the 'OK'-button.

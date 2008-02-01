@@ -1,0 +1,6 @@
+?package(pondus): \
+    needs="X11" \
+    section="Applications/Data Management" \
+    title="Pondus" \
+    icon="/usr/share/pixmaps/pondus.xpm" \
+    command="/usr/bin/pondus"

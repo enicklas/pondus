@@ -1,0 +1,33 @@
+This package was debianized by Eike Nicklas <eike@ephys.de> on
+Sun, 11 Nov 2007 18:05:09 +0100.
+
+It was downloaded from http://www.ephys.de/software/pondus/
+
+Upstream Author:
+
+    Eike Nicklas <eike@ephys.de>
+
+Copyright:
+
+    This software is copyright (C) 2007-08 Eike Nicklas
+
+License:
+
+    This package is free software: you can redistribute it and/or modify
+    it under the terms of the GNU General Public License as published by
+    the Free Software Foundation, either version 3 of the License, or
+    (at your option) any later version.
+
+    This package is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU General Public License for more details.
+
+    You should have received a copy of the GNU General Public License
+    along with this package. If not, see <http://www.gnu.org/licenses/>.
+
+On Debian systems, the complete text of the GNU General
+Public License can be found in `/usr/share/common-licenses/GPL'.
+
+The Debian packaging is (C) 2007-08, Eike Nicklas <eike@ephys.de> and
+is licensed under the GPL, see above.

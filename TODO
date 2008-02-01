@@ -1,0 +1,19 @@
+TODO-List for Pondus
+======================
+
+ * i18n? gettext?
+ * options: kg/lbs, variable date format?
+ * remember window size?
+ * add plan for loosing weight, i.e 'wish'-weights at given dates
+   success/comparison can be easily seen in plot
+ * optional fields: body fat? comments?
+ * interface guidelines? usability?
+ * validate xml?
+ * ability to save plot
+ * plot: custom selection: user provides start/end date
+ * unit tests?
+
+Notes
+=======
+ * if selection used in anything other than plot:
+   update selection list after add/update/remove dataset

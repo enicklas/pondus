@@ -1,0 +1,8 @@
+# use glob syntax.
+syntax: glob
+
+*.pyc
+MANIFEST
+build
+dist
+data/*.xml

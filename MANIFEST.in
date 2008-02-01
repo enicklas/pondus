@@ -1,0 +1,13 @@
+include AUTHORS
+include COPYING
+include INSTALL
+include NEWS
+include README
+include TODO
+include data/pondus.desktop
+include data/pondus.1.gz
+include data/icons/plot.png
+include data/icons/pondus.png
+include data/icons/pondus.svg
+include data/icons/pondus.xpm
+include src/pondus.py

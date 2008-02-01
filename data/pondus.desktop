@@ -1,0 +1,9 @@
+[Desktop Entry]
+Version=1.0
+Type=Application
+Name=Pondus
+Comment=Keep track of your weight
+Icon=pondus.png
+Exec=pondus
+Categories=GTK;Utility;
+Terminal=false
