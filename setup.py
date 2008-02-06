@@ -22,14 +22,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 from distutils.core import setup
 import os, shutil, sys
 
-tmpscriptdir = 'src/scripts/'
-mandir = 'share/man/man1'
-desktopdir = 'share/applications'
-docdir = 'share/doc/pondus'
-buttondir = 'share/pondus'
-pixmapdir = 'share/pixmaps'
-icondir_48 = 'share/icons/hicolor/48x48/apps'
-icondir_scalable = 'share/icons/hicolor/scalable/apps'
+tmpdir = 'tmp/'
 
 def get_version():
     """Returns the current version of Pondus."""
@@ -45,18 +38,18 @@ def get_scripts():
         return []
     else:
         if sys.platform == 'win32':
-            scriptpath = tmpscriptdir + 'pondus-win.py'
+            scriptpath = tmpdir + 'pondus-win.py'
         else:
-            scriptpath = tmpscriptdir + 'pondus'
-        if not os.path.exists(tmpscriptdir):
-            os.makedirs(tmpscriptdir)
+            scriptpath = tmpdir + 'pondus'
+        if not os.path.exists(tmpdir):
+            os.makedirs(tmpdir)
         shutil.copyfile('src/pondus.py', scriptpath)
         return [scriptpath]
 
 def clean_up():
     """Removes the temporarily generated data."""
-    if os.path.exists(tmpscriptdir):
-        shutil.rmtree(tmpscriptdir)
+    if os.path.exists(tmpdir):
+        shutil.rmtree(tmpdir)
 
 setup(name = 'pondus',
       version = get_version(),
@@ -66,13 +59,14 @@ setup(name = 'pondus',
       url = 'http://www.ephys.de/software/pondus/',
       license = 'GPL',
       scripts = get_scripts(),
-      data_files = [(desktopdir, ['data/pondus.desktop']),
-                    (mandir, ['data/pondus.1.gz']),
-                    (docdir, ['NEWS', 'README', 'TODO']),
-                    (buttondir, ['data/icons/plot.png']),
-                    (pixmapdir, ['data/icons/pondus.xpm']),
-                    (icondir_48, ['data/icons/pondus.png']),
-                    (icondir_scalable, ['data/icons/pondus.svg'])],
+      data_files = [
+        ('share/applications', ['data/pondus.desktop']),
+        ('share/man/man1', ['data/pondus.1.gz']),
+        ('share/doc/pondus', ['AUTHORS', 'NEWS', 'README', 'TODO']),
+        ('share/pondus', ['data/icons/plot.png']),
+        ('share/pixmaps', ['data/icons/pondus.xpm']),
+        ('share/icons/hicolor/48x48/apps', ['data/icons/pondus.png']),
+        ('share/icons/hicolor/scalable/apps', ['data/icons/pondus.svg'])],
       package_dir = {'pondus': 'src/pondus'},
       packages = ['pondus', 'pondus.core', 'pondus.gui'],
       requires = ['python(>= 2.4)', 'pygtk(>=2.4)', 'matplotlib']
