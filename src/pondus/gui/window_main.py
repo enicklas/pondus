@@ -65,7 +65,7 @@ class MainWindow(object):
             ('remove', gtk.STOCK_REMOVE, None, '<Control>d',
                 _('Delete selected line'), self.remove_dialog),
             ('edit', gtk.STOCK_EDIT, None, '<Control>e',
-                _('Edit selected dataset'), self.edit_dialog),
+                _('Edit selected line'), self.edit_dialog),
             ('plot', 'pondus_plot', None, '<Control>p',
                 _('Plot data'), self.plot_dialog)])
         self.removeaction = action_group.get_action('remove')

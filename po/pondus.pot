@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Pondus 0.2.0\n"
 "Report-Msgid-Bugs-To: eike@ephys.de\n"
-"POT-Creation-Date: 2008-02-07 23:58+0100\n"
+"POT-Creation-Date: 2008-02-08 19:12+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 
 #: ../src/pondus/core/plot.py:52
-msgid "Weight [kg]"
+msgid "Weight (kg)"
 msgstr ""
 
 #: ../src/pondus/core/util.py:41
@@ -109,7 +109,7 @@ msgid "Delete selected line"
 msgstr ""
 
 #: ../src/pondus/gui/window_main.py:68
-msgid "Edit selected dataset"
+msgid "Edit selected line"
 msgstr ""
 
 #: ../src/pondus/gui/window_main.py:70

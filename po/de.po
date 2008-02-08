@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Pondus 0.2.0\n"
 "Report-Msgid-Bugs-To: eike@ephys.de\n"
-"POT-Creation-Date: 2008-02-07 23:21+0100\n"
-"PO-Revision-Date: 2008-02-07 18:56+CET\n"
+"POT-Creation-Date: 2008-02-08 19:12+0100\n"
+"PO-Revision-Date: 2008-02-08 19:16+CET\n"
 "Last-Translator: Eike Nicklas <eike@ephys.de>\n"
 "Language-Team: German\n"
 "MIME-Version: 1.0\n"
@@ -16,8 +16,8 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 
 #: ../src/pondus/core/plot.py:52
-msgid "Weight [kg]"
-msgstr "Gewicht [kg]"
+msgid "Weight (kg)"
+msgstr "Gewicht (kg)"
 
 #: ../src/pondus/core/util.py:41
 msgid "Reading file"
@@ -77,7 +77,7 @@ msgstr "Letzter Monat"
 
 #: ../src/pondus/gui/dialog_plot.py:57
 msgid "Update"
-msgstr "Aktualisiere"
+msgstr "Aktualisieren"
 
 #: ../src/pondus/gui/dialog_remove.py:32
 msgid "Remove Data?"
@@ -108,8 +108,8 @@ msgid "Delete selected line"
 msgstr "Lösche ausgewählte Zeile"
 
 #: ../src/pondus/gui/window_main.py:68
-msgid "Edit selected dataset"
-msgstr "Ändere ausgewählten Datensatz"
+msgid "Edit selected line"
+msgstr "Ändere ausgewählte Zeile"
 
 #: ../src/pondus/gui/window_main.py:70
 msgid "Plot data"
