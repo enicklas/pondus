@@ -19,5 +19,9 @@ You should have received a copy of the GNU General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>.
 """
 
+import sys
+import gettext
+gettext.install('pondus', sys.prefix + '/share/locale')
+
 __all__ = ['core', 'gui', 'datasets', 'parameters']
 __version__ = '0.2.0'

@@ -30,8 +30,8 @@ class WrongFormatDialog(object):
         self.dialog = gtk.MessageDialog(type=gtk.MESSAGE_ERROR, \
         buttons=gtk.BUTTONS_CLOSE)
 
-        self.dialog.set_title('Error: Wrong Format')
-        self.dialog.set_markup('The data entered is not in the correct format!')
+        self.dialog.set_title(_('Error: Wrong Format'))
+        self.dialog.set_markup(_('The data entered is not in the correct format!'))
 
         self.dialog.show_all()
 

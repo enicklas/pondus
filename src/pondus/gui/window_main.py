@@ -25,7 +25,7 @@ try:
     import gtk
 except ImportError, strerror:
     print strerror
-    print 'Please make sure this library is installed.\n'
+    print _('Please make sure this library is installed.')
     sys.exit(1)
 
 from pondus import datasets
@@ -60,14 +60,14 @@ class MainWindow(object):
         self.window.add_accel_group(accelgroup)
         action_group = gtk.ActionGroup('pondus_actions')
         action_group.add_actions([
-            ('add', gtk.STOCK_ADD, None, '<Control>a', 'Add more data',
-                self.add_dialog),
+            ('add', gtk.STOCK_ADD, None, '<Control>a',
+                _('Add more data'), self.add_dialog),
             ('remove', gtk.STOCK_REMOVE, None, '<Control>d',
-                'Delete selected line', self.remove_dialog),
+                _('Delete selected line'), self.remove_dialog),
             ('edit', gtk.STOCK_EDIT, None, '<Control>e',
-                'Edit selected dataset', self.edit_dialog),
+                _('Edit selected dataset'), self.edit_dialog),
             ('plot', 'pondus_plot', None, '<Control>p',
-                'Plot data', self.plot_dialog)])
+                _('Plot data'), self.plot_dialog)])
         self.removeaction = action_group.get_action('remove')
         self.editaction = action_group.get_action('edit')
         self.plotaction = action_group.get_action('plot')
@@ -97,8 +97,8 @@ class MainWindow(object):
         self.datalist = gtk.ListStore(int, str, str)
         self.add_data()
         self.dataview = gtk.TreeView(self.datalist)
-        self.add_column('Date', 1)
-        self.add_column('Weight', 2)
+        self.add_column(_('Date'), 1)
+        self.add_column(_('Weight'), 2)
         self.datalist.set_sort_func(2, guiutil.sort_function_weight, None)
         self.datalist.set_sort_column_id(1, gtk.SORT_DESCENDING)
         self.dataview.set_rules_hint(True)

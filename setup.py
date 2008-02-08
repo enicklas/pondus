@@ -46,10 +46,25 @@ def get_scripts():
         shutil.copyfile('src/pondus.py', scriptpath)
         return [scriptpath]
 
+def create_mo():
+    if sys.argv[1] == 'sdist':
+        return None
+    mo_dir = os.path.join(tmpdir, 'mo/')
+    for lang in ('de',):
+        po_file = 'po/' + lang + '.po'
+        mo_dir_lang = mo_dir + lang + '/'
+        mo_file = mo_dir_lang + 'pondus.mo'
+        if not os.path.exists(mo_dir_lang):
+            os.makedirs(mo_dir_lang)
+        print 'generating', mo_file
+        os.system('msgfmt %s -o %s' % (po_file, mo_file))
+
 def clean_up():
     """Removes the temporarily generated data."""
     if os.path.exists(tmpdir):
         shutil.rmtree(tmpdir)
+
+create_mo()
 
 setup(name = 'pondus',
       version = get_version(),
@@ -66,7 +81,8 @@ setup(name = 'pondus',
         ('share/pondus', ['data/icons/plot.png']),
         ('share/pixmaps', ['data/icons/pondus.xpm']),
         ('share/icons/hicolor/48x48/apps', ['data/icons/pondus.png']),
-        ('share/icons/hicolor/scalable/apps', ['data/icons/pondus.svg'])],
+        ('share/icons/hicolor/scalable/apps', ['data/icons/pondus.svg']),
+        ('share/locale/de/LC_MESSAGES', [tmpdir + 'mo/de/pondus.mo'])],
       package_dir = {'pondus': 'src/pondus'},
       packages = ['pondus', 'pondus.core', 'pondus.gui'],
       requires = ['python(>= 2.4)', 'pygtk(>=2.4)', 'matplotlib']

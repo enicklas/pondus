@@ -39,14 +39,14 @@ class AddDataDialog(object):
         self.dialog = gtk.Dialog(flags=gtk.DIALOG_NO_SEPARATOR)
         # set the title
         if edit == False:
-            self.dialog.set_title('Add Dataset')
+            self.dialog.set_title(_('Add Dataset'))
         else:
-            self.dialog.set_title('Edit Dataset')
+            self.dialog.set_title(_('Edit Dataset'))
 
         # create the labels and entry boxes
         date_box = gtk.VBox(spacing=5)
         date_box.set_border_width(5)
-        date_label = gtk.Label('Date (YYYY-MM-DD):')
+        date_label = gtk.Label(_('Date (YYYY-MM-DD):'))
         date_label.set_alignment(xalign=0, yalign=0.5)
         self.date_entry = gtk.Entry()
         self.date_entry.set_text(sdate)
@@ -56,7 +56,7 @@ class AddDataDialog(object):
 
         weight_box = gtk.VBox(spacing=5)
         weight_box.set_border_width(5)
-        weight_label = gtk.Label('Weight (kg):')
+        weight_label = gtk.Label(_('Weight (kg):'))
         weight_label.set_alignment(xalign=0, yalign=0.5)
         self.weight_entry = gtk.Entry()
         self.weight_entry.set_text(slastweight)

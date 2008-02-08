@@ -1,3 +1,9 @@
+ChangeLog for Version 0.2.0
+=============================
+ * Internationalization Support: Pondus can now be translated to
+   languages other than English; see po/README for details on how to
+   create a new translation.
+
 ChangeLog for Version 0.1.0
 =============================
  * Pondus now has an icon/logo

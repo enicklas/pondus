@@ -38,12 +38,12 @@ def set_datafilepath(filepath):
     if not filepath.startswith('/'):
         filepath = os.getcwd()+'/'+filepath
     if not os.path.isdir(filepath):
-        print 'Reading file', filepath
+        print _('Reading file'), filepath
         parameters.datafile = filepath
         return None
     else:
-        print 'Error: This is a directory, not a file!'
-        print 'Using the standard file ~/.pondus/datasets.xml instead.'
+        print _('Error: This is a directory, not a file!')
+        print _('Using the standard file ~/.pondus/datasets.xml instead.')
 
 def create_xml_base():
     """Creates a base xml document not containing any datasets."""
@@ -75,8 +75,8 @@ def parse_options():
     parser = OptionParser(version='%prog '+__version__)
     parser.add_option("-i", "--input",
         dest="filename",
-        help="read data from FILE instead of the standard location",
-        metavar="FILE")
+        help=_("read data from FILE instead of the standard location"),
+        metavar=_("FILE"))
     (options, args) = parser.parse_args()
     if options.filename:
         set_datafilepath(options.filename)

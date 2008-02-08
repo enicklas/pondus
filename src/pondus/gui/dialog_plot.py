@@ -32,7 +32,7 @@ class PlotDialog(object):
     range."""
 
     def __init__(self):
-        self.dialog = gtk.Dialog(title='Plot Weight')
+        self.dialog = gtk.Dialog(title=_('Plot Weight'))
         self.dialog.set_default_size(600,400)
 
         # drawing area for the plot
@@ -44,17 +44,17 @@ class PlotDialog(object):
         # date selection
         date_selection_box = gtk.HBox(homogeneous = False, spacing=5)
 
-        date_label = gtk.Label('Select Date Range:')
+        date_label = gtk.Label(_('Select Date Range:'))
         date_selection_box.pack_start(date_label, False, False)
 
         self.dateselector = gtk.combo_box_new_text()
-        self.dateselector.append_text('All Time')
-        self.dateselector.append_text('Last Year')
-        self.dateselector.append_text('Last Month')
+        self.dateselector.append_text(_('All Time'))
+        self.dateselector.append_text(_('Last Year'))
+        self.dateselector.append_text(_('Last Month'))
         self.dateselector.set_active(0)
         date_selection_box.pack_start(self.dateselector, False, False)
 
-        date_update_button = gtk.Button(label='Update')
+        date_update_button = gtk.Button(label=_('Update'))
         date_selection_box.pack_start(date_update_button, False, False)
         self.dialog.vbox.pack_start(date_selection_box, False, False)
 

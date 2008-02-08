@@ -29,8 +29,8 @@ class RemoveDataDialog(object):
         self.dialog = gtk.MessageDialog(type=gtk.MESSAGE_QUESTION, \
         buttons=gtk.BUTTONS_YES_NO)
 
-        self.dialog.set_title('Remove Data?')
-        self.dialog.set_markup('Do you really want to delete this dataset?')
+        self.dialog.set_title(_('Remove Data?'))
+        self.dialog.set_markup(_('Do you really want to delete this dataset?'))
 
         self.dialog.show_all()
 
