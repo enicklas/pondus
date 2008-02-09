@@ -136,7 +136,11 @@ class MainWindow(object):
         newdata = dialog.run()
         if newdata is not None:
             datasets.all_datasets.add(newdata)
-            self.datalist.append(newdata.as_list())
+            newiter = self.datalist.append(newdata.as_list())
+            self.treeselection.select_iter(newiter)
+            listmodel = self.dataview.get_model()
+            path = listmodel.get_path(newiter)
+            self.dataview.scroll_to_cell(path)
             self.set_plot_action_active()
 
     def remove_dialog(self, widget):
