@@ -26,11 +26,12 @@ def local_or_sys(localpath, syspath):
     """Returns the requested localpath relative to the project
     directory, if it exists, and the corresponding system directory
     otherwise."""
-    localpath = sys.path[0] + '/../' + localpath
+    srcpath = os.path.dirname(os.path.abspath(sys.path[0]))
+    localpath = os.path.join(srcpath, localpath)
     if os.path.isdir(localpath):
         return localpath
     else:
-        return sys.prefix + '/' + syspath
+        return os.path.join(sys.prefix, syspath)
 
 # path of the xml file to use
 datafile = os.path.expanduser('~/.pondus/datasets.xml')
@@ -43,7 +44,7 @@ weighttag = 'weight'
 
 # paths to button/logo icons used
 button_base_dir = local_or_sys('data/icons/', 'share/pondus/')
-plot_button_path = button_base_dir + 'plot.png'
+plot_button_path = os.path.join(button_base_dir, 'plot.png')
 
 logo_base_dir = local_or_sys('data/icons/', 'share/icons/hicolor/48x48/apps/')
-logo_path = logo_base_dir + 'pondus.png'
+logo_path = os.path.join(logo_base_dir, 'pondus.png')

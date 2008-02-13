@@ -35,8 +35,8 @@ def str2date(datestring):
 
 def set_datafilepath(filepath):
     filepath = os.path.expanduser(filepath)
-    if not filepath.startswith('/'):
-        filepath = os.getcwd()+'/'+filepath
+    if not os.path.isabs(filepath):
+        filepath = os.path.join(os.getcwd(), filepath)
     if not os.path.isdir(filepath):
         print _('Reading file'), filepath
         parameters.datafile = filepath
