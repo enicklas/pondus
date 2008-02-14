@@ -23,15 +23,17 @@ import gtk
 
 
 class WrongFormatDialog(object):
-    """Shows an error message, if the entered data can not be converted
-    to a dataset object."""
+    """Shows an error message. The title and the message to be
+    displayed can be passed when initializing the class."""
 
-    def __init__(self):
+    def __init__(self,
+            title=_('Error: Wrong Format'),
+            message=_('The data entered is not in the correct format!')):
         self.dialog = gtk.MessageDialog(type=gtk.MESSAGE_ERROR, \
         buttons=gtk.BUTTONS_CLOSE)
 
-        self.dialog.set_title(_('Error: Wrong Format'))
-        self.dialog.set_markup(_('The data entered is not in the correct format!'))
+        self.dialog.set_title(title)
+        self.dialog.set_markup(message)
 
         self.dialog.show_all()
 

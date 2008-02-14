@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Pondus 0.2.0\n"
 "Report-Msgid-Bugs-To: eike@ephys.de\n"
-"POT-Creation-Date: 2008-02-08 19:12+0100\n"
+"POT-Creation-Date: 2008-02-14 14:22+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -88,11 +88,11 @@ msgstr ""
 msgid "Do you really want to delete this dataset?"
 msgstr ""
 
-#: ../src/pondus/gui/dialog_wrong_format.py:33
+#: ../src/pondus/gui/dialog_wrong_format.py:30
 msgid "Error: Wrong Format"
 msgstr ""
 
-#: ../src/pondus/gui/dialog_wrong_format.py:34
+#: ../src/pondus/gui/dialog_wrong_format.py:31
 msgid "The data entered is not in the correct format!"
 msgstr ""
 
