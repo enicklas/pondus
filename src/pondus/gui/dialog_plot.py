@@ -20,11 +20,14 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 """
 
 import gtk
+from datetime import date, timedelta
 
 from matplotlib.backends.backend_gtkagg import FigureCanvasGTKAgg \
     as FigureCanvas
 
 from pondus.core.plot import Plot
+from pondus.core import util
+from pondus.gui.dialog_wrong_format import WrongFormatDialog
 
 
 class PlotDialog(object):
@@ -47,21 +50,35 @@ class PlotDialog(object):
         date_label = gtk.Label(_('Select Date Range:'))
         date_selection_box.pack_start(date_label, False, False)
 
+        self.start_date_entry = gtk.Entry()
+        self.start_date_entry.set_width_chars(10)
+        date_selection_box.pack_start(self.start_date_entry, False, False)
+
+        date_selection_box.pack_start(gtk.Label(_('-')), False, False)
+
+        self.end_date_entry = gtk.Entry()
+        self.end_date_entry.set_width_chars(10)
+        date_selection_box.pack_start(self.end_date_entry, False, False)
+
         self.dateselector = gtk.combo_box_new_text()
         self.dateselector.append_text(_('All Time'))
         self.dateselector.append_text(_('Last Year'))
         self.dateselector.append_text(_('Last Month'))
         self.dateselector.set_active(0)
-        date_selection_box.pack_start(self.dateselector, False, False)
+        date_selection_box.pack_start(self.dateselector, True, False)
 
         date_update_button = gtk.Button(label=_('Update'))
-        date_selection_box.pack_start(date_update_button, False, False)
+        date_selection_box.pack_end(date_update_button, False, False)
         self.dialog.vbox.pack_start(date_selection_box, False, False)
 
         # buttons in action field
         self.dialog.add_button(gtk.STOCK_CLOSE, gtk.RESPONSE_CLOSE)
 
+        # initialize text entries
+        self.update_daterange(self.dateselector)
+
         # connect the signals
+        self.dateselector.connect('changed', self.update_daterange)
         date_update_button.connect('clicked', self.update_plot)
 
         # show the content
@@ -75,5 +92,42 @@ class PlotDialog(object):
     # callback functions
 
     def update_plot(self, button):
+        """Redraws the plot with the current start/end dates."""
+        try:
+            mindate = util.str2date(self.start_date_entry.get_text())
+            maxdate = util.str2date(self.end_date_entry.get_text())
+        except:
+            WrongFormatDialog().run()
+            return None
+        if mindate >= maxdate:
+            message = _('The start date has to be before the end date!')
+            WrongFormatDialog(message=message).run()
+            return None
+        self.plot.update_plot(mindate, maxdate)
+
+    def update_daterange(self, dateselector):
+        """Updates start and end date in the appropriate text entries
+        everytime self.dateselector changes."""
         key = self.dateselector.get_active()
-        self.plot.update_plot(key)
+        start_date, end_date = get_daterange(key)
+        self.start_date_entry.set_text(str(start_date))
+        self.end_date_entry.set_text(str(end_date))
+        self.plot.update_plot(start_date, end_date)
+
+
+# helper functions
+
+def get_daterange(key):
+    """Returns start and end date of the plot to be created,
+    depending on the current setting of self.dateselector."""
+    if key == 0:
+        return date(1900, 1, 1), date(2099, 12, 31)
+    else:
+        maxdate = date.today()
+        if key == 1:
+            # select last year
+            mindate = maxdate - timedelta(days = 365)
+        if key == 2:
+            # select last month
+            mindate = maxdate - timedelta(days = 31)
+        return mindate, maxdate

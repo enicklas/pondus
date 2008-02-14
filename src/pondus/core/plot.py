@@ -52,47 +52,18 @@ class Plot(object):
         self.ax.set_ylabel(_('Weight (kg)'))
         self.ax.grid(True)
 
-    def format_plot(self, key=0):
+    def format_plot(self, mindate=date(1900, 1, 1), maxdate=date(2099, 12, 31)):
         """Formats the plot, i.e. sets limits, ticks, etc."""
-        if key == 0:
+        if mindate == date(1900, 1, 1) and maxdate == date(2099, 12, 31):
             # select all datasets
             datasets.all_datasets.clear_selection()
             dateoffset = timedelta(days = 10)
             mindate = min(self.datelist) - dateoffset
             maxdate = max(self.datelist) + dateoffset
-            daterange = maxdate - mindate
-            if daterange >= timedelta(days = 700):
-                majorlocator = dates.YearLocator()
-                majorformatter = dates.DateFormatter("%Y")
-                minorlocator = dates.MonthLocator(bymonth=(1, 4, 7, 10))
-            elif daterange >= timedelta(days = 200):
-                majorlocator = dates.MonthLocator(bymonth=(1, 4, 7, 10))
-                majorformatter = dates.DateFormatter("%b %Y")
-                minorlocator = dates.MonthLocator()
-            elif daterange >= timedelta(days = 50):
-                majorlocator = dates.MonthLocator()
-                majorformatter = dates.DateFormatter("%b %Y")
-                minorlocator = dates.WeekdayLocator(byweekday=6)
-            else:
-                majorlocator = dates.WeekdayLocator(byweekday=6)
-                majorformatter = dates.DateFormatter("%d %b")
-                minorlocator = dates.DayLocator()
         else:
-            maxdate = date.today()
-            if key == 1:
-                # select last year
-                mindate = maxdate - timedelta(days = 365)
-                majorlocator = dates.MonthLocator(bymonth=(1, 4, 7, 10))
-                majorformatter = dates.DateFormatter("%b %Y")
-                minorlocator = dates.MonthLocator()
-            if key == 2:
-                # select last month
-                mindate = maxdate - timedelta(days = 31)
-                majorlocator = dates.WeekdayLocator(byweekday=6)
-                majorformatter = dates.DateFormatter("%d %b")
-                minorlocator = dates.DayLocator()
             datasets.all_datasets.select_by_date(mindate, maxdate)
-
+        daterange = maxdate - mindate
+        majorlocator, majorformatter, minorlocator = get_locators(daterange)
         try:
             weightoffset = 0.5
             minweight = min(dataset.data['weight'] \
@@ -105,14 +76,35 @@ class Plot(object):
         except ValueError:
             # if no datasets in the selections, min([]) raises error
             pass
-
         self.ax.set_xlim(dates.date2num(mindate), \
-                            dates.date2num(maxdate))
+                         dates.date2num(maxdate))
         self.ax.xaxis.set_major_locator(majorlocator)
         self.ax.xaxis.set_major_formatter(majorformatter)
         self.ax.xaxis.set_minor_locator(minorlocator)
 
-    def update_plot(self, key):
+    def update_plot(self, mindate, maxdate):
         """Updates the plot formatting and redraws the plot."""
-        self.format_plot(key)
+        self.format_plot(mindate, maxdate)
         self.figure.canvas.draw()
+
+
+def get_locators(daterange):
+    """Returns sane locators and formatters for the given
+    daterange."""
+    if daterange >= timedelta(days = 700):
+        majorlocator = dates.YearLocator()
+        majorformatter = dates.DateFormatter("%Y")
+        minorlocator = dates.MonthLocator(bymonth=(1, 4, 7, 10))
+    elif daterange >= timedelta(days = 200):
+        majorlocator = dates.MonthLocator(bymonth=(1, 4, 7, 10))
+        majorformatter = dates.DateFormatter("%b %Y")
+        minorlocator = dates.MonthLocator()
+    elif daterange >= timedelta(days = 50):
+        majorlocator = dates.MonthLocator()
+        majorformatter = dates.DateFormatter("%b %Y")
+        minorlocator = dates.WeekdayLocator(byweekday=6)
+    else:
+        majorlocator = dates.WeekdayLocator(byweekday=6)
+        majorformatter = dates.DateFormatter("%d %b")
+        minorlocator = dates.DayLocator()
+    return majorlocator, majorformatter, minorlocator

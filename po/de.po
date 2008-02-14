@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Pondus 0.2.0\n"
 "Report-Msgid-Bugs-To: eike@ephys.de\n"
-"POT-Creation-Date: 2008-02-14 14:22+0100\n"
-"PO-Revision-Date: 2008-02-08 19:16+CET\n"
+"POT-Creation-Date: 2008-02-15 00:16+0100\n"
+"PO-Revision-Date: 2008-02-15 00:18+CET\n"
 "Last-Translator: Eike Nicklas <eike@ephys.de>\n"
 "Language-Team: German\n"
 "MIME-Version: 1.0\n"
@@ -55,29 +55,37 @@ msgstr "Datum (JJJJ-MM-TT):"
 msgid "Weight (kg):"
 msgstr "Gewicht (kg)"
 
-#: ../src/pondus/gui/dialog_plot.py:35
+#: ../src/pondus/gui/dialog_plot.py:38
 msgid "Plot Weight"
 msgstr "Plotte das Gewicht"
 
-#: ../src/pondus/gui/dialog_plot.py:47
+#: ../src/pondus/gui/dialog_plot.py:50
 msgid "Select Date Range:"
-msgstr "Wähle Datumsbereich"
+msgstr "Wähle Datumsbereich:"
 
-#: ../src/pondus/gui/dialog_plot.py:51
+#: ../src/pondus/gui/dialog_plot.py:57
+msgid "-"
+msgstr "-"
+
+#: ../src/pondus/gui/dialog_plot.py:64
 msgid "All Time"
 msgstr "Alle Zeiten"
 
-#: ../src/pondus/gui/dialog_plot.py:52
+#: ../src/pondus/gui/dialog_plot.py:65
 msgid "Last Year"
 msgstr "Letztes Jahr"
 
-#: ../src/pondus/gui/dialog_plot.py:53
+#: ../src/pondus/gui/dialog_plot.py:66
 msgid "Last Month"
 msgstr "Letzter Monat"
 
-#: ../src/pondus/gui/dialog_plot.py:57
+#: ../src/pondus/gui/dialog_plot.py:70
 msgid "Update"
 msgstr "Aktualisieren"
+
+#: ../src/pondus/gui/dialog_plot.py:103
+msgid "The start date has to be before the end date!"
+msgstr "Das Anfangsdatum muss vor dem Enddatum liegen!"
 
 #: ../src/pondus/gui/dialog_remove.py:32
 msgid "Remove Data?"

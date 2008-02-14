@@ -4,6 +4,7 @@ YYYY-MM-DD: Version 0.2.0
    languages other than English; see po/README for details on how to
    create a new translation.
  * Select and scroll to newly created dataset after add
+ * Custom date range in plot: User can provide start/end date
 
 2008-02-01: Version 0.1.0
 ===========================
