@@ -21,10 +21,10 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 import os, sys
 
-srcdir = os.path.dirname(os.path.abspath(sys.path[0]))
 
 def get_version():
     """Returns the current version of Pondus."""
+    srcdir = os.path.dirname(os.path.abspath(sys.path[0]))
     sys.path.insert(1, os.path.join(srcdir, 'src'))
     from pondus import __version__
     return __version__
@@ -50,13 +50,13 @@ def update_po(languages):
 
 
 # list of source files containing translatable strings
-potfiles = [os.path.join(srcdir, 'src/pondus/core/plot.py'),
-            os.path.join(srcdir, 'src/pondus/core/util.py'),
-            os.path.join(srcdir, 'src/pondus/gui/dialog_add.py'),
-            os.path.join(srcdir, 'src/pondus/gui/dialog_plot.py'),
-            os.path.join(srcdir, 'src/pondus/gui/dialog_remove.py'),
-            os.path.join(srcdir, 'src/pondus/gui/dialog_wrong_format.py'),
-            os.path.join(srcdir, 'src/pondus/gui/window_main.py')]
+potfiles = [('../src/pondus/core/plot.py'),
+            ('../src/pondus/core/util.py'),
+            ('../src/pondus/gui/dialog_add.py'),
+            ('../src/pondus/gui/dialog_plot.py'),
+            ('../src/pondus/gui/dialog_remove.py'),
+            ('../src/pondus/gui/dialog_wrong_format.py'),
+            ('../src/pondus/gui/window_main.py')]
 # list of existing translations
 languages = ['de']
 version = get_version()
