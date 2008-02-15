@@ -10,8 +10,3 @@ TODO-List for Pondus
  * validate xml?
  * ability to save plot
  * unit tests?
-
-Notes
-=======
- * if selection used in anything other than plot:
-   update selection list after add/update/remove dataset

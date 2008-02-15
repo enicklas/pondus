@@ -25,8 +25,9 @@ from datetime import date, timedelta
 from matplotlib.backends.backend_gtkagg import FigureCanvasGTKAgg \
     as FigureCanvas
 
-from pondus.core.plot import Plot
+from pondus import datasets
 from pondus.core import util
+from pondus.core.plot import Plot
 from pondus.gui.dialog_wrong_format import WrongFormatDialog
 
 
@@ -74,7 +75,7 @@ class PlotDialog(object):
         # buttons in action field
         self.dialog.add_button(gtk.STOCK_CLOSE, gtk.RESPONSE_CLOSE)
 
-        # initialize text entries
+        # initialize text entries and format plot
         self.update_daterange(self.dateselector)
 
         # connect the signals
@@ -114,20 +115,22 @@ class PlotDialog(object):
         self.end_date_entry.set_text(str(end_date))
         self.plot.update_plot(start_date, end_date)
 
-
 # helper functions
 
 def get_daterange(key):
     """Returns start and end date of the plot to be created,
     depending on the current setting of self.dateselector."""
     if key == 0:
-        return date(1900, 1, 1), date(2099, 12, 31)
+        mindate, maxdate = datasets.all_datasets.get_daterange()
+        dateoffset = timedelta(days=10)
+        mindate -= dateoffset
+        maxdate += dateoffset
     else:
         maxdate = date.today()
         if key == 1:
             # select last year
-            mindate = maxdate - timedelta(days = 365)
+            mindate = maxdate - timedelta(days=365)
         if key == 2:
             # select last month
-            mindate = maxdate - timedelta(days = 31)
-        return mindate, maxdate
+            mindate = maxdate - timedelta(days=31)
+    return mindate, maxdate

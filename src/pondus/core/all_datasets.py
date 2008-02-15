@@ -86,16 +86,29 @@ class AllDatasets(object):
             #if no datasets exist
             return 1
 
-    def select_by_date(self, mindate, maxdate):
-        """Creates self.selection, a list containing the ids/keys of
-        datasets in the given date range."""
-        self.selection = [i for i in self.datasets \
-                if mindate <= self.datasets[i].data['date'] <= maxdate]
+    def get_daterange(self):
+        """Returns the minimum and the maximum date in the available
+        datasets. Returns None, None if no measurements exist."""
+        try:
+            mindate = min(dataset.data['date'] \
+                for dataset in self.datasets.itervalues())
+            maxdate = max(dataset.data['date'] \
+                for dataset in self.datasets.itervalues())
+        except ValueError:
+            return None, None
+        return mindate, maxdate
 
-    def clear_selection(self):
-        """Clears the selection."""
-        self.selection = self.datasets.keys()
-
-    def get_selection(self):
-        """Returns a list of selected datasets."""
-        return [self.datasets[i] for i in self.selection]
+    def get_weight_in_daterange(self, mindate, maxdate):
+        """Returns the minimum and the maximum weight measured in the
+        given date range. Returns None, None if no measurements exist
+        in the given date range."""
+        try:
+            minweight = min(dataset.data['weight'] \
+                for dataset in self.datasets.itervalues() \
+                if mindate <= dataset.data['date'] <= maxdate)
+            maxweight = max(dataset.data['weight'] \
+                for dataset in self.datasets.itervalues() \
+                if mindate <= dataset.data['date'] <= maxdate)
+        except ValueError:
+            return None, None
+        return minweight, maxweight

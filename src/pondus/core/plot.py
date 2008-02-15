@@ -19,7 +19,7 @@ You should have received a copy of the GNU General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>.
 """
 
-from datetime import date, timedelta
+from datetime import timedelta
 from matplotlib.figure import Figure
 from matplotlib import dates
 
@@ -32,13 +32,11 @@ class Plot(object):
         """Plots the weight data vs time."""
         self.get_plot_data()
         self.create_plot()
-        self.format_plot()
 
     def get_plot_data(self):
         """Creates the datalists to be plotted."""
-        datasets.all_datasets.clear_selection()
         plot_data = [(dataset.data['date'], dataset.data['weight']) \
-                for dataset in datasets.all_datasets.get_selection()]
+                for dataset in datasets.all_datasets]
         plot_data.sort()
         self.datelist = [tup[0] for tup in plot_data]
         self.weightlist = [tup[1] for tup in plot_data]
@@ -52,30 +50,19 @@ class Plot(object):
         self.ax.set_ylabel(_('Weight (kg)'))
         self.ax.grid(True)
 
-    def format_plot(self, mindate=date(1900, 1, 1), maxdate=date(2099, 12, 31)):
+    def format_plot(self, mindate, maxdate):
         """Formats the plot, i.e. sets limits, ticks, etc."""
-        if mindate == date(1900, 1, 1) and maxdate == date(2099, 12, 31):
-            # select all datasets
-            datasets.all_datasets.clear_selection()
-            dateoffset = timedelta(days = 10)
-            mindate = min(self.datelist) - dateoffset
-            maxdate = max(self.datelist) + dateoffset
-        else:
-            datasets.all_datasets.select_by_date(mindate, maxdate)
         daterange = maxdate - mindate
         majorlocator, majorformatter, minorlocator = get_locators(daterange)
-        try:
-            weightoffset = 0.5
-            minweight = min(dataset.data['weight'] \
-                    for dataset in datasets.all_datasets.get_selection()) \
-                    - weightoffset
-            maxweight = max(dataset.data['weight'] \
-                    for dataset in datasets.all_datasets.get_selection()) \
-                    + weightoffset
+
+        weightoffset = 0.5
+        minweight_tmp, maxweight_tmp = \
+            datasets.all_datasets.get_weight_in_daterange(mindate, maxdate)
+        if minweight_tmp is not None:
+            minweight = minweight_tmp - weightoffset
+            maxweight = maxweight_tmp + weightoffset
             self.ax.set_ylim(minweight, maxweight)
-        except ValueError:
-            # if no datasets in the selections, min([]) raises error
-            pass
+
         self.ax.set_xlim(dates.date2num(mindate), \
                          dates.date2num(maxdate))
         self.ax.xaxis.set_major_locator(majorlocator)
