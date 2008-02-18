@@ -78,7 +78,15 @@ class Plot(object):
 def get_locators(daterange):
     """Returns sane locators and formatters for the given
     daterange."""
-    if daterange >= timedelta(days = 700):
+    if daterange >= timedelta(days=8000):
+        majorlocator = dates.YearLocator(10)
+        majorformatter = dates.DateFormatter("%Y")
+        minorlocator = dates.YearLocator(2)
+    elif daterange >= timedelta(days=4000):
+        majorlocator = dates.YearLocator(2)
+        majorformatter = dates.DateFormatter("%Y")
+        minorlocator = dates.YearLocator()
+    elif daterange >= timedelta(days = 700):
         majorlocator = dates.YearLocator()
         majorformatter = dates.DateFormatter("%Y")
         minorlocator = dates.MonthLocator(bymonth=(1, 4, 7, 10))
