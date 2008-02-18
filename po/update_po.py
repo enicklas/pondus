@@ -50,7 +50,8 @@ def update_po(languages):
 
 
 # list of source files containing translatable strings
-potfiles = [('../src/pondus/core/plot.py'),
+potfiles = [('../src/pondus/parameters.py'),
+            ('../src/pondus/core/plot.py'),
             ('../src/pondus/core/util.py'),
             ('../src/pondus/gui/dialog_add.py'),
             ('../src/pondus/gui/dialog_plot.py'),
