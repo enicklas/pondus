@@ -1,4 +1,4 @@
-YYYY-MM-DD: Version 0.2.0
+2008-02-19: Version 0.2.0
 ===========================
  * Internationalization Support: Pondus can now be translated to
    languages other than English; see po/README for details on how to
