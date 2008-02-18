@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Pondus 0.2.0\n"
 "Report-Msgid-Bugs-To: eike@ephys.de\n"
-"POT-Creation-Date: 2008-02-15 15:05+0100\n"
+"POT-Creation-Date: 2008-02-18 15:20+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -30,14 +30,6 @@ msgstr ""
 
 #: ../src/pondus/core/util.py:46
 msgid "Using the standard file ~/.pondus/datasets.xml instead."
-msgstr ""
-
-#: ../src/pondus/core/util.py:78
-msgid "read data from FILE instead of the standard location"
-msgstr ""
-
-#: ../src/pondus/core/util.py:79
-msgid "FILE"
 msgstr ""
 
 #: ../src/pondus/gui/dialog_add.py:42

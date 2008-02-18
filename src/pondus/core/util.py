@@ -75,8 +75,8 @@ def parse_options():
     parser = OptionParser(version='%prog '+__version__)
     parser.add_option("-i", "--input",
         dest="filename",
-        help=_("read data from FILE instead of the standard location"),
-        metavar=_("FILE"))
+        help="read data from FILE instead of the standard location",
+        metavar="FILE")
     (options, args) = parser.parse_args()
     if options.filename:
         set_datafilepath(options.filename)

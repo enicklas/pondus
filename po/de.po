@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Pondus 0.2.0\n"
 "Report-Msgid-Bugs-To: eike@ephys.de\n"
-"POT-Creation-Date: 2008-02-15 15:05+0100\n"
-"PO-Revision-Date: 2008-02-15 00:18+CET\n"
+"POT-Creation-Date: 2008-02-18 15:20+0100\n"
+"PO-Revision-Date: 2008-02-18 15:22+CET\n"
 "Last-Translator: Eike Nicklas <eike@ephys.de>\n"
 "Language-Team: German\n"
 "MIME-Version: 1.0\n"
@@ -30,14 +30,6 @@ msgstr "Fehler: Dies ist ein Verzeichnis, keine Datei!"
 #: ../src/pondus/core/util.py:46
 msgid "Using the standard file ~/.pondus/datasets.xml instead."
 msgstr "Benutze stattdessen die Standarddatei ~/.pondus/datasets.xml"
-
-#: ../src/pondus/core/util.py:78
-msgid "read data from FILE instead of the standard location"
-msgstr "lese Daten aus DATEI, nicht aus der Standarddatei"
-
-#: ../src/pondus/core/util.py:79
-msgid "FILE"
-msgstr "DATEI"
 
 #: ../src/pondus/gui/dialog_add.py:42
 msgid "Add Dataset"

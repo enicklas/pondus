@@ -46,7 +46,7 @@ class Plot(object):
         self.figure = Figure()
         self.ax = self.figure.add_subplot(111)
         self.ax.plot_date(dates.date2num(self.datelist), \
-                            self.weightlist, fmt='bo', ls='-')
+                            self.weightlist, fmt='bo-')
         self.ax.set_ylabel(_('Weight (kg)'))
         self.ax.grid(True)
 
