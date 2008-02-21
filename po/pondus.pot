@@ -6,9 +6,9 @@
 #, fuzzy
 msgid ""
 msgstr ""
-"Project-Id-Version: Pondus 0.2.0\n"
+"Project-Id-Version: Pondus 0.3.0\n"
 "Report-Msgid-Bugs-To: eike@ephys.de\n"
-"POT-Creation-Date: 2008-02-19 00:48+0100\n"
+"POT-Creation-Date: 2008-02-21 23:47+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -16,12 +16,13 @@ msgstr ""
 "Content-Type: text/plain; charset=CHARSET\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: ../src/pondus/parameters.py:36
+#: ../src/pondus/parameters.py:38
 msgid "Error: Could not find"
 msgstr ""
 
-#: ../src/pondus/core/plot.py:50
-msgid "Weight (kg)"
+#: ../src/pondus/core/plot.py:51 ../src/pondus/gui/dialog_add.py:60
+#: ../src/pondus/gui/window_main.py:104
+msgid "Weight"
 msgstr ""
 
 #: ../src/pondus/core/util.py:41
@@ -36,20 +37,16 @@ msgstr ""
 msgid "Using the standard file ~/.pondus/datasets.xml instead."
 msgstr ""
 
-#: ../src/pondus/gui/dialog_add.py:42
+#: ../src/pondus/gui/dialog_add.py:43
 msgid "Add Dataset"
 msgstr ""
 
-#: ../src/pondus/gui/dialog_add.py:44
+#: ../src/pondus/gui/dialog_add.py:45
 msgid "Edit Dataset"
 msgstr ""
 
-#: ../src/pondus/gui/dialog_add.py:49
+#: ../src/pondus/gui/dialog_add.py:50
 msgid "Date (YYYY-MM-DD):"
-msgstr ""
-
-#: ../src/pondus/gui/dialog_add.py:59
-msgid "Weight (kg):"
 msgstr ""
 
 #: ../src/pondus/gui/dialog_plot.py:39
@@ -104,26 +101,22 @@ msgstr ""
 msgid "Please make sure this library is installed."
 msgstr ""
 
-#: ../src/pondus/gui/window_main.py:64
+#: ../src/pondus/gui/window_main.py:67
 msgid "Add more data"
 msgstr ""
 
-#: ../src/pondus/gui/window_main.py:66
+#: ../src/pondus/gui/window_main.py:69
 msgid "Delete selected line"
 msgstr ""
 
-#: ../src/pondus/gui/window_main.py:68
+#: ../src/pondus/gui/window_main.py:71
 msgid "Edit selected line"
 msgstr ""
 
-#: ../src/pondus/gui/window_main.py:70
+#: ../src/pondus/gui/window_main.py:73
 msgid "Plot data"
 msgstr ""
 
-#: ../src/pondus/gui/window_main.py:100
+#: ../src/pondus/gui/window_main.py:103
 msgid "Date"
-msgstr ""
-
-#: ../src/pondus/gui/window_main.py:101
-msgid "Weight"
 msgstr ""

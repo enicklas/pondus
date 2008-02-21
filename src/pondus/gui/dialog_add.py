@@ -23,6 +23,7 @@ import gtk
 import gobject
 from datetime import timedelta
 
+from pondus import parameters
 from pondus.core import util
 from pondus.gui.dialog_wrong_format import WrongFormatDialog
 
@@ -56,7 +57,8 @@ class AddDataDialog(object):
 
         weight_box = gtk.VBox(spacing=5)
         weight_box.set_border_width(5)
-        weight_label = gtk.Label(_('Weight (kg):'))
+        weight_label = gtk.Label(_('Weight') + ' (' \
+            + parameters.config['preferences.weight_unit'] + '):')
         weight_label.set_alignment(xalign=0, yalign=0.5)
         self.weight_entry = gtk.Entry()
         self.weight_entry.set_text(slastweight)

@@ -24,6 +24,7 @@ from matplotlib.figure import Figure
 from matplotlib import dates
 
 from pondus import datasets
+from pondus import parameters
 
 
 class Plot(object):
@@ -47,7 +48,9 @@ class Plot(object):
         self.ax = self.figure.add_subplot(111)
         self.ax.plot_date(dates.date2num(self.datelist), \
                             self.weightlist, fmt='bo-')
-        self.ax.set_ylabel(_('Weight (kg)'))
+        ylabel = _('Weight') + ' (' \
+                + parameters.config['preferences.weight_unit'] + ')'
+        self.ax.set_ylabel(ylabel)
         self.ax.grid(True)
 
     def format_plot(self, mindate, maxdate):

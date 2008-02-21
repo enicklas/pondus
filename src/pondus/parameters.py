@@ -22,6 +22,8 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 import os
 import sys
 
+from pondus.core import config_parser
+
 def get_path(localpath, syspath, filename):
     """Returns the full path to the file with filename. If it exists,
     localpath is used, otherwise the corresponding system directory."""
@@ -35,8 +37,12 @@ def get_path(localpath, syspath, filename):
     else:
         print _('Error: Could not find'), sysfilepath
 
-# path of the xml file to use
+# path of configuration and data files
+configfile = os.path.expanduser('~/.config/pondus/pondusrc')
 datafile = os.path.expanduser('~/.pondus/datasets.xml')
+
+# configuration
+config = config_parser.read_config(configfile)
 
 # tags used in the xml file
 rootnametag = 'dataset-list'

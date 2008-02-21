@@ -30,6 +30,7 @@ except ImportError, strerror:
 
 from pondus import datasets
 from pondus import parameters
+from pondus.core import config_parser
 from pondus.gui import guiutil
 from pondus.gui.dialog_add import AddDataDialog
 from pondus.gui.dialog_remove import RemoveDataDialog
@@ -44,7 +45,9 @@ class MainWindow(object):
         # create the window
         self.window = gtk.Window(gtk.WINDOW_TOPLEVEL)
         self.window.set_title('Pondus')
-        self.window.set_default_size(180, 300)
+        self.window.set_default_size(
+                            parameters.config['window.width'],
+                            parameters.config['window.height'])
         gtk.window_set_default_icon_from_file(parameters.logo_path)
 
         # build the content
@@ -127,6 +130,12 @@ class MainWindow(object):
         """Quits the application cleanly and saves the data to the
         appropriate file."""
         datasets.all_datasets.write_to_file()
+        if parameters.config['window.remember_size']:
+            parameters.config['window.width'] = \
+                                    self.window.get_allocation().width
+            parameters.config['window.height'] = \
+                                    self.window.get_allocation().height
+        config_parser.write_config(parameters.config, parameters.configfile)
         gtk.main_quit()
 
     def add_dialog(self, widget):
