@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Pondus 0.3.0\n"
 "Report-Msgid-Bugs-To: eike@ephys.de\n"
-"POT-Creation-Date: 2008-02-21 23:47+0100\n"
+"POT-Creation-Date: 2008-02-23 20:06+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -16,12 +16,16 @@ msgstr ""
 "Content-Type: text/plain; charset=CHARSET\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: ../src/pondus/parameters.py:38
+#: ../src/pondus/parameters.py:34
+msgid "Note: Matplotlib not available, plotting disabled!"
+msgstr ""
+
+#: ../src/pondus/parameters.py:48
 msgid "Error: Could not find"
 msgstr ""
 
 #: ../src/pondus/core/plot.py:51 ../src/pondus/gui/dialog_add.py:60
-#: ../src/pondus/gui/window_main.py:104
+#: ../src/pondus/gui/window_main.py:110
 msgid "Weight"
 msgstr ""
 
@@ -101,22 +105,26 @@ msgstr ""
 msgid "Please make sure this library is installed."
 msgstr ""
 
-#: ../src/pondus/gui/window_main.py:67
-msgid "Add more data"
-msgstr ""
-
-#: ../src/pondus/gui/window_main.py:69
-msgid "Delete selected line"
-msgstr ""
-
-#: ../src/pondus/gui/window_main.py:71
-msgid "Edit selected line"
-msgstr ""
-
-#: ../src/pondus/gui/window_main.py:73
+#: ../src/pondus/gui/window_main.py:62
 msgid "Plot data"
 msgstr ""
 
-#: ../src/pondus/gui/window_main.py:103
+#: ../src/pondus/gui/window_main.py:64
+msgid "Matplotlib not available!"
+msgstr ""
+
+#: ../src/pondus/gui/window_main.py:73
+msgid "Add more data"
+msgstr ""
+
+#: ../src/pondus/gui/window_main.py:75
+msgid "Delete selected line"
+msgstr ""
+
+#: ../src/pondus/gui/window_main.py:77
+msgid "Edit selected line"
+msgstr ""
+
+#: ../src/pondus/gui/window_main.py:109
 msgid "Date"
 msgstr ""

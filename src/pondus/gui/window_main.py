@@ -57,6 +57,12 @@ class MainWindow(object):
         # register icons
         guiutil.register_icons()
 
+        # tooltip for plot icon depends on availability of matplotlib
+        if parameters.have_mpl:
+            plot_tooltip = _('Plot data')
+        else:
+            plot_tooltip = _('Matplotlib not available!')
+
         # set up UIManager
         uimanager = gtk.UIManager()
         accelgroup = uimanager.get_accel_group()
@@ -70,7 +76,7 @@ class MainWindow(object):
             ('edit', gtk.STOCK_EDIT, None, '<Control>e',
                 _('Edit selected line'), self.edit_dialog),
             ('plot', 'pondus_plot', None, '<Control>p',
-                _('Plot data'), self.plot_dialog)])
+                plot_tooltip, self.plot_dialog)])
         self.removeaction = action_group.get_action('remove')
         self.editaction = action_group.get_action('edit')
         self.plotaction = action_group.get_action('plot')
@@ -227,11 +233,11 @@ class MainWindow(object):
             self.editaction.set_sensitive(True)
 
     def set_plot_action_active(self):
-        """Tests, whether a dataset exists and sets sensitivity of the
-        plot action accordingly."""
-        if len(datasets.all_datasets) == 0:
+        """Tests, whether a dataset exists and matplotlib is available
+        and sets sensitivity of the plot action accordingly."""
+        if len(datasets.all_datasets) == 0 or not parameters.have_mpl:
             self.plotaction.set_sensitive(False)
-        elif self.plotaction.get_sensitive() == False:
+        elif self.plotaction.get_sensitive() == False and parameters.have_mpl:
             self.plotaction.set_sensitive(True)
 
     def add_column(self, title, columnId):

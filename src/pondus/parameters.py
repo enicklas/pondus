@@ -24,6 +24,16 @@ import sys
 
 from pondus.core import config_parser
 
+def test_mpl():
+    """Tests availability of matplotlib to decide whether plotting
+    should be enlabled."""
+    try:
+        from matplotlib import dates
+        return True
+    except ImportError:
+        print _('Note: Matplotlib not available, plotting disabled!')
+        return False
+
 def get_path(localpath, syspath, filename):
     """Returns the full path to the file with filename. If it exists,
     localpath is used, otherwise the corresponding system directory."""
@@ -43,6 +53,7 @@ datafile = os.path.expanduser('~/.pondus/datasets.xml')
 
 # configuration
 config = config_parser.read_config(configfile)
+have_mpl = test_mpl()
 
 # tags used in the xml file
 rootnametag = 'dataset-list'
