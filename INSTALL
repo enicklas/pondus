@@ -22,8 +22,8 @@ On other systems, install Pondus by executing in the source directory
 
     python setup.py install
 
-The development package for python (python-devel or similar) and
-gettext are needed for this, so please install them first.
+The development package for python (python-devel or similar) is needed
+for this, so please install it first.
 
 Then, you can start Pondus (remember to switch back to the normal user)
 with:

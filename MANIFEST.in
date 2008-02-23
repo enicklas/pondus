@@ -13,4 +13,5 @@ include data/icons/pondus.xpm
 include po/pondus.pot
 include po/de.po
 include po/README
+include po/mo/de/pondus.mo
 include src/pondus.py

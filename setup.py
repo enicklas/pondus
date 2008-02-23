@@ -49,17 +49,17 @@ def get_scripts():
         return [scriptpath]
 
 def create_mo():
-    if sys.argv[1] == 'sdist':
-        return None
-    mo_dir = os.path.join(tmpdir, 'mo')
-    for lang in ['de']:
-        po_file = os.path.join('po', lang + '.po')
-        mo_dir_lang = os.path.join(mo_dir, lang)
-        mo_file = os.path.join(mo_dir_lang, 'pondus.mo')
-        if not os.path.exists(mo_dir_lang):
-            os.makedirs(mo_dir_lang)
-        print 'generating', mo_file
-        os.system('msgfmt %s -o %s' % (po_file, mo_file))
+    """Creates the .mo files to be distributed with the source."""
+    mo_dir = 'po/mo'
+    if not os.path.exists(mo_dir):
+        for lang in ['de']:
+            po_file = os.path.join('po', lang + '.po')
+            mo_dir_lang = os.path.join(mo_dir, lang)
+            mo_file = os.path.join(mo_dir_lang, 'pondus.mo')
+            if not os.path.exists(mo_dir_lang):
+                os.makedirs(mo_dir_lang)
+            print 'generating', mo_file
+            os.system('msgfmt %s -o %s' % (po_file, mo_file))
 
 def clean_up():
     """Removes the temporarily generated data."""
@@ -84,7 +84,7 @@ setup(name = 'pondus',
         ('share/pixmaps', ['data/icons/pondus.xpm']),
         ('share/icons/hicolor/48x48/apps', ['data/icons/pondus.png']),
         ('share/icons/hicolor/scalable/apps', ['data/icons/pondus.svg']),
-        ('share/locale/de/LC_MESSAGES', [os.path.join(tmpdir, 'mo/de/pondus.mo')])],
+        ('share/locale/de/LC_MESSAGES', ['po/mo/de/pondus.mo'])],
       package_dir = {'pondus': 'src/pondus'},
       packages = ['pondus', 'pondus.core', 'pondus.gui'],
       requires = ['python(>= 2.4)', 'pygtk(>=2.4)', 'matplotlib']
