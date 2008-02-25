@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Pondus 0.3.0\n"
 "Report-Msgid-Bugs-To: eike@ephys.de\n"
-"POT-Creation-Date: 2008-02-23 20:06+0100\n"
-"PO-Revision-Date: 2008-02-23 20:08+CET\n"
+"POT-Creation-Date: 2008-02-26 00:47+0100\n"
+"PO-Revision-Date: 2008-02-26 00:50+CET\n"
 "Last-Translator: Eike Nicklas <eike@ephys.de>\n"
 "Language-Team: German\n"
 "MIME-Version: 1.0\n"
@@ -24,7 +24,7 @@ msgid "Error: Could not find"
 msgstr "Fehler: Folgende Datei konnte nicht gefunden werden:"
 
 #: ../src/pondus/core/plot.py:51 ../src/pondus/gui/dialog_add.py:60
-#: ../src/pondus/gui/window_main.py:110
+#: ../src/pondus/gui/window_main.py:114
 msgid "Weight"
 msgstr "Gewicht"
 
@@ -84,6 +84,19 @@ msgstr "Aktualisieren"
 msgid "The start date has to be before the end date!"
 msgstr "Das Anfangsdatum muss vor dem Enddatum liegen!"
 
+#: ../src/pondus/gui/dialog_preferences.py:35
+#: ../src/pondus/gui/window_main.py:82
+msgid "Preferences"
+msgstr "Optionen"
+
+#: ../src/pondus/gui/dialog_preferences.py:39
+msgid "Weight Unit:"
+msgstr "Gewichtseinheit:"
+
+#: ../src/pondus/gui/dialog_preferences.py:54
+msgid "Remember Window Size"
+msgstr "Speichere Fenstergröße"
+
 #: ../src/pondus/gui/dialog_remove.py:32
 msgid "Remove Data?"
 msgstr "Datensatz löschen?"
@@ -104,26 +117,26 @@ msgstr "Die eingegebenen Daten haben nicht das richtige Format!"
 msgid "Please make sure this library is installed."
 msgstr "Bitte stelle sicher, dass diese Bibliothek installiert ist."
 
-#: ../src/pondus/gui/window_main.py:62
+#: ../src/pondus/gui/window_main.py:63
 msgid "Plot data"
 msgstr "Plotte die Daten"
 
-#: ../src/pondus/gui/window_main.py:64
+#: ../src/pondus/gui/window_main.py:65
 msgid "Matplotlib not available!"
 msgstr "Matplotlib nicht verfügbar!"
 
-#: ../src/pondus/gui/window_main.py:73
+#: ../src/pondus/gui/window_main.py:74
 msgid "Add more data"
 msgstr "Datensatz hinzufügen"
 
-#: ../src/pondus/gui/window_main.py:75
+#: ../src/pondus/gui/window_main.py:76
 msgid "Delete selected line"
 msgstr "Lösche ausgewählte Zeile"
 
-#: ../src/pondus/gui/window_main.py:77
+#: ../src/pondus/gui/window_main.py:78
 msgid "Edit selected line"
 msgstr "Ändere ausgewählte Zeile"
 
-#: ../src/pondus/gui/window_main.py:109
+#: ../src/pondus/gui/window_main.py:113
 msgid "Date"
 msgstr "Datum"

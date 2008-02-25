@@ -19,5 +19,6 @@ You should have received a copy of the GNU General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>.
 """
 
-__all__ = ['dialog_add', 'dialog_plot', 'dialog_remove',
-    'dialog_wrong_format', 'guiutil', 'window_main']
+__all__ = ['dialog_add', 'dialog_plot', 'dialog_preferences',
+           'dialog_remove', 'dialog_wrong_format', 'guiutil',
+           'window_main']

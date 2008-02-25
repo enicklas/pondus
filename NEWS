@@ -1,5 +1,8 @@
 2008-xx-xx: Version 0.3.0
 ===========================
+ * Add preferences dialog:
+    - Option to use 'kg' or 'lbs' as the weight unit
+    - Option to remember window size
  * Disable plotting functions if matplotlib is not available to make
    matplotlib only recommended, but not required.
 

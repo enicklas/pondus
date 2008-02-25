@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Pondus 0.3.0\n"
 "Report-Msgid-Bugs-To: eike@ephys.de\n"
-"POT-Creation-Date: 2008-02-23 20:06+0100\n"
+"POT-Creation-Date: 2008-02-26 00:47+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -25,7 +25,7 @@ msgid "Error: Could not find"
 msgstr ""
 
 #: ../src/pondus/core/plot.py:51 ../src/pondus/gui/dialog_add.py:60
-#: ../src/pondus/gui/window_main.py:110
+#: ../src/pondus/gui/window_main.py:114
 msgid "Weight"
 msgstr ""
 
@@ -85,6 +85,19 @@ msgstr ""
 msgid "The start date has to be before the end date!"
 msgstr ""
 
+#: ../src/pondus/gui/dialog_preferences.py:35
+#: ../src/pondus/gui/window_main.py:82
+msgid "Preferences"
+msgstr ""
+
+#: ../src/pondus/gui/dialog_preferences.py:39
+msgid "Weight Unit:"
+msgstr ""
+
+#: ../src/pondus/gui/dialog_preferences.py:54
+msgid "Remember Window Size"
+msgstr ""
+
 #: ../src/pondus/gui/dialog_remove.py:32
 msgid "Remove Data?"
 msgstr ""
@@ -105,26 +118,26 @@ msgstr ""
 msgid "Please make sure this library is installed."
 msgstr ""
 
-#: ../src/pondus/gui/window_main.py:62
+#: ../src/pondus/gui/window_main.py:63
 msgid "Plot data"
 msgstr ""
 
-#: ../src/pondus/gui/window_main.py:64
+#: ../src/pondus/gui/window_main.py:65
 msgid "Matplotlib not available!"
 msgstr ""
 
-#: ../src/pondus/gui/window_main.py:73
+#: ../src/pondus/gui/window_main.py:74
 msgid "Add more data"
 msgstr ""
 
-#: ../src/pondus/gui/window_main.py:75
+#: ../src/pondus/gui/window_main.py:76
 msgid "Delete selected line"
 msgstr ""
 
-#: ../src/pondus/gui/window_main.py:77
+#: ../src/pondus/gui/window_main.py:78
 msgid "Edit selected line"
 msgstr ""
 
-#: ../src/pondus/gui/window_main.py:109
+#: ../src/pondus/gui/window_main.py:113
 msgid "Date"
 msgstr ""

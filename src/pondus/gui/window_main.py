@@ -35,6 +35,7 @@ from pondus.gui import guiutil
 from pondus.gui.dialog_add import AddDataDialog
 from pondus.gui.dialog_remove import RemoveDataDialog
 from pondus.gui.dialog_plot import PlotDialog
+from pondus.gui.dialog_preferences import PreferencesDialog
 
 
 class MainWindow(object):
@@ -76,18 +77,21 @@ class MainWindow(object):
             ('edit', gtk.STOCK_EDIT, None, '<Control>e',
                 _('Edit selected line'), self.edit_dialog),
             ('plot', 'pondus_plot', None, '<Control>p',
-                plot_tooltip, self.plot_dialog)])
+                plot_tooltip, self.plot_dialog),
+            ('preferences', gtk.STOCK_PREFERENCES, None, None,
+                _('Preferences'), self.preferences_dialog)])
         self.removeaction = action_group.get_action('remove')
         self.editaction = action_group.get_action('edit')
         self.plotaction = action_group.get_action('plot')
         uimanager.insert_action_group(action_group, 0)
 
         ui = """<ui>
-        <toolbar name="Toolbar">
-            <toolitem action="add"/>
-            <toolitem action="remove"/>
-            <toolitem action="edit"/>
-            <toolitem action="plot"/>
+        <toolbar name='Toolbar'>
+            <toolitem action='add'/>
+            <toolitem action='remove'/>
+            <toolitem action='edit'/>
+            <toolitem action='plot'/>
+            <toolitem action='preferences'/>
         </toolbar>
         </ui>"""
         uimanager.add_ui_from_string(ui)
@@ -197,8 +201,11 @@ class MainWindow(object):
 
     def plot_dialog(self, widget):
         """Runs the plotting dialog."""
-        dialog = PlotDialog()
-        dialog.run()
+        PlotDialog().run()
+
+    def preferences_dialog(self, widget):
+        """Runs the preferences dialog."""
+        PreferencesDialog().run()
 
     def on_key_press(self, widget, event):
         """Tests, which key was pressed and triggers the appropriate

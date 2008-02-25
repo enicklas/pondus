@@ -126,8 +126,7 @@ class AddDataDialog(object):
             elif entry == self.weight_entry:
                 gobject.idle_add(self.weight_key_press, entry, text, \
                                             position)
-        else:
-            return None
+        return None
 
     def date_key_press(self, entry, text, position):
         """Tests, which key was pressed and increments/decrements the
