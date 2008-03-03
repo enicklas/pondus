@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Pondus 0.3.0\n"
 "Report-Msgid-Bugs-To: eike@ephys.de\n"
-"POT-Creation-Date: 2008-02-26 00:47+0100\n"
+"POT-Creation-Date: 2008-03-03 23:32+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -27,6 +27,10 @@ msgstr ""
 #: ../src/pondus/core/plot.py:51 ../src/pondus/gui/dialog_add.py:60
 #: ../src/pondus/gui/window_main.py:114
 msgid "Weight"
+msgstr ""
+
+#: ../src/pondus/core/plot.py:83
+msgid "Saving plot to"
 msgstr ""
 
 #: ../src/pondus/core/util.py:41
@@ -53,35 +57,39 @@ msgstr ""
 msgid "Date (YYYY-MM-DD):"
 msgstr ""
 
-#: ../src/pondus/gui/dialog_plot.py:39
+#: ../src/pondus/gui/dialog_plot.py:40
 msgid "Plot Weight"
 msgstr ""
 
-#: ../src/pondus/gui/dialog_plot.py:51
+#: ../src/pondus/gui/dialog_plot.py:52
 msgid "Select Date Range:"
 msgstr ""
 
-#: ../src/pondus/gui/dialog_plot.py:58
+#: ../src/pondus/gui/dialog_plot.py:59
 msgid "-"
 msgstr ""
 
-#: ../src/pondus/gui/dialog_plot.py:65
+#: ../src/pondus/gui/dialog_plot.py:66
 msgid "All Time"
 msgstr ""
 
-#: ../src/pondus/gui/dialog_plot.py:66
+#: ../src/pondus/gui/dialog_plot.py:67
 msgid "Last Year"
 msgstr ""
 
-#: ../src/pondus/gui/dialog_plot.py:67
+#: ../src/pondus/gui/dialog_plot.py:68
 msgid "Last Month"
 msgstr ""
 
-#: ../src/pondus/gui/dialog_plot.py:71
+#: ../src/pondus/gui/dialog_plot.py:72
 msgid "Update"
 msgstr ""
 
-#: ../src/pondus/gui/dialog_plot.py:104
+#: ../src/pondus/gui/dialog_plot.py:77
+msgid "Save Plot"
+msgstr ""
+
+#: ../src/pondus/gui/dialog_plot.py:108
 msgid "The start date has to be before the end date!"
 msgstr ""
 
@@ -104,6 +112,18 @@ msgstr ""
 
 #: ../src/pondus/gui/dialog_remove.py:33
 msgid "Do you really want to delete this dataset?"
+msgstr ""
+
+#: ../src/pondus/gui/dialog_save_plot.py:32
+msgid "Save Plot to File"
+msgstr ""
+
+#: ../src/pondus/gui/dialog_save_plot.py:35
+msgid "weight_plot.png"
+msgstr ""
+
+#: ../src/pondus/gui/dialog_save_plot.py:38
+msgid "Save Image as File Type:"
 msgstr ""
 
 #: ../src/pondus/gui/dialog_wrong_format.py:30

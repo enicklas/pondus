@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Pondus 0.3.0\n"
 "Report-Msgid-Bugs-To: eike@ephys.de\n"
-"POT-Creation-Date: 2008-02-26 00:47+0100\n"
-"PO-Revision-Date: 2008-02-26 00:50+CET\n"
+"POT-Creation-Date: 2008-03-03 23:32+0100\n"
+"PO-Revision-Date: 2008-03-03 17:21+CET\n"
 "Last-Translator: Eike Nicklas <eike@ephys.de>\n"
 "Language-Team: German\n"
 "MIME-Version: 1.0\n"
@@ -27,6 +27,10 @@ msgstr "Fehler: Folgende Datei konnte nicht gefunden werden:"
 #: ../src/pondus/gui/window_main.py:114
 msgid "Weight"
 msgstr "Gewicht"
+
+#: ../src/pondus/core/plot.py:83
+msgid "Saving plot to"
+msgstr "Speichere Diagramm nach"
 
 #: ../src/pondus/core/util.py:41
 msgid "Reading file"
@@ -52,35 +56,39 @@ msgstr "Ändere Datensatz"
 msgid "Date (YYYY-MM-DD):"
 msgstr "Datum (JJJJ-MM-TT):"
 
-#: ../src/pondus/gui/dialog_plot.py:39
+#: ../src/pondus/gui/dialog_plot.py:40
 msgid "Plot Weight"
 msgstr "Plotte das Gewicht"
 
-#: ../src/pondus/gui/dialog_plot.py:51
+#: ../src/pondus/gui/dialog_plot.py:52
 msgid "Select Date Range:"
 msgstr "Wähle Datumsbereich:"
 
-#: ../src/pondus/gui/dialog_plot.py:58
+#: ../src/pondus/gui/dialog_plot.py:59
 msgid "-"
 msgstr "-"
 
-#: ../src/pondus/gui/dialog_plot.py:65
+#: ../src/pondus/gui/dialog_plot.py:66
 msgid "All Time"
 msgstr "Alle Zeiten"
 
-#: ../src/pondus/gui/dialog_plot.py:66
+#: ../src/pondus/gui/dialog_plot.py:67
 msgid "Last Year"
 msgstr "Letztes Jahr"
 
-#: ../src/pondus/gui/dialog_plot.py:67
+#: ../src/pondus/gui/dialog_plot.py:68
 msgid "Last Month"
 msgstr "Letzter Monat"
 
-#: ../src/pondus/gui/dialog_plot.py:71
+#: ../src/pondus/gui/dialog_plot.py:72
 msgid "Update"
 msgstr "Aktualisieren"
 
-#: ../src/pondus/gui/dialog_plot.py:104
+#: ../src/pondus/gui/dialog_plot.py:77
+msgid "Save Plot"
+msgstr "Diagramm speichern"
+
+#: ../src/pondus/gui/dialog_plot.py:108
 msgid "The start date has to be before the end date!"
 msgstr "Das Anfangsdatum muss vor dem Enddatum liegen!"
 
@@ -104,6 +112,18 @@ msgstr "Datensatz löschen?"
 #: ../src/pondus/gui/dialog_remove.py:33
 msgid "Do you really want to delete this dataset?"
 msgstr "Möchten Sie diesen Datensatz wirklich löschen?"
+
+#: ../src/pondus/gui/dialog_save_plot.py:32
+msgid "Save Plot to File"
+msgstr "Speichere Diagramm in Datei"
+
+#: ../src/pondus/gui/dialog_save_plot.py:35
+msgid "weight_plot.png"
+msgstr "gewichtsdiagramm.png"
+
+#: ../src/pondus/gui/dialog_save_plot.py:38
+msgid "Save Image as File Type:"
+msgstr "Speichere Bild im Format:"
 
 #: ../src/pondus/gui/dialog_wrong_format.py:30
 msgid "Error: Wrong Format"

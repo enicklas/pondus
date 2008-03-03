@@ -29,6 +29,7 @@ from pondus import datasets
 from pondus.core import util
 from pondus.core.plot import Plot
 from pondus.gui.dialog_wrong_format import WrongFormatDialog
+from pondus.gui.dialog_save_plot import SavePlotDialog
 
 
 class PlotDialog(object):
@@ -46,7 +47,7 @@ class PlotDialog(object):
         self.dialog.vbox.pack_start(self.canvas)
 
         # date selection
-        date_selection_box = gtk.HBox(homogeneous = False, spacing=5)
+        date_selection_box = gtk.HBox(homogeneous=False, spacing=5)
 
         date_label = gtk.Label(_('Select Date Range:'))
         date_selection_box.pack_start(date_label, False, False)
@@ -73,6 +74,8 @@ class PlotDialog(object):
         self.dialog.vbox.pack_start(date_selection_box, False, False)
 
         # buttons in action field
+        save_button = gtk.Button(label=_('Save Plot'))
+        self.dialog.action_area.pack_start(save_button, False, False)
         self.dialog.add_button(gtk.STOCK_CLOSE, gtk.RESPONSE_CLOSE)
 
         # initialize text entries and format plot
@@ -81,6 +84,7 @@ class PlotDialog(object):
         # connect the signals
         self.dateselector.connect('changed', self.update_daterange)
         date_update_button.connect('clicked', self.update_plot)
+        save_button.connect('clicked', self.save_plot)
 
         # show the content
         self.dialog.show_all()
@@ -114,6 +118,10 @@ class PlotDialog(object):
         self.start_date_entry.set_text(str(start_date))
         self.end_date_entry.set_text(str(end_date))
         self.plot.update_plot(start_date, end_date)
+
+    def save_plot(self, button):
+        """Runs the dialog to save the plot to a file."""
+        SavePlotDialog().run(self.plot)
 
 # helper functions
 

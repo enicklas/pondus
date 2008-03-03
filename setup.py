@@ -87,7 +87,7 @@ setup(name = 'pondus',
         ('share/locale/de/LC_MESSAGES', ['po/mo/de/pondus.mo'])],
       package_dir = {'pondus': 'src/pondus'},
       packages = ['pondus', 'pondus.core', 'pondus.gui'],
-      requires = ['python(>= 2.4)', 'pygtk(>=2.4)', 'matplotlib']
+      requires = ['python(>= 2.4)', 'pygtk(>=2.6)', 'matplotlib']
       )
 
 clean_up()

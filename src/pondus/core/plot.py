@@ -77,6 +77,11 @@ class Plot(object):
         self.format_plot(mindate, maxdate)
         self.figure.canvas.draw()
 
+    def save_to_file(self, filename):
+        """Saves the plot to filename. The filename's ending must be
+        a valid format to save to."""
+        print _('Saving plot to'), filename
+        self.figure.savefig(filename, format=filename[-3:])
 
 def get_locators(daterange):
     """Returns sane locators and formatters for the given
