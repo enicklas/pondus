@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Pondus 0.3.0\n"
 "Report-Msgid-Bugs-To: eike@ephys.de\n"
-"POT-Creation-Date: 2008-03-03 23:32+0100\n"
-"PO-Revision-Date: 2008-03-03 17:21+CET\n"
+"POT-Creation-Date: 2008-03-03 23:43+0100\n"
+"PO-Revision-Date: 2008-03-03 23:44+CET\n"
 "Last-Translator: Eike Nicklas <eike@ephys.de>\n"
 "Language-Team: German\n"
 "MIME-Version: 1.0\n"
@@ -63,10 +63,6 @@ msgstr "Plotte das Gewicht"
 #: ../src/pondus/gui/dialog_plot.py:52
 msgid "Select Date Range:"
 msgstr "Wähle Datumsbereich:"
-
-#: ../src/pondus/gui/dialog_plot.py:59
-msgid "-"
-msgstr "-"
 
 #: ../src/pondus/gui/dialog_plot.py:66
 msgid "All Time"

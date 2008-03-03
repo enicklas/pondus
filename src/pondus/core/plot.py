@@ -47,7 +47,7 @@ class Plot(object):
         self.figure = Figure()
         self.ax = self.figure.add_subplot(111)
         self.ax.plot_date(dates.date2num(self.datelist), \
-                            self.weightlist, fmt='bo-')
+                            self.weightlist, fmt='bo-', ms=4.0)
         ylabel = _('Weight') + ' (' \
                 + parameters.config['preferences.weight_unit'] + ')'
         self.ax.set_ylabel(ylabel)

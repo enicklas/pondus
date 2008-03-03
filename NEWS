@@ -7,6 +7,7 @@
  * Disable plotting functions if matplotlib is not available to make
    matplotlib only recommended, but not required.
  * Require pygtk >= 2.6
+ * Drop build dependency on gettext
 
 2008-02-19: Version 0.2.0
 ===========================

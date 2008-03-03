@@ -56,7 +56,7 @@ class PlotDialog(object):
         self.start_date_entry.set_width_chars(10)
         date_selection_box.pack_start(self.start_date_entry, False, False)
 
-        date_selection_box.pack_start(gtk.Label(_('-')), False, False)
+        date_selection_box.pack_start(gtk.Label('-'), False, False)
 
         self.end_date_entry = gtk.Entry()
         self.end_date_entry.set_width_chars(10)
