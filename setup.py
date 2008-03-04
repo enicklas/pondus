@@ -61,12 +61,19 @@ def create_mo():
             print 'generating', mo_file
             os.system('msgfmt %s -o %s' % (po_file, mo_file))
 
+def create_man():
+    """Creates the gzipped man file to be distributed with the source."""
+    if not os.path.exists('data/pondus.1.gz'):
+        os.system('a2x -f manpage data/pondus.1.txt')
+        os.system('gzip -9 data/pondus.1')
+
 def clean_up():
     """Removes the temporarily generated data."""
     if os.path.exists(tmpdir):
         shutil.rmtree(tmpdir)
 
 create_mo()
+create_man()
 
 setup(name = 'pondus',
       version = get_version(),

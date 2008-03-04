@@ -5,6 +5,7 @@ syntax: glob
 MANIFEST
 build
 dist
+data/*.gz
 data/*.xml
 po/*.po~
 po/mo
