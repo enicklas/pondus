@@ -1,33 +1,32 @@
+Pondus README
+===============
+
 Pondus is a personal weight manager that keeps track of your body
 weight. It aims to be simple to use, lightweight and fast. The data
 can be plotted to get a quick overview of the history of your weight
 and is stored in xml-files for easy access and modification with other
 programs.
 
+For installation instructions read `INSTALL`.
+
+Please report comments, suggestions and bugs to:
+    Eike Nicklas <mailto:eike@ephys.de[]>
+
+The current version can be found at:
+    http://www.ephys.de/software/pondus/[]
 
 Requirements:
-===============
+---------------
  * python (>= 2.4)
  * pygtk (>= 2.6)
 
 Recommended:
-==============
+--------------
  * matplotlib to enable plotting functions
 
-
-For installation instructions read INSTALL.
-
-
-Please report comments, suggestions and bugs to:
-    Eike Nicklas <eike@ephys.de>
-
-The current version can be found at:
-    http://www.ephys.de/software/pondus/
-
-
 Usage:
-========
-Pondus can be started from the command line with 'pondus' or from the
+--------
+Pondus can be started from the command line with `pondus` or from the
 menu of your desktop environment.
 
 The following command line options are available:
@@ -39,7 +38,7 @@ The following command line options are available:
     -i FILE, --input=FILE
         read data from FILE instead of the standard location
 
-By default, the user data is stored in ~/.pondus/datasets.xml and is
+By default, the user data is stored in `~/.pondus/datasets.xml` and is
 written to this file automatically on exit, so you don't have to worry
 about saving the data you entered.
 
@@ -53,6 +52,6 @@ shortcuts. The following shortcuts are currently used:
 
 To improve the workflow, the add dialog is initialized with the current
 date and the last measured weight. Both date and weight can be
-incremented/decremented by one day/0.1kg by pressing '+' or '-',
-respectively. Pressing 'Enter' in one of the entry fields is a shortcut
-for clicking the 'OK'-button.
+incremented/decremented by one day/0.1kg by pressing `+` or `-`,
+respectively. Pressing `Enter` in one of the entry fields is a shortcut
+for clicking the `OK`-button.

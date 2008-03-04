@@ -1,7 +1,10 @@
+Pondus NEWS
+=============
+
 2008-xx-xx: Version 0.3.0
-===========================
+---------------------------
  * Add preferences dialog:
-    - Option to use 'kg' or 'lbs' as the weight unit
+    - Option to use `kg` or `lbs` as the weight unit
     - Option to remember window size
  * Plots can be saved to a file
  * Disable plotting functions if matplotlib is not available to make
@@ -10,28 +13,28 @@
  * Drop build dependency on gettext
 
 2008-02-19: Version 0.2.0
-===========================
+---------------------------
  * Internationalization Support: Pondus can now be translated to
-   languages other than English; see po/README for details on how to
+   languages other than English; see `po/README` for details on how to
    create a new translation.
  * Select and scroll to newly created dataset after add
  * Custom date range in plot: User can provide start/end date
  * Add German translation
 
 2008-02-01: Version 0.1.0
-===========================
+---------------------------
  * Pondus now has an icon/logo
- * add/edit dialog: pressing 'Enter' in one of the entry fields has the
-   same effect as clicking 'OK', i.e. adds/edits the dataset
+ * add/edit dialog: pressing `Enter` in one of the entry fields has the
+   same effect as clicking `OK`, i.e. adds/edits the dataset
  * fix bugs in plot if no datasets are selected
  * code cleanup
 
 2008-01-26: Version 0.0.6
-===========================
+---------------------------
  * plotting weight vs time is enabled
- * '+' and '-' can be used to increment/decrement date and weight in
+ * `+` and `-` can be used to increment/decrement date and weight in
    the add/edit dataset dialog
- * ',' can be used instead of '.' as the decimal separator in the
+ * `,` can be used instead of `.` as the decimal separator in the
    add/edit dataset dialog
  * code cleanup and documentation updates
  * a Windows installer is provided
@@ -39,27 +42,27 @@
  * requires Python >= 2.4 due to use of generator expressions
 
 2008-01-06: Version 0.0.5
-===========================
+---------------------------
  * enable command line option parsing
  * code cleanup, performance improvements and documentation updates
 
 2008-01-02: Version 0.0.4
-===========================
+---------------------------
  * add ability to edit datasets
  * alternate background color of rows in main window
  * add desktop file
 
 2007-12-30: Version 0.0.3
-===========================
+---------------------------
  * use uimanager for the toolbar to have keybindings and tooltips
  * include a manpage
  * remove button only active when a dataset is selected
 
 2008-12-10: Version 0.0.2
-===========================
+---------------------------
  * disable tooltips for now as they require pygtk >= 2.12, which is not
    yet available on every system
 
 2008-12-09: Version 0.0.1
-===========================
+---------------------------
  * initial release

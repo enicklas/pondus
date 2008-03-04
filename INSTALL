@@ -1,21 +1,24 @@
-Testing without installation
-==============================
+Installation Instructions for Pondus
+======================================
 
-On every system where the requirements (python, pygtk; matplotlib is
-recommended) are available, you can test pondus without installing it
-by executing src/pondus.py.
+Pondus is developed and tested on Debian GNU/Linux, but should run on
+every system, where the requirements (Python (>= 2.4), PyGTK (>= 2.4);
+Matplotlib is recommended) are available.
+
+Testing without installation
+------------------------------
+
+You can test pondus without installing it by executing `src/pondus.py`.
 
 
 Installation Instructions
-===========================
+---------------------------
 
 Linux/Unix:
-=============
+~~~~~~~~~~~~~
 
 For Debian and Ubuntu, .deb-packages are available at
-
-    http://www.ephys.de/software/pondus/
-
+    http://www.ephys.de/software/pondus/[]
 
 On other systems, install Pondus by executing in the source directory
 (as root):
@@ -34,17 +37,15 @@ or from the menu of your desktop environment.
 
 
 Windows:
-==========
+~~~~~~~~~~
 
 A Windows installer can be found at
+    http://www.ephys.de/software/pondus/[]
 
-    http://www.ephys.de/software/pondus/
-
-However, before using Pondus, you have to make sure that Python, GTK+,
-and PyGTK are installed (NumPy and Matplotlib are recommended). The
-installation directions for (Py)GTK can be found at
-
-    http://faq.pygtk.org/index.py?req=show&file=faq21.001.htp
+However, before installing Pondus, you have to make sure that Python,
+GTK+, and PyGTK are installed (NumPy and Matplotlib are recommended).
+The installation directions for (Py)GTK can be found at
+    http://faq.pygtk.org/index.py?req=show&file=faq21.001.htp[]
 
 Then, Pondus can be installed by executing the provided installer.
 

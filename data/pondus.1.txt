@@ -52,17 +52,27 @@ respectively. Pressing ``Enter'' in one of the entry fields is a
 shortcut for clicking the ``OK''-button.
 
 
-AUTHOR
-------
-Pondus was written by Eike Nicklas <eike@ephys.de>.
+BUGS
+----
+Look for known bugs and report new bugs at
+http://sharesource.org/project/pondus/bugtracker/[]
 
 
 RESOURCES
 ---------
-Homepage: http://www.ephys.de/software/pondus
+Homepage: http://www.ephys.de/software/pondus/[]
+
+ShareSource: http://sharesource.org/project/pondus/[]
+
+hg-Repository: http://hg.sharesource.org/pondus/[]
 
 
-COPYING
--------
-Copyright \(C) 2007-08 Eike Nicklas. Free use of this software is
+AUTHOR
+------
+Written by Eike Nicklas <mailto:eike@ephys.de[]>
+
+
+COPYRIGHT
+---------
+Copyright \(C) 2007-2008 Eike Nicklas. Free use of this software is
 granted under the terms of the GNU General Public License (GPL).

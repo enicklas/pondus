@@ -1,20 +1,24 @@
+Handling Translations for Pondus
+==================================
+
 Creating a new translation:
-=============================
+-----------------------------
 
-Run 'msginit' in po/ and follow the instructions.
+Run `msginit` in `po/` and follow the instructions.
 
-Alternatively, you can also copy pondus.pot to LL.po (where LL is the
+Alternatively, you can also copy `pondus.pot` to `LL.po` (where LL is
 your language code) and edit the header manually.
 
-Translate the strings and send the resulting LL.po to eike@ephys.de
+Translate the strings and send the resulting `LL.po` to
+mailto:eike@ephys.de[]
 
 Thanks!
 
 
 Updating a translation:
-=========================
+-------------------------
 
-The LL.po files in the hg repo will always refer to the current hg
-version of Pondus. So just download the LL.po file, translate new
-strings, correct changed strings and send the resulting LL.po to
-eike@ephys.de
+The `LL.po` files in the hg repo will always refer to the current hg
+version of Pondus. So just download the `LL.po` file, translate new
+strings, correct changed strings and send the resulting `LL.po` to
+mailto:eike@ephys.de[]
