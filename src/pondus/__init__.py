@@ -19,9 +19,19 @@ You should have received a copy of the GNU General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>.
 """
 
-import sys
 import gettext
-gettext.install('pondus', sys.prefix + '/share/locale')
+import os
+import sys
+
+
+def gettext_install():
+    basepath = os.path.dirname(os.path.abspath(sys.path[0]))
+    if os.path.exists(os.path.join(basepath, 'po/mo')):
+        gettext.install('pondus', os.path.join(basepath, 'po/mo'))
+    else:
+        gettext.install('pondus', os.path.join(basepath, 'share/locale'))
+
+gettext_install()
 
 __all__ = ['core', 'gui', 'datasets', 'parameters']
 __version__ = '0.3.0'

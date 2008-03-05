@@ -54,7 +54,7 @@ def create_mo():
     if not os.path.exists(mo_dir):
         for lang in ['de']:
             po_file = os.path.join('po', lang + '.po')
-            mo_dir_lang = os.path.join(mo_dir, lang)
+            mo_dir_lang = os.path.join(mo_dir, lang, 'LC_MESSAGES')
             mo_file = os.path.join(mo_dir_lang, 'pondus.mo')
             if not os.path.exists(mo_dir_lang):
                 os.makedirs(mo_dir_lang)
@@ -91,7 +91,7 @@ setup(name = 'pondus',
         ('share/pixmaps', ['data/icons/pondus.xpm']),
         ('share/icons/hicolor/48x48/apps', ['data/icons/pondus.png']),
         ('share/icons/hicolor/scalable/apps', ['data/icons/pondus.svg']),
-        ('share/locale/de/LC_MESSAGES', ['po/mo/de/pondus.mo'])],
+        ('share/locale/de/LC_MESSAGES', ['po/mo/de/LC_MESSAGES/pondus.mo'])],
       package_dir = {'pondus': 'src/pondus'},
       packages = ['pondus', 'pondus.core', 'pondus.gui'],
       requires = ['python(>= 2.4)', 'pygtk(>=2.6)', 'matplotlib']
