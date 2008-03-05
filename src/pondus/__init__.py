@@ -25,6 +25,7 @@ import sys
 
 
 def gettext_install():
+    """Installs string translations; uses local data if available."""
     basepath = os.path.dirname(os.path.abspath(sys.path[0]))
     if os.path.exists(os.path.join(basepath, 'po/mo')):
         gettext.install('pondus', os.path.join(basepath, 'po/mo'))
