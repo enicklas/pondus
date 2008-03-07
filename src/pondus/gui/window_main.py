@@ -43,6 +43,9 @@ class MainWindow(object):
     the dialogs."""
 
     def __init__(self):
+        # display weight measurements by default
+        self.datasetdata = datasets.all_datasets
+        
         # create the window
         self.window = gtk.Window(gtk.WINDOW_TOPLEVEL)
         self.window.set_title('Pondus')
@@ -52,7 +55,7 @@ class MainWindow(object):
         gtk.window_set_default_icon_from_file(parameters.logo_path)
 
         # build the content
-        mainbox = gtk.VBox()
+        mainbox = gtk.VBox(spacing=5)
         self.window.add(mainbox)
 
         # register icons
@@ -108,7 +111,7 @@ class MainWindow(object):
             gtk.POLICY_AUTOMATIC)
         datawindow.set_shadow_type(gtk.SHADOW_IN)
         self.datalist = gtk.ListStore(int, str, str)
-        self.add_data()
+        self.display_data(self.datasetdata)
         self.dataview = gtk.TreeView(self.datalist)
         self.add_column(_('Date'), 1)
         self.add_column(_('Weight'), 2)
@@ -117,6 +120,13 @@ class MainWindow(object):
         self.dataview.set_rules_hint(True)
         datawindow.add(self.dataview)
         mainbox.pack_start(datawindow)
+
+        # measurement or plan selector
+        self.modeselector = gtk.combo_box_new_text()
+        self.modeselector.append_text(_('Weight Measurements'))
+        self.modeselector.append_text(_('Weight Planner'))
+        self.modeselector.set_active(0)
+        mainbox.pack_start(self.modeselector, False, True)
 
         # get treeselection and deactivate actions if no selection
         self.treeselection = self.dataview.get_selection()
@@ -128,6 +138,7 @@ class MainWindow(object):
         self.treeselection.connect('changed', self.set_add_edit_actions_active)
         self.dataview.connect('button-press-event', self.button_pressed)
         self.dataview.connect('key-press-event', self.on_key_press)
+        self.modeselector.connect('changed', self.update_mode)
         self.window.connect('destroy', self.destroy)
 
         # display window with content
@@ -139,7 +150,8 @@ class MainWindow(object):
     def destroy(self, widget, data=None):
         """Quits the application cleanly and saves the data to the
         appropriate file."""
-        datasets.all_datasets.write_to_file()
+        datasets.all_datasets.write_to_file(filepath=parameters.datafile)
+        datasets.plan_datasets.write_to_file(filepath=parameters.planfile)
         if parameters.config['window.remember_size']:
             parameters.config['window.width'] = \
                                     self.window.get_allocation().width
@@ -151,10 +163,10 @@ class MainWindow(object):
     def add_dialog(self, widget):
         """Runs the dialog to add a new dataset and then adds it to
         all_datasets and datalist."""
-        dialog = AddDataDialog(datasets.all_datasets.get_new_dataset())
+        dialog = AddDataDialog(self.datasetdata.get_new_dataset())
         newdata = dialog.run()
         if newdata is not None:
-            datasets.all_datasets.add(newdata)
+            self.datasetdata.add(newdata)
             newiter = self.datalist.append(newdata.as_list())
             self.treeselection.select_iter(newiter)
             listmodel = self.dataview.get_model()
@@ -170,7 +182,7 @@ class MainWindow(object):
             (listmodel, treeiter) = self.treeselection.get_selected()
             id_selected = listmodel.get_value(treeiter, 0)
             # remove selected dataset from all_datasets
-            datasets.all_datasets.remove(id_selected)
+            self.datasetdata.remove(id_selected)
             # remove selected dataset from displayed list
             listmodel.remove(treeiter)
             # select next row if it exists (treeiter was advanced by
@@ -190,11 +202,11 @@ class MainWindow(object):
         to all_datasets and datalist."""
         (listmodel, treeiter) = self.treeselection.get_selected()
         id_selected = listmodel.get_value(treeiter, 0)
-        dialog = AddDataDialog(datasets.all_datasets.get(id_selected), \
+        dialog = AddDataDialog(self.datasetdata.get(id_selected), \
                                 edit=True)
         newdata = dialog.run()
         if newdata is not None:
-            datasets.all_datasets.add(newdata)
+            self.datasetdata.add(newdata)
             self.datalist.set(treeiter,
                 1, str(newdata.data['date']),
                 2, str(newdata.data['weight']))
@@ -226,6 +238,16 @@ class MainWindow(object):
         if event.type == 5:
             self.edit_dialog(widget)
 
+    def update_mode(self, modeselector):
+        """Updates the editing mode: whether weight measurements or
+        the weight plan is displayed and edited."""
+        key = self.modeselector.get_active()
+        if key == 0:
+            self.datasetdata = datasets.all_datasets
+        elif key == 1:
+            self.datasetdata = datasets.plan_datasets
+        self.display_data(self.datasetdata)
+
 
     # other functions
 
@@ -242,7 +264,7 @@ class MainWindow(object):
     def set_plot_action_active(self):
         """Tests, whether a dataset exists and matplotlib is available
         and sets sensitivity of the plot action accordingly."""
-        if len(datasets.all_datasets) == 0 or not parameters.have_mpl:
+        if len(self.datasetdata) == 0 or not parameters.have_mpl:
             self.plotaction.set_sensitive(False)
         elif self.plotaction.get_sensitive() == False and parameters.have_mpl:
             self.plotaction.set_sensitive(True)
@@ -255,10 +277,10 @@ class MainWindow(object):
         column.set_sort_column_id(columnId)
         self.dataview.append_column(column)
 
-    def add_data(self):
-        """Reads the xml file with the data and appends the data to the
-        list model."""
-        for dataset in datasets.all_datasets:
+    def display_data(self, datasetdata):
+        """Appends the datasets to the list model."""
+        self.datalist.clear()
+        for dataset in datasetdata:
             self.datalist.append(dataset.as_list())
 
 

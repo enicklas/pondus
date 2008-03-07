@@ -1,12 +1,17 @@
 Pondus NEWS
 =============
 
+2008-xx-xx: Version 0.4.0
+---------------------------
+ * Add ability to set a weight plan for the future
+   
+
 2008-03-06: Version 0.3.0
 ---------------------------
  * Add preferences dialog:
     - Option to use `kg` or `lbs` as the weight unit
     - Option to remember window size
- * Plots can be saved to a file
+ * Plot can be saved to a file
  * Disable plotting functions if matplotlib is not available to make
    matplotlib only recommended, but not required.
  * Require pygtk >= 2.6

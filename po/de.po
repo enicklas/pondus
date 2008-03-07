@@ -5,10 +5,10 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: Pondus 0.3.0\n"
+"Project-Id-Version: Pondus 0.4.0\n"
 "Report-Msgid-Bugs-To: eike@ephys.de\n"
-"POT-Creation-Date: 2008-03-03 23:43+0100\n"
-"PO-Revision-Date: 2008-03-03 23:44+CET\n"
+"POT-Creation-Date: 2008-03-07 20:35+0100\n"
+"PO-Revision-Date: 2008-03-07 20:37+CET\n"
 "Last-Translator: Eike Nicklas <eike@ephys.de>\n"
 "Language-Team: German\n"
 "MIME-Version: 1.0\n"
@@ -24,7 +24,7 @@ msgid "Error: Could not find"
 msgstr "Fehler: Folgende Datei konnte nicht gefunden werden:"
 
 #: ../src/pondus/core/plot.py:51 ../src/pondus/gui/dialog_add.py:60
-#: ../src/pondus/gui/window_main.py:114
+#: ../src/pondus/gui/window_main.py:117
 msgid "Weight"
 msgstr "Gewicht"
 
@@ -89,7 +89,7 @@ msgid "The start date has to be before the end date!"
 msgstr "Das Anfangsdatum muss vor dem Enddatum liegen!"
 
 #: ../src/pondus/gui/dialog_preferences.py:35
-#: ../src/pondus/gui/window_main.py:82
+#: ../src/pondus/gui/window_main.py:85
 msgid "Preferences"
 msgstr "Optionen"
 
@@ -133,26 +133,34 @@ msgstr "Die eingegebenen Daten haben nicht das richtige Format!"
 msgid "Please make sure this library is installed."
 msgstr "Bitte stelle sicher, dass diese Bibliothek installiert ist."
 
-#: ../src/pondus/gui/window_main.py:63
+#: ../src/pondus/gui/window_main.py:66
 msgid "Plot data"
 msgstr "Plotte die Daten"
 
-#: ../src/pondus/gui/window_main.py:65
+#: ../src/pondus/gui/window_main.py:68
 msgid "Matplotlib not available!"
 msgstr "Matplotlib nicht verfügbar!"
 
-#: ../src/pondus/gui/window_main.py:74
+#: ../src/pondus/gui/window_main.py:77
 msgid "Add more data"
 msgstr "Datensatz hinzufügen"
 
-#: ../src/pondus/gui/window_main.py:76
+#: ../src/pondus/gui/window_main.py:79
 msgid "Delete selected line"
 msgstr "Lösche ausgewählte Zeile"
 
-#: ../src/pondus/gui/window_main.py:78
+#: ../src/pondus/gui/window_main.py:81
 msgid "Edit selected line"
 msgstr "Ändere ausgewählte Zeile"
 
-#: ../src/pondus/gui/window_main.py:113
+#: ../src/pondus/gui/window_main.py:116
 msgid "Date"
 msgstr "Datum"
+
+#: ../src/pondus/gui/window_main.py:126
+msgid "Weight Measurements"
+msgstr "Gewichtsmessungen"
+
+#: ../src/pondus/gui/window_main.py:127
+msgid "Weight Planner"
+msgstr "Gewichtsplaner"

@@ -50,6 +50,7 @@ def get_path(localpath, syspath, filename):
 # path of configuration and data files
 configfile = os.path.expanduser('~/.config/pondus/pondusrc')
 datafile = os.path.expanduser('~/.pondus/datasets.xml')
+planfile = os.path.expanduser('~/.pondus/weight-plan.xml')
 
 # configuration
 config = config_parser.read_config(configfile)

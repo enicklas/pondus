@@ -19,8 +19,11 @@ You should have received a copy of the GNU General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>.
 """
 
+from pondus import parameters
 from pondus.core.all_datasets import AllDatasets
+
 
 # this instance stores all the datasets and is kept in this module for
 # global access
-all_datasets = AllDatasets()
+all_datasets = AllDatasets(parameters.datafile)
+plan_datasets = AllDatasets(parameters.planfile)

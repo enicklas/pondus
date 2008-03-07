@@ -6,9 +6,9 @@
 #, fuzzy
 msgid ""
 msgstr ""
-"Project-Id-Version: Pondus 0.3.0\n"
+"Project-Id-Version: Pondus 0.4.0\n"
 "Report-Msgid-Bugs-To: eike@ephys.de\n"
-"POT-Creation-Date: 2008-03-06 00:42+0100\n"
+"POT-Creation-Date: 2008-03-07 20:41+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -25,7 +25,7 @@ msgid "Error: Could not find"
 msgstr ""
 
 #: ../src/pondus/core/plot.py:51 ../src/pondus/gui/dialog_add.py:60
-#: ../src/pondus/gui/window_main.py:114
+#: ../src/pondus/gui/window_main.py:117
 msgid "Weight"
 msgstr ""
 
@@ -90,7 +90,7 @@ msgid "The start date has to be before the end date!"
 msgstr ""
 
 #: ../src/pondus/gui/dialog_preferences.py:35
-#: ../src/pondus/gui/window_main.py:82
+#: ../src/pondus/gui/window_main.py:85
 msgid "Preferences"
 msgstr ""
 
@@ -134,26 +134,34 @@ msgstr ""
 msgid "Please make sure this library is installed."
 msgstr ""
 
-#: ../src/pondus/gui/window_main.py:63
+#: ../src/pondus/gui/window_main.py:66
 msgid "Plot data"
 msgstr ""
 
-#: ../src/pondus/gui/window_main.py:65
+#: ../src/pondus/gui/window_main.py:68
 msgid "Matplotlib not available!"
 msgstr ""
 
-#: ../src/pondus/gui/window_main.py:74
+#: ../src/pondus/gui/window_main.py:77
 msgid "Add more data"
 msgstr ""
 
-#: ../src/pondus/gui/window_main.py:76
+#: ../src/pondus/gui/window_main.py:79
 msgid "Delete selected line"
 msgstr ""
 
-#: ../src/pondus/gui/window_main.py:78
+#: ../src/pondus/gui/window_main.py:81
 msgid "Edit selected line"
 msgstr ""
 
-#: ../src/pondus/gui/window_main.py:113
+#: ../src/pondus/gui/window_main.py:116
 msgid "Date"
+msgstr ""
+
+#: ../src/pondus/gui/window_main.py:126
+msgid "Weight Measurements"
+msgstr ""
+
+#: ../src/pondus/gui/window_main.py:127
+msgid "Weight Planner"
 msgstr ""
