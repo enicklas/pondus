@@ -63,11 +63,11 @@ Pondus NEWS
  * include a manpage
  * remove button only active when a dataset is selected
 
-2008-12-10: Version 0.0.2
+2007-12-10: Version 0.0.2
 ---------------------------
  * disable tooltips for now as they require pygtk >= 2.12, which is not
    yet available on every system
 
-2008-12-09: Version 0.0.1
+2007-12-09: Version 0.0.1
 ---------------------------
  * initial release
