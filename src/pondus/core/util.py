@@ -80,3 +80,22 @@ def parse_options():
     (options, args) = parser.parse_args()
     if options.filename:
         set_datafilepath(options.filename)
+
+def compare_with_possible_nones(min1, max1, min2, max2):
+    """Compares min1 with min2 and max max1 with max2 and returns the
+    total minimum and maximum. min1 and min2 can possibly be None; it is
+    assumed, that max1 and max2 then are also None."""
+    if min1 is not None and min2 is not None:
+        tot_min = min(min1, min2)
+        tot_max = max(max1, max2)
+        return tot_min, tot_max
+    if min1 is not None and min2 is None:
+        tot_min = min1
+        tot_max = max1
+        return tot_min, tot_max
+    if min1 is None and min2 is not None:
+        tot_min = min2
+        tot_max = max2
+        return tot_min, tot_max
+    else:
+        return None, None

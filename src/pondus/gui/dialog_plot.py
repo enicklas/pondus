@@ -129,8 +129,11 @@ def get_daterange(key):
     """Returns start and end date of the plot to be created,
     depending on the current setting of self.dateselector."""
     if key == 0:
-        mindate, maxdate = datasets.all_datasets.get_daterange()
         dateoffset = timedelta(days=10)
+        mindate_meas, maxdate_meas = datasets.all_datasets.get_daterange()
+        mindate_plan, maxdate_plan = datasets.plan_datasets.get_daterange()
+        mindate, maxdate = util.compare_with_possible_nones( \
+            mindate_meas, maxdate_meas, mindate_plan, maxdate_plan)
         mindate -= dateoffset
         maxdate += dateoffset
     else:

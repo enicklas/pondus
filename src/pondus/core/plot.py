@@ -25,29 +25,34 @@ from matplotlib import dates
 
 from pondus import datasets
 from pondus import parameters
+from pondus.core import util
 
 
 class Plot(object):
     """Describes the plot figure and implements methods to modify it."""
     def __init__(self):
         """Plots the weight data vs time."""
-        self.get_plot_data()
         self.create_plot()
 
-    def get_plot_data(self):
-        """Creates the datalists to be plotted."""
-        plot_data = [(dataset.data['date'], dataset.data['weight']) \
-                for dataset in datasets.all_datasets]
-        plot_data.sort()
-        self.datelist = [tup[0] for tup in plot_data]
-        self.weightlist = [tup[1] for tup in plot_data]
+    def get_plot_data(self, datasetdata):
+        """Returns the datalists to be plotted."""
+        data = [(dataset.data['date'], dataset.data['weight']) \
+                for dataset in datasetdata]
+        data.sort()
+        dates = [tup[0] for tup in data]
+        weights = [tup[1] for tup in data]
+        return dates, weights
 
     def create_plot(self):
         """Creates the plot and basic formatting."""
+        weightdatelist, weightlist = self.get_plot_data(datasets.all_datasets)
+        plandatelist, planweightlist = self.get_plot_data(datasets.plan_datasets)
         self.figure = Figure()
         self.ax = self.figure.add_subplot(111)
-        self.ax.plot_date(dates.date2num(self.datelist), \
-                            self.weightlist, fmt='bo-', ms=4.0)
+        self.ax.plot_date(dates.date2num(weightdatelist), \
+                            weightlist, fmt='bo-', ms=4.0)
+        self.ax.plot_date(dates.date2num(plandatelist), \
+                            planweightlist, fmt='ro-', ms=4.0)
         ylabel = _('Weight') + ' (' \
                 + parameters.config['preferences.weight_unit'] + ')'
         self.ax.set_ylabel(ylabel)
@@ -58,12 +63,8 @@ class Plot(object):
         daterange = maxdate - mindate
         majorlocator, majorformatter, minorlocator = get_locators(daterange)
 
-        weightoffset = 0.5
-        minweight_tmp, maxweight_tmp = \
-            datasets.all_datasets.get_weight_in_daterange(mindate, maxdate)
-        if minweight_tmp is not None:
-            minweight = minweight_tmp - weightoffset
-            maxweight = maxweight_tmp + weightoffset
+        minweight, maxweight = get_weightrange(mindate, maxdate)
+        if minweight is not None:
             self.ax.set_ylim(minweight, maxweight)
 
         self.ax.set_xlim(dates.date2num(mindate), \
@@ -111,3 +112,18 @@ def get_locators(daterange):
         majorformatter = dates.DateFormatter("%d %b")
         minorlocator = dates.DayLocator()
     return majorlocator, majorformatter, minorlocator
+
+def get_weightrange(mindate, maxdate):
+    """Return the minimum and the maximum weight in the given date
+    range."""
+    weightoffset = 0.5
+    minweight_meas, maxweight_meas = \
+        datasets.all_datasets.get_weight_in_daterange(mindate, maxdate)
+    minweight_plan, maxweight_plan = \
+        datasets.plan_datasets.get_weight_in_daterange(mindate, maxdate)
+    minweight, maxweight = util.compare_with_possible_nones( \
+        minweight_meas, maxweight_meas, minweight_plan, maxweight_plan)
+    if minweight is not None:
+        minweight -= weightoffset
+        maxweight += weightoffset
+    return minweight, maxweight
