@@ -49,9 +49,11 @@ class Plot(object):
         plandatelist, planweightlist = self.get_plot_data(datasets.plan_datasets)
         self.figure = Figure()
         self.ax = self.figure.add_subplot(111)
-        self.ax.plot_date(dates.date2num(weightdatelist), \
+        if len(weightdatelist) != 0:
+            self.ax.plot_date(dates.date2num(weightdatelist), \
                             weightlist, fmt='bo-', ms=4.0)
-        self.ax.plot_date(dates.date2num(plandatelist), \
+        if len(plandatelist) != 0:
+            self.ax.plot_date(dates.date2num(plandatelist), \
                             planweightlist, fmt='ro-', ms=4.0)
         ylabel = _('Weight') + ' (' \
                 + parameters.config['preferences.weight_unit'] + ')'

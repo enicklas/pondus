@@ -247,6 +247,8 @@ class MainWindow(object):
         elif key == 1:
             self.datasetdata = datasets.plan_datasets
         self.display_data(self.datasetdata)
+        self.set_add_edit_actions_active(self.treeselection)
+        self.set_plot_action_active()
 
 
     # other functions
@@ -264,7 +266,9 @@ class MainWindow(object):
     def set_plot_action_active(self):
         """Tests, whether a dataset exists and matplotlib is available
         and sets sensitivity of the plot action accordingly."""
-        if len(self.datasetdata) == 0 or not parameters.have_mpl:
+        if (len(datasets.all_datasets) == 0 \
+                    and len(datasets.plan_datasets) == 0) \
+                    or not parameters.have_mpl:
             self.plotaction.set_sensitive(False)
         elif self.plotaction.get_sensitive() == False and parameters.have_mpl:
             self.plotaction.set_sensitive(True)
