@@ -82,6 +82,8 @@ class PlotDialog(object):
         self.update_daterange(self.dateselector)
 
         # connect the signals
+        self.start_date_entry.connect('key-press-event', self.on_keypress_in_entry)
+        self.end_date_entry.connect('key-press-event', self.on_keypress_in_entry)
         self.dateselector.connect('changed', self.update_daterange)
         date_update_button.connect('clicked', self.update_plot)
         save_button.connect('clicked', self.save_plot)
@@ -122,6 +124,11 @@ class PlotDialog(object):
     def save_plot(self, button):
         """Runs the dialog to save the plot to a file."""
         SavePlotDialog().run(self.plot)
+
+    def on_keypress_in_entry(self, entry, event):
+        """Updates the plot if Enter was pressed."""
+        if event.keyval == gtk.keysyms.Return:
+            self.update_plot(None)
 
 # helper functions
 

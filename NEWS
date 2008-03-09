@@ -3,7 +3,9 @@ Pondus NEWS
 
 2008-xx-xx: Version 0.4.0
 ---------------------------
- * Add ability to set a weight plan for the future
+ * Add ability to set a weight plan for the future and to plot the plan
+   for comparison with the actual weight
+ * Update plot if `Enter` is pressed in one of the date entry fields
    
 
 2008-03-06: Version 0.3.0
