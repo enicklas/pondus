@@ -162,8 +162,9 @@ class MainWindow(object):
 
     def add_dialog(self, widget):
         """Runs the dialog to add a new dataset and then adds it to
-        all_datasets and datalist."""
-        dialog = AddDataDialog(self.datasetdata.get_new_dataset())
+        self.datasetdata and self.datalist."""
+        dialog = AddDataDialog(self.datasetdata.get_new_dataset(), \
+                                edit=False)
         newdata = dialog.run()
         if newdata is not None:
             self.datasetdata.add(newdata)
@@ -176,12 +177,12 @@ class MainWindow(object):
 
     def remove_dialog(self, widget):
         """Runs the dialog to remove the selected dataset and then
-        deletes it from all_datasets and datalist."""
+        deletes it from self.datasetdata and self.datalist."""
         dialog = RemoveDataDialog()
         if dialog.run() == gtk.RESPONSE_YES:
             (listmodel, treeiter) = self.treeselection.get_selected()
             id_selected = listmodel.get_value(treeiter, 0)
-            # remove selected dataset from all_datasets
+            # remove selected dataset from self.datasetdata
             self.datasetdata.remove(id_selected)
             # remove selected dataset from displayed list
             listmodel.remove(treeiter)
@@ -199,7 +200,7 @@ class MainWindow(object):
 
     def edit_dialog(self, widget):
         """Runs the dialog to edit the selected dataset and then adds it
-        to all_datasets and datalist."""
+        to self.datasetdata and self.datalist."""
         (listmodel, treeiter) = self.treeselection.get_selected()
         id_selected = listmodel.get_value(treeiter, 0)
         dialog = AddDataDialog(self.datasetdata.get(id_selected), \

@@ -31,7 +31,7 @@ from pondus.gui.dialog_wrong_format import WrongFormatDialog
 class AddDataDialog(object):
     """Implements the user interface to add or edit datasets."""
 
-    def __init__(self, dataset, edit=False):
+    def __init__(self, dataset, edit):
         self.dataset = dataset
         # get default values for entry boxes
         sdate = str(self.dataset.data['date'])

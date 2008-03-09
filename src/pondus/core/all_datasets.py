@@ -30,7 +30,7 @@ class AllDatasets(object):
     """Defines the structure how all the datasets are stored
     internally."""
 
-    def __init__(self, filepath=parameters.datafile):
+    def __init__(self, filepath):
         """Reads all datasets from filepath."""
         self.datasets = xml_parser.read(filepath)
         self.selection = self.datasets.keys()
@@ -43,7 +43,7 @@ class AllDatasets(object):
         """Returns the number of datasets in self.datasets."""
         return len(self.datasets)
 
-    def write_to_file(self, filepath=parameters.datafile):
+    def write_to_file(self, filepath):
         """Writes all datasets to filepath."""
         xml_parser.write(self.datasets.itervalues(), filepath)
 

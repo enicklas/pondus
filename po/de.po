@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Pondus 0.4.0\n"
 "Report-Msgid-Bugs-To: eike@ephys.de\n"
-"POT-Creation-Date: 2008-03-07 20:35+0100\n"
+"POT-Creation-Date: 2008-03-09 17:48+0100\n"
 "PO-Revision-Date: 2008-03-07 20:37+CET\n"
 "Last-Translator: Eike Nicklas <eike@ephys.de>\n"
 "Language-Team: German\n"
@@ -23,12 +23,12 @@ msgstr "Achtung: Matplotlib nicht verfügbar, Plotfunktion deaktiviert!"
 msgid "Error: Could not find"
 msgstr "Fehler: Folgende Datei konnte nicht gefunden werden:"
 
-#: ../src/pondus/core/plot.py:51 ../src/pondus/gui/dialog_add.py:60
+#: ../src/pondus/core/plot.py:58 ../src/pondus/gui/dialog_add.py:60
 #: ../src/pondus/gui/window_main.py:117
 msgid "Weight"
 msgstr "Gewicht"
 
-#: ../src/pondus/core/plot.py:83
+#: ../src/pondus/core/plot.py:86
 msgid "Saving plot to"
 msgstr "Speichere Diagramm nach"
 
@@ -84,7 +84,7 @@ msgstr "Aktualisieren"
 msgid "Save Plot"
 msgstr "Diagramm speichern"
 
-#: ../src/pondus/gui/dialog_plot.py:108
+#: ../src/pondus/gui/dialog_plot.py:110
 msgid "The start date has to be before the end date!"
 msgstr "Das Anfangsdatum muss vor dem Enddatum liegen!"
 
