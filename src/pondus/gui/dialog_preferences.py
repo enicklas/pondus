@@ -51,6 +51,12 @@ class PreferencesDialog(object):
         unit_box.pack_start(self.unit_button)
         self.dialog.vbox.pack_start(unit_box)
 
+        self.plot_plan_button = gtk.CheckButton(_('Include Weight Plan in Plot'))
+        self.plot_plan_button.set_border_width(5)
+        self.plot_plan_button.set_active( \
+                        self.newconfig['preferences.plot_weight_plan'])
+        self.dialog.vbox.pack_start(self.plot_plan_button)
+
         self.remember_button = gtk.CheckButton(_('Remember Window Size'))
         self.remember_button.set_border_width(5)
         self.remember_button.set_active(self.newconfig['window.remember_size'])
@@ -68,6 +74,8 @@ class PreferencesDialog(object):
         if response == gtk.RESPONSE_OK:
             self.newconfig['window.remember_size'] = \
                                     self.remember_button.get_active()
+            self.newconfig['preferences.plot_weight_plan'] = \
+                                    self.plot_plan_button.get_active()
             parameters.config = self.newconfig
         self.dialog.hide()
         return None

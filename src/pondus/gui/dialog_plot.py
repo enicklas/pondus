@@ -25,7 +25,7 @@ from datetime import date, timedelta
 from matplotlib.backends.backend_gtkagg import FigureCanvasGTKAgg \
     as FigureCanvas
 
-from pondus import datasets
+from pondus import datasets, parameters
 from pondus.core import util
 from pondus.core.plot import Plot
 from pondus.gui.dialog_wrong_format import WrongFormatDialog
@@ -138,7 +138,10 @@ def get_daterange(key):
     if key == 0:
         dateoffset = timedelta(days=10)
         mindate_meas, maxdate_meas = datasets.all_datasets.get_daterange()
-        mindate_plan, maxdate_plan = datasets.plan_datasets.get_daterange()
+        if parameters.config['preferences.plot_weight_plan']:
+            mindate_plan, maxdate_plan = datasets.plan_datasets.get_daterange()
+        else:
+            mindate_plan, maxdate_plan = None, None
         mindate, maxdate = util.compare_with_possible_nones( \
             mindate_meas, maxdate_meas, mindate_plan, maxdate_plan)
         mindate -= dateoffset

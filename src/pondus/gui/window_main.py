@@ -45,7 +45,7 @@ class MainWindow(object):
     def __init__(self):
         # display weight measurements by default
         self.datasetdata = datasets.all_datasets
-        
+
         # create the window
         self.window = gtk.Window(gtk.WINDOW_TOPLEVEL)
         self.window.set_title('Pondus')
@@ -219,6 +219,7 @@ class MainWindow(object):
     def preferences_dialog(self, widget):
         """Runs the preferences dialog."""
         PreferencesDialog().run()
+        self.set_plot_action_active()
 
     def on_key_press(self, widget, event):
         """Tests, which key was pressed and triggers the appropriate
@@ -267,8 +268,9 @@ class MainWindow(object):
     def set_plot_action_active(self):
         """Tests, whether a dataset exists and matplotlib is available
         and sets sensitivity of the plot action accordingly."""
-        if (len(datasets.all_datasets) == 0 \
-                    and len(datasets.plan_datasets) == 0) \
+        if (len(datasets.all_datasets) == 0 and \
+                    (len(datasets.plan_datasets) == 0 \
+                    or not parameters.config['preferences.plot_weight_plan']))\
                     or not parameters.have_mpl:
             self.plotaction.set_sensitive(False)
         elif self.plotaction.get_sensitive() == False and parameters.have_mpl:

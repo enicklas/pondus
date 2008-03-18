@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Pondus 0.4.0\n"
 "Report-Msgid-Bugs-To: eike@ephys.de\n"
-"POT-Creation-Date: 2008-03-09 17:48+0100\n"
-"PO-Revision-Date: 2008-03-07 20:37+CET\n"
+"POT-Creation-Date: 2008-03-17 17:46+0100\n"
+"PO-Revision-Date: 2008-03-17 17:51+CET\n"
 "Last-Translator: Eike Nicklas <eike@ephys.de>\n"
 "Language-Team: German\n"
 "MIME-Version: 1.0\n"
@@ -23,12 +23,12 @@ msgstr "Achtung: Matplotlib nicht verfügbar, Plotfunktion deaktiviert!"
 msgid "Error: Could not find"
 msgstr "Fehler: Folgende Datei konnte nicht gefunden werden:"
 
-#: ../src/pondus/core/plot.py:58 ../src/pondus/gui/dialog_add.py:60
+#: ../src/pondus/core/plot.py:59 ../src/pondus/gui/dialog_add.py:60
 #: ../src/pondus/gui/window_main.py:117
 msgid "Weight"
 msgstr "Gewicht"
 
-#: ../src/pondus/core/plot.py:86
+#: ../src/pondus/core/plot.py:87
 msgid "Saving plot to"
 msgstr "Speichere Diagramm nach"
 
@@ -98,6 +98,10 @@ msgid "Weight Unit:"
 msgstr "Gewichtseinheit:"
 
 #: ../src/pondus/gui/dialog_preferences.py:54
+msgid "Include Weight Plan in Plot"
+msgstr "Zeige Gewichtsplan im Plot"
+
+#: ../src/pondus/gui/dialog_preferences.py:60
 msgid "Remember Window Size"
 msgstr "Speichere Fenstergröße"
 

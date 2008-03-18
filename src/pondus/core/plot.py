@@ -52,7 +52,8 @@ class Plot(object):
         if len(weightdatelist) != 0:
             self.ax.plot_date(dates.date2num(weightdatelist), \
                             weightlist, fmt='bo-', ms=4.0)
-        if len(plandatelist) != 0:
+        if len(plandatelist) != 0 and \
+                    parameters.config['preferences.plot_weight_plan']:
             self.ax.plot_date(dates.date2num(plandatelist), \
                             planweightlist, fmt='ro-', ms=4.0)
         ylabel = _('Weight') + ' (' \
@@ -121,8 +122,11 @@ def get_weightrange(mindate, maxdate):
     weightoffset = 0.5
     minweight_meas, maxweight_meas = \
         datasets.all_datasets.get_weight_in_daterange(mindate, maxdate)
-    minweight_plan, maxweight_plan = \
-        datasets.plan_datasets.get_weight_in_daterange(mindate, maxdate)
+    if parameters.config['preferences.plot_weight_plan']:
+        minweight_plan, maxweight_plan = \
+         datasets.plan_datasets.get_weight_in_daterange(mindate, maxdate)
+    else:
+        minweight_plan, maxweight_plan = None, None
     minweight, maxweight = util.compare_with_possible_nones( \
         minweight_meas, maxweight_meas, minweight_plan, maxweight_plan)
     if minweight is not None:

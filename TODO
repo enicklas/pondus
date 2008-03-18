@@ -1,8 +1,7 @@
 TODO-List for Pondus
 ======================
 
- * add plan for loosing weight, i.e ``wish''-weights at given dates;
-   success/comparison can be easily seen in plot
+ * csv im-/export
  * optional fields: body fat? comments?
  * interface guidelines? usability?
  * validate xml?

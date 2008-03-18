@@ -25,7 +25,8 @@ import os
 config_default = {'window.remember_size': False,
                   'window.width': 180,
                   'window.height': 300,
-                  'preferences.weight_unit': 'kg'}
+                  'preferences.weight_unit': 'kg',
+                  'preferences.plot_weight_plan': True}
 
 def read_config(conffile):
     """Reads the configuration file and returns the config dictionary."""
@@ -40,6 +41,11 @@ def read_config(conffile):
                             conf.getboolean('window', 'remember_size')
         config['preferences.weight_unit'] = \
                             conf.get('preferences', 'weight_unit')
+        try:
+            config['preferences.plot_weight_plan'] = \
+                            conf.getboolean('preferences', 'plot_weight_plan')
+        except ConfigParser.NoOptionError:
+            pass
     return config
 
 def write_config(config, conffile):
