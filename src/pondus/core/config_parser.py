@@ -21,6 +21,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 import ConfigParser
 import os
+import copy
 
 config_default = {'window.remember_size': False,
                   'window.width': 180,
@@ -30,28 +31,29 @@ config_default = {'window.remember_size': False,
 
 def read_config(conffile):
     """Reads the configuration file and returns the config dictionary."""
-    config = config_default
-    if os.path.exists(conffile):
-        conf = ConfigParser.SafeConfigParser()
+    config = copy.copy(config_default)
+    if os.path.isfile(conffile):
+        conf = ConfigParser.RawConfigParser()
         conf.read(conffile)
-        if conf.getboolean('window', 'remember_size'):
-            config['window.width'] = conf.getint('window', 'width')
-            config['window.height'] = conf.getint('window', 'height')
-            config['window.remember_size'] = \
-                            conf.getboolean('window', 'remember_size')
-        config['preferences.weight_unit'] = \
+        if conf.has_option('window', 'remember_size'):
+            if conf.getboolean('window', 'remember_size'):
+                config['window.remember_size'] = True
+                if conf.has_option('window', 'width'):
+                    config['window.width'] = conf.getint('window', 'width')
+                if conf.has_option('window', 'height'):
+                    config['window.height'] = conf.getint('window', 'height')
+        if conf.has_option('preferences', 'weight_unit'):
+            config['preferences.weight_unit'] = \
                             conf.get('preferences', 'weight_unit')
-        try:
+        if conf.has_option('preferences', 'plot_weight_plan'):
             config['preferences.plot_weight_plan'] = \
                             conf.getboolean('preferences', 'plot_weight_plan')
-        except ConfigParser.NoOptionError:
-            pass
     return config
 
 def write_config(config, conffile):
     """Writes the config dictionary to the configuration file."""
-    conf = ConfigParser.SafeConfigParser()
-    for key in config.keys():
+    conf = ConfigParser.RawConfigParser()
+    for key in config.iterkeys():
         section, option = key.split('.')
         try:
             conf.set(section, option, str(config[key]))

@@ -90,12 +90,8 @@ def compare_with_possible_nones(min1, max1, min2, max2):
         tot_max = max(max1, max2)
         return tot_min, tot_max
     if min1 is not None and min2 is None:
-        tot_min = min1
-        tot_max = max1
-        return tot_min, tot_max
+        return min1, max1
     if min1 is None and min2 is not None:
-        tot_min = min2
-        tot_max = max2
-        return tot_min, tot_max
+        return min2, max2
     else:
         return None, None
