@@ -17,7 +17,8 @@ Installation Instructions
 Linux/Unix:
 ~~~~~~~~~~~~~
 
-For Debian and Ubuntu, .deb-packages are available at
+Pondus is available in Debian Unstable and Testing. deb-packages for
+Debian Stable and Ubuntu are available at
     http://www.ephys.de/software/pondus/[]
 
 On other systems, install Pondus by executing in the source directory
