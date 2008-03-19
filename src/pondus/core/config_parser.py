@@ -20,18 +20,13 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 """
 
 import ConfigParser
-import os
 import copy
+import os
 
-config_default = {'window.remember_size': False,
-                  'window.width': 180,
-                  'window.height': 300,
-                  'preferences.weight_unit': 'kg',
-                  'preferences.plot_weight_plan': True}
-
-def read_config(conffile):
-    """Reads the configuration file and returns the config dictionary."""
-    config = copy.copy(config_default)
+def read_config(default_config, conffile):
+    """Reads the configuration file and returns the updated default_config
+    dictionary."""
+    config = copy.copy(default_config)
     if os.path.isfile(conffile):
         conf = ConfigParser.RawConfigParser()
         conf.read(conffile)

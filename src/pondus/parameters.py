@@ -19,33 +19,8 @@ You should have received a copy of the GNU General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>.
 """
 
+import copy
 import os
-import sys
-
-from pondus.core import config_parser
-
-def test_mpl():
-    """Tests availability of matplotlib to decide whether plotting
-    should be enlabled."""
-    try:
-        from matplotlib import dates
-        return True
-    except ImportError:
-        print _('Note: Matplotlib not available, plotting disabled!')
-        return False
-
-def get_path(localpath, syspath, filename):
-    """Returns the full path to the file with filename. If it exists,
-    localpath is used, otherwise the corresponding system directory."""
-    basepath = os.path.dirname(os.path.abspath(sys.path[0]))
-    localfilepath = os.path.join(basepath, localpath, filename)
-    if os.path.exists(localfilepath):
-        return localfilepath
-    sysfilepath = os.path.join(basepath, syspath, filename)
-    if os.path.exists(sysfilepath):
-        return sysfilepath
-    else:
-        print _('Error: Could not find'), sysfilepath
 
 # path of configuration and data files
 configfile = os.path.expanduser('~/.config/pondus/pondusrc')
@@ -53,8 +28,13 @@ datafile = os.path.expanduser('~/.pondus/datasets.xml')
 planfile = os.path.expanduser('~/.pondus/weight-plan.xml')
 
 # configuration
-config = config_parser.read_config(configfile)
-have_mpl = test_mpl()
+config_default = {'window.remember_size': False,
+                  'window.width': 180,
+                  'window.height': 300,
+                  'preferences.weight_unit': 'kg',
+                  'preferences.plot_weight_plan': True}
+config = copy.copy(config_default)
+have_mpl = False
 
 # tags used in the xml file
 rootnametag = 'dataset-list'
@@ -63,6 +43,5 @@ datetag = 'date'
 weighttag = 'weight'
 
 # paths to button/logo icons used
-plot_button_path = get_path('data/icons/', 'share/pondus/', 'plot.png')
-logo_path = get_path('data/icons/', 'share/icons/hicolor/48x48/apps/',
-                     'pondus.png')
+plot_button_path = 'usr/share/pondus/plot.png'
+logo_path = '/usr/share/icons/hicolor/48x48/apps/pondus.png'

@@ -19,5 +19,5 @@ You should have received a copy of the GNU General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>.
 """
 
-__all__ = ['all_datasets', 'config_parser', 'dataset', 'plot', 'util',
-           'xml_parser']
+__all__ = ['all_datasets', 'config_parser', 'dataset', 'initialize',
+           'option_parser', 'plot', 'util', 'xml_parser']

@@ -21,7 +21,6 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 from datetime import date
 
-from pondus import parameters
 from pondus.core import xml_parser
 from pondus.core.dataset import Dataset
 
@@ -33,7 +32,6 @@ class AllDatasets(object):
     def __init__(self, filepath):
         """Reads all datasets from filepath."""
         self.datasets = xml_parser.read(filepath)
-        self.selection = self.datasets.keys()
 
     def __iter__(self):
         """Iterates over the datasets."""

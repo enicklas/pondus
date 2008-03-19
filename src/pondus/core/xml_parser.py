@@ -19,6 +19,8 @@ You should have received a copy of the GNU General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>.
 """
 
+import os
+from xml.dom.minidom import Document
 from xml.sax import make_parser
 from xml.sax.handler import ContentHandler
 
@@ -48,9 +50,9 @@ class DatasetHandler(ContentHandler):
 
 
 def read(filepath):
-    """Parses the xml-file in filepath and return an AllDatasets
+    """Parses the xml-file in filepath and return an AllDatasets.datasets
     object."""
-    util.check_filepath(filepath)
+    check_filepath(filepath)
     parser = make_parser()
     handler = DatasetHandler()
     parser.setContentHandler(handler)
@@ -59,7 +61,35 @@ def read(filepath):
 
 def write(dataset_iter, filepath):
     """Writes the datasets to the file in filepath."""
-    dom = util.create_xml_base()
+    dom = create_xml_base()
     for dataset in dataset_iter:
         dataset.write_to_dom(dom)
-    util.dom2file(dom, filepath)
+    dom2file(dom, filepath)
+
+# helper functions
+
+def create_xml_base():
+    """Creates a base xml document not containing any datasets."""
+    dom = Document()
+    roottag = dom.createElement(parameters.rootnametag)
+    dom.appendChild(roottag)
+    return dom
+
+def dom2file(dom, filepath):
+    """Writes dom to file in filepath."""
+    f = open(filepath, 'w')
+    dom.writexml(f, encoding='UTF-8')
+    f.write('\n')
+    f.close()
+
+def check_filepath(filepath):
+    """Checks whether the file in filepath exists and creates an empty
+    base xml document if necessary."""
+    if os.path.exists(filepath):
+        return None
+    else:
+        dirpath = os.path.dirname(filepath)
+        if not os.path.exists(dirpath):
+            os.makedirs(dirpath)
+        dom = create_xml_base()
+        dom2file(dom, filepath)

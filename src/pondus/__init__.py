@@ -19,10 +19,12 @@ You should have received a copy of the GNU General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>.
 """
 
+__all__ = ['core', 'gui', 'datasets', 'parameters']
+__version__ = '0.4.0'
+
 import gettext
 import os
 import sys
-
 
 def gettext_install():
     """Installs string translations; uses local data if available."""
@@ -33,6 +35,3 @@ def gettext_install():
         gettext.install('pondus', os.path.join(basepath, 'share/locale'))
 
 gettext_install()
-
-__all__ = ['core', 'gui', 'datasets', 'parameters']
-__version__ = '0.4.0'

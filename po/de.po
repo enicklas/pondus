@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Pondus 0.4.0\n"
 "Report-Msgid-Bugs-To: eike@ephys.de\n"
-"POT-Creation-Date: 2008-03-17 17:46+0100\n"
+"POT-Creation-Date: 2008-03-19 14:16+0100\n"
 "PO-Revision-Date: 2008-03-17 17:51+CET\n"
 "Last-Translator: Eike Nicklas <eike@ephys.de>\n"
 "Language-Team: German\n"
@@ -15,13 +15,25 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: ../src/pondus/parameters.py:34
+#: ../src/pondus/core/initialize.py:40
+msgid "Error: Could not find"
+msgstr "Fehler: Folgende Datei konnte nicht gefunden werden:"
+
+#: ../src/pondus/core/initialize.py:49
 msgid "Note: Matplotlib not available, plotting disabled!"
 msgstr "Achtung: Matplotlib nicht verfügbar, Plotfunktion deaktiviert!"
 
-#: ../src/pondus/parameters.py:48
-msgid "Error: Could not find"
-msgstr "Fehler: Folgende Datei konnte nicht gefunden werden:"
+#: ../src/pondus/core/option_parser.py:34
+msgid "Reading file"
+msgstr "Lese Datei"
+
+#: ../src/pondus/core/option_parser.py:38
+msgid "Error: This is a directory, not a file!"
+msgstr "Fehler: Dies ist ein Verzeichnis, keine Datei!"
+
+#: ../src/pondus/core/option_parser.py:39
+msgid "Using the standard file ~/.pondus/datasets.xml instead."
+msgstr "Benutze stattdessen die Standarddatei ~/.pondus/datasets.xml"
 
 #: ../src/pondus/core/plot.py:59 ../src/pondus/gui/dialog_add.py:60
 #: ../src/pondus/gui/window_main.py:117
@@ -31,18 +43,6 @@ msgstr "Gewicht"
 #: ../src/pondus/core/plot.py:87
 msgid "Saving plot to"
 msgstr "Speichere Diagramm nach"
-
-#: ../src/pondus/core/util.py:41
-msgid "Reading file"
-msgstr "Lese Datei"
-
-#: ../src/pondus/core/util.py:45
-msgid "Error: This is a directory, not a file!"
-msgstr "Fehler: Dies ist ein Verzeichnis, keine Datei!"
-
-#: ../src/pondus/core/util.py:46
-msgid "Using the standard file ~/.pondus/datasets.xml instead."
-msgstr "Benutze stattdessen die Standarddatei ~/.pondus/datasets.xml"
 
 #: ../src/pondus/gui/dialog_add.py:43
 msgid "Add Dataset"
