@@ -24,7 +24,6 @@ from xml.dom.minidom import Document
 from xml.sax import make_parser
 from xml.sax.handler import ContentHandler
 
-from pondus import parameters
 from pondus.core import util
 from pondus.core.dataset import Dataset
 
@@ -34,18 +33,18 @@ class DatasetHandler(ContentHandler):
         self.datasets = {}
     def startElement(self, name, attr):
         self.current_tag = name
-        if name == parameters.datasettag:
+        if name == 'dataset':
             self.id_data = int(attr.getValue(attr.getNames()[0]).encode('utf-8'))
     def endElement(self, name):
-        if name == parameters.datasettag:
+        if name == 'dataset':
             self.datasets[self.id_data] = Dataset(
                                             self.id_data,
                                             util.str2date(self.date),
                                             float(self.weight))
     def characters(self, content):
-        if self.current_tag == parameters.datetag:
+        if self.current_tag == 'date':
             self.date = content
-        if self.current_tag == parameters.weighttag:
+        if self.current_tag == 'weight':
             self.weight = content
 
 
@@ -71,7 +70,7 @@ def write(dataset_iter, filepath):
 def create_xml_base():
     """Creates a base xml document not containing any datasets."""
     dom = Document()
-    roottag = dom.createElement(parameters.rootnametag)
+    roottag = dom.createElement('dataset-list')
     dom.appendChild(roottag)
     return dom
 

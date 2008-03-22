@@ -19,9 +19,6 @@ You should have received a copy of the GNU General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>.
 """
 
-from pondus import parameters
-
-
 class Dataset(object):
     """Implements the structure of single weight measurements."""
 
@@ -47,7 +44,7 @@ class Dataset(object):
     def write_to_dom(self, dom):
         """Adds the dataset to the given dom."""
         top_element = dom.documentElement
-        newdataset = dom.createElement(parameters.datasettag)
+        newdataset = dom.createElement('dataset')
         newdataset.setAttribute('id', str(self.id))
         for parameter, value in self.data.iteritems():
             # create parameter tag

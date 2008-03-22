@@ -36,12 +36,6 @@ config_default = {'window.remember_size': False,
 config = copy.copy(config_default)
 have_mpl = False
 
-# tags used in the xml file
-rootnametag = 'dataset-list'
-datasettag = 'dataset'
-datetag = 'date'
-weighttag = 'weight'
-
 # paths to button/logo icons used
 plot_button_path = 'usr/share/pondus/plot.png'
 logo_path = '/usr/share/icons/hicolor/48x48/apps/pondus.png'
