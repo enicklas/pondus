@@ -211,8 +211,8 @@ class MainWindow(object):
         if newdata is not None:
             self.datasetdata.add(newdata)
             self.datalist.set(treeiter,
-                1, str(newdata.data['date']),
-                2, str(newdata.data['weight']))
+                1, str(newdata.get('date')),
+                2, str(newdata.get('weight')))
 
     def plot_dialog(self, widget):
         """Runs the plotting dialog."""

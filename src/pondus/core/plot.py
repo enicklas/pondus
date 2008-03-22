@@ -36,7 +36,7 @@ class Plot(object):
 
     def get_plot_data(self, datasetdata):
         """Returns the datalists to be plotted."""
-        data = [(dataset.data['date'], dataset.data['weight']) \
+        data = [(dataset.get('date'), dataset.get('weight')) \
                 for dataset in datasetdata]
         data.sort()
         dates = [tup[0] for tup in data]

@@ -34,8 +34,8 @@ class AddDataDialog(object):
     def __init__(self, dataset, edit):
         self.dataset = dataset
         # get default values for entry boxes
-        sdate = str(self.dataset.data['date'])
-        slastweight = str(self.dataset.data['weight'])
+        sdate = str(self.dataset.get('date'))
+        slastweight = str(self.dataset.get('weight'))
 
         self.dialog = gtk.Dialog(flags=gtk.DIALOG_NO_SEPARATOR)
         # set the title
@@ -98,8 +98,8 @@ class AddDataDialog(object):
             except:
                 WrongFormatDialog().run()
                 return self.run()
-            self.dataset.data['date'] = updated_date
-            self.dataset.data['weight'] = updated_weight
+            self.dataset.set('date', updated_date)
+            self.dataset.set('weight', updated_weight)
             self.dialog.hide()
             return self.dataset
         else:

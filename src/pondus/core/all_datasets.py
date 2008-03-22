@@ -70,9 +70,9 @@ class AllDatasets(object):
     def _last_measured_weight(self):
         """Returns the last measured weight."""
         if self.datasets != {}:
-            intermed = [(dataset.data['date'], idd) \
+            intermed = [(dataset.get('date'), idd) \
                 for idd, dataset in self.datasets.iteritems()]
-            return self.datasets[max(intermed)[1]].data['weight']
+            return self.datasets[max(intermed)[1]].get('weight')
         else:
             return ""
 
@@ -88,9 +88,9 @@ class AllDatasets(object):
         """Returns the minimum and the maximum date in the available
         datasets. Returns None, None if no measurements exist."""
         try:
-            mindate = min(dataset.data['date'] \
+            mindate = min(dataset.get('date') \
                 for dataset in self.datasets.itervalues())
-            maxdate = max(dataset.data['date'] \
+            maxdate = max(dataset.get('date') \
                 for dataset in self.datasets.itervalues())
         except ValueError:
             return None, None
@@ -101,12 +101,12 @@ class AllDatasets(object):
         given date range. Returns None, None if no measurements exist
         in the given date range."""
         try:
-            minweight = min(dataset.data['weight'] \
+            minweight = min(dataset.get('weight') \
                 for dataset in self.datasets.itervalues() \
-                if mindate <= dataset.data['date'] <= maxdate)
-            maxweight = max(dataset.data['weight'] \
+                if mindate <= dataset.get('date') <= maxdate)
+            maxweight = max(dataset.get('weight') \
                 for dataset in self.datasets.itervalues() \
-                if mindate <= dataset.data['date'] <= maxdate)
+                if mindate <= dataset.get('date') <= maxdate)
         except ValueError:
             return None, None
         return minweight, maxweight

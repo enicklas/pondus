@@ -32,6 +32,14 @@ class Dataset(object):
         self.data['date'] = date
         self.data['weight'] = weight
 
+    def get(self, key):
+        """Returns the value of the dataset corresponding to key."""
+        return self.data[key]
+
+    def set(self, key, value):
+        """Sets the property corresponding to key to value."""
+        self.data[key] = value
+
     def as_list(self):
         """Returns the data of a dataset as a list."""
         return [self.id] + self.data.values()
