@@ -20,7 +20,6 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 """
 
 import gtk
-import copy
 
 from pondus import parameters
 
@@ -29,7 +28,7 @@ class PreferencesDialog(object):
     """Displays the preferences dialog."""
 
     def __init__(self):
-        self.newconfig = copy.copy(parameters.config)
+        self.newconfig = dict(parameters.config)
 
         self.dialog = gtk.Dialog(flags=gtk.DIALOG_NO_SEPARATOR)
         self.dialog.set_title(_('Preferences'))

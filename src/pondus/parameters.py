@@ -19,7 +19,6 @@ You should have received a copy of the GNU General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>.
 """
 
-import copy
 import os
 
 # path of configuration and data files
@@ -33,7 +32,7 @@ config_default = {'window.remember_size': False,
                   'window.height': 300,
                   'preferences.weight_unit': 'kg',
                   'preferences.plot_weight_plan': True}
-config = copy.copy(config_default)
+config = dict(config_default)
 have_mpl = False
 
 # paths to button/logo icons used
