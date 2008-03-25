@@ -22,16 +22,17 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 import gtk
 
 
-class WrongFormatDialog(object):
-    """Shows an error message. The title and the message to be
+class MessageDialog(object):
+    """Shows an message. The message type, title and the message to be
     displayed can be passed when initializing the class."""
 
-    def __init__(self,
-            title=_('Error: Wrong Format'),
-            message=_('The data entered is not in the correct format!')):
-        self.dialog = gtk.MessageDialog(type=gtk.MESSAGE_ERROR, \
-        buttons=gtk.BUTTONS_CLOSE)
-
+    def __init__(self, type, title, message):
+        if type == 'error':
+            self.dialog = gtk.MessageDialog(type=gtk.MESSAGE_ERROR, \
+                                            buttons=gtk.BUTTONS_CLOSE)
+        elif type == 'info':
+            self.dialog = gtk.MessageDialog(type=gtk.MESSAGE_INFO, \
+                                            buttons=gtk.BUTTONS_CLOSE)
         self.dialog.set_title(title)
         self.dialog.set_markup(message)
 

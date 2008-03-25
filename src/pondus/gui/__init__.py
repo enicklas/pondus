@@ -20,6 +20,6 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 """
 
 __all__ = ['dialog_add', 'dialog_csv_export', 'dialog_csv_import',
-           'dialog_plot', 'dialog_preferences', 'dialog_remove',
-           'dialog_save_plot', 'dialog_select_file',
-           'dialog_wrong_format', 'guiutil', 'window_main']
+           'dialog_message', 'dialog_plot', 'dialog_preferences',
+           'dialog_remove', 'dialog_save_plot', 'dialog_select_file',
+           'guiutil', 'window_main']

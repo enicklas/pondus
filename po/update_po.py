@@ -61,7 +61,6 @@ potfiles = [('../src/pondus/core/initialize.py'),
             ('../src/pondus/gui/dialog_remove.py'),
             ('../src/pondus/gui/dialog_save_plot.py'),
             ('../src/pondus/gui/dialog_select_file.py'),
-            ('../src/pondus/gui/dialog_wrong_format.py'),
             ('../src/pondus/gui/window_main.py')]
 # list of existing translations
 languages = ['de']

@@ -24,6 +24,7 @@ import os
 
 from pondus import datasets
 from pondus.core import csv_parser
+from pondus.gui.dialog_message import MessageDialog
 from pondus.gui.dialog_select_file import SelectFileDialog
 
 
@@ -83,13 +84,18 @@ class CSVDialogImport(object):
             if os.path.isfile(filepath):
                 self.importcsv(filepath)
             else:
-                print 'The given path does not point to a valid file.'
+                title = _('Error: Not a valid File')
+                message = _('The given path does not point to a valid file!')
+                MessageDialog(type='error', title=title, message=message).run()
                 return self.run()
         self.dialog.hide()
 
     def importcsv(self, filepath):
         """Imports the data from the csv file."""
         csv_parser.read_csv(self.datasetdata, filepath)
+        title = _('Import successful')
+        message = _('The import was successful.')
+        MessageDialog(type='info', title=title, message=message).run()
 
     def select_file(self, button):
         """Runs the file selection dialog and updates the file entry

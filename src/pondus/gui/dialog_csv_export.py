@@ -24,6 +24,7 @@ import os
 
 from pondus import datasets
 from pondus.core import csv_parser
+from pondus.gui.dialog_message import MessageDialog
 from pondus.gui.dialog_select_file import SelectFileDialog
 
 
@@ -86,6 +87,9 @@ class CSVDialogExport(object):
         """Saves the datasetdata to a csv file."""
         csvpath = os.path.expanduser(self.file_entry.get_text())
         csv_parser.write_csv(self.datasetdata, csvpath)
+        title = _('Export successful')
+        message = _('The export was successful.')
+        MessageDialog(type='info', title=title, message=message).run()
 
     def select_file(self, button):
         """Runs the file selection dialog and updates the file entry

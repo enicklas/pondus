@@ -28,7 +28,7 @@ from matplotlib.backends.backend_gtkagg import FigureCanvasGTKAgg \
 from pondus import datasets, parameters
 from pondus.core import util
 from pondus.core.plot import Plot
-from pondus.gui.dialog_wrong_format import WrongFormatDialog
+from pondus.gui.dialog_message import MessageDialog
 from pondus.gui.dialog_save_plot import SavePlotDialog
 
 
@@ -104,11 +104,14 @@ class PlotDialog(object):
             mindate = util.str2date(self.start_date_entry.get_text())
             maxdate = util.str2date(self.end_date_entry.get_text())
         except:
-            WrongFormatDialog().run()
+            title = _('Error: Wrong Format')
+            message = _('The data entered is not in the correct format!')
+            MessageDialog(type='error', title=title, message=message).run()
             return None
         if mindate >= maxdate:
+            title = _('Error: Wrong Format')
             message = _('The start date has to be before the end date!')
-            WrongFormatDialog(message=message).run()
+            MessageDialog(type='error', title=title, message=message).run()
             return None
         self.plot.update_plot(mindate, maxdate)
 

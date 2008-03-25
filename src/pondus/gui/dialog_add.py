@@ -25,7 +25,7 @@ from datetime import timedelta
 
 from pondus import parameters
 from pondus.core import util
-from pondus.gui.dialog_wrong_format import WrongFormatDialog
+from pondus.gui.dialog_message import MessageDialog
 
 
 class AddDataDialog(object):
@@ -96,7 +96,9 @@ class AddDataDialog(object):
                 weightstring = self.weight_entry.get_text()
                 updated_weight = float(weightstring.replace(',', '.'))
             except:
-                WrongFormatDialog().run()
+                title = _('Error: Wrong Format')
+                message = _('The data entered is not in the correct format!')
+                MessageDialog(type='error', title=title, message=message).run()
                 return self.run()
             self.dataset.set('date', updated_date)
             self.dataset.set('weight', updated_weight)

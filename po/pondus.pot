@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Pondus 0.4.0\n"
 "Report-Msgid-Bugs-To: eike@ephys.de\n"
-"POT-Creation-Date: 2008-03-25 10:49+0100\n"
+"POT-Creation-Date: 2008-03-25 11:36+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -57,41 +57,74 @@ msgstr ""
 msgid "Date (YYYY-MM-DD):"
 msgstr ""
 
-#: ../src/pondus/gui/dialog_csv_export.py:35
+#: ../src/pondus/gui/dialog_add.py:99 ../src/pondus/gui/dialog_plot.py:107
+#: ../src/pondus/gui/dialog_plot.py:112
+msgid "Error: Wrong Format"
+msgstr ""
+
+#: ../src/pondus/gui/dialog_add.py:100 ../src/pondus/gui/dialog_plot.py:108
+msgid "The data entered is not in the correct format!"
+msgstr ""
+
+#: ../src/pondus/gui/dialog_csv_export.py:36
 #: ../src/pondus/gui/window_main.py:107
 msgid "CSV Export"
 msgstr ""
 
-#: ../src/pondus/gui/dialog_csv_export.py:41
+#: ../src/pondus/gui/dialog_csv_export.py:42
 msgid "Data to export:"
 msgstr ""
 
-#: ../src/pondus/gui/dialog_csv_export.py:44
-#: ../src/pondus/gui/dialog_csv_import.py:44
+#: ../src/pondus/gui/dialog_csv_export.py:45
+#: ../src/pondus/gui/dialog_csv_import.py:45
 #: ../src/pondus/gui/window_main.py:140
 msgid "Weight Measurements"
 msgstr ""
 
-#: ../src/pondus/gui/dialog_csv_export.py:49
-#: ../src/pondus/gui/dialog_csv_import.py:49
+#: ../src/pondus/gui/dialog_csv_export.py:50
+#: ../src/pondus/gui/dialog_csv_import.py:50
 msgid "Weight Plan"
 msgstr ""
 
-#: ../src/pondus/gui/dialog_csv_export.py:56
+#: ../src/pondus/gui/dialog_csv_export.py:57
 msgid "CSV File to save to:"
 msgstr ""
 
-#: ../src/pondus/gui/dialog_csv_import.py:35
+#: ../src/pondus/gui/dialog_csv_export.py:90
+msgid "Export successful"
+msgstr ""
+
+#: ../src/pondus/gui/dialog_csv_export.py:91
+msgid "The export was successful."
+msgstr ""
+
+#: ../src/pondus/gui/dialog_csv_import.py:36
 #: ../src/pondus/gui/window_main.py:106
 msgid "CSV Import"
 msgstr ""
 
-#: ../src/pondus/gui/dialog_csv_import.py:41
+#: ../src/pondus/gui/dialog_csv_import.py:42
 msgid "Import data to:"
 msgstr ""
 
-#: ../src/pondus/gui/dialog_csv_import.py:56
+#: ../src/pondus/gui/dialog_csv_import.py:57
 msgid "CSV File to read from:"
+msgstr ""
+
+#: ../src/pondus/gui/dialog_csv_import.py:87
+msgid "Error: Not a valid File"
+msgstr ""
+
+#: ../src/pondus/gui/dialog_csv_import.py:88
+msgid "The given path does not point to a valid file!"
+msgstr ""
+
+#: ../src/pondus/gui/dialog_csv_import.py:96
+msgid "Import successful"
+msgstr ""
+
+#: ../src/pondus/gui/dialog_csv_import.py:97
+msgid "The import was successful."
 msgstr ""
 
 #: ../src/pondus/gui/dialog_plot.py:40
@@ -122,7 +155,7 @@ msgstr ""
 msgid "Save Plot"
 msgstr ""
 
-#: ../src/pondus/gui/dialog_plot.py:110
+#: ../src/pondus/gui/dialog_plot.py:113
 msgid "The start date has to be before the end date!"
 msgstr ""
 
@@ -165,14 +198,6 @@ msgstr ""
 
 #: ../src/pondus/gui/dialog_select_file.py:31
 msgid "Select File"
-msgstr ""
-
-#: ../src/pondus/gui/dialog_wrong_format.py:30
-msgid "Error: Wrong Format"
-msgstr ""
-
-#: ../src/pondus/gui/dialog_wrong_format.py:31
-msgid "The data entered is not in the correct format!"
 msgstr ""
 
 #: ../src/pondus/gui/window_main.py:28
