@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Pondus 0.4.0\n"
 "Report-Msgid-Bugs-To: eike@ephys.de\n"
-"POT-Creation-Date: 2008-03-19 14:16+0100\n"
-"PO-Revision-Date: 2008-03-17 17:51+CET\n"
+"POT-Creation-Date: 2008-03-25 10:36+0100\n"
+"PO-Revision-Date: 2008-03-24 22:39+CET\n"
 "Last-Translator: Eike Nicklas <eike@ephys.de>\n"
 "Language-Team: German\n"
 "MIME-Version: 1.0\n"
@@ -36,7 +36,7 @@ msgid "Using the standard file ~/.pondus/datasets.xml instead."
 msgstr "Benutze stattdessen die Standarddatei ~/.pondus/datasets.xml"
 
 #: ../src/pondus/core/plot.py:59 ../src/pondus/gui/dialog_add.py:60
-#: ../src/pondus/gui/window_main.py:117
+#: ../src/pondus/gui/window_main.py:131
 msgid "Weight"
 msgstr "Gewicht"
 
@@ -55,6 +55,43 @@ msgstr "Ändere Datensatz"
 #: ../src/pondus/gui/dialog_add.py:50
 msgid "Date (YYYY-MM-DD):"
 msgstr "Datum (JJJJ-MM-TT):"
+
+#: ../src/pondus/gui/dialog_csv_export.py:35
+#: ../src/pondus/gui/window_main.py:107
+msgid "CSV Export"
+msgstr "CSV Export"
+
+#: ../src/pondus/gui/dialog_csv_export.py:41
+msgid "Data to export:"
+msgstr "Zu exportierende Daten:"
+
+#: ../src/pondus/gui/dialog_csv_export.py:44
+#: ../src/pondus/gui/dialog_csv_import.py:44
+#: ../src/pondus/gui/window_main.py:140
+msgid "Weight Measurements"
+msgstr "Gewichtsmessungen"
+
+#: ../src/pondus/gui/dialog_csv_export.py:49
+#: ../src/pondus/gui/dialog_csv_import.py:49
+msgid "Weight Plan"
+msgstr "Gewichtsplaner"
+
+#: ../src/pondus/gui/dialog_csv_export.py:56
+msgid "CSV File to save to:"
+msgstr "CSV Zieldatei"
+
+#: ../src/pondus/gui/dialog_csv_import.py:35
+#: ../src/pondus/gui/window_main.py:106
+msgid "CSV Import"
+msgstr "CSV Import"
+
+#: ../src/pondus/gui/dialog_csv_import.py:41
+msgid "Import data to:"
+msgstr "Importiere Daten nach:"
+
+#: ../src/pondus/gui/dialog_csv_import.py:56
+msgid "CSV File to read from:"
+msgstr "Zu lesende CSV Datei:"
 
 #: ../src/pondus/gui/dialog_plot.py:40
 msgid "Plot Weight"
@@ -88,20 +125,20 @@ msgstr "Diagramm speichern"
 msgid "The start date has to be before the end date!"
 msgstr "Das Anfangsdatum muss vor dem Enddatum liegen!"
 
-#: ../src/pondus/gui/dialog_preferences.py:35
-#: ../src/pondus/gui/window_main.py:85
+#: ../src/pondus/gui/dialog_preferences.py:34
+#: ../src/pondus/gui/window_main.py:87
 msgid "Preferences"
 msgstr "Optionen"
 
-#: ../src/pondus/gui/dialog_preferences.py:39
+#: ../src/pondus/gui/dialog_preferences.py:38
 msgid "Weight Unit:"
 msgstr "Gewichtseinheit:"
 
-#: ../src/pondus/gui/dialog_preferences.py:54
+#: ../src/pondus/gui/dialog_preferences.py:53
 msgid "Include Weight Plan in Plot"
 msgstr "Zeige Gewichtsplan im Plot"
 
-#: ../src/pondus/gui/dialog_preferences.py:60
+#: ../src/pondus/gui/dialog_preferences.py:59
 msgid "Remember Window Size"
 msgstr "Speichere Fenstergröße"
 
@@ -125,6 +162,10 @@ msgstr "gewichtsdiagramm.png"
 msgid "Save Image as File Type:"
 msgstr "Speichere Bild im Format:"
 
+#: ../src/pondus/gui/dialog_select_file.py:31
+msgid "Select File"
+msgstr "Wähle Datei aus"
+
 #: ../src/pondus/gui/dialog_wrong_format.py:30
 msgid "Error: Wrong Format"
 msgstr "Fehler: Falsches Format"
@@ -137,34 +178,34 @@ msgstr "Die eingegebenen Daten haben nicht das richtige Format!"
 msgid "Please make sure this library is installed."
 msgstr "Bitte stelle sicher, dass diese Bibliothek installiert ist."
 
-#: ../src/pondus/gui/window_main.py:66
+#: ../src/pondus/gui/window_main.py:68
 msgid "Plot data"
 msgstr "Plotte die Daten"
 
-#: ../src/pondus/gui/window_main.py:68
+#: ../src/pondus/gui/window_main.py:70
 msgid "Matplotlib not available!"
 msgstr "Matplotlib nicht verfügbar!"
 
-#: ../src/pondus/gui/window_main.py:77
+#: ../src/pondus/gui/window_main.py:79
 msgid "Add more data"
 msgstr "Datensatz hinzufügen"
 
-#: ../src/pondus/gui/window_main.py:79
+#: ../src/pondus/gui/window_main.py:81
 msgid "Delete selected line"
 msgstr "Lösche ausgewählte Zeile"
 
-#: ../src/pondus/gui/window_main.py:81
+#: ../src/pondus/gui/window_main.py:83
 msgid "Edit selected line"
 msgstr "Ändere ausgewählte Zeile"
 
-#: ../src/pondus/gui/window_main.py:116
+#: ../src/pondus/gui/window_main.py:84
+msgid "Plot"
+msgstr "Diagramm"
+
+#: ../src/pondus/gui/window_main.py:130
 msgid "Date"
 msgstr "Datum"
 
-#: ../src/pondus/gui/window_main.py:126
-msgid "Weight Measurements"
-msgstr "Gewichtsmessungen"
-
-#: ../src/pondus/gui/window_main.py:127
+#: ../src/pondus/gui/window_main.py:141
 msgid "Weight Planner"
 msgstr "Gewichtsplaner"

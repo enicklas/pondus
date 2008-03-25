@@ -41,6 +41,10 @@ class Dataset(object):
         """Returns the data of a dataset as a list."""
         return [self.id] + self.data.values()
 
+    def value_list(self):
+        """Returns the values of the dataset as a list of strings."""
+        return [str(value) for value in self.data.itervalues()]
+
     def write_to_dom(self, dom):
         """Adds the dataset to the given dom."""
         top_element = dom.documentElement

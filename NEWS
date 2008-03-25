@@ -5,6 +5,7 @@ Pondus NEWS
 ---------------------------
  * Add ability to set a weight plan for the future and an option to
    plot the plan for comparison with the measured weight
+ * Add CSV Im-/Export dialogs
  * Update plot if `Enter` is pressed in one of the date entry fields
 
 

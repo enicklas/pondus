@@ -36,6 +36,8 @@ from pondus.gui.dialog_add import AddDataDialog
 from pondus.gui.dialog_remove import RemoveDataDialog
 from pondus.gui.dialog_plot import PlotDialog
 from pondus.gui.dialog_preferences import PreferencesDialog
+from pondus.gui.dialog_csv_import import CSVDialogImport
+from pondus.gui.dialog_csv_export import CSVDialogExport
 
 
 class MainWindow(object):
@@ -79,7 +81,7 @@ class MainWindow(object):
                 _('Delete selected line'), self.remove_dialog),
             ('edit', gtk.STOCK_EDIT, None, '<Control>e',
                 _('Edit selected line'), self.edit_dialog),
-            ('plot', 'pondus_plot', None, '<Control>p',
+            ('plot', 'pondus_plot', _('Plot'), '<Control>p',
                 plot_tooltip, self.plot_dialog),
             ('preferences', gtk.STOCK_PREFERENCES, None, None,
                 _('Preferences'), self.preferences_dialog)])
@@ -88,19 +90,30 @@ class MainWindow(object):
         self.plotaction = action_group.get_action('plot')
         uimanager.insert_action_group(action_group, 0)
 
-        ui = """<ui>
+        ui = """
+        <ui>
         <toolbar name='Toolbar'>
             <toolitem action='add'/>
             <toolitem action='remove'/>
             <toolitem action='edit'/>
             <toolitem action='plot'/>
-            <toolitem action='preferences'/>
         </toolbar>
         </ui>"""
         uimanager.add_ui_from_string(ui)
 
+        prefbutton = gtk.MenuToolButton(gtk.STOCK_PREFERENCES)
+        prefmenu = gtk.Menu()
+        csv_import_item = gtk.MenuItem(_('CSV Import'))
+        csv_export_item = gtk.MenuItem(_('CSV Export'))
+        csv_import_item.show()
+        csv_export_item.show()
+        prefmenu.append(csv_import_item)
+        prefmenu.append(csv_export_item)
+        prefbutton.set_menu(prefmenu)
+
         toolbar = uimanager.get_widget('/Toolbar')
         toolbar.set_style(gtk.TOOLBAR_ICONS)
+        toolbar.insert(prefbutton, -1)
         for action in action_group.list_actions():
             action.connect_accelerator()
         mainbox.pack_start(toolbar, False, True)
@@ -136,6 +149,9 @@ class MainWindow(object):
         self.set_plot_action_active()
 
         # connect the signals
+        prefbutton.connect('clicked', self.preferences_dialog)
+        csv_import_item.connect('activate', self.csv_dialog_import)
+        csv_export_item.connect('activate', self.csv_dialog_export)
         self.dataview.add_events(gtk.gdk.BUTTON_PRESS_MASK)
         self.treeselection.connect('changed', self.set_add_edit_actions_active)
         self.dataview.connect('button-press-event', self.button_pressed)
@@ -222,6 +238,17 @@ class MainWindow(object):
         """Runs the preferences dialog."""
         PreferencesDialog().run()
         self.set_plot_action_active()
+
+    def csv_dialog_import(self, widget):
+        """Runs the csv import dialog and updates the display to show
+        the imported data."""
+        CSVDialogImport().run()
+        self.display_data(self.datasetdata)
+        self.set_plot_action_active()
+
+    def csv_dialog_export(self, widget):
+        """Runs the csv export dialog."""
+        CSVDialogExport().run()
 
     def on_key_press(self, widget, event):
         """Tests, which key was pressed and triggers the appropriate
