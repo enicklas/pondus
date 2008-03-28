@@ -25,7 +25,7 @@ import os
 from pondus import datasets
 from pondus.core import csv_parser
 from pondus.gui.dialog_message import MessageDialog
-from pondus.gui.dialog_select_file import SelectFileDialog
+from pondus.gui.dialog_save_file import SaveFileDialog
 
 
 class CSVDialogExport(object):
@@ -36,6 +36,7 @@ class CSVDialogExport(object):
         self.dialog.set_title(_('CSV Export'))
 
         self.datasetdata = datasets.all_datasets
+        self.filename = _('weight.csv')
 
         databox = gtk.VBox()
         databox.set_border_width(5)
@@ -59,7 +60,8 @@ class CSVDialogExport(object):
         filebox.pack_start(file_label)
         filehbox = gtk.HBox(homogeneous=False, spacing=5)
         self.file_entry = gtk.Entry()
-        self.file_entry.set_text(os.path.expanduser('~/weight.csv'))
+        self.file_entry.set_text(os.path.join(os.path.expanduser('~'), \
+                                 self.filename))
         filehbox.pack_start(self.file_entry)
         choose_button = gtk.Button(stock=gtk.STOCK_OPEN)
         filehbox.pack_start(choose_button)
@@ -94,7 +96,7 @@ class CSVDialogExport(object):
     def select_file(self, button):
         """Runs the file selection dialog and updates the file entry
         accordingly."""
-        newpath = SelectFileDialog().run()
+        newpath = SaveFileDialog(self.filename, ['.csv']).run(None)
         if newpath is not None:
             self.file_entry.set_text(newpath)
 

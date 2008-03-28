@@ -36,6 +36,7 @@ class CSVDialogImport(object):
         self.dialog.set_title(_('CSV Import'))
 
         self.datasetdata = datasets.all_datasets
+        self.filename = _('weight.csv')
 
         databox = gtk.VBox()
         databox.set_border_width(5)
@@ -59,7 +60,8 @@ class CSVDialogImport(object):
         filebox.pack_start(file_label)
         filehbox = gtk.HBox(homogeneous=False, spacing=5)
         self.file_entry = gtk.Entry()
-        self.file_entry.set_text(os.path.expanduser('~/weight.csv'))
+        self.file_entry.set_text(os.path.join(os.path.expanduser('~'), \
+                                 self.filename))
         filehbox.pack_start(self.file_entry)
         choose_button = gtk.Button(stock=gtk.STOCK_OPEN)
         filehbox.pack_start(choose_button)

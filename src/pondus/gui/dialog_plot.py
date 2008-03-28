@@ -29,7 +29,7 @@ from pondus import datasets, parameters
 from pondus.core import util
 from pondus.core.plot import Plot
 from pondus.gui.dialog_message import MessageDialog
-from pondus.gui.dialog_save_plot import SavePlotDialog
+from pondus.gui.dialog_save_file import SaveFileDialog
 
 
 class PlotDialog(object):
@@ -126,7 +126,7 @@ class PlotDialog(object):
 
     def save_plot(self, button):
         """Runs the dialog to save the plot to a file."""
-        SavePlotDialog().run(self.plot)
+        SaveFileDialog(_('weight_plot.png'), ['.png', '.svg']).run(self.plot)
 
     def on_keypress_in_entry(self, entry, event):
         """Updates the plot if Enter was pressed."""

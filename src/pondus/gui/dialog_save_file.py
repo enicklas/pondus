@@ -23,23 +23,23 @@ import gtk
 import os
 
 
-class SavePlotDialog(object):
-    """Allows the user to select a file the plot should be saved to."""
+class SaveFileDialog(object):
+    """Allows the user to select a file something should be saved to."""
 
-    def __init__(self):
+    def __init__(self, default_file_name, file_formats):
         self.chooser = gtk.FileChooserDialog()
         self.chooser.set_action(gtk.FILE_CHOOSER_ACTION_SAVE)
-        self.chooser.set_title(_('Save Plot to File'))
+        self.chooser.set_title(_('Save to File'))
 
         self.chooser.set_current_folder(os.path.expanduser('~'))
-        self.chooser.set_current_name(_('weight_plot.png'))
+        self.chooser.set_current_name(default_file_name)
 
         file_type_box = gtk.HBox(homogeneous=False, spacing=10)
-        file_type_label = gtk.Label(_('Save Image as File Type:'))
+        file_type_label = gtk.Label(_('Save as File Type:'))
         file_type_box.pack_start(file_type_label, False, False)
         self.filetypeselector = gtk.combo_box_new_text()
-        self.filetypeselector.append_text('.png')
-        self.filetypeselector.append_text('.svg')
+        for ending in file_formats:
+            self.filetypeselector.append_text(ending)
         self.filetypeselector.set_active(0)
         file_type_box.pack_end(self.filetypeselector, True, True)
         self.chooser.vbox.pack_start(file_type_box, False, False)
@@ -59,7 +59,10 @@ class SavePlotDialog(object):
         response = self.chooser.run()
         if response == gtk.RESPONSE_OK:
             self.update_file_ending(self.filetypeselector)
-            plot.save_to_file(self.chooser.get_filename())
+            if plot != None:
+                plot.save_to_file(self.chooser.get_filename())
+            self.chooser.hide()
+            return self.chooser.get_filename()
         self.chooser.hide()
         return None
 
