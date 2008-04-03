@@ -94,10 +94,14 @@ class CSVDialogImport(object):
 
     def importcsv(self, filepath):
         """Imports the data from the csv file."""
-        csv_parser.read_csv(self.datasetdata, filepath)
-        title = _('Import successful')
-        message = _('The import was successful.')
-        MessageDialog(type='info', title=title, message=message).run()
+        if csv_parser.read_csv(self.datasetdata, filepath):
+            title = _('Import successful')
+            message = _('The import was successful.')
+            MessageDialog(type='info', title=title, message=message).run()
+        else:
+            title = _('Import not successful')
+            message = _('An error occured during the import.')
+            MessageDialog(type='error', title=title, message=message).run()
 
     def select_file(self, button):
         """Runs the file selection dialog and updates the file entry

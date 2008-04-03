@@ -62,12 +62,12 @@ class AllDatasets(object):
     def get_new_dataset(self):
         """Returns a new dataset initialized with today's date and the
         last measured weight."""
-        new_id = self._get_new_id()
+        new_id = self.get_new_id()
         new_date = date.today()
-        new_weight = self._last_measured_weight()
+        new_weight = self.last_measured_weight()
         return Dataset(new_id, new_date, new_weight)
 
-    def _last_measured_weight(self):
+    def last_measured_weight(self):
         """Returns the last measured weight."""
         if self.datasets != {}:
             intermed = [(dataset.get('date'), idd) \
@@ -76,7 +76,7 @@ class AllDatasets(object):
         else:
             return ""
 
-    def _get_new_id(self):
+    def get_new_id(self):
         """Returns an unused id."""
         try:
             return max(self.datasets) + 1

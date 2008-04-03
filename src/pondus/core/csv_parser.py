@@ -38,8 +38,17 @@ def read_csv(datasetdata, csvfilepath):
     datasetdata."""
     csvfile = open(csvfilepath, 'r')
     csvreader = csv.reader(csvfile)
-    for row in csvreader:
-        dataset = datasetdata.get_new_dataset()
-        dataset.data['date'] = util.str2date(row[0])
-        dataset.data['weight'] = float(row[1])
+    new_datasets = []
+    new_id = datasetdata.get_new_id()
+    try:
+        for row in csvreader:
+            new_date = util.str2date(row[0])
+            new_weight = float(row[1])
+            dataset = Dataset(new_id, new_date, new_weight)
+            new_datasets.append(dataset)
+            new_id += 1
+    except:
+        return False
+    for dataset in new_datasets:
         datasetdata.add(dataset)
+    return True
