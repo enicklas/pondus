@@ -40,10 +40,10 @@ about saving the data you entered.
 All functionality is available via the toolbar or via keyboard/mouse
 shortcuts. The following shortcuts are currently used:
 
-CTR-a::                           add new dataset
-CTR-d, Delete::                   delete selected dataset
-CTR-e, Return, Double-click::     edit selected dataset
-CTR-p::                           plot weight vs time
+CTR-a::                 add new dataset
+CTR-d, Delete::         delete selected dataset
+Return, Double-click::  edit selected dataset
+CTR-p::                 plot weight vs time
 
 To improve the workflow, the add dialog is initialized with the current
 date and the last measured weight. Both date and weight can be

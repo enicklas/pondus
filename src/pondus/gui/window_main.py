@@ -79,15 +79,13 @@ class MainWindow(object):
                 _('Add more data'), self.add_dialog),
             ('remove', gtk.STOCK_REMOVE, None, '<Control>d',
                 _('Delete selected line'), self.remove_dialog),
-            ('edit', gtk.STOCK_EDIT, None, '<Control>e',
-                _('Edit selected line'), self.edit_dialog),
             ('plot', 'pondus_plot', _('Plot'), '<Control>p',
                 plot_tooltip, self.plot_dialog),
             ('preferences', gtk.STOCK_PREFERENCES, None, None,
                 _('Preferences'), self.preferences_dialog)])
         self.removeaction = action_group.get_action('remove')
-        self.editaction = action_group.get_action('edit')
         self.plotaction = action_group.get_action('plot')
+        prefaction = action_group.get_action('preferences')
         uimanager.insert_action_group(action_group, 0)
 
         ui = """
@@ -95,13 +93,13 @@ class MainWindow(object):
         <toolbar name='Toolbar'>
             <toolitem action='add'/>
             <toolitem action='remove'/>
-            <toolitem action='edit'/>
             <toolitem action='plot'/>
         </toolbar>
         </ui>"""
         uimanager.add_ui_from_string(ui)
 
         prefbutton = gtk.MenuToolButton(gtk.STOCK_PREFERENCES)
+        prefaction.connect_proxy(prefbutton)
         prefmenu = gtk.Menu()
         csv_import_item = gtk.MenuItem(_('CSV Import'))
         csv_export_item = gtk.MenuItem(_('CSV Export'))
@@ -145,15 +143,14 @@ class MainWindow(object):
 
         # get treeselection and deactivate actions if no selection
         self.treeselection = self.dataview.get_selection()
-        self.set_add_edit_actions_active(self.treeselection)
+        self.set_selection_active(self.treeselection)
         self.set_plot_action_active()
 
         # connect the signals
-        prefbutton.connect('clicked', self.preferences_dialog)
         csv_import_item.connect('activate', self.csv_dialog_import)
         csv_export_item.connect('activate', self.csv_dialog_export)
         self.dataview.add_events(gtk.gdk.BUTTON_PRESS_MASK)
-        self.treeselection.connect('changed', self.set_add_edit_actions_active)
+        self.treeselection.connect('changed', self.set_selection_active)
         self.dataview.connect('button-press-event', self.button_pressed)
         self.dataview.connect('key-press-event', self.on_key_press)
         self.modeselector.connect('changed', self.update_mode)
@@ -213,7 +210,7 @@ class MainWindow(object):
                 if lastpath >= 0:
                     self.treeselection.select_path(len(self.datalist)-1)
                 else:
-                    self.set_add_edit_actions_active(self.treeselection)
+                    self.set_selection_active(self.treeselection)
                     self.set_plot_action_active()
 
     def edit_dialog(self, widget):
@@ -258,8 +255,8 @@ class MainWindow(object):
                     self.removeaction.get_sensitive() == True:
             self.remove_dialog(widget)
         # edit selected dataset
-        if event.keyval == gtk.keysyms.Return and \
-                    self.removeaction.get_sensitive() == True:
+        if event.keyval in [gtk.keysyms.Return, gtk.keysyms.KP_Enter] \
+                    and self.removeaction.get_sensitive() == True:
             self.edit_dialog(widget)
 
     def button_pressed(self, widget, event):
@@ -278,21 +275,19 @@ class MainWindow(object):
         elif key == 1:
             self.datasetdata = datasets.plan_datasets
         self.display_data(self.datasetdata)
-        self.set_add_edit_actions_active(self.treeselection)
+        self.set_selection_active(self.treeselection)
         self.set_plot_action_active()
 
 
     # other functions
 
-    def set_add_edit_actions_active(self, widget):
+    def set_selection_active(self, widget):
         """Tests, whether a dataset is selected and sets sensitivity of
         actions accordingly."""
         if widget.get_selected()[1] == None:
             self.removeaction.set_sensitive(False)
-            self.editaction.set_sensitive(False)
         elif self.removeaction.get_sensitive() == False:
             self.removeaction.set_sensitive(True)
-            self.editaction.set_sensitive(True)
 
     def set_plot_action_active(self):
         """Tests, whether a dataset exists and matplotlib is available

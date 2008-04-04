@@ -7,6 +7,8 @@ Pondus NEWS
    plot the plan for comparison with the measured weight
  * Add CSV Im-/Export dialogs
  * Update plot if `Enter` is pressed in one of the date entry fields
+ * The edit dialog can no longer be opened with `CTR-e` or the toolbar
+   button, please use `Enter` or double-click instead
 
 
 2008-03-06: Version 0.3.0

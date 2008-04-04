@@ -129,8 +129,8 @@ class PlotDialog(object):
         SaveFileDialog(_('weight_plot.png'), ['.png', '.svg']).run(self.plot)
 
     def on_keypress_in_entry(self, entry, event):
-        """Updates the plot if Enter was pressed."""
-        if event.keyval == gtk.keysyms.Return:
+        """Updates the plot when Enter is pressed."""
+        if event.keyval in [gtk.keysyms.Return, gtk.keysyms.KP_Enter]:
             self.update_plot(None)
 
 # helper functions
