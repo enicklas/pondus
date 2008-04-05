@@ -117,7 +117,7 @@ class MainWindow(object):
         mainbox.pack_start(toolbar, False, True)
 
         # add list displaying the datasets
-        contentbox = gtk.VBox(spacing=5)
+        self.contentbox = gtk.VBox(spacing=5)
         datawindow = gtk.ScrolledWindow()
         datawindow.set_policy(gtk.POLICY_AUTOMATIC, \
             gtk.POLICY_AUTOMATIC)
@@ -131,20 +131,20 @@ class MainWindow(object):
         self.datalist.set_sort_column_id(1, gtk.SORT_DESCENDING)
         self.dataview.set_rules_hint(True)
         datawindow.add(self.dataview)
-        contentbox.pack_start(datawindow)
+        self.contentbox.pack_start(datawindow)
 
         # measurement or plan selector
         self.modeselector = gtk.combo_box_new_text()
         self.modeselector.append_text(_('Weight Measurements'))
         self.modeselector.append_text(_('Weight Planner'))
         self.modeselector.set_active(0)
-        contentbox.pack_start(self.modeselector, False, True)
-        mainbox.pack_start(contentbox)
+        mainbox.pack_start(self.contentbox)
 
         # get treeselection and deactivate actions if no selection
         self.treeselection = self.dataview.get_selection()
         self.set_selection_active(self.treeselection)
         self.set_plot_action_active()
+        self.check_modeselector()
 
         # connect the signals
         csv_import_item.connect('activate', self.csv_dialog_import)
@@ -235,6 +235,7 @@ class MainWindow(object):
         """Runs the preferences dialog."""
         PreferencesDialog().run()
         self.set_plot_action_active()
+        self.check_modeselector()
 
     def csv_dialog_import(self, widget):
         """Runs the csv import dialog and updates the display to show
@@ -299,6 +300,18 @@ class MainWindow(object):
             self.plotaction.set_sensitive(False)
         elif self.plotaction.get_sensitive() == False and parameters.have_mpl:
             self.plotaction.set_sensitive(True)
+
+    def check_modeselector(self):
+        """Checks, whether the modeselector should be displayed and
+        hides or shows it accordingly."""
+        if parameters.config['preferences.use_weight_plan'] \
+            and self.modeselector not in self.contentbox.get_children():
+            self.contentbox.pack_end(self.modeselector, False, True)
+        elif not parameters.config['preferences.use_weight_plan'] \
+            and self.modeselector in self.contentbox.get_children():
+            self.modeselector.set_active(0)
+            self.contentbox.remove(self.modeselector)
+        self.contentbox.show_all()
 
     def add_column(self, title, columnId):
         """Adds a column to the list view: First, create the

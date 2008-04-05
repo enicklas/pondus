@@ -50,6 +50,13 @@ class PreferencesDialog(object):
         unit_box.pack_start(self.unit_button)
         self.dialog.vbox.pack_start(unit_box)
 
+        self.use_plan_button = gtk.CheckButton(_('Use Weight Planner'))
+        self.use_plan_button.set_border_width(5)
+        self.use_plan_button.set_active( \
+                        self.newconfig['preferences.use_weight_plan'])
+        self.dialog.vbox.pack_start(self.use_plan_button)
+        self.use_plan_button.connect('toggled', self.check_use_plan)
+
         self.plot_plan_button = gtk.CheckButton(_('Include Weight Plan in Plot'))
         self.plot_plan_button.set_border_width(5)
         self.plot_plan_button.set_active( \
@@ -60,6 +67,8 @@ class PreferencesDialog(object):
         self.remember_button.set_border_width(5)
         self.remember_button.set_active(self.newconfig['window.remember_size'])
         self.dialog.vbox.pack_start(self.remember_button)
+
+        self.check_use_plan(self.use_plan_button)
 
         # buttons in action area
         self.dialog.add_button(gtk.STOCK_CANCEL, gtk.RESPONSE_CANCEL)
@@ -73,6 +82,8 @@ class PreferencesDialog(object):
         if response == gtk.RESPONSE_OK:
             self.newconfig['window.remember_size'] = \
                                     self.remember_button.get_active()
+            self.newconfig['preferences.use_weight_plan'] = \
+                                    self.use_plan_button.get_active()
             self.newconfig['preferences.plot_weight_plan'] = \
                                     self.plot_plan_button.get_active()
             parameters.config = self.newconfig
@@ -84,4 +95,10 @@ class PreferencesDialog(object):
         """Remembers the selected weight unit to be saved later."""
         if widget.get_active():
             self.newconfig['preferences.weight_unit'] = data
+        return None
+
+    def check_use_plan(self, use_plan_button):
+        """Checks, whether the plot_plan_button should be sensitive and
+        adjusts it accordingly."""
+        self.plot_plan_button.set_sensitive(use_plan_button.get_active())
         return None

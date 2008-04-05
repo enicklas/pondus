@@ -141,7 +141,8 @@ def get_daterange(key):
     if key == 0:
         dateoffset = timedelta(days=10)
         mindate_meas, maxdate_meas = datasets.all_datasets.get_daterange()
-        if parameters.config['preferences.plot_weight_plan']:
+        if parameters.config['preferences.use_weight_plan'] \
+            and parameters.config['preferences.plot_weight_plan']:
             mindate_plan, maxdate_plan = datasets.plan_datasets.get_daterange()
         else:
             mindate_plan, maxdate_plan = None, None

@@ -3,8 +3,9 @@ Pondus NEWS
 
 2008-xx-xx: Version 0.4.0
 ---------------------------
- * Add ability to set a weight plan for the future and an option to
-   plot the plan for comparison with the measured weight
+ * Add an optional weight planner to define ``target weights'' for the
+   future and an option to plot the plan for comparison with the
+   measured weight
  * Add CSV Im-/Export dialogs
  * Update plot if `Enter` is pressed in one of the date entry fields
  * The edit dialog can no longer be opened with `CTR-e` or the toolbar

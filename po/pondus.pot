@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Pondus 0.4.0\n"
 "Report-Msgid-Bugs-To: eike@ephys.de\n"
-"POT-Creation-Date: 2008-04-04 12:28+0200\n"
+"POT-Creation-Date: 2008-04-04 16:18+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -36,12 +36,12 @@ msgstr ""
 msgid "Using the standard file ~/.pondus/datasets.xml instead."
 msgstr ""
 
-#: ../src/pondus/core/plot.py:59 ../src/pondus/gui/dialog_add.py:60
+#: ../src/pondus/core/plot.py:60 ../src/pondus/gui/dialog_add.py:60
 #: ../src/pondus/gui/window_main.py:129
 msgid "Weight"
 msgstr ""
 
-#: ../src/pondus/core/plot.py:87
+#: ../src/pondus/core/plot.py:88
 msgid "Saving plot to"
 msgstr ""
 
@@ -186,10 +186,14 @@ msgid "Weight Unit:"
 msgstr ""
 
 #: ../src/pondus/gui/dialog_preferences.py:53
+msgid "Use Weight Planner"
+msgstr ""
+
+#: ../src/pondus/gui/dialog_preferences.py:60
 msgid "Include Weight Plan in Plot"
 msgstr ""
 
-#: ../src/pondus/gui/dialog_preferences.py:59
+#: ../src/pondus/gui/dialog_preferences.py:66
 msgid "Remember Window Size"
 msgstr ""
 

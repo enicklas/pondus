@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Pondus 0.4.0\n"
 "Report-Msgid-Bugs-To: eike@ephys.de\n"
-"POT-Creation-Date: 2008-04-04 12:28+0200\n"
-"PO-Revision-Date: 2008-04-04 12:30+CET\n"
+"POT-Creation-Date: 2008-04-04 16:18+0200\n"
+"PO-Revision-Date: 2008-04-04 16:19+CET\n"
 "Last-Translator: Eike Nicklas <eike@ephys.de>\n"
 "Language-Team: German\n"
 "MIME-Version: 1.0\n"
@@ -35,12 +35,12 @@ msgstr "Fehler: Dies ist ein Verzeichnis, keine Datei!"
 msgid "Using the standard file ~/.pondus/datasets.xml instead."
 msgstr "Benutze stattdessen die Standarddatei ~/.pondus/datasets.xml"
 
-#: ../src/pondus/core/plot.py:59 ../src/pondus/gui/dialog_add.py:60
+#: ../src/pondus/core/plot.py:60 ../src/pondus/gui/dialog_add.py:60
 #: ../src/pondus/gui/window_main.py:129
 msgid "Weight"
 msgstr "Gewicht"
 
-#: ../src/pondus/core/plot.py:87
+#: ../src/pondus/core/plot.py:88
 msgid "Saving plot to"
 msgstr "Speichere Diagramm nach"
 
@@ -185,10 +185,14 @@ msgid "Weight Unit:"
 msgstr "Gewichtseinheit:"
 
 #: ../src/pondus/gui/dialog_preferences.py:53
+msgid "Use Weight Planner"
+msgstr "Benutze Gewichtsplaner"
+
+#: ../src/pondus/gui/dialog_preferences.py:60
 msgid "Include Weight Plan in Plot"
 msgstr "Zeige Gewichtsplan im Plot"
 
-#: ../src/pondus/gui/dialog_preferences.py:59
+#: ../src/pondus/gui/dialog_preferences.py:66
 msgid "Remember Window Size"
 msgstr "Speichere Fenstergröße"
 
