@@ -22,7 +22,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 import gtk
 import os
 
-from pondus import datasets
+from pondus import datasets, parameters
 from pondus.core import csv_parser
 from pondus.gui.dialog_message import MessageDialog
 from pondus.gui.dialog_select_file import SelectFileDialog
@@ -50,6 +50,8 @@ class CSVDialogImport(object):
         self.data_button = gtk.RadioButton(group=self.data_button, \
                                            label=_('Weight Plan'))
         self.data_button.connect('toggled', self.on_data_change, 'plan')
+        if not parameters.config['preferences.use_weight_plan']:
+            self.data_button.set_sensitive(False)
         databox.pack_start(self.data_button)
         self.dialog.vbox.pack_start(databox)
 

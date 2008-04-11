@@ -1,7 +1,7 @@
 Pondus NEWS
 =============
 
-2008-xx-xx: Version 0.4.0
+2008-04-12: Version 0.4.0
 ---------------------------
  * Add an optional weight planner to define ``target weights'' for the
    future and an option to plot the plan for comparison with the

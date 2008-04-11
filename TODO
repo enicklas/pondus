@@ -1,6 +1,8 @@
 TODO-List for Pondus
 ======================
 
+ * support more data formats in csv im-/exports
+ * allow selection and deletion of multiple datasets
  * optional fields: body fat? comments?
  * interface guidelines? usability?
  * validate xml?
