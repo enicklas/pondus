@@ -1,6 +1,11 @@
 Pondus NEWS
 =============
 
+2008-xx-xx: Version 0.5.0
+---------------------------
+ * Add French translation (Thanks Fabrice Haberer-Proust)
+
+
 2008-04-12: Version 0.4.0
 ---------------------------
  * Add an optional weight planner to define ``target weights'' for the

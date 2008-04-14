@@ -52,7 +52,7 @@ def create_mo():
     """Creates the .mo files to be distributed with the source."""
     mo_dir = 'po/mo'
     if not os.path.exists(mo_dir):
-        for lang in ['de']:
+        for lang in ['de', 'fr']:
             po_file = os.path.join('po', lang + '.po')
             mo_dir_lang = os.path.join(mo_dir, lang, 'LC_MESSAGES')
             mo_file = os.path.join(mo_dir_lang, 'pondus.mo')
