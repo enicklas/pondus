@@ -34,11 +34,12 @@ from pondus.core import config_parser
 from pondus.gui import guiutil
 from pondus.gui.dialog_add import AddDataDialog
 from pondus.gui.dialog_remove import RemoveDataDialog
-from pondus.gui.dialog_plot import PlotDialog
 from pondus.gui.dialog_preferences import PreferencesDialog
 from pondus.gui.dialog_csv_import import CSVDialogImport
 from pondus.gui.dialog_csv_export import CSVDialogExport
 
+if parameters.have_mpl:
+    from pondus.gui.dialog_plot import PlotDialog
 
 class MainWindow(object):
     """Implements the main window and defines the functions to start

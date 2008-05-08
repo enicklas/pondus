@@ -3,6 +3,7 @@ Pondus NEWS
 
 2008-xx-xx: Version 0.5.0
 ---------------------------
+ * Fix crash if matplotlib is not available (Thanks Jorge Maroto)
  * Add French translation (Thanks Fabrice Haberer-Proust)
 
 
