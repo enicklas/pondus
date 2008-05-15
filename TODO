@@ -2,6 +2,7 @@ TODO-List for Pondus
 ======================
 
  * support more data formats in csv im-/exports
+ * calculate BMI and include it in graph
  * allow selection and deletion of multiple datasets
  * optional fields: body fat? comments?
  * interface guidelines? usability?

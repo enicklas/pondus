@@ -1,11 +1,10 @@
 Pondus NEWS
 =============
 
-2008-xx-xx: Version 0.5.0
+2008-05-16: Version 0.4.1
 ---------------------------
  * Fix crash if matplotlib is not available (Thanks Jorge Maroto)
  * Add French translation (Thanks Fabrice Haberer-Proust)
-
 
 2008-04-12: Version 0.4.0
 ---------------------------
@@ -16,7 +15,6 @@ Pondus NEWS
  * Update plot if `Enter` is pressed in one of the date entry fields
  * The edit dialog can no longer be opened with `CTR-e` or the toolbar
    button, please use `Enter` or double-click instead
-
 
 2008-03-06: Version 0.3.0
 ---------------------------
