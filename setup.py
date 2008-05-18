@@ -52,7 +52,7 @@ def create_mo():
     """Creates the .mo files to be distributed with the source."""
     mo_dir = 'po/mo'
     if not os.path.exists(mo_dir):
-        for lang in ['de', 'fr']:
+        for lang in ['de', 'es', 'fr']:
             po_file = os.path.join('po', lang + '.po')
             mo_dir_lang = os.path.join(mo_dir, lang, 'LC_MESSAGES')
             mo_file = os.path.join(mo_dir_lang, 'pondus.mo')
@@ -92,6 +92,7 @@ setup(name = 'pondus',
         ('share/icons/hicolor/48x48/apps', ['data/icons/pondus.png']),
         ('share/icons/hicolor/scalable/apps', ['data/icons/pondus.svg']),
         ('share/locale/de/LC_MESSAGES', ['po/mo/de/LC_MESSAGES/pondus.mo']),
+        ('share/locale/es/LC_MESSAGES', ['po/mo/es/LC_MESSAGES/pondus.mo']),
         ('share/locale/fr/LC_MESSAGES', ['po/mo/fr/LC_MESSAGES/pondus.mo'])],
       package_dir = {'pondus': 'src/pondus'},
       packages = ['pondus', 'pondus.core', 'pondus.gui'],

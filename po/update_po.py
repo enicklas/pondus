@@ -63,7 +63,7 @@ potfiles = [('../src/pondus/core/initialize.py'),
             ('../src/pondus/gui/dialog_select_file.py'),
             ('../src/pondus/gui/window_main.py')]
 # list of existing translations
-languages = ['de', 'fr']
+languages = ['de', 'es', 'fr']
 version = get_version()
 
 create_pot(version, potfiles)
