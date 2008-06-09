@@ -30,8 +30,9 @@ class Dataset(object):
         self.data['weight'] = weight
 
     def get(self, key):
-        """Returns the value of the dataset corresponding to key."""
-        return self.data[key]
+        """Returns the value of the dataset corresponding to key or
+        and empty string."""
+        return self.data.get(key, '')
 
     def set(self, key, value):
         """Sets the property corresponding to key to value."""

@@ -36,6 +36,10 @@ config_default = {'window.remember_size': False,
 config = dict(config_default)
 have_mpl = False
 
+# tags used in the xml file and dataset objects
+keys_required = ('id', 'date', 'weight')
+keys_optional = ()
+
 # paths to button/logo icons used
 plot_button_path = 'usr/share/pondus/plot.png'
 logo_path = '/usr/share/icons/hicolor/48x48/apps/pondus.png'

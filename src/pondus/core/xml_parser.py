@@ -24,6 +24,7 @@ from xml.dom.minidom import Document
 from xml.sax import make_parser
 from xml.sax.handler import ContentHandler
 
+from pondus import parameters
 from pondus.core import util
 from pondus.core.dataset import Dataset
 
@@ -34,19 +35,19 @@ class DatasetHandler(ContentHandler):
     def startElement(self, name, attr):
         self.current_tag = name
         if name == 'dataset':
-            self.id_data = int(attr.getValue(attr.getNames()[0]).encode('utf-8'))
+            self.data = {}
+            self.data['id'] = int(attr.getValue(attr.getNames()[0]).encode('utf-8'))
     def endElement(self, name):
         if name == 'dataset':
-            self.datasets[self.id_data] = Dataset(
-                                            self.id_data,
-                                            util.str2date(self.date),
-                                            float(self.weight))
+            dataset = Dataset(self.data['id'],
+                              util.str2date(self.data['date']),
+                              float(self.data['weight']))
+            for key in set(parameters.keys_optional).intersection( \
+                                                set(self.data.keys())):
+                dataset.set(key, self.data[key])
+            self.datasets[self.data['id']] = dataset
     def characters(self, content):
-        if self.current_tag == 'date':
-            self.date = content
-        if self.current_tag == 'weight':
-            self.weight = content
-
+        self.data[self.current_tag] = content
 
 def read(filepath):
     """Parses the xml-file in filepath and return an AllDatasets.datasets
