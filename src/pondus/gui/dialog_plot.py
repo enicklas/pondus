@@ -25,7 +25,6 @@ from datetime import date, timedelta
 from matplotlib.backends.backend_gtkagg import FigureCanvasGTKAgg \
     as FigureCanvas
 
-from pondus import datasets, parameters
 from pondus.core import util
 from pondus.core.plot import Plot
 from pondus.gui.dialog_message import MessageDialog
@@ -118,8 +117,7 @@ class PlotDialog(object):
     def update_daterange(self, dateselector):
         """Updates start and end date in the appropriate text entries
         everytime self.dateselector changes."""
-        key = self.dateselector.get_active()
-        start_date, end_date = get_daterange(key)
+        start_date, end_date = self.get_daterange()
         self.start_date_entry.set_text(str(start_date))
         self.end_date_entry.set_text(str(end_date))
         self.plot.update_plot(start_date, end_date)
@@ -133,29 +131,23 @@ class PlotDialog(object):
         if event.keyval in [gtk.keysyms.Return, gtk.keysyms.KP_Enter]:
             self.update_plot(None)
 
-# helper functions
+    # helper functions
 
-def get_daterange(key):
-    """Returns start and end date of the plot to be created,
-    depending on the current setting of self.dateselector."""
-    if key == 0:
-        dateoffset = timedelta(days=10)
-        mindate_meas, maxdate_meas = datasets.all_datasets.get_daterange()
-        if parameters.config['preferences.use_weight_plan'] \
-            and parameters.config['preferences.plot_weight_plan']:
-            mindate_plan, maxdate_plan = datasets.plan_datasets.get_daterange()
+    def get_daterange(self):
+        """Returns start and end date of the plot to be created,
+        depending on the current setting of self.dateselector."""
+        key = self.dateselector.get_active()
+        if key == 0:
+            dateoffset = timedelta(days=10)
+            mindate, maxdate = self.plot.get_max_daterange()
+            mindate -= dateoffset
+            maxdate += dateoffset
         else:
-            mindate_plan, maxdate_plan = None, None
-        mindate, maxdate = util.compare_with_possible_nones( \
-            mindate_meas, maxdate_meas, mindate_plan, maxdate_plan)
-        mindate -= dateoffset
-        maxdate += dateoffset
-    else:
-        maxdate = date.today()
-        if key == 1:
-            # select last year
-            mindate = maxdate - timedelta(days=365)
-        if key == 2:
-            # select last month
-            mindate = maxdate - timedelta(days=31)
-    return mindate, maxdate
+            maxdate = date.today()
+            if key == 1:
+                # select last year
+                mindate = maxdate - timedelta(days=365)
+            if key == 2:
+                # select last month
+                mindate = maxdate - timedelta(days=31)
+        return mindate, maxdate

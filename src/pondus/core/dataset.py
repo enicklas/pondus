@@ -31,7 +31,7 @@ class Dataset(object):
 
     def get(self, key):
         """Returns the value of the dataset corresponding to key or
-        and empty string."""
+        an empty string."""
         return self.data.get(key, '')
 
     def set(self, key, value):

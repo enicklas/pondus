@@ -83,30 +83,3 @@ class AllDatasets(object):
         except ValueError:
             #if no datasets exist
             return 1
-
-    def get_daterange(self):
-        """Returns the minimum and the maximum date in the available
-        datasets. Returns None, None if no measurements exist."""
-        try:
-            mindate = min(dataset.get('date') \
-                for dataset in self.datasets.itervalues())
-            maxdate = max(dataset.get('date') \
-                for dataset in self.datasets.itervalues())
-        except ValueError:
-            return None, None
-        return mindate, maxdate
-
-    def get_weight_in_daterange(self, mindate, maxdate):
-        """Returns the minimum and the maximum weight measured in the
-        given date range. Returns None, None if no measurements exist
-        in the given date range."""
-        try:
-            minweight = min(dataset.get('weight') \
-                for dataset in self.datasets.itervalues() \
-                if mindate <= dataset.get('date') <= maxdate)
-            maxweight = max(dataset.get('weight') \
-                for dataset in self.datasets.itervalues() \
-                if mindate <= dataset.get('date') <= maxdate)
-        except ValueError:
-            return None, None
-        return minweight, maxweight

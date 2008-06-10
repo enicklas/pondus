@@ -32,54 +32,60 @@ class Plot(object):
     """Describes the plot figure and implements methods to modify it."""
     def __init__(self):
         """Plots the weight data vs time."""
+        self.mindate = None
+        self.maxdate = None
+        self.plot_plan = parameters.config['preferences.use_weight_plan'] \
+                and parameters.config['preferences.plot_weight_plan']
+        self.plot_data_meas = get_plot_data(datasets.all_datasets)
+        if self.plot_plan:
+            self.plot_data_plan = get_plot_data(datasets.plan_datasets)
+        else:
+            self.plot_data_plan = []
         self.create_plot()
 
-    def get_plot_data(self, datasetdata):
-        """Returns the datalists to be plotted."""
-        data = [(dataset.get('date'), dataset.get('weight')) \
-                for dataset in datasetdata]
-        data.sort()
-        dates = [tup[0] for tup in data]
-        weights = [tup[1] for tup in data]
-        return dates, weights
+    def set_daterange(self, mindate, maxdate):
+        """Sets the desired daterange of the plot."""
+        self.mindate = mindate
+        self.maxdate = maxdate
 
     def create_plot(self):
         """Creates the plot and basic formatting."""
-        weightdatelist, weightlist = self.get_plot_data(datasets.all_datasets)
-        plandatelist, planweightlist = self.get_plot_data(datasets.plan_datasets)
+        xlist_meas = [tup[0] for tup in self.plot_data_meas]
+        ylist_meas = [tup[1] for tup in self.plot_data_meas]
+        xlist_plan = [tup[0] for tup in self.plot_data_plan]
+        ylist_plan = [tup[1] for tup in self.plot_data_plan]
         self.figure = Figure()
         self.ax = self.figure.add_subplot(111)
-        if len(weightdatelist) != 0:
-            self.ax.plot_date(dates.date2num(weightdatelist), \
-                            weightlist, fmt='bo-', ms=4.0)
-        if len(plandatelist) != 0 \
-                and parameters.config['preferences.use_weight_plan'] \
-                and parameters.config['preferences.plot_weight_plan']:
-            self.ax.plot_date(dates.date2num(plandatelist), \
-                            planweightlist, fmt='ro-', ms=4.0)
+        if len(xlist_meas) != 0:
+            self.ax.plot_date(dates.date2num(xlist_meas), ylist_meas, \
+                            fmt='bo-', ms=4.0)
+        if len(xlist_plan) != 0 and self.plot_plan:
+            self.ax.plot_date(dates.date2num(xlist_plan), ylist_plan, \
+                            fmt='ro-', ms=4.0)
         ylabel = _('Weight') + ' (' \
                 + parameters.config['preferences.weight_unit'] + ')'
         self.ax.set_ylabel(ylabel)
         self.ax.grid(True)
 
-    def format_plot(self, mindate, maxdate):
+    def format_plot(self):
         """Formats the plot, i.e. sets limits, ticks, etc."""
-        daterange = maxdate - mindate
+        daterange = self.maxdate - self.mindate
         majorlocator, majorformatter, minorlocator = get_locators(daterange)
 
-        minweight, maxweight = get_weightrange(mindate, maxdate)
-        if minweight is not None:
-            self.ax.set_ylim(minweight, maxweight)
+        y_min, y_max = self.get_yrange()
+        if y_min is not None:
+            self.ax.set_ylim(y_min, y_max)
 
-        self.ax.set_xlim(dates.date2num(mindate), \
-                         dates.date2num(maxdate))
+        self.ax.set_xlim(dates.date2num(self.mindate), \
+                         dates.date2num(self.maxdate))
         self.ax.xaxis.set_major_locator(majorlocator)
         self.ax.xaxis.set_major_formatter(majorformatter)
         self.ax.xaxis.set_minor_locator(minorlocator)
 
     def update_plot(self, mindate, maxdate):
         """Updates the plot formatting and redraws the plot."""
-        self.format_plot(mindate, maxdate)
+        self.set_daterange(mindate, maxdate)
+        self.format_plot()
         self.figure.canvas.draw()
 
     def save_to_file(self, filename):
@@ -87,6 +93,61 @@ class Plot(object):
         a valid format to save to."""
         print _('Saving plot to'), filename
         self.figure.savefig(filename, format=filename[-3:])
+
+    def get_yrange(self):
+        """Returns the minimum and the maximum y-value in the given date
+        range."""
+        y_offset = 0.5
+        y_min_meas, y_max_meas = self.get_yrange_data(self.plot_data_meas)
+        y_min_plan, y_max_plan = self.get_yrange_data(self.plot_data_plan)
+        y_min, y_max = util.compare_with_possible_nones( \
+            y_min_meas, y_max_meas, y_min_plan, y_max_plan)
+        # y_min, y_max can be None if no datasets in selected daterange
+        if y_min is not None:
+            y_min -= y_offset
+            y_max += y_offset
+        return y_min, y_max
+
+    def get_yrange_data(self, datasets):
+        """Returns the minimum and the maximum y-value in the plot data.
+        Returns None, None if no measurements exist in the chosen date
+        range."""
+        try:
+            minweight = min(dataset[1] \
+                for dataset in datasets \
+                if self.mindate <= dataset[0] <= self.maxdate)
+            maxweight = max(dataset[1] \
+                for dataset in datasets \
+                if self.mindate <= dataset[0] <= self.maxdate)
+            return minweight, maxweight
+        except ValueError:
+            return None, None
+
+    def get_max_daterange(self):
+        """Returns the minimum and the maximum date in the available
+        data. Returns None, None if no measurements exist."""
+        try:
+            mindate_meas = self.plot_data_meas[0][0]
+            maxdate_meas = self.plot_data_meas[-1][0]
+        except IndexError:
+            mindate_meas = None
+            maxdate_meas = None
+        try:
+            mindate_plan = self.plot_data_plan[0][0]
+            maxdate_plan = self.plot_data_plan[-1][0]
+        except IndexError:
+            mindate_plan = None
+            maxdate_plan = None
+        mindate, maxdate = util.compare_with_possible_nones( \
+            mindate_meas, maxdate_meas, mindate_plan, maxdate_plan)
+        return mindate, maxdate
+
+def get_plot_data(datasets):
+    """Returns the datalists to be plotted."""
+    data = [(dataset.get('date'), dataset.get('weight')) \
+            for dataset in datasets]
+    data.sort()
+    return data
 
 def get_locators(daterange):
     """Returns sane locators and formatters for the given
@@ -116,22 +177,3 @@ def get_locators(daterange):
         majorformatter = dates.DateFormatter("%d %b")
         minorlocator = dates.DayLocator()
     return majorlocator, majorformatter, minorlocator
-
-def get_weightrange(mindate, maxdate):
-    """Return the minimum and the maximum weight in the given date
-    range."""
-    weightoffset = 0.5
-    minweight_meas, maxweight_meas = \
-        datasets.all_datasets.get_weight_in_daterange(mindate, maxdate)
-    if parameters.config['preferences.use_weight_plan'] \
-            and parameters.config['preferences.plot_weight_plan']:
-        minweight_plan, maxweight_plan = \
-         datasets.plan_datasets.get_weight_in_daterange(mindate, maxdate)
-    else:
-        minweight_plan, maxweight_plan = None, None
-    minweight, maxweight = util.compare_with_possible_nones( \
-        minweight_meas, maxweight_meas, minweight_plan, maxweight_plan)
-    if minweight is not None:
-        minweight -= weightoffset
-        maxweight += weightoffset
-    return minweight, maxweight
