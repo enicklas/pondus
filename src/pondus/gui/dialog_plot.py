@@ -139,9 +139,8 @@ class PlotDialog(object):
         key = self.dateselector.get_active()
         if key == 0:
             dateoffset = timedelta(days=10)
-            mindate, maxdate = self.plot.get_max_daterange()
-            mindate -= dateoffset
-            maxdate += dateoffset
+            mindate = self.plot.mindate_min - dateoffset
+            maxdate = self.plot.maxdate_max + dateoffset
         else:
             maxdate = date.today()
             if key == 1:

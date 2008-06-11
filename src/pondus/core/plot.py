@@ -32,8 +32,6 @@ class Plot(object):
     """Describes the plot figure and implements methods to modify it."""
     def __init__(self):
         """Plots the weight data vs time."""
-        self.mindate = None
-        self.maxdate = None
         self.plot_plan = parameters.config['preferences.use_weight_plan'] \
                 and parameters.config['preferences.plot_weight_plan']
         self.plot_data_meas = get_plot_data(datasets.all_datasets)
@@ -41,6 +39,9 @@ class Plot(object):
             self.plot_data_plan = get_plot_data(datasets.plan_datasets)
         else:
             self.plot_data_plan = []
+        self.mindate_min, self.maxdate_max = self.get_max_daterange()
+        self.mindate = self.mindate_min
+        self.maxdate = self.maxdate_max
         self.create_plot()
 
     def set_daterange(self, mindate, maxdate):
@@ -125,7 +126,7 @@ class Plot(object):
 
     def get_max_daterange(self):
         """Returns the minimum and the maximum date in the available
-        data. Returns None, None if no measurements exist."""
+        data."""
         try:
             mindate_meas = self.plot_data_meas[0][0]
             maxdate_meas = self.plot_data_meas[-1][0]
