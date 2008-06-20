@@ -34,12 +34,11 @@ class Plot(object):
         """Plots the weight data vs time."""
         self.plot_plan = parameters.config['preferences.use_weight_plan'] \
                 and parameters.config['preferences.plot_weight_plan']
-        self.plot_data_meas = get_plot_data(user_data.user.measurements)
-        if self.plot_plan:
-            self.plot_data_plan = get_plot_data(user_data.user.plan)
-        else:
-            self.plot_data_plan = []
-        self.mindate_min, self.maxdate_max = self.get_max_daterange()
+        self.plot_bmi = False
+        self.figure = Figure()
+        self.ax = self.figure.add_subplot(111)
+        self.ax.grid(True)
+        self.get_plot_data()
         self.mindate = self.mindate_min
         self.maxdate = self.maxdate_max
         self.create_plot()
@@ -49,24 +48,29 @@ class Plot(object):
         self.mindate = mindate
         self.maxdate = maxdate
 
+    def set_plot_bmi(self, plot_bmi):
+        """Sets the parameter describing whether weight or BMI is
+        plotted."""
+        self.plot_bmi = plot_bmi
+
     def create_plot(self):
         """Creates the plot and basic formatting."""
         xlist_meas = [tup[0] for tup in self.plot_data_meas]
         ylist_meas = [tup[1] for tup in self.plot_data_meas]
         xlist_plan = [tup[0] for tup in self.plot_data_plan]
         ylist_plan = [tup[1] for tup in self.plot_data_plan]
-        self.figure = Figure()
-        self.ax = self.figure.add_subplot(111)
         if len(xlist_meas) != 0:
             self.ax.plot_date(dates.date2num(xlist_meas), ylist_meas, \
                             fmt='bo-', ms=4.0)
         if len(xlist_plan) != 0 and self.plot_plan:
             self.ax.plot_date(dates.date2num(xlist_plan), ylist_plan, \
                             fmt='ro-', ms=4.0)
-        ylabel = _('Weight') + ' (' \
-                + parameters.config['preferences.weight_unit'] + ')'
+        if self.plot_bmi:
+            ylabel = _('Body Mass Index')
+        else:
+            ylabel = _('Weight') + ' (' \
+                    + parameters.config['preferences.weight_unit'] + ')'
         self.ax.set_ylabel(ylabel)
-        self.ax.grid(True)
 
     def format_plot(self):
         """Formats the plot, i.e. sets limits, ticks, etc."""
@@ -83,9 +87,16 @@ class Plot(object):
         self.ax.xaxis.set_major_formatter(majorformatter)
         self.ax.xaxis.set_minor_locator(minorlocator)
 
-    def update_plot(self, mindate, maxdate):
+    def update_daterange(self, mindate, maxdate):
         """Updates the plot formatting and redraws the plot."""
         self.set_daterange(mindate, maxdate)
+        self.format_plot()
+        self.figure.canvas.draw()
+
+    def update_plot_type(self):
+        self.ax.lines = []
+        self.get_plot_data()
+        self.create_plot()
         self.format_plot()
         self.figure.canvas.draw()
 
@@ -98,7 +109,10 @@ class Plot(object):
     def get_yrange(self):
         """Returns the minimum and the maximum y-value in the given date
         range."""
-        y_offset = 0.5
+        if self.plot_bmi:
+            y_offset = 0.1
+        else:
+            y_offset = 0.5
         y_min_meas, y_max_meas = self.get_yrange_data(self.plot_data_meas)
         y_min_plan, y_max_plan = self.get_yrange_data(self.plot_data_plan)
         y_min, y_max = util.compare_with_possible_nones( \
@@ -143,12 +157,26 @@ class Plot(object):
             mindate_meas, maxdate_meas, mindate_plan, maxdate_plan)
         return mindate, maxdate
 
-def get_plot_data(datasets):
-    """Returns the datalists to be plotted."""
-    data = [(dataset.get('date'), dataset.get('weight')) \
-            for dataset in datasets]
-    data.sort()
-    return data
+    def get_plot_data(self):
+        """Gets the data to be plotted."""
+        self.plot_data_meas = self.get_datasets(user_data.user.measurements)
+        if self.plot_plan:
+            self.plot_data_plan = self.get_datasets(user_data.user.plan)
+        else:
+            self.plot_data_plan = []
+        self.mindate_min, self.maxdate_max = self.get_max_daterange()
+
+    def get_datasets(self, datasets):
+        """Returns the list of datatuples to be plotted."""
+        if self.plot_bmi:
+            data = [(dataset.get('date'), \
+                util.bmi(dataset.get('weight'), user_data.user.height)) \
+                for dataset in datasets]
+        else:
+            data = [(dataset.get('date'), dataset.get('weight')) \
+                for dataset in datasets]
+        data.sort()
+        return data
 
 def get_locators(daterange):
     """Returns sane locators and formatters for the given

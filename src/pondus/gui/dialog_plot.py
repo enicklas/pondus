@@ -25,6 +25,7 @@ from datetime import date, timedelta
 from matplotlib.backends.backend_gtkagg import FigureCanvasGTKAgg \
     as FigureCanvas
 
+from pondus import user_data
 from pondus.core import util
 from pondus.core.plot import Plot
 from pondus.gui.dialog_message import MessageDialog
@@ -37,7 +38,7 @@ class PlotDialog(object):
 
     def __init__(self):
         self.dialog = gtk.Dialog(title=_('Plot Weight'))
-        self.dialog.set_default_size(600,400)
+        self.dialog.set_default_size(600,450)
 
         # drawing area for the plot
         self.plot = Plot()
@@ -72,6 +73,18 @@ class PlotDialog(object):
         date_selection_box.pack_end(date_update_button, False, False)
         self.dialog.vbox.pack_start(date_selection_box, False, False)
 
+        # plot options
+        plot_options_box = gtk.HBox(homogeneous=False, spacing=5)
+        date_label = gtk.Label(_('Plot Data:'))
+        plot_options_box.pack_start(date_label, False, False)
+        self.plotselector = gtk.combo_box_new_text()
+        self.plotselector.append_text(_('Weight'))
+        self.plotselector.append_text(_('Body Mass Index'))
+        self.plotselector.set_active(0)
+        plot_options_box.pack_start(self.plotselector, False, False)
+        if user_data.user.height is not None:
+            self.dialog.vbox.pack_start(plot_options_box, False, False)
+
         # buttons in action field
         save_button = gtk.Button(label=_('Save Plot'))
         self.dialog.action_area.pack_start(save_button, False, False)
@@ -84,6 +97,7 @@ class PlotDialog(object):
         self.start_date_entry.connect('key-press-event', self.on_keypress_in_entry)
         self.end_date_entry.connect('key-press-event', self.on_keypress_in_entry)
         self.dateselector.connect('changed', self.update_daterange)
+        self.plotselector.connect('changed', self.update_plot_type)
         date_update_button.connect('clicked', self.update_plot)
         save_button.connect('clicked', self.save_plot)
 
@@ -120,7 +134,16 @@ class PlotDialog(object):
         start_date, end_date = self.get_daterange()
         self.start_date_entry.set_text(str(start_date))
         self.end_date_entry.set_text(str(end_date))
-        self.plot.update_plot(start_date, end_date)
+        self.plot.update_daterange(start_date, end_date)
+
+    def update_plot_type(self, plotselector):
+        """Redraws the plot with the desired data."""
+        key = plotselector.get_active()
+        if key == 0:
+            self.plot.set_plot_bmi(False)
+        elif key == 1:
+            self.plot.set_plot_bmi(True)
+        self.plot.update_plot_type()
 
     def save_plot(self, button):
         """Runs the dialog to save the plot to a file."""

@@ -40,3 +40,18 @@ def compare_with_possible_nones(min1, max1, min2, max2):
         return min2, max2
     else:
         return None, None
+
+def bmi(weight, height):
+    """Returns the body mass index. weight and height should be given
+    in metric units, i.e. kg and cm."""
+    return weight/(height/100.0)**2
+
+def lbstokg(weight):
+    """Converts the weight in pounds to kg."""
+    return weight*0.45359237
+
+def inchtocm(height):
+    """Converts the height in feet/inches to cm. height is given as a
+    tuple (feet, inches)."""
+    inches = 12*height[0] + height[1]
+    return inches*2.54
