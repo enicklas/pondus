@@ -29,9 +29,9 @@ class AllDatasets(object):
     """Defines the structure how all the datasets are stored
     internally."""
 
-    def __init__(self, filepath):
+    def __init__(self, datasetsdict):
         """Reads all datasets from filepath."""
-        self.datasets = xml_parser.read(filepath)
+        self.datasets = datasetsdict
 
     def __iter__(self):
         """Iterates over the datasets."""
@@ -40,10 +40,6 @@ class AllDatasets(object):
     def __len__(self):
         """Returns the number of datasets in self.datasets."""
         return len(self.datasets)
-
-    def write_to_file(self, filepath):
-        """Writes all datasets to filepath."""
-        xml_parser.write(self.datasets.itervalues(), filepath)
 
     def add(self, newdataset):
         """Adds a given dataset object to the datasets or updates, if
@@ -83,3 +79,12 @@ class AllDatasets(object):
         except ValueError:
             #if no datasets exist
             return 1
+
+
+class AllDatasetsOld(AllDatasets):
+    """Defines the structure how all the datasets are stored
+    internally. Subclass to support the legacy xml scheme."""
+
+    def __init__(self, filepath):
+        """Reads all datasets from filepath."""
+        self.datasets = xml_parser.read_old(filepath)

@@ -32,11 +32,12 @@ def set_datafilepath(filepath):
         filepath = os.path.join(os.getcwd(), filepath)
     if not os.path.isdir(filepath):
         print _('Reading file'), filepath
-        parameters.datafile = filepath
+        parameters.userdatafile = filepath
+        parameters.use_custom_file = True
         return None
     else:
         print _('Error: This is a directory, not a file!')
-        print _('Using the standard file ~/.pondus/datasets.xml instead.')
+        print _('Using the standard file ~/.pondus/user_data.xml instead.')
 
 def parse_options():
     parser = OptionParser(version='%prog '+__version__)

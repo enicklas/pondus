@@ -28,8 +28,8 @@ from pondus import parameters
 from pondus.core import util
 from pondus.core.dataset import Dataset
 
-class DatasetHandler(ContentHandler):
-    """Defines how to parse the xml-file."""
+class OldDatasetHandler(ContentHandler):
+    """Defines how to parse the legacy xml-file."""
     def __init__(self):
         self.datasets = {}
     def startElement(self, name, attr):
@@ -49,29 +49,70 @@ class DatasetHandler(ContentHandler):
     def characters(self, content):
         self.data[self.current_tag] = content
 
+class DatasetHandler(ContentHandler):
+    """Defines how to parse the xml-file."""
+    def __init__(self):
+        self.person_data = {}
+        self.person_data['height'] = None
+        self.person_data['measurements'] = {}
+        self.person_data['plan'] = {}
+    def startElement(self, name, attr):
+        self.current_tag = name
+        if name == 'dataset':
+            self.data = {}
+            self.data['id'] = int(attr.getValue(attr.getNames()[0]).encode('utf-8'))
+        elif name == 'measurements':
+            self.parse_measurements = True
+        elif name == 'plan':
+            self.parse_plan = True
+    def endElement(self, name):
+        if name == 'dataset':
+            dataset = Dataset(self.data['id'],
+                              util.str2date(self.data['date']),
+                              float(self.data['weight']))
+            for key in set(parameters.keys_optional).intersection( \
+                                                set(self.data.keys())):
+                dataset.set(key, self.data[key])
+            if self.parse_measurements:
+                self.person_data['measurements'][self.data['id']] = dataset
+            elif self.parse_plan:
+                self.person_data['plan'][self.data['id']] = dataset
+        elif name == 'measurements':
+            self.parse_measurements = False
+        elif name == 'plan':
+            self.parse_plan = False
+    def characters(self, content):
+        if self.current_tag == 'height':
+            self.person_data['height'] = float(content)
+        else:
+            self.data[self.current_tag] = content
+
+def read_old(filepath):
+    """Parses the xml-file in filepath and returns an
+    AllDatasets.datasets object."""
+    check_filepath(filepath)
+    parser = make_parser()
+    handler = OldDatasetHandler()
+    parser.setContentHandler(handler)
+    parser.parse(filepath)
+    return handler.datasets
+
 def read(filepath):
-    """Parses the xml-file in filepath and return an AllDatasets.datasets
-    object."""
+    """Parses the xml-file in filepath and returns the data necessary to
+    create a person object."""
     check_filepath(filepath)
     parser = make_parser()
     handler = DatasetHandler()
     parser.setContentHandler(handler)
     parser.parse(filepath)
-    return handler.datasets
-
-def write(dataset_iter, filepath):
-    """Writes the datasets to the file in filepath."""
-    dom = create_xml_base()
-    for dataset in dataset_iter:
-        dataset.write_to_dom(dom)
-    dom2file(dom, filepath)
+    return handler.person_data
 
 # helper functions
 
 def create_xml_base():
     """Creates a base xml document not containing any datasets."""
     dom = Document()
-    roottag = dom.createElement('dataset-list')
+    roottag = dom.createElement('person')
     dom.appendChild(roottag)
     return dom
 

@@ -28,7 +28,7 @@ except ImportError, strerror:
     print _('Please make sure this library is installed.')
     sys.exit(1)
 
-from pondus import datasets
+from pondus import user_data
 from pondus import parameters
 from pondus.core import config_parser
 from pondus.gui import guiutil
@@ -47,7 +47,7 @@ class MainWindow(object):
 
     def __init__(self):
         # display weight measurements by default
-        self.datasetdata = datasets.all_datasets
+        self.datasetdata = user_data.user.measurements
 
         # create the window
         self.window = gtk.Window(gtk.WINDOW_TOPLEVEL)
@@ -166,8 +166,7 @@ class MainWindow(object):
     def destroy(self, widget, data=None):
         """Quits the application cleanly and saves the data to the
         appropriate file."""
-        datasets.all_datasets.write_to_file(filepath=parameters.datafile)
-        datasets.plan_datasets.write_to_file(filepath=parameters.planfile)
+        user_data.user.write_to_file(filepath=parameters.userdatafile)
         if parameters.config['window.remember_size']:
             parameters.config['window.width'] = \
                                     self.window.get_allocation().width
@@ -273,9 +272,9 @@ class MainWindow(object):
         the weight plan is displayed and edited."""
         key = self.modeselector.get_active()
         if key == 0:
-            self.datasetdata = datasets.all_datasets
+            self.datasetdata = user_data.user.measurements
         elif key == 1:
-            self.datasetdata = datasets.plan_datasets
+            self.datasetdata = user_data.user.plan
         self.display_data(self.datasetdata)
         self.set_selection_active(self.treeselection)
         self.set_plot_action_active()
@@ -294,8 +293,8 @@ class MainWindow(object):
     def set_plot_action_active(self):
         """Tests, whether a dataset exists and matplotlib is available
         and sets sensitivity of the plot action accordingly."""
-        if (len(datasets.all_datasets) == 0 and \
-                    (len(datasets.plan_datasets) == 0 \
+        if (len(user_data.user.measurements) == 0 and \
+                    (len(user_data.user.plan) == 0 \
                     or not parameters.config['preferences.use_weight_plan'] \
                     or not parameters.config['preferences.plot_weight_plan'])) \
                     or not parameters.have_mpl:

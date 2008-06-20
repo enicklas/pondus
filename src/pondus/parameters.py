@@ -23,8 +23,12 @@ import os
 
 # path of configuration and data files
 configfile = os.path.expanduser('~/.config/pondus/pondusrc')
-datafile = os.path.expanduser('~/.pondus/datasets.xml')
-planfile = os.path.expanduser('~/.pondus/weight-plan.xml')
+userdatafile = os.path.expanduser('~/.pondus/user_data.xml')
+# legacy filepaths
+datafile_old = os.path.expanduser('~/.pondus/datasets.xml')
+planfile_old = os.path.expanduser('~/.pondus/weight-plan.xml')
+# using standard or custom location for datafile?
+use_custom_file = False
 
 # configuration
 config_default = {'window.remember_size': False,

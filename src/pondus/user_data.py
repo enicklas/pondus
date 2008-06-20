@@ -20,10 +20,9 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 """
 
 from pondus import parameters
-from pondus.core.all_datasets import AllDatasets
+from pondus.core.person import Person
 
 
-# this instance stores all the datasets and is kept in this module for
-# global access
-all_datasets = AllDatasets(parameters.datafile)
-plan_datasets = AllDatasets(parameters.planfile)
+# this module contains all the user data for global access
+
+user = Person(parameters.userdatafile)

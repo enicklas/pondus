@@ -33,7 +33,7 @@ can be plotted to get a quick overview of the history of your weight.
 A simple weight planner allows to define ``target weights'' and this
 plan can be compared with the actual measurements in a plot.
 
-By default, the user data is stored in ~/.pondus/datasets.xml and is
+By default, the user data is stored in ~/.pondus/user_data.xml and is
 written to this file automatically on exit, so you don't have to worry
 about saving the data you entered.
 

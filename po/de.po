@@ -6,10 +6,10 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: Pondus 0.4.0\n"
+"Project-Id-Version: Pondus 0.5.0\n"
 "Report-Msgid-Bugs-To: eike@ephys.de\n"
-"POT-Creation-Date: 2008-05-15 12:17+0200\n"
-"PO-Revision-Date: 2008-04-05 16:17+0200\n"
+"POT-Creation-Date: 2008-06-20 11:33+0200\n"
+"PO-Revision-Date: 2008-06-20 11:16+0200\n"
 "Last-Translator: Eike Nicklas <eike@ephys.de>\n"
 "Language-Team: German <gnome-de@gnome.org>\n"
 "MIME-Version: 1.0\n"
@@ -28,20 +28,20 @@ msgstr "Achtung: Matplotlib nicht verfügbar, Plotfunktion deaktiviert!"
 msgid "Reading file"
 msgstr "Lese Datei"
 
-#: ../src/pondus/core/option_parser.py:38
+#: ../src/pondus/core/option_parser.py:39
 msgid "Error: This is a directory, not a file!"
 msgstr "Fehler: Dies ist ein Verzeichnis, keine Datei!"
 
-#: ../src/pondus/core/option_parser.py:39
-msgid "Using the standard file ~/.pondus/datasets.xml instead."
-msgstr "Benutze stattdessen die Standarddatei ~/.pondus/datasets.xml"
+#: ../src/pondus/core/option_parser.py:40
+msgid "Using the standard file ~/.pondus/user_data.xml instead."
+msgstr "Benutze stattdessen die Standarddatei ~/.pondus/user_data.xml"
 
-#: ../src/pondus/core/plot.py:60 ../src/pondus/gui/dialog_add.py:60
+#: ../src/pondus/core/plot.py:66 ../src/pondus/gui/dialog_add.py:60
 #: ../src/pondus/gui/window_main.py:130
 msgid "Weight"
 msgstr "Gewicht"
 
-#: ../src/pondus/core/plot.py:88
+#: ../src/pondus/core/plot.py:95
 msgid "Saving plot to"
 msgstr "Speichere Diagramm nach"
 
@@ -57,12 +57,12 @@ msgstr "Ändere Datensatz"
 msgid "Date (YYYY-MM-DD):"
 msgstr "Datum (JJJJ-MM-TT):"
 
-#: ../src/pondus/gui/dialog_add.py:99 ../src/pondus/gui/dialog_plot.py:107
-#: ../src/pondus/gui/dialog_plot.py:112
+#: ../src/pondus/gui/dialog_add.py:99 ../src/pondus/gui/dialog_plot.py:106
+#: ../src/pondus/gui/dialog_plot.py:111
 msgid "Error: Wrong Format"
 msgstr "Fehler: Falsches Format"
 
-#: ../src/pondus/gui/dialog_add.py:100 ../src/pondus/gui/dialog_plot.py:108
+#: ../src/pondus/gui/dialog_add.py:100 ../src/pondus/gui/dialog_plot.py:107
 msgid "The data entered is not in the correct format!"
 msgstr "Die eingegebenen Daten haben nicht das richtige Format!"
 
@@ -140,39 +140,39 @@ msgstr "Import nicht erfolgreich"
 msgid "An error occured during the import."
 msgstr "Beim Import ist ein Fehler aufgetreten."
 
-#: ../src/pondus/gui/dialog_plot.py:40
+#: ../src/pondus/gui/dialog_plot.py:39
 msgid "Plot Weight"
 msgstr "Plotte das Gewicht"
 
-#: ../src/pondus/gui/dialog_plot.py:52
+#: ../src/pondus/gui/dialog_plot.py:51
 msgid "Select Date Range:"
 msgstr "Wähle Datumsbereich:"
 
-#: ../src/pondus/gui/dialog_plot.py:66
+#: ../src/pondus/gui/dialog_plot.py:65
 msgid "All Time"
 msgstr "Alle Zeiten"
 
-#: ../src/pondus/gui/dialog_plot.py:67
+#: ../src/pondus/gui/dialog_plot.py:66
 msgid "Last Year"
 msgstr "Letztes Jahr"
 
-#: ../src/pondus/gui/dialog_plot.py:68
+#: ../src/pondus/gui/dialog_plot.py:67
 msgid "Last Month"
 msgstr "Letzter Monat"
 
-#: ../src/pondus/gui/dialog_plot.py:72
+#: ../src/pondus/gui/dialog_plot.py:71
 msgid "Update"
 msgstr "Aktualisieren"
 
-#: ../src/pondus/gui/dialog_plot.py:77
+#: ../src/pondus/gui/dialog_plot.py:76
 msgid "Save Plot"
 msgstr "Diagramm speichern"
 
-#: ../src/pondus/gui/dialog_plot.py:113
+#: ../src/pondus/gui/dialog_plot.py:112
 msgid "The start date has to be before the end date!"
 msgstr "Das Anfangsdatum muss vor dem Enddatum liegen!"
 
-#: ../src/pondus/gui/dialog_plot.py:129
+#: ../src/pondus/gui/dialog_plot.py:127
 msgid "weight_plot.png"
 msgstr "gewichtsdiagramm.png"
 

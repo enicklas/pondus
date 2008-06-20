@@ -23,7 +23,7 @@ from datetime import timedelta
 from matplotlib.figure import Figure
 from matplotlib import dates
 
-from pondus import datasets
+from pondus import user_data
 from pondus import parameters
 from pondus.core import util
 
@@ -34,9 +34,9 @@ class Plot(object):
         """Plots the weight data vs time."""
         self.plot_plan = parameters.config['preferences.use_weight_plan'] \
                 and parameters.config['preferences.plot_weight_plan']
-        self.plot_data_meas = get_plot_data(datasets.all_datasets)
+        self.plot_data_meas = get_plot_data(user_data.user.measurements)
         if self.plot_plan:
-            self.plot_data_plan = get_plot_data(datasets.plan_datasets)
+            self.plot_data_plan = get_plot_data(user_data.user.plan)
         else:
             self.plot_data_plan = []
         self.mindate_min, self.maxdate_max = self.get_max_daterange()

@@ -19,7 +19,7 @@ You should have received a copy of the GNU General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>.
 """
 
-__all__ = ['core', 'gui', 'datasets', 'parameters']
+__all__ = ['core', 'gui', 'parameters', 'user_data']
 __version__ = '0.5.0'
 
 import gettext

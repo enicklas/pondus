@@ -38,7 +38,7 @@ The following command line options are available:
     -i FILE, --input=FILE
         read data from FILE instead of the standard location
 
-By default, the user data is stored in `~/.pondus/datasets.xml` and is
+By default, the user data is stored in `~/.pondus/user_data.xml` and is
 written to this file automatically on exit, so you don't have to worry
 about saving the data you entered.
 
