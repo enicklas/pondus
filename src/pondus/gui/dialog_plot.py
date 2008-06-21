@@ -126,7 +126,7 @@ class PlotDialog(object):
             message = _('The start date has to be before the end date!')
             MessageDialog(type='error', title=title, message=message).run()
             return None
-        self.plot.update_plot(mindate, maxdate)
+        self.plot.update_daterange(mindate, maxdate)
 
     def update_daterange(self, dateselector):
         """Updates start and end date in the appropriate text entries
