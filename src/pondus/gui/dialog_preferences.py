@@ -22,6 +22,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 import gtk
 
 from pondus import parameters
+from pondus import user_data
 
 
 class PreferencesDialog(object):
@@ -32,6 +33,27 @@ class PreferencesDialog(object):
 
         self.dialog = gtk.Dialog(flags=gtk.DIALOG_NO_SEPARATOR)
         self.dialog.set_title(_('Preferences'))
+
+        height_box = gtk.VBox()
+        height_box.set_border_width(5)
+        height_label = gtk.Label(_('User Height:'))
+        height_label.set_alignment(xalign=0, yalign=0.5)
+        height_box.pack_start(height_label)
+        height_hbox = gtk.HBox(spacing=3)
+        height_adj = gtk.Adjustment(value=0,
+                                    lower=0,
+                                    upper=300,
+                                    step_incr=1,
+                                    page_incr=10)
+        if user_data.user.height is not None:
+            height_adj.set_value(user_data.user.height)
+        self.height_entry = gtk.SpinButton(adjustment=height_adj, digits=1)
+        self.height_entry.set_numeric(True)
+        height_hbox.pack_start(self.height_entry)
+        height_unit_label = gtk.Label(_('cm'))
+        height_hbox.pack_start(height_unit_label, False, True)
+        height_box.pack_start(height_hbox)
+        self.dialog.vbox.pack_start(height_box)
 
         unit_box = gtk.VBox()
         unit_box.set_border_width(5)
@@ -78,6 +100,11 @@ class PreferencesDialog(object):
             self.newconfig['preferences.use_weight_plan'] = \
                                     self.use_plan_button.get_active()
             parameters.config = self.newconfig
+            newheight = self.height_entry.get_value()
+            if newheight == 0.0:
+                user_data.user.height = None
+            else:
+                user_data.user.height = newheight
         self.dialog.hide()
         return None
 

@@ -3,6 +3,7 @@ Pondus NEWS
 
 2008-xx-xx: Version 0.5.0
 ---------------------------
+ * Allow user to enter his/her height and to plot the body mass index
  * Move option to plot the weight plan from the preferences dialog to
    the plot dialog
  * Restructure xml scheme: all user data is now saved in a single file
