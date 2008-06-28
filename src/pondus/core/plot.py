@@ -32,8 +32,7 @@ class Plot(object):
     """Describes the plot figure and implements methods to modify it."""
     def __init__(self):
         """Plots the weight data vs time."""
-        self.plot_plan = parameters.config['preferences.use_weight_plan'] \
-                and parameters.config['preferences.plot_weight_plan']
+        self.plot_plan = parameters.config['preferences.use_weight_plan']
         self.plot_bmi = False
         self.figure = Figure()
         self.ax = self.figure.add_subplot(111)
@@ -52,6 +51,11 @@ class Plot(object):
         """Sets the parameter describing whether weight or BMI is
         plotted."""
         self.plot_bmi = plot_bmi
+
+    def set_plot_plan(self, plot_plan):
+        """Sets the parameter describing whether the weight plan is
+        plotted."""
+        self.plot_plan = plot_plan
 
     def create_plot(self):
         """Creates the plot and basic formatting."""

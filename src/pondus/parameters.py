@@ -35,8 +35,7 @@ config_default = {'window.remember_size': False,
                   'window.width': 180,
                   'window.height': 300,
                   'preferences.weight_unit': 'kg',
-                  'preferences.use_weight_plan': False,
-                  'preferences.plot_weight_plan': True}
+                  'preferences.use_weight_plan': False}
 config = dict(config_default)
 have_mpl = False
 

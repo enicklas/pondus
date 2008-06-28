@@ -3,6 +3,8 @@ Pondus NEWS
 
 2008-xx-xx: Version 0.5.0
 ---------------------------
+ * Move option to plot the weight plan from the preferences dialog to
+   the plot dialog
  * Restructure xml scheme: all user data is now saved in a single file
    at `~/.pondus/user_data.xml`
  * Fix sensitivity of plot action when not using weight planner

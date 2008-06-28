@@ -295,8 +295,7 @@ class MainWindow(object):
         and sets sensitivity of the plot action accordingly."""
         if (len(user_data.user.measurements) == 0 and \
                     (len(user_data.user.plan) == 0 \
-                    or not parameters.config['preferences.use_weight_plan'] \
-                    or not parameters.config['preferences.plot_weight_plan'])) \
+                    or not parameters.config['preferences.use_weight_plan'])) \
                     or not parameters.have_mpl:
             self.plotaction.set_sensitive(False)
         elif self.plotaction.get_sensitive() == False and parameters.have_mpl:

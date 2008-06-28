@@ -81,9 +81,14 @@ class PlotDialog(object):
         self.plotselector.append_text(_('Weight'))
         self.plotselector.append_text(_('Body Mass Index'))
         self.plotselector.set_active(0)
+        if user_data.user.height is None:
+            self.plotselector.set_sensitive(False)
         plot_options_box.pack_start(self.plotselector, False, False)
-        if user_data.user.height is not None:
-            self.dialog.vbox.pack_start(plot_options_box, False, False)
+        self.plot_plan = gtk.CheckButton(_('Include Weight Plan'))
+        self.plot_plan.set_active(self.plot.plot_plan)
+        self.plot_plan.set_sensitive(self.plot.plot_plan)
+        plot_options_box.pack_start(self.plot_plan, True, False)
+        self.dialog.vbox.pack_start(plot_options_box, False, False)
 
         # buttons in action field
         save_button = gtk.Button(label=_('Save Plot'))
@@ -100,6 +105,7 @@ class PlotDialog(object):
         self.plotselector.connect('changed', self.update_plot_type)
         date_update_button.connect('clicked', self.update_plot)
         save_button.connect('clicked', self.save_plot)
+        self.plot_plan.connect('toggled', self.on_toggle_plot_plan)
 
         # show the content
         self.dialog.show_all()
@@ -153,6 +159,11 @@ class PlotDialog(object):
         """Updates the plot when Enter is pressed."""
         if event.keyval in [gtk.keysyms.Return, gtk.keysyms.KP_Enter]:
             self.update_plot(None)
+
+    def on_toggle_plot_plan(self, plot_plan_button):
+        """Redraws the plot and in-/excludes the weight plan."""
+        self.plot.set_plot_plan(plot_plan_button.get_active())
+        self.plot.update_plot_type()
 
     # helper functions
 

@@ -55,20 +55,11 @@ class PreferencesDialog(object):
         self.use_plan_button.set_active( \
                         self.newconfig['preferences.use_weight_plan'])
         self.dialog.vbox.pack_start(self.use_plan_button)
-        self.use_plan_button.connect('toggled', self.check_use_plan)
-
-        self.plot_plan_button = gtk.CheckButton(_('Include Weight Plan in Plot'))
-        self.plot_plan_button.set_border_width(5)
-        self.plot_plan_button.set_active( \
-                        self.newconfig['preferences.plot_weight_plan'])
-        self.dialog.vbox.pack_start(self.plot_plan_button)
 
         self.remember_button = gtk.CheckButton(_('Remember Window Size'))
         self.remember_button.set_border_width(5)
         self.remember_button.set_active(self.newconfig['window.remember_size'])
         self.dialog.vbox.pack_start(self.remember_button)
-
-        self.check_use_plan(self.use_plan_button)
 
         # buttons in action area
         self.dialog.add_button(gtk.STOCK_CANCEL, gtk.RESPONSE_CANCEL)
@@ -84,8 +75,6 @@ class PreferencesDialog(object):
                                     self.remember_button.get_active()
             self.newconfig['preferences.use_weight_plan'] = \
                                     self.use_plan_button.get_active()
-            self.newconfig['preferences.plot_weight_plan'] = \
-                                    self.plot_plan_button.get_active()
             parameters.config = self.newconfig
         self.dialog.hide()
         return None
@@ -95,11 +84,4 @@ class PreferencesDialog(object):
         """Remembers the selected weight unit to be saved later."""
         if widget.get_active():
             self.newconfig['preferences.weight_unit'] = data
-        return None
-
-    def check_use_plan(self, use_plan_button):
-        """Checks, whether the plot_plan_button should be sensitive and
-        adjusts it accordingly."""
-        plot_plan = use_plan_button.get_active() and parameters.have_mpl
-        self.plot_plan_button.set_sensitive(plot_plan)
         return None

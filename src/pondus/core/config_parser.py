@@ -42,9 +42,6 @@ def read_config(default_config, conffile):
         if conf.has_option('preferences', 'use_weight_plan'):
             config['preferences.use_weight_plan'] = \
                             conf.getboolean('preferences', 'use_weight_plan')
-        if conf.has_option('preferences', 'plot_weight_plan'):
-            config['preferences.plot_weight_plan'] = \
-                            conf.getboolean('preferences', 'plot_weight_plan')
     return config
 
 def write_config(config, conffile):
