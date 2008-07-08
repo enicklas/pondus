@@ -20,6 +20,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 """
 
 import os
+from xml.etree.cElementTree import Element, SubElement, ElementTree
 
 from pondus.core import xml_parser
 from pondus.core.all_datasets import AllDatasets, AllDatasetsOld
@@ -43,40 +44,25 @@ class Person(object):
 
     def write_to_file(self, filepath):
         """Writes the person data to the xml file."""
-        dom = xml_parser.create_xml_base()
-        self.write_to_dom(dom)
-        xml_parser.dom2file(dom, filepath)
-
-    def write_to_dom(self, dom):
-        """Adds the person data to the given dom."""
-        top_element = dom.documentElement
-        # write height
+        person_el = Element('person')
         if self.height is not None:
-            height = dom.createElement('height')
-            height.appendChild(dom.createTextNode(str(self.height)))
-            top_element.appendChild(height)
-        # write weights
-        weights = dom.createElement('weight')
-        # write measurements
-        measurements = dom.createElement('measurements')
+            height_el = SubElement(person_el, 'height')
+            height_el.text = str(self.height)
+        weight_el = SubElement(person_el, 'weight')
+        measurements_el = SubElement(weight_el, 'measurements')
+        plan_el = SubElement(weight_el, 'plan')
         for dataset in self.measurements:
-            newdataset = dom.createElement('dataset')
-            newdataset.setAttribute('id', str(dataset.id))
-            for parameter, value in dataset.data.iteritems():
-                element = dom.createElement(parameter)
-                element.appendChild(dom.createTextNode(str(value)))
-                newdataset.appendChild(element)
-            measurements.appendChild(newdataset)
-        weights.appendChild(measurements)
-        # write plan
-        plan = dom.createElement('plan')
+            self.__add_dataset_to_element(dataset, measurements_el)
         for dataset in self.plan:
-            newdataset = dom.createElement('dataset')
-            newdataset.setAttribute('id', str(dataset.id))
-            for parameter, value in dataset.data.iteritems():
-                element = dom.createElement(parameter)
-                element.appendChild(dom.createTextNode(str(value)))
-                newdataset.appendChild(element)
-            plan.appendChild(newdataset)
-        weights.appendChild(plan)
-        top_element.appendChild(weights)
+            self.__add_dataset_to_element(dataset, plan_el)
+        user_tree = ElementTree(person_el)
+        user_tree.write(filepath, encoding='UTF-8')
+
+    def __add_dataset_to_element(self, dataset, element):
+        """Adds a dataset object to an element, which is the parent in
+        the ElementTree."""
+        dataset_el = SubElement(element, 'dataset')
+        dataset_el.set('id', str(dataset.id))
+        for parameter, value in dataset.data.iteritems():
+            sub_el = SubElement(dataset_el, parameter)
+            sub_el.text = str(value)
