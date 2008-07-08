@@ -20,117 +20,46 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 """
 
 import os
-from xml.dom.minidom import Document
-from xml.sax import make_parser
-from xml.sax.handler import ContentHandler
+from xml.etree.cElementTree import parse
 
-from pondus import parameters
 from pondus.core import util
 from pondus.core.dataset import Dataset
 
-class OldDatasetHandler(ContentHandler):
-    """Defines how to parse the legacy xml-file."""
-    def __init__(self):
-        self.datasets = {}
-    def startElement(self, name, attr):
-        self.current_tag = name
-        if name == 'dataset':
-            self.data = {}
-            self.data['id'] = int(attr.getValue(attr.getNames()[0]).encode('utf-8'))
-    def endElement(self, name):
-        if name == 'dataset':
-            dataset = Dataset(self.data['id'],
-                              util.str2date(self.data['date']),
-                              float(self.data['weight']))
-            for key in set(parameters.keys_optional).intersection( \
-                                                set(self.data.keys())):
-                dataset.set(key, self.data[key])
-            self.datasets[self.data['id']] = dataset
-    def characters(self, content):
-        self.data[self.current_tag] = content
-
-class DatasetHandler(ContentHandler):
-    """Defines how to parse the xml-file."""
-    def __init__(self):
-        self.person_data = {}
-        self.person_data['height'] = None
-        self.person_data['measurements'] = {}
-        self.person_data['plan'] = {}
-    def startElement(self, name, attr):
-        self.current_tag = name
-        if name == 'dataset':
-            self.data = {}
-            self.data['id'] = int(attr.getValue(attr.getNames()[0]).encode('utf-8'))
-        elif name == 'measurements':
-            self.parse_measurements = True
-        elif name == 'plan':
-            self.parse_plan = True
-    def endElement(self, name):
-        if name == 'dataset':
-            dataset = Dataset(self.data['id'],
-                              util.str2date(self.data['date']),
-                              float(self.data['weight']))
-            for key in set(parameters.keys_optional).intersection( \
-                                                set(self.data.keys())):
-                dataset.set(key, self.data[key])
-            if self.parse_measurements:
-                self.person_data['measurements'][self.data['id']] = dataset
-            elif self.parse_plan:
-                self.person_data['plan'][self.data['id']] = dataset
-        elif name == 'measurements':
-            self.parse_measurements = False
-        elif name == 'plan':
-            self.parse_plan = False
-    def characters(self, content):
-        if self.current_tag == 'height':
-            self.person_data['height'] = float(content)
-        else:
-            self.data[self.current_tag] = content
 
 def read_old(filepath):
-    """Parses the xml-file in filepath and returns an
-    AllDatasets.datasets object."""
-    check_filepath(filepath)
-    parser = make_parser()
-    handler = OldDatasetHandler()
-    parser.setContentHandler(handler)
-    parser.parse(filepath)
-    return handler.datasets
+    """Parses the legacy xml-file in filepath and returns a dictionary
+    containing the datasets."""
+    datasets = {}
+    if os.path.isfile(filepath):
+        user_tree = parse(filepath)
+        dataset_list = user_tree.findall('dataset')
+        for dataset_el in dataset_list:
+            add_dataset_to_dict(dataset_el, datasets)
+    return datasets
 
 def read(filepath):
     """Parses the xml-file in filepath and returns the data necessary to
     create a person object."""
-    check_filepath(filepath)
-    parser = make_parser()
-    handler = DatasetHandler()
-    parser.setContentHandler(handler)
-    parser.parse(filepath)
-    return handler.person_data
+    person_data = {}
+    person_data['height'] = None
+    person_data['measurements'] = {}
+    person_data['plan'] = {}
+    if os.path.isfile(filepath):
+        user_tree = parse(filepath)
+        height_element = user_tree.find('height')
+        if height_element is not None:
+            person_data['height'] = float(height_element.text)
+        measurements = user_tree.findall('weight/measurements/dataset')
+        plan = user_tree.findall('weight/plan/dataset')
+        for dataset_el in measurements:
+            add_dataset_to_dict(dataset_el, person_data['measurements'])
+        for dataset_el in plan:
+            add_dataset_to_dict(dataset_el, person_data['plan'])
+    return person_data
 
-# helper functions
-
-def create_xml_base():
-    """Creates a base xml document not containing any datasets."""
-    dom = Document()
-    roottag = dom.createElement('person')
-    dom.appendChild(roottag)
-    return dom
-
-def dom2file(dom, filepath):
-    """Writes dom to file in filepath."""
-    f = open(filepath, 'w')
-    dom.writexml(f, encoding='UTF-8')
-    f.write('\n')
-    f.close()
-
-def check_filepath(filepath):
-    """Checks whether the file in filepath exists and creates an empty
-    base xml document if necessary."""
-    if os.path.exists(filepath):
-        return None
-    else:
-        dirpath = os.path.dirname(filepath)
-        if not os.path.exists(dirpath):
-            os.makedirs(dirpath)
-        dom = create_xml_base()
-        dom2file(dom, filepath)
+def add_dataset_to_dict(dataset_el, datasetsdict):
+    """Adds a dataset element to a dictionary of Dataset objects."""
+    dataset = Dataset(int(dataset_el.get('id')), \
+                      util.str2date(dataset_el.find('date').text), \
+                      float(dataset_el.find('weight').text))
+    datasetsdict[int(dataset_el.get('id'))] = dataset

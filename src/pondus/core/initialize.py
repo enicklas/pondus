@@ -19,7 +19,6 @@ You should have received a copy of the GNU General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>.
 """
 
-
 import os
 import sys
 
@@ -49,6 +48,15 @@ def test_mpl():
         print _('Note: Matplotlib not available, plotting disabled!')
         return False
 
+def check_datadir(filepath):
+    """Checks, whether the directory containing the user data exists
+    and creates it if necessary."""
+    if not os.path.exists(filepath):
+        dirpath = os.path.dirname(filepath)
+        if not os.path.exists(dirpath):
+            os.makedirs(dirpath)
+    return None
+
 def initialize():
     """Initializes the main program with the non-default values."""
     parameters.have_mpl = test_mpl()
@@ -58,3 +66,4 @@ def initialize():
                         'share/icons/hicolor/48x48/apps/', 'pondus.png')
     parameters.config = config_parser.read_config( \
                     parameters.config_default, parameters.configfile)
+    check_datadir(parameters.userdatafile)
