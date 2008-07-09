@@ -20,10 +20,19 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 """
 
 import os
-from xml.etree.cElementTree import parse
+import sys
 
 from pondus.core import util
 from pondus.core.dataset import Dataset
+
+try:
+    from xml.etree.cElementTree import parse
+except ImportError:
+    try:
+        from elementtree.ElementTree import parse
+    except ImportError:
+        print _('Please make sure ElementTree is installed.')
+        sys.exit(1)
 
 
 def read_old(filepath):

@@ -9,6 +9,7 @@ Pondus NEWS
  * Restructure xml scheme: all user data is now saved in a single file
    at `~/.pondus/user_data.xml`
  * Fix sensitivity of plot action when not using weight planner
+ * Require python-elementtree (only for python < 2.5)
  * Add Spanish translation (Thanks Enrique José Hernández Blasco)
 
 2008-05-16: Version 0.4.1
