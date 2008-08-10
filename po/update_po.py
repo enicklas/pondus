@@ -53,6 +53,7 @@ def update_po(languages):
 potfiles = [('../src/pondus/core/initialize.py'),
             ('../src/pondus/core/option_parser.py'),
             ('../src/pondus/core/plot.py'),
+            ('../src/pondus/core/util.py'),
             ('../src/pondus/gui/dialog_add.py'),
             ('../src/pondus/gui/dialog_csv_export.py'),
             ('../src/pondus/gui/dialog_csv_import.py'),

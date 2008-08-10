@@ -22,6 +22,8 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 from datetime import date
 from time import strptime
 
+from pondus import parameters
+
 def str2date(datestring):
     """Converts a string in the format YYYY-MM-DD into a date object."""
     return date(*strptime(datestring, '%Y-%m-%d')[0:3])
@@ -46,12 +48,21 @@ def bmi(weight, height):
     in metric units, i.e. kg and cm."""
     return weight/(height/100.0)**2
 
-def lbstokg(weight):
+def lbs2kg(weight):
     """Converts the weight in pounds to kg."""
     return weight*0.45359237
 
-def inchtocm(height):
+def inch2cm(height):
     """Converts the height in feet/inches to cm. height is given as a
     tuple (feet, inches)."""
     inches = 12*height[0] + height[1]
     return inches*2.54
+
+def get_weight_unit():
+    """Returns the weight unit preferred by the user."""
+    if parameters.config['preferences.unit_system'] == 'metric':
+        return _('kg')
+    elif parameters.config['preferences.unit_system'] == 'imperial':
+        return _('lbs')
+    
+    

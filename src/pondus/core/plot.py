@@ -72,8 +72,7 @@ class Plot(object):
         if self.plot_bmi:
             ylabel = _('Body Mass Index')
         else:
-            ylabel = _('Weight') + ' (' \
-                    + parameters.config['preferences.weight_unit'] + ')'
+            ylabel = _('Weight') + ' (' + util.get_weight_unit() + ')'
         self.ax.set_ylabel(ylabel)
 
     def format_plot(self):

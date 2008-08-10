@@ -57,19 +57,19 @@ class PreferencesDialog(object):
 
         unit_box = gtk.VBox()
         unit_box.set_border_width(5)
-        unit_label = gtk.Label(_('Weight Unit:'))
+        unit_label = gtk.Label(_('Preferred Unit System:'))
         unit_label.set_alignment(xalign=0, yalign=0.5)
         unit_box.pack_start(unit_label)
         unit_hbox = gtk.HBox(homogeneous=True)
-        self.unit_button = gtk.RadioButton(label='kg')
-        if self.newconfig['preferences.weight_unit'] == 'kg':
+        self.unit_button = gtk.RadioButton(label=_('metric'))
+        if self.newconfig['preferences.unit_system'] == 'metric':
             self.unit_button.set_active(True)
-        self.unit_button.connect('toggled', self.on_unit_change, 'kg')
+        self.unit_button.connect('toggled', self.on_unit_change, 'metric')
         unit_hbox.pack_start(self.unit_button)
-        self.unit_button = gtk.RadioButton(group=self.unit_button, label='lbs')
-        if self.newconfig['preferences.weight_unit'] == 'lbs':
+        self.unit_button = gtk.RadioButton(group=self.unit_button, label=_('imperial'))
+        if self.newconfig['preferences.unit_system'] == 'imperial':
             self.unit_button.set_active(True)
-        self.unit_button.connect('toggled', self.on_unit_change, 'lbs')
+        self.unit_button.connect('toggled', self.on_unit_change, 'imperial')
         unit_hbox.pack_start(self.unit_button)
         unit_box.pack_start(unit_hbox)
         self.dialog.vbox.pack_start(unit_box)
@@ -112,5 +112,5 @@ class PreferencesDialog(object):
     def on_unit_change(self, widget, data):
         """Remembers the selected weight unit to be saved later."""
         if widget.get_active():
-            self.newconfig['preferences.weight_unit'] = data
+            self.newconfig['preferences.unit_system'] = data
         return None

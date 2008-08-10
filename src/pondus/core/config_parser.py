@@ -36,9 +36,14 @@ def read_config(default_config, conffile):
                     config['window.width'] = conf.getint('window', 'width')
                 if conf.has_option('window', 'height'):
                     config['window.height'] = conf.getint('window', 'height')
-        if conf.has_option('preferences', 'weight_unit'):
-            config['preferences.weight_unit'] = \
-                            conf.get('preferences', 'weight_unit')
+        if conf.has_option('preferences', 'unit_system'):
+            config['preferences.unit_system'] = \
+                            conf.get('preferences', 'unit_system')
+        elif conf.has_option('preferences', 'weight_unit'):
+            if conf.get('preferences', 'weight_unit') == 'kg':
+                config['preferences.unit_system'] = 'metric'
+            elif conf.get('preferences', 'weight_unit') == 'lbs':
+                config['preferences.unit_system'] = 'imperial'
         if conf.has_option('preferences', 'use_weight_plan'):
             config['preferences.use_weight_plan'] = \
                             conf.getboolean('preferences', 'use_weight_plan')
