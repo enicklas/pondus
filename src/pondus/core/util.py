@@ -48,7 +48,7 @@ def bmi(weight, height):
     in metric units, i.e. kg and cm."""
     return weight/(height/100.0)**2
 
-def lbs2kg(weight):
+def lbs_to_kg(weight):
     """Converts the weight in pounds to kg."""
     return weight*0.45359237
 

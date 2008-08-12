@@ -172,9 +172,14 @@ class Plot(object):
     def get_datasets(self, datasets):
         """Returns the list of datatuples to be plotted."""
         if self.plot_bmi:
-            data = [(dataset.get('date'), \
-                util.bmi(dataset.get('weight'), user_data.user.height)) \
-                for dataset in datasets]
+            if parameters.config['preferences.unit_system'] == 'metric':
+                data = [(dataset.get('date'), \
+                    util.bmi(dataset.get('weight'), user_data.user.height)) \
+                    for dataset in datasets]
+            else:
+                data = [(dataset.get('date'), \
+                    util.bmi(util.lbs_to_kg(dataset.get('weight')), \
+                    user_data.user.height)) for dataset in datasets]
         else:
             data = [(dataset.get('date'), dataset.get('weight')) \
                 for dataset in datasets]
