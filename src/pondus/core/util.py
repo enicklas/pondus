@@ -52,17 +52,30 @@ def lbs2kg(weight):
     """Converts the weight in pounds to kg."""
     return weight*0.45359237
 
-def inch2cm(height):
-    """Converts the height in feet/inches to cm. height is given as a
-    tuple (feet, inches)."""
-    inches = 12*height[0] + height[1]
-    return inches*2.54
-
 def get_weight_unit():
     """Returns the weight unit preferred by the user."""
     if parameters.config['preferences.unit_system'] == 'metric':
         return _('kg')
     elif parameters.config['preferences.unit_system'] == 'imperial':
         return _('lbs')
-    
-    
+
+def height_to_metric(height):
+    """Converts height in cm to m/cm."""
+    meters = int(height) / 100
+    cmeters = height % 100
+    return meters, cmeters
+
+def height_to_imperial(height):
+    """Converts height in cm to feet/inches."""
+    height_inches = height / 2.54
+    feet = int(height_inches) / 12
+    inches = height_inches % 12
+    return feet, inches
+
+def metric_to_height(meters, cmeters):
+    """Converts height in m/cm to cm."""
+    return 100*meters + cmeters
+
+def imperial_to_height(feet, inches):
+    """Converts height in feet/inches to cm."""
+    return 2.54*(12*feet + inches)

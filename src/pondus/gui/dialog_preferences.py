@@ -23,6 +23,7 @@ import gtk
 
 from pondus import parameters
 from pondus import user_data
+from pondus.core import util
 
 
 class PreferencesDialog(object):
@@ -40,18 +41,37 @@ class PreferencesDialog(object):
         height_label.set_alignment(xalign=0, yalign=0.5)
         height_box.pack_start(height_label)
         height_hbox = gtk.HBox(spacing=3)
-        height_adj = gtk.Adjustment(value=0,
+        self.m_adj = gtk.Adjustment(value=0,
                                     lower=0,
-                                    upper=300,
+                                    upper=2,
+                                    step_incr=1,
+                                    page_incr=1)
+        self.cm_adj = gtk.Adjustment(value=0,
+                                    lower=0,
+                                    upper=99,
                                     step_incr=1,
                                     page_incr=10)
+        self.m_text = _('m')
+        self.cm_text = _('cm')
+        self.height_entry1 = gtk.SpinButton()
+        self.height_entry2 = gtk.SpinButton()
+        self.height_entry1.set_numeric(True)
+        self.height_entry2.set_numeric(True)
+        self.height_entry2.set_digits(1)
+        self.height_label1 = gtk.Label()
+        self.height_label2 = gtk.Label()
         if user_data.user.height is not None:
-            height_adj.set_value(user_data.user.height)
-        self.height_entry = gtk.SpinButton(adjustment=height_adj, digits=1)
-        self.height_entry.set_numeric(True)
-        height_hbox.pack_start(self.height_entry)
-        height_unit_label = gtk.Label(_('cm'))
-        height_hbox.pack_start(height_unit_label, False, True)
+            meters, cmeters = util.height_to_metric(user_data.user.height)
+            self.m_adj.set_value(meters)
+            self.cm_adj.set_value(cmeters)
+        self.height_entry1.set_adjustment(self.m_adj)
+        self.height_entry2.set_adjustment(self.cm_adj)
+        self.height_label1.set_text(self.m_text)
+        self.height_label2.set_text(self.cm_text)
+        height_hbox.pack_start(self.height_entry1)
+        height_hbox.pack_start(self.height_label1, False, True)
+        height_hbox.pack_start(self.height_entry2)
+        height_hbox.pack_start(self.height_label2, False, True)
         height_box.pack_start(height_hbox)
         self.dialog.vbox.pack_start(height_box)
 
@@ -62,14 +82,15 @@ class PreferencesDialog(object):
         unit_box.pack_start(unit_label)
         unit_hbox = gtk.HBox(homogeneous=True)
         self.unit_button = gtk.RadioButton(label=_('metric'))
+        self.unit_button.connect('toggled', self.on_unit_change, 'metric')
         if self.newconfig['preferences.unit_system'] == 'metric':
             self.unit_button.set_active(True)
-        self.unit_button.connect('toggled', self.on_unit_change, 'metric')
         unit_hbox.pack_start(self.unit_button)
-        self.unit_button = gtk.RadioButton(group=self.unit_button, label=_('imperial'))
+        self.unit_button = gtk.RadioButton(group=self.unit_button, \
+                                                        label=_('imperial'))
+        self.unit_button.connect('toggled', self.on_unit_change, 'imperial')
         if self.newconfig['preferences.unit_system'] == 'imperial':
             self.unit_button.set_active(True)
-        self.unit_button.connect('toggled', self.on_unit_change, 'imperial')
         unit_hbox.pack_start(self.unit_button)
         unit_box.pack_start(unit_hbox)
         self.dialog.vbox.pack_start(unit_box)
@@ -100,11 +121,13 @@ class PreferencesDialog(object):
             self.newconfig['preferences.use_weight_plan'] = \
                                     self.use_plan_button.get_active()
             parameters.config = self.newconfig
-            newheight = self.height_entry.get_value()
-            if newheight == 0.0:
+            newheight1 = self.height_entry1.get_value()
+            newheight2 = self.height_entry2.get_value()
+            if newheight1 == 0.0 and newheight2 == 0.0:
                 user_data.user.height = None
             else:
-                user_data.user.height = newheight
+                user_data.user.height = util.metric_to_height(newheight1, \
+                                                                newheight2)
         self.dialog.hide()
         return None
 
