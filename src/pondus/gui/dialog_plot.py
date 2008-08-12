@@ -81,7 +81,7 @@ class PlotDialog(object):
         self.plotselector.append_text(_('Weight'))
         self.plotselector.append_text(_('Body Mass Index'))
         self.plotselector.set_active(0)
-        if user_data.user.height is None:
+        if user_data.user.height < 30:
             self.plotselector.set_sensitive(False)
         plot_options_box.pack_start(self.plotselector, False, False)
         self.plot_plan = gtk.CheckButton(_('Include Weight Plan'))

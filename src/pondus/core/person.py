@@ -48,16 +48,15 @@ class Person(object):
             self.measurements = AllDatasets(person_data['measurements'])
             self.plan = AllDatasets(person_data['plan'])
         else:
-            self.height = None
+            self.height = 0.0
             self.measurements =  AllDatasetsOld(parameters.datafile_old)
             self.plan = AllDatasetsOld(parameters.planfile_old)
 
     def write_to_file(self, filepath):
         """Writes the person data to the xml file."""
         person_el = Element('person')
-        if self.height is not None:
-            height_el = SubElement(person_el, 'height')
-            height_el.text = str(self.height)
+        height_el = SubElement(person_el, 'height')
+        height_el.text = str(self.height)
         weight_el = SubElement(person_el, 'weight')
         measurements_el = SubElement(weight_el, 'measurements')
         plan_el = SubElement(weight_el, 'plan')

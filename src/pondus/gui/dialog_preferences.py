@@ -60,10 +60,9 @@ class PreferencesDialog(object):
         self.height_entry2.set_digits(1)
         self.height_label1 = gtk.Label()
         self.height_label2 = gtk.Label()
-        if user_data.user.height is not None:
-            meters, cmeters = util.height_to_metric(user_data.user.height)
-            self.m_adj.set_value(meters)
-            self.cm_adj.set_value(cmeters)
+        meters, cmeters = util.height_to_metric(user_data.user.height)
+        self.m_adj.set_value(meters)
+        self.cm_adj.set_value(cmeters)
         self.height_entry1.set_adjustment(self.m_adj)
         self.height_entry2.set_adjustment(self.cm_adj)
         self.height_label1.set_text(self.m_text)
@@ -123,10 +122,7 @@ class PreferencesDialog(object):
             parameters.config = self.newconfig
             newheight1 = self.height_entry1.get_value()
             newheight2 = self.height_entry2.get_value()
-            if newheight1 == 0.0 and newheight2 == 0.0:
-                user_data.user.height = None
-            else:
-                user_data.user.height = util.metric_to_height(newheight1, \
+            user_data.user.height = util.metric_to_height(newheight1, \
                                                                 newheight2)
         self.dialog.hide()
         return None
