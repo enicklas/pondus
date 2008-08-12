@@ -11,6 +11,7 @@ Pondus NEWS
  * Fix sensitivity of plot action when not using weight planner
  * Require python-elementtree (only for python < 2.5)
  * Add Spanish translation (Thanks Enrique José Hernández Blasco)
+ * Add Columbian Spanish translation (Thanks Abdón Sánchez)
 
 2008-05-16: Version 0.4.1
 ---------------------------
