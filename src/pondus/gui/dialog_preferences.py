@@ -43,7 +43,7 @@ class PreferencesDialog(object):
         height_hbox = gtk.HBox(spacing=3)
         self.m_adj = gtk.Adjustment(value=0,
                                     lower=0,
-                                    upper=2,
+                                    upper=3,
                                     step_incr=1,
                                     page_incr=1)
         self.cm_adj = gtk.Adjustment(value=0,
@@ -51,8 +51,20 @@ class PreferencesDialog(object):
                                     upper=99,
                                     step_incr=1,
                                     page_incr=10)
+        self.ft_adj = gtk.Adjustment(value=0,
+                                    lower=0,
+                                    upper=10,
+                                    step_incr=1,
+                                    page_incr=2)
+        self.in_adj = gtk.Adjustment(value=0,
+                                    lower=0,
+                                    upper=11,
+                                    step_incr=1,
+                                    page_incr=6)
         self.m_text = _('m')
         self.cm_text = _('cm')
+        self.ft_text = _('ft')
+        self.in_text = _('in')
         self.height_entry1 = gtk.SpinButton()
         self.height_entry2 = gtk.SpinButton()
         self.height_entry1.set_numeric(True)
@@ -60,13 +72,10 @@ class PreferencesDialog(object):
         self.height_entry2.set_digits(1)
         self.height_label1 = gtk.Label()
         self.height_label2 = gtk.Label()
-        meters, cmeters = util.height_to_metric(user_data.user.height)
-        self.m_adj.set_value(meters)
-        self.cm_adj.set_value(cmeters)
-        self.height_entry1.set_adjustment(self.m_adj)
-        self.height_entry2.set_adjustment(self.cm_adj)
-        self.height_label1.set_text(self.m_text)
-        self.height_label2.set_text(self.cm_text)
+        if self.newconfig['preferences.unit_system'] == 'metric':
+            self.set_metric(user_data.user.height)
+        else:
+            self.set_imperial(user_data.user.height)
         height_hbox.pack_start(self.height_entry1)
         height_hbox.pack_start(self.height_label1, False, True)
         height_hbox.pack_start(self.height_entry2)
@@ -122,7 +131,11 @@ class PreferencesDialog(object):
             parameters.config = self.newconfig
             newheight1 = self.height_entry1.get_value()
             newheight2 = self.height_entry2.get_value()
-            user_data.user.height = util.metric_to_height(newheight1, \
+            if self.newconfig['preferences.unit_system'] == 'metric':
+                user_data.user.height = util.metric_to_height(newheight1, \
+                                                                newheight2)
+            else: 
+                user_data.user.height = util.imperial_to_height(newheight1, \
                                                                 newheight2)
         self.dialog.hide()
         return None
@@ -131,5 +144,42 @@ class PreferencesDialog(object):
     def on_unit_change(self, widget, data):
         """Remembers the selected weight unit to be saved later."""
         if widget.get_active():
+            if data == 'metric' \
+                    and self.newconfig['preferences.unit_system'] == 'imperial':
+                newheight1 = self.height_entry1.get_value()
+                newheight2 = self.height_entry2.get_value()
+                height_cm = util.imperial_to_height(newheight1, newheight2)
+                self.set_metric(height_cm)
+            elif data == 'imperial' \
+                    and self.newconfig['preferences.unit_system'] == 'metric':
+                newheight1 = self.height_entry1.get_value()
+                newheight2 = self.height_entry2.get_value()
+                height_cm = util.metric_to_height(newheight1, newheight2)
+                self.set_imperial(height_cm)
             self.newconfig['preferences.unit_system'] = data
         return None
+
+    # helper functions
+    def set_imperial(self, height_cm):
+        """Sets the height display to imperial units."""
+        feet, inches = util.height_to_imperial(height_cm)
+        self.ft_adj.set_value(feet)
+        self.in_adj.set_value(inches)
+        self.height_entry1.set_adjustment(self.ft_adj)
+        self.height_entry2.set_adjustment(self.in_adj)
+        self.height_entry1.set_value(self.ft_adj.get_value())
+        self.height_entry2.set_value(self.in_adj.get_value())
+        self.height_label1.set_text(self.ft_text)
+        self.height_label2.set_text(self.in_text)
+
+    def set_metric(self, height_cm):
+        """Sets the height display to metric units."""
+        meters, cmeters = util.height_to_metric(height_cm)
+        self.m_adj.set_value(meters)
+        self.cm_adj.set_value(cmeters)
+        self.height_entry1.set_adjustment(self.m_adj)
+        self.height_entry2.set_adjustment(self.cm_adj)
+        self.height_entry1.set_value(self.m_adj.get_value())
+        self.height_entry2.set_value(self.cm_adj.get_value())
+        self.height_label1.set_text(self.m_text)
+        self.height_label2.set_text(self.cm_text)
