@@ -23,6 +23,7 @@ import gtk
 import gobject
 from datetime import timedelta
 
+from pondus import parameters
 from pondus.core import util
 from pondus.gui.dialog_message import MessageDialog
 
@@ -34,7 +35,10 @@ class AddDataDialog(object):
         self.dataset = dataset
         # get default values for entry boxes
         sdate = str(self.dataset.get('date'))
-        slastweight = str(self.dataset.get('weight'))
+        weight = self.dataset.get('weight')
+        if parameters.config['preferences.unit_system'] == 'imperial':
+            weight = util.kg_to_lbs(weight)
+        slastweight = str(round(weight, 1))
 
         self.dialog = gtk.Dialog(flags=gtk.DIALOG_NO_SEPARATOR)
         # set the title
@@ -94,6 +98,8 @@ class AddDataDialog(object):
                 updated_date = util.str2date(self.date_entry.get_text())
                 weightstring = self.weight_entry.get_text()
                 updated_weight = float(weightstring.replace(',', '.'))
+                if parameters.config['preferences.unit_system'] == 'imperial':
+                    updated_weight = round(util.lbs_to_kg(updated_weight), 2)
             except:
                 title = _('Error: Wrong Format')
                 message = _('The data entered is not in the correct format!')

@@ -31,6 +31,7 @@ except ImportError, strerror:
 from pondus import user_data
 from pondus import parameters
 from pondus.core import config_parser
+from pondus.core import util
 from pondus.gui import guiutil
 from pondus.gui.dialog_add import AddDataDialog
 from pondus.gui.dialog_remove import RemoveDataDialog
@@ -183,7 +184,7 @@ class MainWindow(object):
         newdata = dialog.run()
         if newdata is not None:
             self.datasetdata.add(newdata)
-            newiter = self.datalist.append(newdata.as_list())
+            newiter = self.append_dataset(newdata)
             self.treeselection.select_iter(newiter)
             listmodel = self.dataview.get_model()
             path = listmodel.get_path(newiter)
@@ -223,9 +224,13 @@ class MainWindow(object):
         newdata = dialog.run()
         if newdata is not None:
             self.datasetdata.add(newdata)
+            new_weight = newdata.get('weight')
+            if parameters.config['preferences.unit_system'] == 'imperial':
+               new_weight = util.kg_to_lbs(new_weight)
+            new_weight = round(new_weight, 1)
             self.datalist.set(treeiter,
                 1, str(newdata.get('date')),
-                2, str(newdata.get('weight')))
+                2, str(new_weight))
 
     def plot_dialog(self, widget):
         """Runs the plotting dialog."""
@@ -236,6 +241,7 @@ class MainWindow(object):
         PreferencesDialog().run()
         self.set_plot_action_active()
         self.check_modeselector()
+        self.display_data(self.datasetdata)
 
     def csv_dialog_import(self, widget):
         """Runs the csv import dialog and updates the display to show
@@ -322,10 +328,18 @@ class MainWindow(object):
         self.dataview.append_column(column)
 
     def display_data(self, datasetdata):
-        """Appends the datasets to the list model."""
+        """Appends all datasets to the list model."""
         self.datalist.clear()
         for dataset in datasetdata:
-            self.datalist.append(dataset.as_list())
+            self.append_dataset(dataset)
+
+    def append_dataset(self, dataset):
+        """Appends a dataset to the list model."""
+        dataset_list = dataset.as_list()
+        if parameters.config['preferences.unit_system'] == 'imperial':
+            dataset_list[2] = util.kg_to_lbs(dataset_list[2])
+        dataset_list[2] = round(dataset_list[2], 1)
+        return self.datalist.append(dataset_list)
 
 
     # main function

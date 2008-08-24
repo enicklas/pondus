@@ -80,7 +80,7 @@ def add_dataset_to_dict_convert(dataset_el, datasetsdict):
     """Adds a dataset element to a dictionary of Dataset objects and
     converts the weight from lbs to kg."""
     weight = float(dataset_el.find('weight').text)
-    weight = round(util.lbs_to_kg(weight), 1)
+    weight = round(util.lbs_to_kg(weight), 2)
     dataset = Dataset(int(dataset_el.get('id')), \
                       util.str2date(dataset_el.find('date').text), \
                       weight)

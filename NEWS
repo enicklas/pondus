@@ -7,7 +7,7 @@ Pondus NEWS
  * Move option to plot the weight plan from the preferences dialog to
    the plot dialog
  * Restructure xml scheme: all user data is now saved in a single file
-   at `~/.pondus/user_data.xml`
+   at `~/.pondus/user_data.xml` and weight is always saved as kg
  * Fix sensitivity of plot action when not using weight planner
  * Require python-elementtree (only for python < 2.5)
  * Add Spanish translation (Thanks Enrique José Hernández Blasco)
