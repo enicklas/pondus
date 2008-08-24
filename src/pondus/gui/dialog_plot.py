@@ -75,7 +75,7 @@ class PlotDialog(object):
 
         # plot options
         plot_options_box = gtk.HBox(homogeneous=False, spacing=5)
-        date_label = gtk.Label(_('Plot Data:'))
+        date_label = gtk.Label(_('Data to plot:'))
         plot_options_box.pack_start(date_label, False, False)
         self.plotselector = gtk.combo_box_new_text()
         self.plotselector.append_text(_('Weight'))
