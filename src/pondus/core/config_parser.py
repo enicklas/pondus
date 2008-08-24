@@ -22,6 +22,8 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 import ConfigParser
 import os
 
+from pondus import parameters
+
 def read_config(default_config, conffile):
     """Reads the configuration file and returns the updated default_config
     dictionary."""
@@ -44,6 +46,7 @@ def read_config(default_config, conffile):
                 config['preferences.unit_system'] = 'metric'
             elif conf.get('preferences', 'weight_unit') == 'lbs':
                 config['preferences.unit_system'] = 'imperial'
+                parameters.convert_weight_data_to_kg = True
         if conf.has_option('preferences', 'use_weight_plan'):
             config['preferences.use_weight_plan'] = \
                             conf.getboolean('preferences', 'use_weight_plan')

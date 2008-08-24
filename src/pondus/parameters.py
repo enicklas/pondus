@@ -38,6 +38,7 @@ config_default = {'window.remember_size': False,
                   'preferences.use_weight_plan': False}
 config = dict(config_default)
 have_mpl = False
+convert_weight_data_to_kg = False
 
 # tags used in the xml file and dataset objects
 keys_required = ('id', 'date', 'weight')
