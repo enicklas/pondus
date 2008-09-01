@@ -61,6 +61,7 @@ The CSV im-/export dialogs allow to im-/export weight data from/to
 other applications. Currently, the only supported format is
     2008-03-26,81.3 (for example).
 
+
 BUGS
 ----
 Look for known bugs and report new bugs at
@@ -71,9 +72,9 @@ RESOURCES
 ---------
 Homepage: http://www.ephys.de/software/pondus/[]
 
-ShareSource: http://sharesource.org/project/pondus/[]
+Project Homepage: http://sharesource.org/project/pondus/[]
 
-hg-Repository: http://hg.sharesource.org/pondus/[]
+Mailing List: <mailto:pondus-dev@sharesource.org[]>
 
 
 AUTHOR

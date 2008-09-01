@@ -9,11 +9,12 @@ plan can be compared with the actual measurements in a plot.
 
 For installation instructions read `INSTALL`.
 
-Please report comments, suggestions and bugs to:
-    Eike Nicklas <mailto:eike@ephys.de[]>
+Homepage: http://www.ephys.de/software/pondus/[]
 
-The current version can be found at:
-    http://www.ephys.de/software/pondus/[]
+Project Homepage with Bugtracker: http://sharesource.org/project/pondus/[]
+
+Mailing List: <mailto:pondus-dev@sharesource.org[]>
+
 
 Requirements:
 ---------------
@@ -24,6 +25,7 @@ Requirements:
 Recommended:
 --------------
  * matplotlib to enable plotting functions
+
 
 Usage:
 --------

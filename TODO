@@ -1,9 +1,11 @@
 TODO-List for Pondus
 ======================
 
+ * use spinbutton in add dialog
+ * smooth the weight curve to filter out natural day-to-day differences
  * support more data formats in csv im-/exports
  * allow selection and deletion of multiple datasets
  * optional fields: body fat? comments?
  * interface guidelines? usability?
- * validate xml?
+ * xml validation?
  * unit tests?
