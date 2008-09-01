@@ -10,7 +10,7 @@ msgstr ""
 "Project-Id-Version: es\n"
 "Report-Msgid-Bugs-To: eike@ephys.de\n"
 "POT-Creation-Date: 2008-08-24 22:18+0200\n"
-"PO-Revision-Date: 2008-05-18 16:28+0200\n"
+"PO-Revision-Date: 2008-08-25 00:25+0200\n"
 "Last-Translator: Enrique J. Hernández\n"
 "Language-Team:  <en@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -40,13 +40,12 @@ msgid "Using the standard file ~/.pondus/user_data.xml instead."
 msgstr "Usando el fichero estándar ~/.pondus/user_data.xml"
 
 #: ../src/pondus/core/person.py:35 ../src/pondus/core/xml_parser.py:35
-#, fuzzy
 msgid "Please make sure ElementTree is installed."
-msgstr "Por favor, comprueba que esta biblioteca está instalada"
+msgstr "Por favor, comprueba que la librería ElementTree está instalada"
 
 #: ../src/pondus/core/plot.py:73 ../src/pondus/gui/dialog_plot.py:82
 msgid "Body Mass Index"
-msgstr ""
+msgstr "Índice de Masa Corporal"
 
 #: ../src/pondus/core/plot.py:75 ../src/pondus/gui/dialog_add.py:63
 #: ../src/pondus/gui/dialog_plot.py:81 ../src/pondus/gui/window_main.py:131
@@ -59,11 +58,11 @@ msgstr "Guardando el gráfico a"
 
 #: ../src/pondus/core/util.py:62
 msgid "kg"
-msgstr ""
+msgstr "kg"
 
 #: ../src/pondus/core/util.py:64
 msgid "lbs"
-msgstr ""
+msgstr "lbs"
 
 #: ../src/pondus/gui/dialog_add.py:46
 msgid "Add Dataset"
@@ -185,14 +184,12 @@ msgid "Update"
 msgstr "Actualizar"
 
 #: ../src/pondus/gui/dialog_plot.py:78
-#, fuzzy
 msgid "Data to plot:"
-msgstr "Datos a exportar"
+msgstr "Datos a dibujar"
 
 #: ../src/pondus/gui/dialog_plot.py:87
-#, fuzzy
 msgid "Include Weight Plan"
-msgstr "Incluir el Plan de Peso en el Gráfico:"
+msgstr "Incluir el Plan de Peso"
 
 #: ../src/pondus/gui/dialog_plot.py:94
 msgid "Save Plot"
@@ -212,37 +209,36 @@ msgid "Preferences"
 msgstr "Preferencias"
 
 #: ../src/pondus/gui/dialog_preferences.py:40
-#, fuzzy
 msgid "User Height:"
-msgstr "Usar Planificador de Peso:"
+msgstr "Altura del Usuario"
 
 #: ../src/pondus/gui/dialog_preferences.py:64
 msgid "m"
-msgstr ""
+msgstr "m"
 
 #: ../src/pondus/gui/dialog_preferences.py:65
 msgid "cm"
-msgstr ""
+msgstr "cm"
 
 #: ../src/pondus/gui/dialog_preferences.py:66
 msgid "ft"
-msgstr ""
+msgstr "pies"
 
 #: ../src/pondus/gui/dialog_preferences.py:67
 msgid "in"
-msgstr ""
+msgstr "pulgadas"
 
 #: ../src/pondus/gui/dialog_preferences.py:88
 msgid "Preferred Unit System:"
-msgstr ""
+msgstr "Sistema de Medida Seleccionado"
 
 #: ../src/pondus/gui/dialog_preferences.py:92
 msgid "metric"
-msgstr ""
+msgstr "métrico"
 
 #: ../src/pondus/gui/dialog_preferences.py:98
 msgid "imperial"
-msgstr ""
+msgstr "imperial"
 
 #: ../src/pondus/gui/dialog_preferences.py:106
 msgid "Use Weight Planner"
@@ -304,9 +300,4 @@ msgstr "Fecha"
 msgid "Weight Planner"
 msgstr "Planificador de Peso"
 
-#, fuzzy
-#~ msgid "Plot Data:"
-#~ msgstr "Datos del gráfico"
 
-#~ msgid "Weight Unit:"
-#~ msgstr "Unidad de Peso:"
