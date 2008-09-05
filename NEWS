@@ -1,6 +1,10 @@
 Pondus NEWS
 =============
 
+2008-09-05: Version 0.5.1
+--------------------------
+ * Fix crash on first startup
+
 2008-09-02: Version 0.5.0
 ---------------------------
  * Allow user to enter his/her height and to plot the body mass index

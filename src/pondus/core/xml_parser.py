@@ -55,6 +55,7 @@ def read(filepath):
     """Parses the xml-file in filepath and returns the data necessary to
     create a person object."""
     person_data = {}
+    person_data['height'] = 0.0
     person_data['measurements'] = {}
     person_data['plan'] = {}
     if os.path.isfile(filepath):

@@ -70,7 +70,7 @@ class AllDatasets(object):
                 for idd, dataset in self.datasets.iteritems()]
             return self.datasets[max(intermed)[1]].get('weight')
         else:
-            return ""
+            return 0.0
 
     def get_new_id(self):
         """Returns an unused id."""
