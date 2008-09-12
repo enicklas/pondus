@@ -1,6 +1,10 @@
 Pondus NEWS
 =============
 
+2008-xx-xx: Version 0.x.x
+--------------------------
+ * Add Italian translation (Thanks Stefano Costa)
+
 2008-09-05: Version 0.5.1
 --------------------------
  * Fix crash on first startup

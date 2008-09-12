@@ -16,8 +16,10 @@ include po/de.po
 include po/es.po
 include po/es_CO.po
 include po/fr.po
+include po/it.po
 include po/mo/de/LC_MESSAGES/pondus.mo
 include po/mo/es/LC_MESSAGES/pondus.mo
 include po/mo/es_CO/LC_MESSAGES/pondus.mo
 include po/mo/fr/LC_MESSAGES/pondus.mo
+include po/mo/it/LC_MESSAGES/pondus.mo
 include src/pondus.py
