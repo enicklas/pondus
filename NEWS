@@ -3,6 +3,7 @@ Pondus NEWS
 
 2008-xx-xx: Version 0.x.x
 --------------------------
+ * Quit pondus with `CTR-q`
  * Add Italian translation (Thanks Stefano Costa)
 
 2008-09-05: Version 0.5.1

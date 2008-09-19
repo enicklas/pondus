@@ -84,7 +84,9 @@ class MainWindow(object):
             ('plot', 'pondus_plot', _('Plot'), '<Control>p',
                 plot_tooltip, self.plot_dialog),
             ('preferences', gtk.STOCK_PREFERENCES, None, None,
-                _('Preferences'), self.preferences_dialog)])
+                _('Preferences'), self.preferences_dialog),
+            ('quit', gtk.STOCK_QUIT, None, '<Control>q',
+                _('Quit'), self.destroy)])
         self.removeaction = action_group.get_action('remove')
         self.plotaction = action_group.get_action('plot')
         prefaction = action_group.get_action('preferences')
@@ -96,6 +98,7 @@ class MainWindow(object):
             <toolitem action='add'/>
             <toolitem action='remove'/>
             <toolitem action='plot'/>
+            <toolitem action='quit'/>
         </toolbar>
         </ui>"""
         uimanager.add_ui_from_string(ui)
@@ -117,6 +120,9 @@ class MainWindow(object):
         for action in action_group.list_actions():
             action.connect_accelerator()
         mainbox.pack_start(toolbar, False, True)
+
+        # hide quit action
+        action_group.get_action('quit').set_visible(False)
 
         # add list displaying the datasets
         self.contentbox = gtk.VBox(spacing=5)
