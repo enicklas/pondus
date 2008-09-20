@@ -3,6 +3,7 @@ Pondus NEWS
 
 2008-xx-xx: Version 0.x.x
 --------------------------
+ * Enable editing the selected row with `CTR-e` again
  * Quit pondus with `CTR-q`
  * Add Italian translation (Thanks Stefano Costa)
 

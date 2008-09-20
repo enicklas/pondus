@@ -79,6 +79,8 @@ class MainWindow(object):
         action_group.add_actions([
             ('add', gtk.STOCK_ADD, None, '<Control>a',
                 _('Add more data'), self.add_dialog),
+            ('edit', gtk.STOCK_EDIT, None, '<Control>e',
+                _('Edit selected line'), self.edit_dialog),
             ('remove', gtk.STOCK_REMOVE, None, '<Control>d',
                 _('Delete selected line'), self.remove_dialog),
             ('plot', 'pondus_plot', _('Plot'), '<Control>p',
@@ -87,6 +89,7 @@ class MainWindow(object):
                 _('Preferences'), self.preferences_dialog),
             ('quit', gtk.STOCK_QUIT, None, '<Control>q',
                 _('Quit'), self.destroy)])
+        self.editaction = action_group.get_action('edit')
         self.removeaction = action_group.get_action('remove')
         self.plotaction = action_group.get_action('plot')
         prefaction = action_group.get_action('preferences')
@@ -96,6 +99,7 @@ class MainWindow(object):
         <ui>
         <toolbar name='Toolbar'>
             <toolitem action='add'/>
+            <toolitem action='edit'/>
             <toolitem action='remove'/>
             <toolitem action='plot'/>
             <toolitem action='quit'/>
@@ -123,6 +127,7 @@ class MainWindow(object):
 
         # hide quit action
         action_group.get_action('quit').set_visible(False)
+        self.editaction.set_visible(False)
 
         # add list displaying the datasets
         self.contentbox = gtk.VBox(spacing=5)
@@ -269,7 +274,7 @@ class MainWindow(object):
             self.remove_dialog(widget)
         # edit selected dataset
         if event.keyval in [gtk.keysyms.Return, gtk.keysyms.KP_Enter] \
-                    and self.removeaction.get_sensitive() == True:
+                    and self.editaction.get_sensitive() == True:
             self.edit_dialog(widget)
 
     def button_pressed(self, widget, event):
@@ -299,8 +304,10 @@ class MainWindow(object):
         actions accordingly."""
         if widget.get_selected()[1] == None:
             self.removeaction.set_sensitive(False)
+            self.editaction.set_sensitive(False)
         elif self.removeaction.get_sensitive() == False:
             self.removeaction.set_sensitive(True)
+            self.editaction.set_sensitive(True)
 
     def set_plot_action_active(self):
         """Tests, whether a dataset exists and matplotlib is available
