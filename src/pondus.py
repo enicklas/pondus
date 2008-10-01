@@ -19,12 +19,8 @@ You should have received a copy of the GNU General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>.
 """
 
-from pondus.core import option_parser
-
 if __name__ == '__main__':
-    option_parser.parse_options()
     from pondus.core import initialize
     initialize.initialize()
     from pondus.gui.window_main import MainWindow
-    pondus = MainWindow()
-    pondus.main()
+    MainWindow().main()

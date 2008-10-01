@@ -19,14 +19,7 @@ You should have received a copy of the GNU General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>.
 """
 
-import sys
-
-try:
-    import gtk
-except ImportError, strerror:
-    print strerror
-    print _('Please make sure this library is installed.')
-    sys.exit(1)
+import gtk
 
 from pondus import user_data
 from pondus import parameters

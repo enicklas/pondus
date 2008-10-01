@@ -20,7 +20,6 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 """
 
 import os
-import sys
 
 from pondus.core import xml_parser
 from pondus.core.all_datasets import AllDatasets, AllDatasetsOld
@@ -29,11 +28,7 @@ from pondus import parameters
 try:
     from xml.etree.cElementTree import Element, SubElement, ElementTree
 except ImportError:
-    try:
-        from elementtree.ElementTree import Element, SubElement, ElementTree
-    except ImportError:
-        print _('Please make sure ElementTree is installed.')
-        sys.exit(1)
+    from elementtree.ElementTree import Element, SubElement, ElementTree
 
 
 class Person(object):

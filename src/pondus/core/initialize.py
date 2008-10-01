@@ -19,11 +19,22 @@ You should have received a copy of the GNU General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>.
 """
 
+import gettext
 import os
 import sys
 
 from pondus import parameters
 from pondus.core import config_parser
+from pondus.core import option_parser
+
+
+def gettext_install():
+    """Installs string translations; uses local data if available."""
+    basepath = os.path.dirname(os.path.abspath(sys.path[0]))
+    if os.path.exists(os.path.join(basepath, 'po/mo')):
+        gettext.install('pondus', os.path.join(basepath, 'po/mo'))
+    else:
+        gettext.install('pondus', os.path.join(basepath, 'share/locale'))
 
 def get_path(localpath, syspath, filename):
     """Returns the full path to the file with filename. If it exists,
@@ -48,6 +59,26 @@ def test_mpl():
         print _('Note: Matplotlib not available, plotting disabled!')
         return False
 
+def test_gtk():
+    """Tests availability of pygtk and quits if not found."""
+    try:
+        import gtk
+    except ImportError, strerror:
+        print strerror
+        print _('Please make sure this library is installed.')
+        sys.exit(1)
+
+def test_etree():
+    """Tests availability of ElementTree and quits if not found."""
+    try:
+        from xml.etree.cElementTree import parse
+    except ImportError:
+        try:
+            from elementtree.ElementTree import parse
+        except ImportError:
+            print _('Please make sure ElementTree is installed.')
+            sys.exit(1)
+
 def check_datadir(filepath):
     """Checks, whether the directory containing the user data exists
     and creates it if necessary."""
@@ -58,7 +89,12 @@ def check_datadir(filepath):
     return None
 
 def initialize():
-    """Initializes the main program with the non-default values."""
+    """Initializes the main program with the non-default values and checks
+    availability of dependencies."""
+    gettext_install()
+    option_parser.parse_options()
+    test_gtk()
+    test_etree()
     parameters.have_mpl = test_mpl()
     parameters.plot_button_path = get_path('data/icons/', \
                         'share/pondus/', 'plot.png')

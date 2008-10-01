@@ -45,16 +45,3 @@ class Dataset(object):
     def value_list(self):
         """Returns the values of the dataset as a list of strings."""
         return [str(value) for value in self.data.itervalues()]
-
-    def write_to_dom(self, dom):
-        """Adds the dataset to the given dom."""
-        top_element = dom.documentElement
-        newdataset = dom.createElement('dataset')
-        newdataset.setAttribute('id', str(self.id))
-        for parameter, value in self.data.iteritems():
-            # create parameter tag
-            element = dom.createElement(parameter)
-            # create textual content
-            element.appendChild(dom.createTextNode(str(value)))
-            newdataset.appendChild(element)
-        top_element.appendChild(newdataset)

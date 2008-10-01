@@ -24,5 +24,4 @@ from pondus.core.person import Person
 
 
 # this module contains all the user data for global access
-
 user = Person(parameters.userdatafile)

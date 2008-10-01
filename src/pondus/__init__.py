@@ -21,17 +21,3 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 __all__ = ['core', 'gui', 'parameters', 'user_data']
 __version__ = '0.5.1+hg'
-
-import gettext
-import os
-import sys
-
-def gettext_install():
-    """Installs string translations; uses local data if available."""
-    basepath = os.path.dirname(os.path.abspath(sys.path[0]))
-    if os.path.exists(os.path.join(basepath, 'po/mo')):
-        gettext.install('pondus', os.path.join(basepath, 'po/mo'))
-    else:
-        gettext.install('pondus', os.path.join(basepath, 'share/locale'))
-
-gettext_install()
