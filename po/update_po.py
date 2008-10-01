@@ -61,7 +61,6 @@ potfiles = [('../src/pondus/core/initialize.py'),
             ('../src/pondus/gui/dialog_csv_import.py'),
             ('../src/pondus/gui/dialog_plot.py'),
             ('../src/pondus/gui/dialog_preferences.py'),
-            ('../src/pondus/gui/dialog_remove.py'),
             ('../src/pondus/gui/dialog_save_file.py'),
             ('../src/pondus/gui/dialog_select_file.py'),
             ('../src/pondus/gui/window_main.py')]
