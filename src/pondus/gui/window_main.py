@@ -34,7 +34,7 @@ from pondus.core import config_parser
 from pondus.core import util
 from pondus.gui import guiutil
 from pondus.gui.dialog_add import AddDataDialog
-from pondus.gui.dialog_remove import RemoveDataDialog
+from pondus.gui.dialog_message import MessageDialog
 from pondus.gui.dialog_preferences import PreferencesDialog
 from pondus.gui.dialog_csv_import import CSVDialogImport
 from pondus.gui.dialog_csv_export import CSVDialogExport
@@ -205,7 +205,9 @@ class MainWindow(object):
     def remove_dialog(self, widget):
         """Runs the dialog to remove the selected dataset and then
         deletes it from self.datasetdata and self.datalist."""
-        dialog = RemoveDataDialog()
+        title = _('Remove Data?')
+        message = _('Do you really want to delete this dataset?')
+        dialog = MessageDialog('question', title, message)
         if dialog.run() == gtk.RESPONSE_YES:
             (listmodel, treeiter) = self.treeselection.get_selected()
             id_selected = listmodel.get_value(treeiter, 0)

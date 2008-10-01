@@ -23,7 +23,7 @@ import gtk
 
 
 class MessageDialog(object):
-    """Shows an message. The message type, title and the message to be
+    """Shows a message. The message type, title and the message to be
     displayed can be passed when initializing the class."""
 
     def __init__(self, type, title, message):
@@ -33,12 +33,15 @@ class MessageDialog(object):
         elif type == 'info':
             self.dialog = gtk.MessageDialog(type=gtk.MESSAGE_INFO, \
                                             buttons=gtk.BUTTONS_CLOSE)
+        elif type == 'question':
+            self.dialog = gtk.MessageDialog(type=gtk.MESSAGE_QUESTION, \
+                                            buttons=gtk.BUTTONS_YES_NO)
         self.dialog.set_title(title)
         self.dialog.set_markup(message)
-
         self.dialog.show_all()
 
     def run(self):
         """Runs the dialog and closes it afterwards."""
-        self.dialog.run()
+        response = self.dialog.run()
         self.dialog.hide()
+        return response
