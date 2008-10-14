@@ -51,6 +51,7 @@ def update_po(languages):
 
 # list of source files containing translatable strings
 potfiles = [('../src/pondus/core/initialize.py'),
+            ('../src/pondus/core/filelock.py'),
             ('../src/pondus/core/option_parser.py'),
             ('../src/pondus/core/plot.py'),
             ('../src/pondus/core/util.py'),

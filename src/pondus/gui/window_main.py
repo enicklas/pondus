@@ -171,13 +171,21 @@ class MainWindow(object):
     def destroy(self, widget, data=None):
         """Quits the application cleanly and saves the data to the
         appropriate file."""
-        user_data.user.write_to_file(filepath=parameters.userdatafile)
-        if parameters.config['window.remember_size']:
-            parameters.config['window.width'] = \
-                                    self.window.get_allocation().width
-            parameters.config['window.height'] = \
-                                    self.window.get_allocation().height
-        config_parser.write_config(parameters.config, parameters.configfile)
+        if parameters.filelock.own_lock():
+            user_data.user.write_to_file(filepath=parameters.userdatafile)
+            if parameters.config['window.remember_size']:
+                parameters.config['window.width'] = \
+                                        self.window.get_allocation().width
+                parameters.config['window.height'] = \
+                                        self.window.get_allocation().height
+            config_parser.write_config(parameters.config, \
+                                        parameters.configfile)
+            parameters.filelock.unlock()
+        else:
+            backupfile = parameters.userdatafile + '.backup'
+            user_data.user.write_to_file(filepath=backupfile)
+            print _('Not owning the file lock. Backing up the data to'), \
+                    '\n', backupfile
         gtk.main_quit()
 
     def add_dialog(self, widget):

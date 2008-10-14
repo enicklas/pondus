@@ -26,6 +26,7 @@ import sys
 from pondus import parameters
 from pondus.core import config_parser
 from pondus.core import option_parser
+from pondus.core.filelock import FileLock
 
 
 def gettext_install():
@@ -95,6 +96,7 @@ def initialize():
     option_parser.parse_options()
     test_gtk()
     test_etree()
+    parameters.filelock = FileLock()
     parameters.have_mpl = test_mpl()
     parameters.plot_button_path = get_path('data/icons/', \
                         'share/pondus/', 'plot.png')

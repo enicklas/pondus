@@ -20,5 +20,5 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 """
 
 __all__ = ['all_datasets', 'config_parser', 'csv_parser', 'dataset',
-           'initialize', 'option_parser', 'person', 'plot', 'util',
-           'xml_parser']
+           'filelock', 'initialize', 'option_parser', 'person', 'plot',
+           'util', 'xml_parser']

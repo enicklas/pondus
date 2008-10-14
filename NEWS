@@ -3,6 +3,8 @@ Pondus NEWS
 
 2008-xx-xx: Version 0.x.x
 --------------------------
+ * Add a file lock to prevent two instances of pondus from editing the
+   same file
  * Enable editing the selected row with `CTR-e` again
  * Quit pondus with `CTR-q`
  * Add Italian translation (Thanks Stefano Costa)
