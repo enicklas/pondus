@@ -1,0 +1,35 @@
+How to Contribute to Pondus
+=============================
+
+Feedback, Comments, Suggestions, Bugreports
+---------------------------------------------
+
+The easiest way to contribute to Pondus is to give feedback. Let us know
+what you think about Pondus, suggest changes or improvements to the mailing
+list <mailto:pondus-dev@sharesource.org[]> or report bugs at
+http://sharesource.org/project/pondus/bugs[]. We are looking forward to
+your feedback.
+
+Testing the Development Version
+---------------------------------
+
+If you want to use the latest development version of Pondus and help finding
+new bugs or other problems, you can get the latest version from
+http://hg.sharesource.org/pondus[] or, if you have Mercurial
+installed, type `hg clone http://hg.sharesource.org/pondus `. This version
+can be tested without installation by executing `src/pondus.py`.
+
+Translating
+-------------
+
+You can help other people using Pondus by translating it from English to
+another language. Instructions how to do so can be found in `po/README`.
+
+Contributing Code
+-------------------
+
+If you want to implement a feature yourself, we will be happy to accept
+patches sent to us via the mailing list. In case you want to contribute code
+regularly, you should get an account at http://sharesource.org[] and we will
+be happy to give you write access to the crew repository located at
+http://hg.sharesource.org/pondus-crew[].

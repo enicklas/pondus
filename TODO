@@ -1,11 +1,62 @@
 TODO-List for Pondus
 ======================
 
- * use spinbutton in add dialog
+v0.5.2 or later
+-----------------
+ * error message when adding dataset and sorted by weight
+   in `newiter = self.datalist.append(newdata.as_list())`
+   -> causes no problems, ask on pygtk list?
+ * add file-exists-warning on save plot and csv export?
+ * version information in xml files for easier conversion to newer formats?
+
+
+v0.6.0 or later
+-----------------
+
+features:
+~~~~~~~~~~
+ * use spinbutton instead of weight entry in add/edit dialog
+    - what about dates? use calendar widget?
+ * allow defining a target weight by entering bmi
+   see http://sharesource.org/pipermail/pondus-dev/2008-October/000008.html
+ * allow selection and deletion of multiple datasets in listview
+ * plot: color background to indicate over-/under-weight
  * smooth the weight curve to filter out natural day-to-day differences
- * support more data formats in csv im-/exports
- * allow selection and deletion of multiple datasets
- * optional fields: body fat? comments?
- * interface guidelines? usability?
- * xml validation?
+   see http://sharesource.org/pipermail/pondus-dev/2008-August/000001.html
+
+usability:
+~~~~~~~~~~~
+ * plot: remove ``update'' button?
+   see http://sharesource.org/pipermail/pondus-dev/2008-October/000008.html
+ * plot: tooltip if bmi disabled telling neccessity to enter height
+ * more tooltips to ease usage?
+ * clean up plot dialog
+ * use frames in pref dialog?
+
+
+v0.7.0 or later
+-----------------
+
+features:
+~~~~~~~~~~
+ * optional fields: body fat?
+   optionally add to plot with second y-scale?
+ * csv import/export
+    - allow to convert values from kg to lbs
+    - support more date formats for csv import? in `util.str2date`
+    - document recognized formats in dialog
+    - support not only `,` as field separator
+    - support `,` as decimal separator
+
+design:
+~~~~~~~~
+ * simplify dataset: use id also as key in data?
+
+
+later
+-------
+ * validate xml?
+ * stick to interface guidelines? usability?
  * unit tests?
+ * prettier logo and artwork?
+ * use py2exe for windows version?
