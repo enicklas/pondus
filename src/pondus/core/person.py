@@ -21,9 +21,9 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 import os
 
+from pondus import parameters
 from pondus.core import xml_parser
 from pondus.core.all_datasets import AllDatasets, AllDatasetsOld
-from pondus import parameters
 
 try:
     from xml.etree.cElementTree import Element, SubElement, ElementTree

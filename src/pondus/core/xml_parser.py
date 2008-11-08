@@ -56,7 +56,8 @@ def read(filepath):
     if os.path.isfile(filepath):
         user_tree = parse(filepath)
         height_element = user_tree.find('height')
-        person_data['height'] = float(height_element.text)
+        if height_element is not None:
+            person_data['height'] = float(height_element.text)
         measurements = user_tree.findall('weight/measurements/dataset')
         plan = user_tree.findall('weight/plan/dataset')
         for dataset_el in measurements:
