@@ -7,7 +7,6 @@ v0.5.2 or later
    in `newiter = self.datalist.append(newdata.as_list())`
    -> causes no problems, ask on pygtk list?
  * add file-exists-warning on save plot and csv export?
- * version information in xml files for easier conversion to newer formats?
 
 
 v0.6.0 or later

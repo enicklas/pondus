@@ -3,11 +3,13 @@ Pondus NEWS
 
 2008-xx-xx: Version 0.x.x
 --------------------------
- * Add a file lock to prevent two instances of pondus from editing the
-   same file
  * Enable editing the selected row with `CTR-e` again
  * Quit pondus with `CTR-q`
+ * Add a file lock to prevent two instances of pondus from editing the
+   same file
  * Fix xml parsing problems when height element is missing
+ * Add information about the used format to the xml-file to ease future
+   conversions to new formats
  * Add Italian translation (Thanks Stefano Costa)
 
 2008-09-05: Version 0.5.1

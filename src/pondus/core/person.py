@@ -49,7 +49,7 @@ class Person(object):
 
     def write_to_file(self, filepath):
         """Writes the person data to the xml file."""
-        person_el = Element('person')
+        person_el = Element('person', format='0.5.0')
         height_el = SubElement(person_el, 'height')
         height_el.text = str(self.height)
         weight_el = SubElement(person_el, 'weight')
