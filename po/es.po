@@ -10,7 +10,7 @@ msgstr ""
 "Project-Id-Version: es\n"
 "Report-Msgid-Bugs-To: eike@ephys.de\n"
 "POT-Creation-Date: 2008-12-03 21:41+0100\n"
-"PO-Revision-Date: 2008-08-25 00:25+0200\n"
+"PO-Revision-Date: 2008-12-03 22:58+0100\n"
 "Last-Translator: Enrique J. Hernández\n"
 "Language-Team:  <en@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -37,13 +37,13 @@ msgstr "Por favor, comprueba que la librería ElementTree está instalada"
 
 #: ../src/pondus/core/filelock.py:46
 msgid "Datafile locked, continue?"
-msgstr ""
+msgstr "Fichero de datos bloqueado, ¿continuar?"
 
 #: ../src/pondus/core/filelock.py:47
 msgid ""
 "Another instance of pondus seems to be editing the same datafile. Do you "
 "really want to continue and loose all the changes from the other instance?"
-msgstr ""
+msgstr "Otra instancia de pondus parece estar editando el mismo fichero de datos. ¿Realmente quieres continuar y perder todos los cambios de la otra instancia?"
 
 #: ../src/pondus/core/option_parser.py:34
 msgid "Reading file"
@@ -287,9 +287,8 @@ msgid "Add more data"
 msgstr "Añadir más datos"
 
 #: ../src/pondus/gui/window_main.py:76
-#, fuzzy
 msgid "Edit selected line"
-msgstr "Borrar líneas seleccionadas"
+msgstr "Editar línea seleccionada"
 
 #: ../src/pondus/gui/window_main.py:78
 msgid "Delete selected line"
@@ -301,7 +300,7 @@ msgstr "Gráfico"
 
 #: ../src/pondus/gui/window_main.py:84
 msgid "Quit"
-msgstr ""
+msgstr "Salir"
 
 #: ../src/pondus/gui/window_main.py:134
 msgid "Date"
@@ -313,7 +312,7 @@ msgstr "Planificador de Peso"
 
 #: ../src/pondus/gui/window_main.py:187
 msgid "Not owning the file lock. Backing up the data to"
-msgstr ""
+msgstr "No le pertenece el fichero cerrojo. Guardando copia de respaldo de los datos a"
 
 #: ../src/pondus/gui/window_main.py:209
 msgid "Remove Data?"
@@ -322,3 +321,5 @@ msgstr "¿Borrar datos?"
 #: ../src/pondus/gui/window_main.py:210
 msgid "Do you really want to delete this dataset?"
 msgstr "¿Realmente quieres borrar este conjunto de datos?"
+
+
