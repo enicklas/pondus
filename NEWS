@@ -9,7 +9,7 @@ Pondus NEWS
  * Quit pondus with `CTR-q`
  * Fix xml parsing problems when height element is missing
  * Add Italian translation (Thanks Stefano Costa)
- * Updated translation: es
+ * Updated translation: de, es
 
 2008-09-05: Version 0.5.1
 --------------------------
