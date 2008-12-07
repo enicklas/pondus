@@ -36,7 +36,7 @@ def create_pot(version, potfiles):
     command += ' -o pondus.pot'
     command += ' --package-name=Pondus'
     command += ' --package-version=' + version
-    command += ' --msgid-bugs-address=eike@ephys.de '
+    command += ' --msgid-bugs-address=pondus-dev@sharesource.org '
     command += ' '.join(potfiles)
     os.system(command)
     return None
