@@ -1,7 +1,7 @@
 Pondus NEWS
 =============
 
-2008-xx-xx: Version 0.x.x
+2008-12-07: Version 0.5.2
 --------------------------
  * Add a file lock to prevent two instances of pondus from editing the
    same file
