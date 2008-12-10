@@ -1,4 +1,3 @@
-#! /usr/bin/env python
 # -*- coding: UTF-8 -*-
 
 """
@@ -96,6 +95,7 @@ def initialize():
     option_parser.parse_options()
     test_gtk()
     test_etree()
+    check_datadir(parameters.userdatafile)
     parameters.filelock = FileLock()
     parameters.have_mpl = test_mpl()
     parameters.plot_button_path = get_path('data/icons/', \
@@ -104,4 +104,3 @@ def initialize():
                         'share/icons/hicolor/48x48/apps/', 'pondus.png')
     parameters.config = config_parser.read_config( \
                     parameters.config_default, parameters.configfile)
-    check_datadir(parameters.userdatafile)

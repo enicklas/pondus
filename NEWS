@@ -6,6 +6,12 @@ Pondus NEWS
  * Add information about the used format to the xml-file to ease future
    conversions to new formats
 
+2008-12-10: Version 0.5.3
+--------------------------
+ * Fix crash on first startup
+ * Remove shebang from non-executable files
+   (Thanks Sindre Pedersen Bjørdal for the patch)
+
 2008-12-07: Version 0.5.2
 --------------------------
  * Add a file lock to prevent two instances of pondus from editing the
