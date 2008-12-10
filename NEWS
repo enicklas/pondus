@@ -1,7 +1,7 @@
 Pondus NEWS
 =============
 
-2008-12-xx: Version 0.5.3
+2008-12-10: Version 0.5.3
 --------------------------
  * Fix crash on first startup
  * Remove shebang from non-executable files

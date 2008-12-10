@@ -19,4 +19,4 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 """
 
 __all__ = ['core', 'gui', 'parameters', 'user_data']
-__version__ = '0.5.2+hg'
+__version__ = '0.5.3'
