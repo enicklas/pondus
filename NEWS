@@ -1,8 +1,11 @@
 Pondus NEWS
 =============
 
-200x-xx-xx: Version 0.x.x
+2009-xx-xx: Version 0.6.0
 --------------------------
+ * The weight plot can be smoothed to filter out short-term fluctations and
+   to emphasize the general trend of the weight
+   (Thanks Stefano Maggiolo for the patch)
  * Add information about the used format to the xml-file to ease future
    conversions to new formats
 

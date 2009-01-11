@@ -20,8 +20,6 @@ features:
    see http://sharesource.org/pipermail/pondus-dev/2008-October/000008.html
  * allow selection and deletion of multiple datasets in listview
  * plot: color background to indicate over-/under-weight
- * smooth the weight curve to filter out natural day-to-day differences
-   see http://sharesource.org/pipermail/pondus-dev/2008-August/000001.html
 
 usability:
 ~~~~~~~~~~~

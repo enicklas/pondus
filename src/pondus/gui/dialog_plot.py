@@ -2,7 +2,7 @@
 
 """
 This file is part of Pondus, a personal weight manager.
-Copyright (C) 2007-08  Eike Nicklas <eike@ephys.de>
+Copyright (C) 2007-09  Eike Nicklas <eike@ephys.de>
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -83,6 +83,12 @@ class PlotDialog(object):
         if user_data.user.height < 30:
             self.plotselector.set_sensitive(False)
         plot_options_box.pack_start(self.plotselector, False, False)
+        self.smoothselector = gtk.combo_box_new_text()
+        self.smoothselector.append_text(_('Both'))
+        self.smoothselector.append_text(_('Raw'))
+        self.smoothselector.append_text(_('Smooth'))
+        self.smoothselector.set_active(0)
+        plot_options_box.pack_start(self.smoothselector, False, False)
         self.plot_plan = gtk.CheckButton(_('Include Weight Plan'))
         self.plot_plan.set_active(self.plot.plot_plan)
         self.plot_plan.set_sensitive(self.plot.plot_plan)
@@ -102,6 +108,7 @@ class PlotDialog(object):
         self.end_date_entry.connect('key-press-event', self.on_keypress_in_entry)
         self.dateselector.connect('changed', self.update_daterange)
         self.plotselector.connect('changed', self.update_plot_type)
+        self.smoothselector.connect('changed', self.update_plot_smoothness)
         date_update_button.connect('clicked', self.update_plot)
         save_button.connect('clicked', self.save_plot)
         self.plot_plan.connect('toggled', self.on_toggle_plot_plan)
@@ -142,12 +149,26 @@ class PlotDialog(object):
         self.plot.update_daterange(start_date, end_date)
 
     def update_plot_type(self, plotselector):
-        """Redraws the plot with the desired data."""
+        """Redraws the plot with the desired data (weight or bmi)."""
         key = plotselector.get_active()
         if key == 0:
             self.plot.set_plot_bmi(False)
         elif key == 1:
             self.plot.set_plot_bmi(True)
+        self.plot.update_plot_type()
+
+    def update_plot_smoothness(self, smoothselector):
+        """Redraws the plot with the desired data (raw or smoothed)."""
+        key = smoothselector.get_active()
+        if key == 0:
+            self.plot.set_plot_smooth(True)
+            self.plot.set_plot_raw(True)
+        elif key == 1:
+            self.plot.set_plot_smooth(False)
+            self.plot.set_plot_raw(True)
+        elif key == 2:
+            self.plot.set_plot_smooth(True)
+            self.plot.set_plot_raw(False)
         self.plot.update_plot_type()
 
     def save_plot(self, button):

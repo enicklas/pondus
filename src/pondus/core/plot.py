@@ -2,7 +2,7 @@
 
 """
 This file is part of Pondus, a personal weight manager.
-Copyright (C) 2007-08  Eike Nicklas <eike@ephys.de>
+Copyright (C) 2007-09  Eike Nicklas <eike@ephys.de>
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -32,7 +32,10 @@ class Plot(object):
     def __init__(self):
         """Plots the weight data vs time."""
         self.plot_plan = parameters.config['preferences.use_weight_plan']
+        self.plot_smooth = True
+        self.plot_raw = True
         self.plot_bmi = False
+        self.alpha = 0.1
         self.figure = Figure()
         self.ax = self.figure.add_subplot(111)
         self.ax.grid(True)
@@ -56,18 +59,38 @@ class Plot(object):
         plotted."""
         self.plot_plan = plot_plan
 
+    def set_plot_smooth(self, plot_smooth):
+        """Sets the parameter describing whether we want to plot
+        the exponential average."""
+        self.plot_smooth = plot_smooth
+
+    def set_plot_raw(self, plot_raw):
+        """Sets the parameter describing whether we want to plot
+        the actual weights."""
+        self.plot_raw = plot_raw
+
     def create_plot(self):
         """Creates the plot and basic formatting."""
         xlist_meas = [tup[0] for tup in self.plot_data_meas]
         ylist_meas = [tup[1] for tup in self.plot_data_meas]
+        alist_meas = [tup[2] for tup in self.plot_data_meas]
         xlist_plan = [tup[0] for tup in self.plot_data_plan]
         ylist_plan = [tup[1] for tup in self.plot_data_plan]
+        alist_plan = [tup[2] for tup in self.plot_data_plan]
         if len(xlist_meas) != 0:
-            self.ax.plot_date(dates.date2num(xlist_meas), ylist_meas, \
-                            fmt='bo-', ms=4.0)
+            if self.plot_raw:
+                self.ax.plot_date(dates.date2num(xlist_meas), ylist_meas, \
+                                fmt='bo-', ms=4.0)
+            if self.plot_smooth:
+                self.ax.plot_date(dates.date2num(xlist_meas), alist_meas, \
+                                fmt='co-', ms=4.0)
         if len(xlist_plan) != 0 and self.plot_plan:
-            self.ax.plot_date(dates.date2num(xlist_plan), ylist_plan, \
-                            fmt='ro-', ms=4.0)
+            if self.plot_raw:
+                self.ax.plot_date(dates.date2num(xlist_plan), ylist_plan, \
+                                fmt='ro-', ms=4.0)
+            if self.plot_smooth:
+                self.ax.plot_date(dates.date2num(xlist_plan), alist_plan, \
+                                fmt='yo-', ms=4.0)
         if self.plot_bmi:
             ylabel = _('Body Mass Index')
         else:
@@ -183,6 +206,13 @@ class Plot(object):
                         util.kg_to_lbs(dataset.get('weight'))) \
                         for dataset in datasets]
         data.sort()
+        # Compute exponential moving average
+        current = data[0][1]
+        data[0] = (data[0][0], data[0][1], current)
+        for i in xrange(1, len(data)):
+            delta = (data[i][0] - data[i-1][0]).days
+            current = current + self.alpha**(1.0/delta)*(data[i][1]-current)
+            data[i] = (data[i][0], data[i][1], current)
         return data
 
 def get_locators(daterange):
