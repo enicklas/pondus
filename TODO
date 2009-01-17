@@ -1,7 +1,7 @@
 TODO-List for Pondus
 ======================
 
-v0.5.3 or later
+v0.5.4 or later
 -----------------
  * error message when adding dataset and sorted by weight
    in `newiter = self.datalist.append(newdata.as_list())`
@@ -15,7 +15,6 @@ v0.6.0 or later
 features:
 ~~~~~~~~~~
  * use spinbutton instead of weight entry in add/edit dialog
-    - what about dates? use calendar widget?
  * allow defining a target weight by entering bmi
    see http://sharesource.org/pipermail/pondus-dev/2008-October/000008.html
  * allow selection and deletion of multiple datasets in listview
