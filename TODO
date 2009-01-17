@@ -14,7 +14,6 @@ v0.6.0 or later
 
 features:
 ~~~~~~~~~~
- * use spinbutton instead of weight entry in add/edit dialog
  * allow defining a target weight by entering bmi
    see http://sharesource.org/pipermail/pondus-dev/2008-October/000008.html
  * allow selection and deletion of multiple datasets in listview

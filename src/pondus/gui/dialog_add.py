@@ -1,8 +1,9 @@
+#! /usr/bin/env python
 # -*- coding: UTF-8 -*-
 
 """
 This file is part of Pondus, a personal weight manager.
-Copyright (C) 2007-08  Eike Nicklas <eike@ephys.de>
+Copyright (C) 2007-09  Eike Nicklas <eike@ephys.de>
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -37,7 +38,7 @@ class AddDataDialog(object):
         weight = self.dataset.get('weight')
         if parameters.config['preferences.unit_system'] == 'imperial':
             weight = util.kg_to_lbs(weight)
-        slastweight = str(round(weight, 1))
+        weight = round(weight, 1)
 
         self.dialog = gtk.Dialog(flags=gtk.DIALOG_NO_SEPARATOR)
         # set the title
@@ -68,8 +69,14 @@ class AddDataDialog(object):
         weight_label = gtk.Label(_('Weight') + ' (' \
             + util.get_weight_unit() + '):')
         weight_label.set_alignment(xalign=0, yalign=0.5)
-        self.weight_entry = gtk.Entry()
-        self.weight_entry.set_text(slastweight)
+        weight_adj = gtk.Adjustment(
+                                value=weight,
+                                lower=0,
+                                upper=1000,
+                                step_incr=0.1,
+                                page_incr=1.0)
+        self.weight_entry = gtk.SpinButton(adjustment=weight_adj, digits=1)
+        self.weight_entry.set_numeric(True)
         self.weight_entry.set_activates_default(True)
         weight_box.pack_start(weight_label)
         weight_box.pack_start(self.weight_entry)
@@ -84,12 +91,12 @@ class AddDataDialog(object):
         self.dialog.set_default_response(gtk.RESPONSE_OK)
 
         # connect the signals
-        self.weight_entry.connect('focus-in-event', self.on_focus)
         self.weight_insert_signal = \
                 self.weight_entry.connect('insert_text', self.on_insert)
 
         # show the content
         self.dialog.show_all()
+        return None
 
     def run(self):
         """Runs the dialog and returns the new/updated dataset."""
@@ -100,7 +107,7 @@ class AddDataDialog(object):
             updated_date = date(updated_year, updated_month+1, updated_day)
             weightstring = self.weight_entry.get_text()
             try:
-                updated_weight = float(weightstring.replace(',', '.'))
+                updated_weight = self.weight_entry.get_value()
                 if parameters.config['preferences.unit_system'] == 'imperial':
                     updated_weight = round(util.lbs_to_kg(updated_weight), 2)
             except:
@@ -131,24 +138,14 @@ class AddDataDialog(object):
         if text in ['+', '-']:
             position = entry.get_position()
             entry.emit_stop_by_name('insert_text')
-            gobject.idle_add(self.weight_key_press, entry, text, \
-                                            position)
+            gobject.idle_add(self.weight_key_press, text)
         return None
 
-    def weight_key_press(self, entry, text, position):
+    def weight_key_press(self, text):
         """Tests, which key was pressed and increments/decrements the
         value in the weight entry by 0.1 if possible."""
-        try:
-            weight = entry.get_text()
-            weight = float(weight.replace(',', '.'))
-        except:
-            return None
-        else:
-            if text == '+':
-                weight += 0.1
-            elif text == '-':
-                weight -= 0.1
-            entry.handler_block(self.weight_insert_signal)
-            entry.set_text(str(weight))
-            entry.set_position(-1)
-            entry.handler_unblock(self.weight_insert_signal)
+        if text == '+':
+            self.weight_entry.spin(gtk.SPIN_STEP_FORWARD, increment=0.1)
+        elif text == '-':
+            self.weight_entry.spin(gtk.SPIN_STEP_BACKWARD, increment=0.1)
+        return None
