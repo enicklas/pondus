@@ -35,7 +35,6 @@ class Plot(object):
         self.plot_smooth = True
         self.plot_raw = True
         self.plot_bmi = False
-        self.alpha = 0.1
         self.figure = Figure()
         self.ax = self.figure.add_subplot(111)
         self.ax.grid(True)
@@ -73,10 +72,10 @@ class Plot(object):
         """Creates the plot and basic formatting."""
         xlist_meas = [tup[0] for tup in self.plot_data_meas]
         ylist_meas = [tup[1] for tup in self.plot_data_meas]
-        alist_meas = [tup[2] for tup in self.plot_data_meas]
         xlist_plan = [tup[0] for tup in self.plot_data_plan]
         ylist_plan = [tup[1] for tup in self.plot_data_plan]
-        alist_plan = [tup[2] for tup in self.plot_data_plan]
+        if self.plot_smooth:
+            alist_meas = [tup[2] for tup in self.plot_data_meas]
         if len(xlist_meas) != 0:
             if self.plot_raw:
                 self.ax.plot_date(dates.date2num(xlist_meas), ylist_meas, \
@@ -85,12 +84,8 @@ class Plot(object):
                 self.ax.plot_date(dates.date2num(xlist_meas), alist_meas, \
                                 fmt='co-', ms=4.0)
         if len(xlist_plan) != 0 and self.plot_plan:
-            if self.plot_raw:
-                self.ax.plot_date(dates.date2num(xlist_plan), ylist_plan, \
+            self.ax.plot_date(dates.date2num(xlist_plan), ylist_plan, \
                                 fmt='ro-', ms=4.0)
-            if self.plot_smooth:
-                self.ax.plot_date(dates.date2num(xlist_plan), alist_plan, \
-                                fmt='yo-', ms=4.0)
         if self.plot_bmi:
             ylabel = _('Body Mass Index')
         else:
@@ -185,6 +180,8 @@ class Plot(object):
     def get_plot_data(self):
         """Gets the data to be plotted."""
         self.plot_data_meas = self.get_datasets(user_data.user.measurements)
+        if self.plot_smooth:
+            self.plot_data_meas = self.smooth_data(self.plot_data_meas)
         if self.plot_plan:
             self.plot_data_plan = self.get_datasets(user_data.user.plan)
         else:
@@ -206,14 +203,34 @@ class Plot(object):
                         util.kg_to_lbs(dataset.get('weight'))) \
                         for dataset in datasets]
         data.sort()
-        # Compute exponential moving average
-        current = data[0][1]
-        data[0] = (data[0][0], data[0][1], current)
-        for i in xrange(1, len(data)):
-            delta = (data[i][0] - data[i-1][0]).days
-            current = current + self.alpha**(1.0/delta)*(data[i][1]-current)
-            data[i] = (data[i][0], data[i][1], current)
         return data
+
+    def smooth_data(self, data):
+        """Computes exponential central moving average."""
+        alpha = 0.8
+        avg_datapoints = 3
+        smoothdata = []
+        current = data[0][1]
+        smoothdata.append((data[0][0], data[0][1], current))
+        for i in xrange(1, len(data)):
+            deltas = []
+            datapoints = []
+            for j in xrange(i-avg_datapoints, i+avg_datapoints+1):
+                try:
+                    delta = abs((data[j][0] - data[i][0]).days)
+                    deltas.append(delta)
+                    datapoints.append(data[j][1])
+                except:
+                    pass
+            weighting = []
+            for delta in deltas:
+                weighting.append(alpha**(delta))
+            weighted_data = [datapoints[k]*weighting[k] \
+                                for k in xrange(len(datapoints))]
+            weighted_average = sum(weighted_data)/sum(weighting)
+            smoothdata.append((data[i][0], data[i][1], weighted_average))
+        return smoothdata
+
 
 def get_locators(daterange):
     """Returns sane locators and formatters for the given

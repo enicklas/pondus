@@ -5,7 +5,7 @@ Pondus NEWS
 --------------------------
  * The weight plot can be smoothed to filter out short-term fluctations and
    to emphasize the general trend of the weight
-   (Thanks Stefano Maggiolo for the patch)
+   (Thanks Stefano Maggiolo for the initial patch)
  * Replace the date entry with a calendar widget in the add/edit dialog
    (Thanks Stefano Costa for the patch)
  * Use a spinbutton for entering the weight in the add/edit dialog
