@@ -195,12 +195,14 @@ class PlotDialog(object):
             dateoffset = timedelta(days=10)
             mindate = self.plot.mindate_min - dateoffset
             maxdate = self.plot.maxdate_max + dateoffset
-        else:
-            maxdate = date.today()
-            if key == 1:
-                # select last year
-                mindate = maxdate - timedelta(days=365)
-            if key == 2:
-                # select last month
-                mindate = maxdate - timedelta(days=31)
+        elif key == 1:
+            # select last year
+            dateoffset = timedelta(days=4)
+            maxdate = date.today() + dateoffset
+            mindate = maxdate - timedelta(days=365) - 2*dateoffset
+        elif key == 2:
+            # select last month
+            dateoffset = timedelta(days=1)
+            maxdate = date.today() + dateoffset
+            mindate = maxdate - timedelta(days=31) - 2*dateoffset
         return mindate, maxdate
