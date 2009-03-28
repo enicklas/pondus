@@ -9,6 +9,7 @@ Pondus NEWS
  * Replace the date entry with a calendar widget in the add/edit dialog
    (Thanks Stefano Costa for the patch)
  * Use a spinbutton for entering the weight in the add/edit dialog
+ * Minor usability tweaks to the plot dialog
  * Add information about the used format to the xml-file to ease future
    conversions to new formats
 

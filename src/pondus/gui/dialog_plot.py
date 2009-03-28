@@ -65,6 +65,7 @@ class PlotDialog(object):
         self.dateselector.append_text(_('All Time'))
         self.dateselector.append_text(_('Last Year'))
         self.dateselector.append_text(_('Last Month'))
+        self.dateselector.append_text(_('Custom'))
         self.dateselector.set_active(0)
         date_selection_box.pack_start(self.dateselector, True, False)
 
@@ -139,6 +140,8 @@ class PlotDialog(object):
             MessageDialog(type='error', title=title, message=message).run()
             return None
         self.plot.update_daterange(mindate, maxdate)
+        self.dateselector.set_active(3)
+        return None
 
     def update_daterange(self, dateselector):
         """Updates start and end date in the appropriate text entries
@@ -205,4 +208,7 @@ class PlotDialog(object):
             dateoffset = timedelta(days=1)
             maxdate = date.today() + dateoffset
             mindate = maxdate - timedelta(days=31) - 2*dateoffset
+        else:
+            mindate = util.str2date(self.start_date_entry.get_text())
+            maxdate = util.str2date(self.end_date_entry.get_text())
         return mindate, maxdate
