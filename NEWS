@@ -12,6 +12,7 @@ Pondus NEWS
  * Minor usability tweaks to the plot dialog
  * Add information about the used format to the xml-file to ease future
    conversions to new formats
+ * Add Polish translation (Thanks Adam Piotrowicz)
 
 2008-12-10: Version 0.5.3
 --------------------------
