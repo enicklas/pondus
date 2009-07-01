@@ -44,5 +44,5 @@ keys_required = ('id', 'date', 'weight')
 keys_optional = ()
 
 # paths to button/logo icons used
-plot_button_path = 'usr/share/pondus/plot.png'
+plot_button_path = '/usr/share/pondus/plot.png'
 logo_path = '/usr/share/icons/hicolor/48x48/apps/pondus.png'
