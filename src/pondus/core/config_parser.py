@@ -2,7 +2,7 @@
 
 """
 This file is part of Pondus, a personal weight manager.
-Copyright (C) 2008  Eike Nicklas <eike@ephys.de>
+Copyright (C) 2008-09  Eike Nicklas <eike@ephys.de>
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -49,6 +49,9 @@ def read_config(default_config, conffile):
         if conf.has_option('preferences', 'use_weight_plan'):
             config['preferences.use_weight_plan'] = \
                             conf.getboolean('preferences', 'use_weight_plan')
+        if conf.has_option('preferences', 'use_calendar'):
+            config['preferences.use_calendar'] = \
+                            conf.getboolean('preferences', 'use_calendar')
     return config
 
 def write_config(config, conffile):

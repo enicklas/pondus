@@ -2,7 +2,7 @@
 
 """
 This file is part of Pondus, a personal weight manager.
-Copyright (C) 2007-08  Eike Nicklas <eike@ephys.de>
+Copyright (C) 2007-09  Eike Nicklas <eike@ephys.de>
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -34,6 +34,7 @@ config_default = {'window.remember_size': False,
                   'window.width': 180,
                   'window.height': 300,
                   'preferences.unit_system': 'metric',
+                  'preferences.use_calendar': False,
                   'preferences.use_weight_plan': False}
 config = dict(config_default)
 have_mpl = False

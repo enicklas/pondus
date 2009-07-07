@@ -34,7 +34,6 @@ class AddDataDialog(object):
     def __init__(self, dataset, edit):
         self.dataset = dataset
         # get default values for entry boxes
-        ddate = self.dataset.get('date')
         weight = self.dataset.get('weight')
         if parameters.config['preferences.unit_system'] == 'imperial':
             weight = util.kg_to_lbs(weight)
@@ -50,19 +49,31 @@ class AddDataDialog(object):
         # create the labels and entry boxes
         date_box = gtk.VBox(spacing=5)
         date_box.set_border_width(5)
-        date_label = gtk.Label(_('Date:'))
-        date_label.set_alignment(xalign=0, yalign=0.5)
-        self.calendar = gtk.Calendar()
-        if parameters.config['preferences.unit_system'] == 'metric':
-            self.calendar.set_display_options( \
-                                        gtk.CALENDAR_SHOW_HEADING | \
-                                        gtk.CALENDAR_SHOW_DAY_NAMES | \
-                                        gtk.CALENDAR_WEEK_START_MONDAY)
-        self.calendar.select_month(ddate.month-1, ddate.year)
-        self.calendar.select_day(ddate.day)
-        
-        date_box.pack_start(date_label)
-        date_box.pack_start(self.calendar)
+        if parameters.config['preferences.use_calendar'] == True:
+            ddate = self.dataset.get('date')
+            date_label = gtk.Label(_('Date:'))
+            date_label.set_alignment(xalign=0, yalign=0.5)
+            self.calendar = gtk.Calendar()
+            if parameters.config['preferences.unit_system'] == 'metric':
+                self.calendar.set_display_options( \
+                                            gtk.CALENDAR_SHOW_HEADING | \
+                                            gtk.CALENDAR_SHOW_DAY_NAMES | \
+                                            gtk.CALENDAR_WEEK_START_MONDAY)
+            self.calendar.select_month(ddate.month-1, ddate.year)
+            self.calendar.select_day(ddate.day)
+
+            date_box.pack_start(date_label)
+            date_box.pack_start(self.calendar)
+        else:
+            sdate = str(self.dataset.get('date'))
+            date_label = gtk.Label(_('Date: (YYYY-MM-DD)'))
+            date_label.set_alignment(xalign=0, yalign=0.5)
+            self.date_entry = gtk.Entry()
+            self.date_entry.set_text(sdate)
+            self.date_entry.set_activates_default(True)
+
+            date_box.pack_start(date_label)
+            date_box.pack_start(self.date_entry)
 
         weight_box = gtk.VBox(spacing=5)
         weight_box.set_border_width(5)
@@ -93,6 +104,10 @@ class AddDataDialog(object):
         # connect the signals
         self.weight_insert_signal = \
                 self.weight_entry.connect('insert_text', self.on_insert)
+        if parameters.config['preferences.use_calendar'] == False:
+            self.date_entry.connect('focus-in-event', self.on_focus)
+            self.date_insert_signal = \
+                    self.date_entry.connect('insert_text', self.on_insert)
 
         # show the content
         self.dialog.show_all()
@@ -103,10 +118,14 @@ class AddDataDialog(object):
         response = self.dialog.run()
         if response == gtk.RESPONSE_OK:
             # try to create a new dataset from the given data
-            updated_year, updated_month, updated_day = self.calendar.get_date()
-            updated_date = date(updated_year, updated_month+1, updated_day)
-            weightstring = self.weight_entry.get_text()
             try:
+                if parameters.config['preferences.use_calendar'] == True:
+                    updated_year, updated_month, updated_day = \
+                            self.calendar.get_date()
+                    updated_date = \
+                            date(updated_year, updated_month+1, updated_day)
+                else:
+                    updated_date = util.str2date(self.date_entry.get_text())
                 updated_weight = self.weight_entry.get_value()
                 if parameters.config['preferences.unit_system'] == 'imperial':
                     updated_weight = round(util.lbs_to_kg(updated_weight), 2)
@@ -138,7 +157,36 @@ class AddDataDialog(object):
         if text in ['+', '-']:
             position = entry.get_position()
             entry.emit_stop_by_name('insert_text')
-            gobject.idle_add(self.weight_key_press, text)
+            if parameters.config['preferences.use_calendar'] == False:
+                if entry == self.date_entry:
+                    gobject.idle_add(self.date_key_press, entry, text, \
+                                                position)
+            if entry == self.weight_entry:
+                gobject.idle_add(self.weight_key_press, text)
+        return None
+
+    def date_key_press(self, entry, text, position):
+        """Tests, which key was pressed and increments/decrements the
+        date in date entry by one day if possible."""
+        try:
+            date = util.str2date(entry.get_text())
+        except:
+            entry.handler_block(self.date_insert_signal)
+            orig_text = entry.get_text()
+            new_text = orig_text[:position] + text + orig_text[position:]
+            entry.set_text(new_text)
+            entry.set_position(position+1)
+            entry.handler_unblock(self.date_insert_signal)
+            return None
+        else:
+            if text == '+':
+                date += timedelta(days=1)
+            elif text == '-':
+                date -= timedelta(days=1)
+            entry.handler_block(self.date_insert_signal)
+            entry.set_text(str(date))
+            entry.set_position(-1)
+            entry.handler_unblock(self.date_insert_signal)
         return None
 
     def weight_key_press(self, text):
