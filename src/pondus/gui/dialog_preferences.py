@@ -2,7 +2,7 @@
 
 """
 This file is part of Pondus, a personal weight manager.
-Copyright (C) 2008  Eike Nicklas <eike@ephys.de>
+Copyright (C) 2008-09  Eike Nicklas <eike@ephys.de>
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -108,6 +108,12 @@ class PreferencesDialog(object):
                         self.newconfig['preferences.use_weight_plan'])
         self.dialog.vbox.pack_start(self.use_plan_button)
 
+        self.use_calendar_button = gtk.CheckButton(_('Use Calendar in Add Dialog'))
+        self.use_calendar_button.set_border_width(5)
+        self.use_calendar_button.set_active( \
+                        self.newconfig['preferences.use_calendar'])
+        self.dialog.vbox.pack_start(self.use_calendar_button)
+
         self.remember_button = gtk.CheckButton(_('Remember Window Size'))
         self.remember_button.set_border_width(5)
         self.remember_button.set_active(self.newconfig['window.remember_size'])
@@ -127,6 +133,8 @@ class PreferencesDialog(object):
                                     self.remember_button.get_active()
             self.newconfig['preferences.use_weight_plan'] = \
                                     self.use_plan_button.get_active()
+            self.newconfig['preferences.use_calendar'] = \
+                                    self.use_calendar_button.get_active()
             parameters.config = self.newconfig
             newheight1 = self.height_entry1.get_value()
             newheight2 = self.height_entry2.get_value()
