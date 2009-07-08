@@ -2,7 +2,7 @@
 
 """
 This file is part of Pondus, a personal weight manager.
-Copyright (C) 2007-08  Eike Nicklas <eike@ephys.de>
+Copyright (C) 2007-09  Eike Nicklas <eike@ephys.de>
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -120,6 +120,8 @@ class MainWindow(object):
         # hide quit action
         action_group.get_action('quit').set_visible(False)
         self.editaction.set_visible(False)
+        uimanager.get_widget('/Toolbar/edit').set_no_show_all(True)
+        uimanager.get_widget('/Toolbar/quit').set_no_show_all(True)
 
         # add list displaying the datasets
         self.contentbox = gtk.VBox(spacing=5)
