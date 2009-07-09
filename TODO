@@ -21,11 +21,8 @@ features:
 
 usability:
 ~~~~~~~~~~~
- * plot: remove ``update'' button?
-   see http://sharesource.org/pipermail/pondus-dev/2008-October/000008.html
  * plot: tooltip if bmi disabled telling neccessity to enter height
  * more tooltips to ease usage?
- * clean up plot dialog
  * use frames in pref dialog?
 
 

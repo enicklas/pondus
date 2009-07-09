@@ -67,10 +67,7 @@ class PlotDialog(object):
         self.dateselector.append_text(_('Last Month'))
         self.dateselector.append_text(_('Custom'))
         self.dateselector.set_active(0)
-        date_selection_box.pack_start(self.dateselector, True, False)
-
-        date_update_button = gtk.Button(label=_('Update'))
-        date_selection_box.pack_end(date_update_button, False, False)
+        date_selection_box.pack_start(self.dateselector, False, False)
         self.dialog.vbox.pack_start(date_selection_box, False, False)
 
         # plot options
@@ -85,7 +82,7 @@ class PlotDialog(object):
             self.plotselector.set_sensitive(False)
         plot_options_box.pack_start(self.plotselector, False, False)
         self.smoothselector = gtk.combo_box_new_text()
-        self.smoothselector.append_text(_('Both'))
+        self.smoothselector.append_text(_('Raw and Smooth'))
         self.smoothselector.append_text(_('Raw'))
         self.smoothselector.append_text(_('Smooth'))
         self.smoothselector.set_active(0)
@@ -110,7 +107,6 @@ class PlotDialog(object):
         self.dateselector.connect('changed', self.update_daterange)
         self.plotselector.connect('changed', self.update_plot_type)
         self.smoothselector.connect('changed', self.update_plot_smoothness)
-        date_update_button.connect('clicked', self.update_plot)
         save_button.connect('clicked', self.save_plot)
         self.plot_plan.connect('toggled', self.on_toggle_plot_plan)
 
