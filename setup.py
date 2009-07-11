@@ -3,7 +3,7 @@
 
 """
 This file is part of Pondus, a personal weight manager.
-Copyright (C) 2007-08  Eike Nicklas <eike@ephys.de>
+Copyright (C) 2007-09  Eike Nicklas <eike@ephys.de>
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -72,12 +72,21 @@ def clean_up():
     if os.path.exists(tmpdir):
         shutil.rmtree(tmpdir)
 
+long_description = """
+Pondus keeps track of your body weight. It aims to be simple to use,
+lightweight and fast. The data can be plotted to get a quick overview
+of the history of your weight. A simple weight planner allows to
+define "target weights" and this plan can be compared with the actual
+measurements in a plot.
+"""
+
 create_mo()
 create_man()
 
 setup(name = 'pondus',
       version = get_version(),
       description = 'Pondus is a personal weight manager.',
+      long_description = long_description,
       author = 'Eike Nicklas',
       author_email = 'eike@ephys.de',
       url = 'http://www.ephys.de/software/pondus/',
@@ -93,7 +102,7 @@ setup(name = 'pondus',
         ('share/icons/hicolor/scalable/apps', ['data/icons/pondus.svg']),
         ('share/locale/de/LC_MESSAGES', ['po/mo/de/LC_MESSAGES/pondus.mo']),
         ('share/locale/es/LC_MESSAGES', ['po/mo/es/LC_MESSAGES/pondus.mo']),
-        ('share/locale/es_CO/LC_MESSAGES',['po/mo/es_CO/LC_MESSAGES/pondus.mo']),
+        ('share/locale/es_CO/LC_MESSAGES', ['po/mo/es_CO/LC_MESSAGES/pondus.mo']),
         ('share/locale/fr/LC_MESSAGES', ['po/mo/fr/LC_MESSAGES/pondus.mo']),
         ('share/locale/it/LC_MESSAGES', ['po/mo/it/LC_MESSAGES/pondus.mo']),
         ('share/locale/pl/LC_MESSAGES', ['po/mo/pl/LC_MESSAGES/pondus.mo'])],
