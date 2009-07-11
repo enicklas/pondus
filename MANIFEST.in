@@ -1,6 +1,8 @@
 include AUTHORS
+include CONTRIBUTING
 include COPYING
 include INSTALL
+include MANIFEST.in
 include NEWS
 include README
 include TODO
@@ -10,8 +12,9 @@ include data/icons/plot.png
 include data/icons/pondus.png
 include data/icons/pondus.svg
 include data/icons/pondus.xpm
-include po/pondus.pot
 include po/README
+include po/update_po.py
+include po/pondus.pot
 include po/de.po
 include po/es.po
 include po/es_CO.po
