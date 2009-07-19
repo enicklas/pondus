@@ -1,7 +1,7 @@
 TODO-List for Pondus
 ======================
 
-v0.5.4 or later
+v0.6.1 or later
 -----------------
  * error message when adding dataset and sorted by weight
    in `newiter = self.datalist.append(newdata.as_list())`
@@ -9,7 +9,7 @@ v0.5.4 or later
  * add file-exists-warning on save plot and csv export?
 
 
-v0.6.0 or later
+v0.7.0 or later
 -----------------
 
 features:
@@ -21,12 +21,18 @@ features:
 
 usability:
 ~~~~~~~~~~~
+ * add dialog: increase date by month on pg_up
  * plot: tooltip if bmi disabled telling neccessity to enter height
  * more tooltips to ease usage?
  * use frames in pref dialog?
 
+code clean up:
+~~~~~~~~~~~~~~~
+ * rewrite config parser more elegantly?
+ * use GTKBuilder and clearly separate core and gui?
 
-v0.7.0 or later
+
+v0.8.0 or later
 -----------------
 
 features:

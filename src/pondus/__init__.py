@@ -2,7 +2,7 @@
 
 """
 This file is part of Pondus, a personal weight manager.
-Copyright (C) 2007-08  Eike Nicklas <eike@ephys.de>
+Copyright (C) 2007-09  Eike Nicklas <eike@ephys.de>
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -19,4 +19,4 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 """
 
 __all__ = ['core', 'gui', 'parameters', 'user_data']
-__version__ = '0.5.3+hg'
+__version__ = '0.6.0'

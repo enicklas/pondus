@@ -1,7 +1,7 @@
 Pondus NEWS
 =============
 
-2009-xx-xx: Version 0.6.0
+2009-07-19: Version 0.6.0
 --------------------------
  * The weight plot can be smoothed to filter out short-term fluctations and
    to emphasize the general trend of the weight

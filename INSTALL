@@ -18,9 +18,8 @@ Installation Instructions
 Linux/Unix:
 ~~~~~~~~~~~~~
 
-Pondus is available in Debian (>= Lenny) and Ubuntu (>= Intrepid).
-deb-packages for older versions of Debian and Ubuntu are available at
-    http://www.ephys.de/software/pondus/[]
+Pondus is available in Debian (>= Lenny), Ubuntu (>= Intrepid) and Arch
+Linux.
 
 On other systems, install Pondus by executing in the source directory
 (as root):
