@@ -64,9 +64,10 @@ class PlotDialog(object):
         self.dateselector = gtk.combo_box_new_text()
         self.dateselector.append_text(_('All Time'))
         self.dateselector.append_text(_('Last Year'))
+        self.dateselector.append_text(_('Last 3 Months'))
         self.dateselector.append_text(_('Last Month'))
         self.dateselector.append_text(_('Custom'))
-        self.dateselector.set_active(0)
+        self.set_dateselector_default()
         date_selection_box.pack_start(self.dateselector, False, False)
         self.dialog.vbox.pack_start(date_selection_box, False, False)
 
@@ -136,7 +137,7 @@ class PlotDialog(object):
             MessageDialog(type='error', title=title, message=message).run()
             return None
         self.plot.update_daterange(mindate, maxdate)
-        self.dateselector.set_active(3)
+        self.dateselector.set_active(4)
         return None
 
     def update_daterange(self, dateselector):
@@ -200,6 +201,11 @@ class PlotDialog(object):
             maxdate = date.today() + dateoffset
             mindate = maxdate - timedelta(days=365) - 2*dateoffset
         elif key == 2:
+            # select last 3 months
+            dateoffset = timedelta(days=2)
+            maxdate = date.today() + dateoffset
+            mindate = maxdate - timedelta(days=91) - 2*dateoffset
+        elif key == 3:
             # select last month
             dateoffset = timedelta(days=1)
             maxdate = date.today() + dateoffset
@@ -208,3 +214,10 @@ class PlotDialog(object):
             mindate = util.str2date(self.start_date_entry.get_text())
             maxdate = util.str2date(self.end_date_entry.get_text())
         return mindate, maxdate
+
+    def set_dateselector_default(self):
+        if self.plot.mindate_min > date.today() - timedelta(days=91) \
+                or self.plot.maxdate_max < date.today() - timedelta(days=91):
+            self.dateselector.set_active(0)
+        else:
+            self.dateselector.set_active(2)
