@@ -91,12 +91,12 @@ msgstr "Edytuj dane"
 #: ../src/pondus/gui/dialog_add.py:54
 #, fuzzy
 msgid "Date:"
-msgstr "Data"
+msgstr "Data:"
 
 #: ../src/pondus/gui/dialog_add.py:69
 #, fuzzy
 msgid "Date: (YYYY-MM-DD)"
-msgstr "Data (YYYY-MM-DD):"
+msgstr "Data: (YYYY-MM-DD)"
 
 #: ../src/pondus/gui/dialog_add.py:133 ../src/pondus/gui/dialog_plot.py:129
 #: ../src/pondus/gui/dialog_plot.py:134
@@ -187,7 +187,7 @@ msgstr "Wykres wagi"
 
 #: ../src/pondus/gui/dialog_plot.py:51
 msgid "Select Date Range:"
-msgstr "Wybierz zakres czasu:"
+msgstr "Zakres czasu:"
 
 #: ../src/pondus/gui/dialog_plot.py:65
 msgid "All Time"
@@ -203,7 +203,7 @@ msgstr "Ostatni miesiąc"
 
 #: ../src/pondus/gui/dialog_plot.py:68
 msgid "Custom"
-msgstr ""
+msgstr "Własny"
 
 #: ../src/pondus/gui/dialog_plot.py:75
 msgid "Data to plot:"
@@ -211,15 +211,15 @@ msgstr "Dane do wykresu:"
 
 #: ../src/pondus/gui/dialog_plot.py:85
 msgid "Raw and Smooth"
-msgstr ""
+msgstr "Surowy i gładki"
 
 #: ../src/pondus/gui/dialog_plot.py:86
 msgid "Raw"
-msgstr ""
+msgstr "Surowy"
 
 #: ../src/pondus/gui/dialog_plot.py:87
 msgid "Smooth"
-msgstr ""
+msgstr "Gładki"
 
 #: ../src/pondus/gui/dialog_plot.py:90
 msgid "Include Weight Plan"
@@ -280,7 +280,7 @@ msgstr "Użyj plannera wagi"
 
 #: ../src/pondus/gui/dialog_preferences.py:111
 msgid "Use Calendar in Add Dialog"
-msgstr ""
+msgstr "Użyj kalendarza podczas dodawania wpisów"
 
 #: ../src/pondus/gui/dialog_preferences.py:117
 msgid "Remember Window Size"
