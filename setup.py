@@ -85,12 +85,12 @@ create_man()
 
 setup(name = 'pondus',
       version = get_version(),
-      description = 'Pondus is a personal weight manager.',
+      description = 'personal weight manager',
       long_description = long_description,
       author = 'Eike Nicklas',
       author_email = 'eike@ephys.de',
       url = 'http://www.ephys.de/software/pondus/',
-      license = 'GPL',
+      license = 'GPLv3+',
       scripts = get_scripts(),
       data_files = [
         ('share/applications', ['data/pondus.desktop']),
