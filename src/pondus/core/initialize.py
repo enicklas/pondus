@@ -56,7 +56,7 @@ def test_mpl():
         from matplotlib import dates
         return True
     except ImportError:
-        print _('Note: Matplotlib not available, plotting disabled!')
+        print _('Note: python-matplotlib is not installed, plotting disabled!')
         return False
 
 def test_gtk():
