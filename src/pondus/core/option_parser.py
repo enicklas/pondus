@@ -33,7 +33,7 @@ def set_datafilepath(filepath):
         print _('Reading file'), filepath
         parameters.userdatafile = filepath
         parameters.use_custom_file = True
-        return None
+        return
     else:
         print _('Error: This is a directory, not a file!')
         print _('Using the standard file ~/.pondus/user_data.xml instead.')

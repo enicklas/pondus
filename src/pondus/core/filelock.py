@@ -40,14 +40,14 @@ class FileLock(object):
         locked and performs the lock if wanted."""
         if not self.is_locked():
             self.lock()
-            return None
+            return
         elif not self.own_lock():
             title = _('Datafile locked, continue?')
             message = _('Another instance of pondus seems to be editing the same datafile. Do you really want to continue and loose all the changes from the other instance?')
             response = MessageDialog('question', title, message).run()
             if response == gtk.RESPONSE_YES:
                 self.take_over_lock()
-                return None
+                return
             elif response == gtk.RESPONSE_NO:
                 sys.exit(1)
 

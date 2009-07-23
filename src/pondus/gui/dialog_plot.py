@@ -130,15 +130,14 @@ class PlotDialog(object):
             title = _('Error: Wrong Format')
             message = _('The data entered is not in the correct format!')
             MessageDialog(type='error', title=title, message=message).run()
-            return None
+            return
         if mindate >= maxdate:
             title = _('Error: Wrong Format')
             message = _('The start date has to be before the end date!')
             MessageDialog(type='error', title=title, message=message).run()
-            return None
+            return
         self.plot.update_daterange(mindate, maxdate)
         self.dateselector.set_active(4)
-        return None
 
     def update_daterange(self, dateselector):
         """Updates start and end date in the appropriate text entries

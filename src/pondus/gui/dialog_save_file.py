@@ -2,7 +2,7 @@
 
 """
 This file is part of Pondus, a personal weight manager.
-Copyright (C) 2008  Eike Nicklas <eike@ephys.de>
+Copyright (C) 2008-09  Eike Nicklas <eike@ephys.de>
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -63,7 +63,6 @@ class SaveFileDialog(object):
             self.chooser.hide()
             return self.chooser.get_filename()
         self.chooser.hide()
-        return None
 
     def update_file_ending(self, filetypeselector):
         """Updates the file ending of the target file."""
@@ -71,4 +70,3 @@ class SaveFileDialog(object):
         filename = os.path.split(self.chooser.get_filename())[1]
         filebase  = os.path.splitext(filename)[0]
         self.chooser.set_current_name(filebase + ending)
-        return None

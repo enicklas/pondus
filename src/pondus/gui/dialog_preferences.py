@@ -145,7 +145,6 @@ class PreferencesDialog(object):
                 user_data.user.height = util.imperial_to_height(newheight1, \
                                                                 newheight2)
         self.dialog.hide()
-        return None
 
     # callback functions
     def on_unit_change(self, widget, data):
@@ -164,7 +163,6 @@ class PreferencesDialog(object):
                 height_cm = util.metric_to_height(newheight1, newheight2)
                 self.set_imperial(height_cm)
             self.newconfig['preferences.unit_system'] = data
-        return None
 
     # helper functions
     def set_imperial(self, height_cm):

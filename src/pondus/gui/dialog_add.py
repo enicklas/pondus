@@ -111,7 +111,6 @@ class AddDataDialog(object):
 
         # show the content
         self.dialog.show_all()
-        return None
 
     def run(self):
         """Runs the dialog and returns the new/updated dataset."""
@@ -149,7 +148,6 @@ class AddDataDialog(object):
         """Prevents a selection and puts the cursor at the end
         of the entry instead."""
         gobject.idle_add(entry.set_position, -1)
-        return None
 
     def on_insert(self, entry, text, length, *args):
         """Prevents '+' and '-' from being inserted into the entry and
@@ -163,7 +161,6 @@ class AddDataDialog(object):
                                                 position)
             if entry == self.weight_entry:
                 gobject.idle_add(self.weight_key_press, text)
-        return None
 
     def date_key_press(self, entry, text, position):
         """Tests, which key was pressed and increments/decrements the
@@ -177,7 +174,7 @@ class AddDataDialog(object):
             entry.set_text(new_text)
             entry.set_position(position+1)
             entry.handler_unblock(self.date_insert_signal)
-            return None
+            return
         else:
             if text == '+':
                 date += timedelta(days=1)
@@ -187,7 +184,6 @@ class AddDataDialog(object):
             entry.set_text(str(date))
             entry.set_position(-1)
             entry.handler_unblock(self.date_insert_signal)
-        return None
 
     def weight_key_press(self, text):
         """Tests, which key was pressed and increments/decrements the
@@ -196,4 +192,3 @@ class AddDataDialog(object):
             self.weight_entry.spin(gtk.SPIN_STEP_FORWARD, increment=0.1)
         elif text == '-':
             self.weight_entry.spin(gtk.SPIN_STEP_BACKWARD, increment=0.1)
-        return None

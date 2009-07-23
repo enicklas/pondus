@@ -69,4 +69,3 @@ def write_config(config, conffile):
     config_file = open(conffile, 'w')
     conf.write(config_file)
     config_file.close()
-    return None
