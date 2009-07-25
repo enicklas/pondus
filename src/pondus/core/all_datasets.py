@@ -2,7 +2,7 @@
 
 """
 This file is part of Pondus, a personal weight manager.
-Copyright (C) 2007-08  Eike Nicklas <eike@ephys.de>
+Copyright (C) 2007-09  Eike Nicklas <eike@ephys.de>
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -57,26 +57,26 @@ class AllDatasets(object):
     def get_new_dataset(self):
         """Returns a new dataset initialized with today's date and the
         last measured weight."""
-        new_id = self.get_new_id()
+        new_id = self._get_new_id()
         new_date = date.today()
-        new_weight = self.last_measured_weight()
+        new_weight = self._last_measured_weight()
         return Dataset(new_id, new_date, new_weight)
 
-    def last_measured_weight(self):
+    def _last_measured_weight(self):
         """Returns the last measured weight."""
-        if self.datasets != {}:
+        if self.datasets:
             intermed = [(dataset.get('date'), idd) \
                 for idd, dataset in self.datasets.iteritems()]
             return self.datasets[max(intermed)[1]].get('weight')
         else:
             return 0.0
 
-    def get_new_id(self):
+    def _get_new_id(self):
         """Returns an unused id."""
         try:
             return max(self.datasets) + 1
         except ValueError:
-            #if no datasets exist
+            #no datasets exists
             return 1
 
 

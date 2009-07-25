@@ -58,7 +58,7 @@ class SaveFileDialog(object):
         response = self.chooser.run()
         if response == gtk.RESPONSE_OK:
             self.update_file_ending(self.filetypeselector)
-            if plot != None:
+            if plot is not None:
                 plot.save_to_file(self.chooser.get_filename())
             self.chooser.hide()
             return self.chooser.get_filename()

@@ -54,10 +54,11 @@ def test_mpl():
     should be enlabled."""
     try:
         from matplotlib import dates
-        return True
     except ImportError:
         print _('Note: python-matplotlib is not installed, plotting disabled!')
         return False
+    else:
+        return True
 
 def test_gtk():
     """Tests availability of pygtk and quits if not found."""

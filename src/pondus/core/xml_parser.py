@@ -2,7 +2,7 @@
 
 """
 This file is part of Pondus, a personal weight manager.
-Copyright (C) 2007-08  Eike Nicklas <eike@ephys.de>
+Copyright (C) 2007-09  Eike Nicklas <eike@ephys.de>
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -39,10 +39,10 @@ def read_old(filepath):
         dataset_list = user_tree.findall('dataset')
         if parameters.convert_weight_data_to_kg == True:
             for dataset_el in dataset_list:
-                add_dataset_to_dict_convert(dataset_el, datasets)
+                _add_dataset_to_dict_convert(dataset_el, datasets)
         else:
             for dataset_el in dataset_list:
-                add_dataset_to_dict(dataset_el, datasets)
+                _add_dataset_to_dict(dataset_el, datasets)
     return datasets
 
 def read(filepath):
@@ -60,19 +60,19 @@ def read(filepath):
         measurements = user_tree.findall('weight/measurements/dataset')
         plan = user_tree.findall('weight/plan/dataset')
         for dataset_el in measurements:
-            add_dataset_to_dict(dataset_el, person_data['measurements'])
+            _add_dataset_to_dict(dataset_el, person_data['measurements'])
         for dataset_el in plan:
-            add_dataset_to_dict(dataset_el, person_data['plan'])
+            _add_dataset_to_dict(dataset_el, person_data['plan'])
     return person_data
 
-def add_dataset_to_dict(dataset_el, datasetsdict):
+def _add_dataset_to_dict(dataset_el, datasetsdict):
     """Adds a dataset element to a dictionary of Dataset objects."""
     dataset = Dataset(int(dataset_el.get('id')), \
                       util.str2date(dataset_el.find('date').text), \
                       float(dataset_el.find('weight').text))
     datasetsdict[int(dataset_el.get('id'))] = dataset
 
-def add_dataset_to_dict_convert(dataset_el, datasetsdict):
+def _add_dataset_to_dict_convert(dataset_el, datasetsdict):
     """Adds a dataset element to a dictionary of Dataset objects and
     converts the weight from lbs to kg."""
     weight = float(dataset_el.find('weight').text)

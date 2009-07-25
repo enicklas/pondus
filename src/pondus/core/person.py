@@ -2,7 +2,7 @@
 
 """
 This file is part of Pondus, a personal weight manager.
-Copyright (C) 2007-08  Eike Nicklas <eike@ephys.de>
+Copyright (C) 2007-09  Eike Nicklas <eike@ephys.de>
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -55,13 +55,13 @@ class Person(object):
         measurements_el = SubElement(weight_el, 'measurements')
         plan_el = SubElement(weight_el, 'plan')
         for dataset in self.measurements:
-            self.__add_dataset_to_element(dataset, measurements_el)
+            self._add_dataset_to_element(dataset, measurements_el)
         for dataset in self.plan:
-            self.__add_dataset_to_element(dataset, plan_el)
+            self._add_dataset_to_element(dataset, plan_el)
         user_tree = ElementTree(person_el)
         user_tree.write(filepath, encoding='UTF-8')
 
-    def __add_dataset_to_element(self, dataset, element):
+    def _add_dataset_to_element(self, dataset, element):
         """Adds a dataset object to an element, which is the parent in
         the ElementTree."""
         dataset_el = SubElement(element, 'dataset')

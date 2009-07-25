@@ -306,7 +306,7 @@ class MainWindow(object):
     def set_selection_active(self, widget):
         """Tests, whether a dataset is selected and sets sensitivity of
         actions accordingly."""
-        if widget.get_selected()[1] == None:
+        if widget.get_selected()[1] is None:
             self.removeaction.set_sensitive(False)
             self.editaction.set_sensitive(False)
         elif self.removeaction.get_sensitive() == False:

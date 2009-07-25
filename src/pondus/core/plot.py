@@ -76,14 +76,14 @@ class Plot(object):
         ylist_plan = [tup[1] for tup in self.plot_data_plan]
         if self.plot_smooth:
             alist_meas = [tup[2] for tup in self.plot_data_meas]
-        if len(xlist_meas) != 0:
+        if xlist_meas:
             if self.plot_raw:
                 self.ax.plot_date(dates.date2num(xlist_meas), ylist_meas, \
                                 fmt='bo-', ms=4.0)
             if self.plot_smooth:
                 self.ax.plot_date(dates.date2num(xlist_meas), alist_meas, \
                                 fmt='co-', ms=4.0)
-        if len(xlist_plan) != 0 and self.plot_plan:
+        if xlist_plan and self.plot_plan:
             self.ax.plot_date(dates.date2num(xlist_plan), ylist_plan, \
                                 fmt='ro-', ms=4.0)
         if self.plot_bmi:
