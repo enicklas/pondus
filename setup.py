@@ -24,6 +24,8 @@ import os, shutil, sys
 
 
 tmpdir = 'tmp'
+podir = 'po'
+modir = 'po/mo'
 
 def get_version():
     """Returns the current version of Pondus."""
@@ -31,6 +33,15 @@ def get_version():
     sys.path.insert(1, os.path.join(srcdir, 'src'))
     from pondus import __version__
     return __version__
+
+def get_language_codes():
+    """Returns a list of language codes of available translations"""
+    language_codes = []
+    for file_ in os.listdir(podir):
+        if not file_.endswith('.po'):
+            continue
+        language_codes.append(os.path.splitext(file_)[0])
+    return language_codes
 
 def get_scripts():
     """Returns the main script without .py extension. On windows,
@@ -50,22 +61,37 @@ def get_scripts():
 
 def create_mo():
     """Creates the .mo files to be distributed with the source."""
-    mo_dir = 'po/mo'
-    if not os.path.exists(mo_dir):
-        for lang in ['de', 'es', 'es_CO', 'fr', 'it', 'pl']:
-            po_file = os.path.join('po', lang + '.po')
-            mo_dir_lang = os.path.join(mo_dir, lang, 'LC_MESSAGES')
-            mo_file = os.path.join(mo_dir_lang, 'pondus.mo')
-            if not os.path.exists(mo_dir_lang):
-                os.makedirs(mo_dir_lang)
-            print 'generating', mo_file
-            os.system('msgfmt %s -o %s' % (po_file, mo_file))
+    if not os.path.exists(modir):
+        for lang in get_language_codes():
+            pofile = os.path.join('po', lang + '.po')
+            modir_lang = os.path.join(modir, lang, 'LC_MESSAGES')
+            mofile = os.path.join(modir_lang, 'pondus.mo')
+            if not os.path.exists(modir_lang):
+                os.makedirs(modir_lang)
+            print 'generating', mofile
+            os.system('msgfmt %s -o %s' % (pofile, mofile))
 
 def create_man():
     """Creates the gzipped man file to be distributed with the source."""
     if not os.path.exists('data/pondus.1.gz'):
         os.system('a2x -f manpage data/pondus.1.txt')
         os.system('gzip -9 data/pondus.1')
+
+def build_manifest_in():
+    files_to_include = ['AUTHORS', 'CONTRIBUTING', 'COPYING', 'INSTALL', \
+            'NEWS', 'README', 'TODO', 'data/pondus.desktop', \
+            'data/pondus.1.gz', 'data/icons/plot.png', \
+            'data/icons/pondus.png', 'data/icons/pondus.svg', \
+            'data/icons/pondus.xpm', 'src/pondus.py', \
+            'po/README', 'po/update_po.py', 'po/pondus.pot']
+    for lang in get_language_codes():
+        files_to_include.append(os.path.join(podir, '.'.join([lang, 'po'])))
+        files_to_include.append(os.path.join(modir, lang, \
+                                                'LC_MESSAGES', 'pondus.mo'))
+    manifest_in = open('MANIFEST.in', 'w')
+    for file in files_to_include:
+        manifest_in.write('include ' + file + '\n')
+    manifest_in.close()
 
 def clean_up():
     """Removes the temporarily generated data."""
@@ -80,6 +106,19 @@ define "target weights" and this plan can be compared with the actual
 measurements in a plot.
 """
 
+data_files = [
+        ('share/applications', ['data/pondus.desktop']),
+        ('share/man/man1', ['data/pondus.1.gz']),
+        ('share/doc/pondus', ['AUTHORS', 'NEWS', 'README', 'TODO']),
+        ('share/pondus', ['data/icons/plot.png']),
+        ('share/pixmaps', ['data/icons/pondus.xpm']),
+        ('share/icons/hicolor/48x48/apps', ['data/icons/pondus.png']),
+        ('share/icons/hicolor/scalable/apps', ['data/icons/pondus.svg'])]
+for lang in get_language_codes():
+    data_files.append((os.path.join('share/locale', lang, 'LC_MESSAGES'), \
+            [os.path.join(modir, lang, 'LC_MESSAGES/pondus.mo')]))
+
+build_manifest_in()
 create_mo()
 create_man()
 
@@ -92,20 +131,7 @@ setup(name = 'pondus',
       url = 'http://www.ephys.de/software/pondus/',
       license = 'GPLv3+',
       scripts = get_scripts(),
-      data_files = [
-        ('share/applications', ['data/pondus.desktop']),
-        ('share/man/man1', ['data/pondus.1.gz']),
-        ('share/doc/pondus', ['AUTHORS', 'NEWS', 'README', 'TODO']),
-        ('share/pondus', ['data/icons/plot.png']),
-        ('share/pixmaps', ['data/icons/pondus.xpm']),
-        ('share/icons/hicolor/48x48/apps', ['data/icons/pondus.png']),
-        ('share/icons/hicolor/scalable/apps', ['data/icons/pondus.svg']),
-        ('share/locale/de/LC_MESSAGES', ['po/mo/de/LC_MESSAGES/pondus.mo']),
-        ('share/locale/es/LC_MESSAGES', ['po/mo/es/LC_MESSAGES/pondus.mo']),
-        ('share/locale/es_CO/LC_MESSAGES', ['po/mo/es_CO/LC_MESSAGES/pondus.mo']),
-        ('share/locale/fr/LC_MESSAGES', ['po/mo/fr/LC_MESSAGES/pondus.mo']),
-        ('share/locale/it/LC_MESSAGES', ['po/mo/it/LC_MESSAGES/pondus.mo']),
-        ('share/locale/pl/LC_MESSAGES', ['po/mo/pl/LC_MESSAGES/pondus.mo'])],
+      data_files = data_files,
       package_dir = {'pondus': 'src/pondus'},
       packages = ['pondus', 'pondus.core', 'pondus.gui'],
       requires = ['python(>= 2.4)', 'pygtk(>=2.6)', 'matplotlib']

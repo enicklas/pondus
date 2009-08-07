@@ -5,6 +5,7 @@ syntax: glob
 *.swp
 *.html
 MANIFEST
+MANIFEST.in
 build
 dist
 data/*.gz

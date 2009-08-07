@@ -29,6 +29,16 @@ def get_version():
     from pondus import __version__
     return __version__
 
+def get_language_codes():
+    """Returns a list of language codes of available translations"""
+    language_codes = []
+    podir = '.'
+    for file_ in os.listdir(podir):
+        if not file_.endswith('.po'):
+            continue
+        language_codes.append(os.path.splitext(file_)[0])
+    return language_codes
+
 def create_pot(version, potfiles):
     """Creates pondus.pot, the template file for translations."""
     command = 'xgettext'
@@ -63,8 +73,8 @@ potfiles = [('../src/pondus/core/initialize.py'),
             ('../src/pondus/gui/dialog_save_file.py'),
             ('../src/pondus/gui/dialog_select_file.py'),
             ('../src/pondus/gui/window_main.py')]
-# list of existing translations
-languages = ['de', 'es', 'es_CO', 'fr', 'it', 'pl']
+
+languages = get_language_codes()
 version = get_version()
 
 create_pot(version, potfiles)
