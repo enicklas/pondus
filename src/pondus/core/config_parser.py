@@ -40,6 +40,7 @@ def read_config(default_config, conffile):
         if conf.has_option('preferences', 'unit_system'):
             config['preferences.unit_system'] = \
                             conf.get('preferences', 'unit_system')
+        # support legacy weight unit configuration
         elif conf.has_option('preferences', 'weight_unit'):
             if conf.get('preferences', 'weight_unit') == 'kg':
                 config['preferences.unit_system'] = 'metric'
@@ -57,13 +58,13 @@ def read_config(default_config, conffile):
 def write_config(config, conffile):
     """Writes the config dictionary to the configuration file."""
     conf = ConfigParser.RawConfigParser()
-    for key in config.iterkeys():
+    for key, value in config.iteritems():
         section, option = key.split('.')
         try:
-            conf.set(section, option, str(config[key]))
+            conf.set(section, option, str(value))
         except ConfigParser.NoSectionError:
             conf.add_section(section)
-            conf.set(section, option, str(config[key]))
+            conf.set(section, option, str(value))
     if not os.path.exists(os.path.dirname(conffile)):
         os.makedirs(os.path.dirname(conffile))
     config_file = open(conffile, 'w')

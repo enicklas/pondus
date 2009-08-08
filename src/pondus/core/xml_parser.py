@@ -65,14 +65,14 @@ def read(filepath):
             _add_dataset_to_dict(dataset_el, person_data['plan'])
     return person_data
 
-def _add_dataset_to_dict(dataset_el, datasetsdict):
+def _add_dataset_to_dict(dataset_el, datasets):
     """Adds a dataset element to a dictionary of Dataset objects."""
     dataset = Dataset(int(dataset_el.get('id')), \
                       util.str2date(dataset_el.find('date').text), \
                       float(dataset_el.find('weight').text))
-    datasetsdict[int(dataset_el.get('id'))] = dataset
+    datasets[int(dataset_el.get('id'))] = dataset
 
-def _add_dataset_to_dict_convert(dataset_el, datasetsdict):
+def _add_dataset_to_dict_convert(dataset_el, datasets):
     """Adds a dataset element to a dictionary of Dataset objects and
     converts the weight from lbs to kg."""
     weight = float(dataset_el.find('weight').text)
@@ -80,4 +80,4 @@ def _add_dataset_to_dict_convert(dataset_el, datasetsdict):
     dataset = Dataset(int(dataset_el.get('id')), \
                       util.str2date(dataset_el.find('date').text), \
                       weight)
-    datasetsdict[int(dataset_el.get('id'))] = dataset
+    datasets[int(dataset_el.get('id'))] = dataset

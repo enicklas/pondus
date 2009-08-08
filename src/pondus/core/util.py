@@ -2,7 +2,7 @@
 
 """
 This file is part of Pondus, a personal weight manager.
-Copyright (C) 2007-08  Eike Nicklas <eike@ephys.de>
+Copyright (C) 2007-09  Eike Nicklas <eike@ephys.de>
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -65,8 +65,8 @@ def get_weight_unit():
 def height_to_metric(height):
     """Converts height in cm to m/cm."""
     meters = int(height) / 100
-    cmeters = height % 100
-    return meters, cmeters
+    centimeters = height % 100
+    return meters, centimeters
 
 def height_to_imperial(height):
     """Converts height in cm to feet/inches."""
@@ -75,9 +75,9 @@ def height_to_imperial(height):
     inches = height_inches % 12
     return feet, inches
 
-def metric_to_height(meters, cmeters):
+def metric_to_height(meters, centimeters):
     """Converts height in m/cm to cm."""
-    return 100*meters + cmeters
+    return 100*meters + centimeters
 
 def imperial_to_height(feet, inches):
     """Converts height in feet/inches to cm."""

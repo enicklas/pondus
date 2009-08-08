@@ -2,7 +2,7 @@
 
 """
 This file is part of Pondus, a personal weight manager.
-Copyright (C) 2008  Eike Nicklas <eike@ephys.de>
+Copyright (C) 2008-09  Eike Nicklas <eike@ephys.de>
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -43,7 +43,9 @@ class FileLock(object):
             return
         elif not self.own_lock():
             title = _('Datafile locked, continue?')
-            message = _('Another instance of pondus seems to be editing the same datafile. Do you really want to continue and loose all the changes from the other instance?')
+            message = _('Another instance of pondus seems to be editing \
+the same datafile. Do you really want to continue and loose all the changes \
+from the other instance?')
             response = MessageDialog('question', title, message).run()
             if response == gtk.RESPONSE_YES:
                 self.take_over_lock()

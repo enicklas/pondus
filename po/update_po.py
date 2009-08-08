@@ -39,16 +39,18 @@ def get_language_codes():
         language_codes.append(os.path.splitext(file_)[0])
     return language_codes
 
-def create_pot(version, potfiles):
+def create_pot(version, files_to_translate):
     """Creates pondus.pot, the template file for translations."""
-    command = 'xgettext'
-    command += ' -L Python'
-    command += ' -o pondus.pot'
-    command += ' --package-name=Pondus'
-    command += ' --package-version=' + version
-    command += ' --msgid-bugs-address=pondus-dev@sharesource.org '
-    command += ' '.join(potfiles)
-    os.system(command)
+    gettext_command = ['xgettext']
+    gettext_options = [
+            '-L Python', \
+            '-o pondus.pot', \
+            '--package-name=Pondus', \
+            ''.join(['--package-version=', version]), \
+            '--msgid-bugs-address=pondus-dev@sharesource.org']
+    gettext_command.extend(gettext_options)
+    gettext_command.extend(files_to_translate)
+    os.system(' '.join(gettext_command))
     return None
 
 def update_po(languages):
@@ -60,7 +62,7 @@ def update_po(languages):
 
 
 # list of source files containing translatable strings
-potfiles = [('../src/pondus/core/initialize.py'),
+files_to_translate = [('../src/pondus/core/initialize.py'),
             ('../src/pondus/core/filelock.py'),
             ('../src/pondus/core/option_parser.py'),
             ('../src/pondus/core/plot.py'),
@@ -73,9 +75,9 @@ potfiles = [('../src/pondus/core/initialize.py'),
             ('../src/pondus/gui/dialog_save_file.py'),
             ('../src/pondus/gui/dialog_select_file.py'),
             ('../src/pondus/gui/window_main.py')]
-
+# list of existing translations
 languages = get_language_codes()
 version = get_version()
 
-create_pot(version, potfiles)
+create_pot(version, files_to_translate)
 update_po(languages)

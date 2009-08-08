@@ -2,7 +2,7 @@
 
 """
 This file is part of Pondus, a personal weight manager.
-Copyright (C) 2007-08  Eike Nicklas <eike@ephys.de>
+Copyright (C) 2007-09  Eike Nicklas <eike@ephys.de>
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -25,7 +25,17 @@ from pondus import __version__
 from pondus import parameters
 
 
-def set_datafilepath(filepath):
+def parse_options():
+    parser = OptionParser(version='%prog '+__version__)
+    parser.add_option('-i', '--input',
+        dest='filename',
+        help='read data from FILE instead of the standard location',
+        metavar='FILE')
+    (options, args) = parser.parse_args()
+    if options.filename:
+        _set_datafilepath(options.filename)
+
+def _set_datafilepath(filepath):
     filepath = os.path.expanduser(filepath)
     if not os.path.isabs(filepath):
         filepath = os.path.join(os.getcwd(), filepath)
@@ -37,13 +47,3 @@ def set_datafilepath(filepath):
     else:
         print _('Error: This is a directory, not a file!')
         print _('Using the standard file ~/.pondus/user_data.xml instead.')
-
-def parse_options():
-    parser = OptionParser(version='%prog '+__version__)
-    parser.add_option('-i', '--input',
-        dest='filename',
-        help='read data from FILE instead of the standard location',
-        metavar='FILE')
-    (options, args) = parser.parse_args()
-    if options.filename:
-        set_datafilepath(options.filename)

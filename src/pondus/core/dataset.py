@@ -2,7 +2,7 @@
 
 """
 This file is part of Pondus, a personal weight manager.
-Copyright (C) 2007-08  Eike Nicklas <eike@ephys.de>
+Copyright (C) 2007-09  Eike Nicklas <eike@ephys.de>
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -21,10 +21,10 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 class Dataset(object):
     """Implements the structure of single weight measurements."""
 
-    def __init__(self, myid, date, weight):
+    def __init__(self, id_, date, weight):
         """Creates a new dataset with the given values."""
         self.data = {}
-        self.id =  myid
+        self.id =  id_
         self.data['date'] = date
         self.data['weight'] = weight
 
@@ -38,9 +38,9 @@ class Dataset(object):
         self.data[key] = value
 
     def as_list(self):
-        """Returns the data of a dataset as a list."""
+        """Returns the values of a dataset as a list."""
         return [self.id] + self.data.values()
 
-    def value_list(self):
+    def as_string_list(self):
         """Returns the values of the dataset as a list of strings."""
         return [str(value) for value in self.data.itervalues()]

@@ -2,7 +2,7 @@
 
 """
 This file is part of Pondus, a personal weight manager.
-Copyright (C) 2008  Eike Nicklas <eike@ephys.de>
+Copyright (C) 2008-09  Eike Nicklas <eike@ephys.de>
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -23,31 +23,33 @@ import csv
 from pondus.core import util
 from pondus.core.dataset import Dataset
 
-def write_csv(datasetdata, csvfilepath):
+def write_csv(datasets, csvfilepath):
     """Creates a csv-file at csvfilepath containing the data from
-    datasetdata."""
+    datasets."""
     csvfile = open(csvfilepath, 'w')
     csvwriter = csv.writer(csvfile)
-    for dataset in datasetdata:
-        csvwriter.writerow(dataset.value_list())
+    for dataset in datasets:
+        csvwriter.writerow(dataset.as_string_list())
     csvfile.close()
 
-def read_csv(datasetdata, csvfilepath):
+def read_csv(datasets, csvfilepath):
     """Reads the csv-file at csvfilepath and adds the data to
-    datasetdata."""
+    datasets."""
     csvfile = open(csvfilepath, 'r')
     csvreader = csv.reader(csvfile)
     new_datasets = []
-    new_id = datasetdata.get_new_id()
+    id_ = datasets.get_new_id()
+    # try to read the datasets from the csv file
     try:
         for row in csvreader:
-            new_date = util.str2date(row[0])
-            new_weight = float(row[1])
-            dataset = Dataset(new_id, new_date, new_weight)
+            date = util.str2date(row[0])
+            weight = float(row[1])
+            dataset = Dataset(id_, date, weight)
             new_datasets.append(dataset)
-            new_id += 1
+            id_ += 1
     except:
         return False
+    # datasets were read successfully, now permanently add them
     for dataset in new_datasets:
-        datasetdata.add(dataset)
+        datasets.add(dataset)
     return True
