@@ -77,22 +77,6 @@ def create_man():
         os.system('a2x -f manpage data/pondus.1.txt')
         os.system('gzip -9 data/pondus.1')
 
-def build_manifest_in():
-    files_to_include = ['AUTHORS', 'CONTRIBUTING', 'COPYING', 'INSTALL', \
-            'NEWS', 'README', 'TODO', 'data/pondus.desktop', \
-            'data/pondus.1.gz', 'data/icons/plot.png', \
-            'data/icons/pondus.png', 'data/icons/pondus.svg', \
-            'data/icons/pondus.xpm', 'src/pondus.py', \
-            'po/README', 'po/update_po.py', 'po/pondus.pot']
-    for lang in get_language_codes():
-        files_to_include.append(os.path.join(podir, '.'.join([lang, 'po'])))
-        files_to_include.append(os.path.join(modir, lang, \
-                                                'LC_MESSAGES', 'pondus.mo'))
-    manifest_in = open('MANIFEST.in', 'w')
-    for file in files_to_include:
-        manifest_in.write('include ' + file + '\n')
-    manifest_in.close()
-
 def clean_up():
     """Removes the temporarily generated data."""
     if os.path.exists(tmpdir):
@@ -118,7 +102,6 @@ for lang in get_language_codes():
     data_files.append((os.path.join('share/locale', lang, 'LC_MESSAGES'), \
             [os.path.join(modir, lang, 'LC_MESSAGES/pondus.mo')]))
 
-build_manifest_in()
 create_mo()
 create_man()
 
