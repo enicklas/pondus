@@ -210,9 +210,7 @@ class Plot(object):
         alpha = 0.8
         avg_datapoints = 3
         smoothdata = []
-        current = data[0][1]
-        smoothdata.append((data[0][0], data[0][1], current))
-        for i in xrange(1, len(data)):
+        for i in xrange(0, len(data)):
             deltas = []
             datapoints = []
             for j in xrange(i-avg_datapoints, i+avg_datapoints+1):
