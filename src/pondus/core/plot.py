@@ -28,96 +28,71 @@ from pondus.core import util
 
 
 class Plot(object):
-    """Describes the plot figure and implements methods to modify it."""
+    """Creates the weight plot and implements methods to modify it."""
     def __init__(self):
-        """Plots the weight data vs time."""
-        self.plot_plan = parameters.config['preferences.use_weight_plan']
-        self.plot_smooth = True
-        self.plot_raw = True
-        self.plot_bmi = False
-        self.figure = Figure()
-        self.ax = self.figure.add_subplot(111)
-        self.ax.grid(True)
-        self.get_plot_data()
-        self.mindate = self.mindate_min
-        self.maxdate = self.maxdate_max
-        self.create_plot()
+        """Initializes the plot data and creates the plot."""
+        # default settings
+        self.set_plot_plan(parameters.config['preferences.use_weight_plan'])
+        self.set_plot_raw(True)
+        self.set_plot_smooth(True)
+        self.set_plot_bmi(False)
+        # get plot data and create plot
+        self._set_current_plot_data()
+        self._initialize_daterange()
+        self._create_figure()
+        self._plot_data()
+        self._format_plot()
 
-    def set_daterange(self, mindate, maxdate):
-        """Sets the desired daterange of the plot."""
-        self.mindate = mindate
-        self.maxdate = maxdate
-
+    # external api
     def set_plot_bmi(self, plot_bmi):
-        """Sets the parameter describing whether weight or BMI is
-        plotted."""
-        self.plot_bmi = plot_bmi
+        """Sets the parameter describing whether weight or BMI is plotted."""
+        self.PLOT_BMI = plot_bmi
+        if self.PLOT_BMI:
+            self.YLABEL = _('Body Mass Index')
+        else:
+            self.YLABEL = _('Weight') + ' (' + util.get_weight_unit() + ')'
 
     def set_plot_plan(self, plot_plan):
-        """Sets the parameter describing whether the weight plan is
-        plotted."""
-        self.plot_plan = plot_plan
-
-    def set_plot_smooth(self, plot_smooth):
-        """Sets the parameter describing whether we want to plot
-        the exponential average."""
-        self.plot_smooth = plot_smooth
+        """Sets the parameter describing whether the weight plan is plotted."""
+        self.PLOT_PLAN = plot_plan
 
     def set_plot_raw(self, plot_raw):
-        """Sets the parameter describing whether we want to plot
-        the actual weights."""
-        self.plot_raw = plot_raw
+        """Sets the parameter describing whether the actual weight data
+        is plotted."""
+        self.PLOT_RAW = plot_raw
 
-    def create_plot(self):
-        """Creates the plot and basic formatting."""
-        xlist_meas = [tup[0] for tup in self.plot_data_meas]
-        ylist_meas = [tup[1] for tup in self.plot_data_meas]
-        xlist_plan = [tup[0] for tup in self.plot_data_plan]
-        ylist_plan = [tup[1] for tup in self.plot_data_plan]
-        if self.plot_smooth:
-            alist_meas = [tup[2] for tup in self.plot_data_meas]
-        if xlist_meas:
-            if self.plot_raw:
-                self.ax.plot_date(dates.date2num(xlist_meas), ylist_meas, \
-                                fmt='bo-', ms=4.0)
-            if self.plot_smooth:
-                self.ax.plot_date(dates.date2num(xlist_meas), alist_meas, \
-                                fmt='co-', ms=4.0)
-        if xlist_plan and self.plot_plan:
-            self.ax.plot_date(dates.date2num(xlist_plan), ylist_plan, \
-                                fmt='ro-', ms=4.0)
-        if self.plot_bmi:
-            ylabel = _('Body Mass Index')
-        else:
-            ylabel = _('Weight') + ' (' + util.get_weight_unit() + ')'
-        self.ax.set_ylabel(ylabel)
+    def set_plot_smooth(self, plot_smooth):
+        """Sets the parameter describing whether the smoothed weight data
+        is plotted."""
+        self.PLOT_SMOOTH = plot_smooth
 
-    def format_plot(self):
-        """Formats the plot, i.e. sets limits, ticks, etc."""
-        daterange = self.maxdate - self.mindate
-        majorlocator, majorformatter, minorlocator = get_locators(daterange)
+    def get_plot_plan(self):
+        """Returns the parameter describing whether the weight plan is
+        plotted."""
+        return self.PLOT_PLAN
 
-        y_min, y_max = self.get_yrange()
-        if y_min is not None:
-            self.ax.set_ylim(y_min, y_max)
+    def get_mindate(self):
+        """Returns the minimum date in the datasets."""
+        return self.MINDATE
 
-        self.ax.set_xlim(dates.date2num(self.mindate), \
-                         dates.date2num(self.maxdate))
-        self.ax.xaxis.set_major_locator(majorlocator)
-        self.ax.xaxis.set_major_formatter(majorformatter)
-        self.ax.xaxis.set_minor_locator(minorlocator)
+    def get_maxdate(self):
+        """Returns the maximum date in the datasets."""
+        return self.MAXDATE
 
-    def update_daterange(self, mindate, maxdate):
-        """Updates the plot formatting and redraws the plot."""
-        self.set_daterange(mindate, maxdate)
-        self.format_plot()
+    def set_plotrange(self, start_date, end_date):
+        """Updates the axis scaling of the plot."""
+        self.start_date, self.end_date = start_date, end_date
+        self._format_plot()
         self.figure.canvas.draw()
 
-    def update_plot_type(self):
-        self.ax.lines = []
-        self.get_plot_data()
-        self.create_plot()
-        self.format_plot()
+    def update_plot(self):
+        """Updates the plot with the current settings."""
+        # clear old plot data...
+        self.ax.clear()
+        # ...and create the new data
+        self._set_current_plot_data()
+        self._plot_data()
+        self._format_plot()
         self.figure.canvas.draw()
 
     def save_to_file(self, filename):
@@ -126,44 +101,41 @@ class Plot(object):
         print _('Saving plot to'), filename
         self.figure.savefig(filename, format=filename[-3:])
 
-    def get_yrange(self):
-        """Returns the minimum and the maximum y-value in the given date
-        range."""
-        if self.plot_bmi:
-            y_offset = 0.1
+    # internal helper methods
+    def _set_current_plot_data(self):
+        """Updates the plot data according to the current settings."""
+        self.plot_data_measurement = \
+                        self._get_plot_data(user_data.user.measurements)
+        # for performance improvements, only get plan data if really needed
+        if self.PLOT_PLAN:
+            self.plot_data_plan = self._get_plot_data(user_data.user.plan)
         else:
-            y_offset = 0.5
-        y_min_meas, y_max_meas = self.get_yrange_data(self.plot_data_meas)
-        y_min_plan, y_max_plan = self.get_yrange_data(self.plot_data_plan)
-        y_min, y_max = util.compare_with_possible_nones( \
-            y_min_meas, y_max_meas, y_min_plan, y_max_plan)
-        # y_min, y_max can be None if no datasets in selected daterange
-        if y_min is not None:
-            y_min -= y_offset
-            y_max += y_offset
-        return y_min, y_max
+            self.plot_data_plan = []
+        if self.PLOT_SMOOTH:
+            self.plot_data_measurement = \
+                            _smooth_data(self.plot_data_measurement)
 
-    def get_yrange_data(self, datasets):
-        """Returns the minimum and the maximum y-value in the plot data.
-        Returns None, None if no measurements exist in the chosen date
-        range."""
-        try:
-            minweight = min(dataset[1] \
-                for dataset in datasets \
-                if self.mindate <= dataset[0] <= self.maxdate)
-            maxweight = max(dataset[1] \
-                for dataset in datasets \
-                if self.mindate <= dataset[0] <= self.maxdate)
-            return minweight, maxweight
-        except ValueError:
-            return None, None
+    def _get_plot_data(self, datasets):
+        """Returns the list of datatuples to be plotted."""
+        if self.PLOT_BMI:
+            data = [(dataset.get('date'), \
+                    util.bmi(dataset.get('weight'), user_data.user.height)) \
+                    for dataset in datasets]
+        elif parameters.config['preferences.unit_system'] == 'imperial':
+            data = [(dataset.get('date'), \
+                    util.kg_to_lbs(dataset.get('weight'))) \
+                    for dataset in datasets]
+        else:
+            data = [(dataset.get('date'), dataset.get('weight')) \
+                                for dataset in datasets]
+        data.sort()
+        return data
 
-    def get_max_daterange(self):
-        """Returns the minimum and the maximum date in the available
-        data."""
+    def _initialize_daterange(self):
+        """Sets the minimum and the maximum date in the available data."""
         try:
-            mindate_meas = self.plot_data_meas[0][0]
-            maxdate_meas = self.plot_data_meas[-1][0]
+            mindate_meas = self.plot_data_measurement[0][0]
+            maxdate_meas = self.plot_data_measurement[-1][0]
         except IndexError:
             mindate_meas = None
             maxdate_meas = None
@@ -173,66 +145,113 @@ class Plot(object):
         except IndexError:
             mindate_plan = None
             maxdate_plan = None
-        mindate, maxdate = util.compare_with_possible_nones( \
-            mindate_meas, maxdate_meas, mindate_plan, maxdate_plan)
-        return mindate, maxdate
+        self.MINDATE, self.MAXDATE = util.compare_with_possible_nones( \
+                    mindate_meas, maxdate_meas, mindate_plan, maxdate_plan)
+        self.start_date, self.end_date = self.MINDATE, self.MAXDATE
 
-    def get_plot_data(self):
-        """Gets the data to be plotted."""
-        self.plot_data_meas = self.get_datasets(user_data.user.measurements)
-        if self.plot_smooth:
-            self.plot_data_meas = self.smooth_data(self.plot_data_meas)
-        if self.plot_plan:
-            self.plot_data_plan = self.get_datasets(user_data.user.plan)
+    def _create_figure(self):
+        """Creates the figure object containing the plot."""
+        self.figure = Figure()
+        self.ax = self.figure.add_subplot(111)
+
+    def _plot_data(self):
+        """Plots the data."""
+        if self.PLOT_RAW and self.plot_data_measurement:
+            xvalues = [tup[0] for tup in self.plot_data_measurement]
+            yvalues = [tup[1] for tup in self.plot_data_measurement]
+            self.ax.plot_date(dates.date2num(xvalues), yvalues, \
+                            fmt='bo-', ms=4.0)
+        if self.PLOT_SMOOTH and self.plot_data_measurement:
+            xvalues = [tup[0] for tup in self.plot_data_measurement]
+            yvalues = [tup[2] for tup in self.plot_data_measurement]
+            self.ax.plot_date(dates.date2num(xvalues), yvalues, \
+                            fmt='co-', ms=4.0)
+        if self.PLOT_PLAN and self.plot_data_plan:
+            xvalues = [tup[0] for tup in self.plot_data_plan]
+            yvalues = [tup[1] for tup in self.plot_data_plan]
+            self.ax.plot_date(dates.date2num(xvalues), yvalues, \
+                            fmt='ro-', ms=4.0)
+
+    def _format_plot(self):
+        """Formats the plot, i.e. scales axes, sets ticks, etc."""
+        # enable grid
+        self.ax.grid(True)
+        # format x-axis
+        daterange = self.end_date - self.start_date
+        majorlocator, majorformatter, minorlocator = _get_locators(daterange)
+        self.ax.set_xlim(dates.date2num(self.start_date), \
+                         dates.date2num(self.end_date))
+        self.ax.xaxis.set_major_locator(majorlocator)
+        self.ax.xaxis.set_major_formatter(majorformatter)
+        self.ax.xaxis.set_minor_locator(minorlocator)
+        # format y-axis
+        y_min, y_max = self._get_ylimits()
+        if y_min is not None:
+            self.ax.set_ylim(y_min, y_max)
+        # set label on y-axis
+        self.ax.set_ylabel(self.YLABEL)
+
+    def _get_ylimits(self):
+        """Returns the minimum and the maximum y-value in the current date
+        range. Offsets are used for proper axis scaling."""
+        if self.PLOT_BMI:
+            y_offset = 0.1
         else:
-            self.plot_data_plan = []
-        self.mindate_min, self.maxdate_max = self.get_max_daterange()
+            y_offset = 0.5
+        y_min, y_max = self._get_yrange(self.plot_data_measurement)
+        if self.PLOT_PLAN:
+            y_min_plan, y_max_plan = self._get_yrange(self.plot_data_plan)
+            y_min, y_max = util.compare_with_possible_nones( \
+                                y_min, y_max, y_min_plan, y_max_plan)
+        # y_min, y_max can be None if no datasets in selected daterange
+        if y_min is not None:
+            y_min -= y_offset
+            y_max += y_offset
+        return y_min, y_max
 
-    def get_datasets(self, datasets):
-        """Returns the list of datatuples to be plotted."""
-        if self.plot_bmi:
-            data = [(dataset.get('date'), \
-                util.bmi(dataset.get('weight'), user_data.user.height)) \
-                for dataset in datasets]
-        else:
-            if parameters.config['preferences.unit_system'] == 'metric':
-                data = [(dataset.get('date'), dataset.get('weight')) \
-                        for dataset in datasets]
-            else:
-                data = [(dataset.get('date'), \
-                        util.kg_to_lbs(dataset.get('weight'))) \
-                        for dataset in datasets]
-        data.sort()
-        return data
-
-    def smooth_data(self, data):
-        """Computes exponential central moving average."""
-        alpha = 0.8
-        avg_datapoints = 3
-        smoothdata = []
-        for i in xrange(0, len(data)):
-            deltas = []
-            datapoints = []
-            for j in xrange(i-avg_datapoints, i+avg_datapoints+1):
-                try:
-                    delta = abs((data[j][0] - data[i][0]).days)
-                    deltas.append(delta)
-                    datapoints.append(data[j][1])
-                except:
-                    pass
-            weighting = []
-            for delta in deltas:
-                weighting.append(alpha**(delta))
-            weighted_data = [datapoints[k]*weighting[k] \
-                                for k in xrange(len(datapoints))]
-            weighted_average = sum(weighted_data)/sum(weighting)
-            smoothdata.append((data[i][0], data[i][1], weighted_average))
-        return smoothdata
+    def _get_yrange(self, datasets):
+        """Returns the minimum and the maximum y-value in the given datasets.
+        Returns None, None if no measurements exist in the current date
+        range."""
+        try:
+            y_min = min(dataset[1] for dataset in datasets \
+                        if self.start_date <= dataset[0] <= self.end_date)
+            y_max = max(dataset[1] for dataset in datasets \
+                        if self.start_date <= dataset[0] <= self.end_date)
+            return y_min, y_max
+        except ValueError:
+            return None, None
 
 
-def get_locators(daterange):
-    """Returns sane locators and formatters for the given
-    daterange."""
+# internal helper functions
+def _smooth_data(data):
+    """Computes exponential central moving average."""
+    # attenuation factor reducing the weight of neighboring datasets
+    alpha = 0.8
+    # number of datapoints to average
+    avg_datapoints = 3
+    smooth_data = []
+    for i in xrange(0, len(data)):
+        deltas = []
+        datapoints = []
+        for j in xrange(i-avg_datapoints, i+avg_datapoints+1):
+            try:
+                delta = abs((data[j][0] - data[i][0]).days)
+                deltas.append(delta)
+                datapoints.append(data[j][1])
+            except IndexError:
+                pass
+        weights = []
+        for delta in deltas:
+            weights.append(alpha**(delta))
+        weighted_data = [datapoints[k]*weights[k] \
+                            for k in xrange(len(datapoints))]
+        weighted_average = sum(weighted_data)/sum(weights)
+        smooth_data.append((data[i][0], data[i][1], weighted_average))
+    return smooth_data
+
+def _get_locators(daterange):
+    """Returns sane locators and formatters for the given daterange."""
     if daterange >= timedelta(days=8000):
         majorlocator = dates.YearLocator(10)
         majorformatter = dates.DateFormatter("%Y")

@@ -89,8 +89,8 @@ class PlotDialog(object):
         self.smoothselector.set_active(0)
         plot_options_box.pack_start(self.smoothselector, False, False)
         self.plot_plan = gtk.CheckButton(_('Include Weight Plan'))
-        self.plot_plan.set_active(self.plot.plot_plan)
-        self.plot_plan.set_sensitive(self.plot.plot_plan)
+        self.plot_plan.set_active(self.plot.get_plot_plan())
+        self.plot_plan.set_sensitive(self.plot.get_plot_plan())
         plot_options_box.pack_start(self.plot_plan, True, False)
         self.dialog.vbox.pack_start(plot_options_box, False, False)
 
@@ -136,7 +136,7 @@ class PlotDialog(object):
             message = _('The start date has to be before the end date!')
             MessageDialog(type='error', title=title, message=message).run()
             return
-        self.plot.update_daterange(mindate, maxdate)
+        self.plot.set_plotrange(mindate, maxdate)
         self.dateselector.set_active(4)
 
     def update_daterange(self, dateselector):
@@ -145,7 +145,7 @@ class PlotDialog(object):
         start_date, end_date = self.get_daterange()
         self.start_date_entry.set_text(str(start_date))
         self.end_date_entry.set_text(str(end_date))
-        self.plot.update_daterange(start_date, end_date)
+        self.plot.set_plotrange(start_date, end_date)
 
     def update_plot_type(self, plotselector):
         """Redraws the plot with the desired data (weight or bmi)."""
@@ -154,7 +154,7 @@ class PlotDialog(object):
             self.plot.set_plot_bmi(False)
         elif key == 1:
             self.plot.set_plot_bmi(True)
-        self.plot.update_plot_type()
+        self.plot.update_plot()
 
     def update_plot_smoothness(self, smoothselector):
         """Redraws the plot with the desired data (raw or smoothed)."""
@@ -168,7 +168,7 @@ class PlotDialog(object):
         elif key == 2:
             self.plot.set_plot_smooth(True)
             self.plot.set_plot_raw(False)
-        self.plot.update_plot_type()
+        self.plot.update_plot()
 
     def save_plot(self, button):
         """Runs the dialog to save the plot to a file."""
@@ -182,7 +182,7 @@ class PlotDialog(object):
     def on_toggle_plot_plan(self, plot_plan_button):
         """Redraws the plot and in-/excludes the weight plan."""
         self.plot.set_plot_plan(plot_plan_button.get_active())
-        self.plot.update_plot_type()
+        self.plot.update_plot()
 
     # helper functions
 
@@ -192,8 +192,8 @@ class PlotDialog(object):
         key = self.dateselector.get_active()
         if key == 0:
             dateoffset = timedelta(days=10)
-            mindate = self.plot.mindate_min - dateoffset
-            maxdate = self.plot.maxdate_max + dateoffset
+            mindate = self.plot.get_mindate() - dateoffset
+            maxdate = self.plot.get_maxdate() + dateoffset
         elif key == 1:
             # select last year
             dateoffset = timedelta(days=4)
@@ -215,8 +215,8 @@ class PlotDialog(object):
         return mindate, maxdate
 
     def set_dateselector_default(self):
-        if self.plot.mindate_min > date.today() - timedelta(days=91) \
-                or self.plot.maxdate_max < date.today() - timedelta(days=91):
+        if self.plot.get_mindate() > date.today() - timedelta(days=91) \
+                or self.plot.get_maxdate() < date.today() - timedelta(days=91):
             self.dateselector.set_active(0)
         else:
             self.dateselector.set_active(2)
