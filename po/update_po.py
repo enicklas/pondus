@@ -25,7 +25,7 @@ import os, sys
 def get_version():
     """Returns the current version of Pondus."""
     srcdir = os.path.dirname(os.path.abspath(sys.path[0]))
-    sys.path.insert(1, os.path.join(srcdir, 'src'))
+    sys.path.insert(1, srcdir)
     from pondus import __version__
     return __version__
 
@@ -62,19 +62,19 @@ def update_po(languages):
 
 
 # list of source files containing translatable strings
-files_to_translate = [('../src/pondus/core/initialize.py'),
-            ('../src/pondus/core/filelock.py'),
-            ('../src/pondus/core/option_parser.py'),
-            ('../src/pondus/core/plot.py'),
-            ('../src/pondus/core/util.py'),
-            ('../src/pondus/gui/dialog_add.py'),
-            ('../src/pondus/gui/dialog_csv_export.py'),
-            ('../src/pondus/gui/dialog_csv_import.py'),
-            ('../src/pondus/gui/dialog_plot.py'),
-            ('../src/pondus/gui/dialog_preferences.py'),
-            ('../src/pondus/gui/dialog_save_file.py'),
-            ('../src/pondus/gui/dialog_select_file.py'),
-            ('../src/pondus/gui/window_main.py')]
+files_to_translate = [('../pondus/core/initialize.py'),
+            ('../pondus/core/filelock.py'),
+            ('../pondus/core/option_parser.py'),
+            ('../pondus/core/plot.py'),
+            ('../pondus/core/util.py'),
+            ('../pondus/gui/dialog_add.py'),
+            ('../pondus/gui/dialog_csv_export.py'),
+            ('../pondus/gui/dialog_csv_import.py'),
+            ('../pondus/gui/dialog_plot.py'),
+            ('../pondus/gui/dialog_preferences.py'),
+            ('../pondus/gui/dialog_save_file.py'),
+            ('../pondus/gui/dialog_select_file.py'),
+            ('../pondus/gui/window_main.py')]
 # list of existing translations
 languages = get_language_codes()
 version = get_version()

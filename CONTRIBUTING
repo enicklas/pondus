@@ -19,7 +19,7 @@ new bugs or other problems, you can get the latest version from
 http://hg.sharesource.org/pondus[] or http://bitbucket.org/eike/pondus/[]
 or, if you have Mercurial installed, type
 `hg clone http://hg.sharesource.org/pondus`. This version can be tested
-without installation by executing `src/pondus.py`.
+without installation by executing `pondus.py`.
 
 Translating
 -------------

@@ -6,7 +6,7 @@ include MANIFEST.in
 include NEWS
 include README
 include TODO
-include src/pondus.py
+include pondus.py
 include data/pondus.desktop
 include data/pondus.1.gz
 include data/icons/plot.png

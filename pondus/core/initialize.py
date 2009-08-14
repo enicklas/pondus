@@ -30,16 +30,16 @@ from pondus.core.filelock import FileLock
 
 def gettext_install():
     """Installs string translations; uses local data if available."""
-    basepath = os.path.dirname(os.path.abspath(sys.path[0]))
+    basepath = os.path.abspath(sys.path[0])
     if os.path.exists(os.path.join(basepath, 'po/mo')):
         gettext.install('pondus', os.path.join(basepath, 'po/mo'))
     else:
-        gettext.install('pondus', os.path.join(basepath, 'share/locale'))
+        gettext.install('pondus', os.path.join(basepath, '../share/locale'))
 
 def get_path(localpath, syspath, filename):
     """Returns the full path to the file with filename. If it exists,
     localpath is used, otherwise the corresponding system directory."""
-    basepath = os.path.dirname(os.path.abspath(sys.path[0]))
+    basepath = os.path.abspath(sys.path[0])
     localfilepath = os.path.join(basepath, localpath, filename)
     if os.path.exists(localfilepath):
         return localfilepath
@@ -99,8 +99,8 @@ def initialize():
     parameters.filelock = FileLock()
     parameters.have_mpl = test_mpl()
     parameters.plot_button_path = get_path('data/icons/', \
-                        'share/pondus/', 'plot.png')
+                        '../share/pondus/', 'plot.png')
     parameters.logo_path = get_path('data/icons/', \
-                        'share/icons/hicolor/48x48/apps/', 'pondus.png')
+                        '../share/icons/hicolor/48x48/apps/', 'pondus.png')
     parameters.config = config_parser.read_config( \
                     parameters.config_default, parameters.configfile)

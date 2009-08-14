@@ -9,7 +9,7 @@ are available.
 Testing without installation
 ------------------------------
 
-You can test pondus without installing it by executing `src/pondus.py`.
+You can test pondus without installing it by executing `pondus.py`.
 
 
 Installation Instructions

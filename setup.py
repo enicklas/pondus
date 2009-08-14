@@ -22,17 +22,11 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 from distutils.core import setup
 import os, shutil, sys
 
+from pondus import __version__
 
 tmpdir = 'tmp'
 podir = 'po'
 modir = 'po/mo'
-
-def get_version():
-    """Returns the current version of Pondus."""
-    srcdir = os.path.abspath(sys.path[0])
-    sys.path.insert(1, os.path.join(srcdir, 'src'))
-    from pondus import __version__
-    return __version__
 
 def get_language_codes():
     """Returns a list of language codes of available translations"""
@@ -56,7 +50,7 @@ def get_scripts():
             scriptpath = os.path.join(tmpdir, 'pondus')
         if not os.path.exists(tmpdir):
             os.makedirs(tmpdir)
-        shutil.copyfile('src/pondus.py', scriptpath)
+        shutil.copyfile('pondus.py', scriptpath)
         return [scriptpath]
 
 def create_mo():
@@ -106,7 +100,7 @@ create_mo()
 create_man()
 
 setup(name = 'pondus',
-      version = get_version(),
+      version = __version__,
       description = 'personal weight manager',
       long_description = long_description,
       author = 'Eike Nicklas',
@@ -115,7 +109,7 @@ setup(name = 'pondus',
       license = 'GPLv3+',
       scripts = get_scripts(),
       data_files = data_files,
-      package_dir = {'pondus': 'src/pondus'},
+      package_dir = {'pondus': 'pondus'},
       packages = ['pondus', 'pondus.core', 'pondus.gui'],
       requires = ['python(>= 2.4)', 'pygtk(>=2.6)', 'matplotlib']
       )
