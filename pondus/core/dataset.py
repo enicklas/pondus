@@ -23,10 +23,8 @@ class Dataset(object):
 
     def __init__(self, id_, date, weight):
         """Creates a new dataset with the given values."""
-        self.data = {}
         self.id =  id_
-        self.data['date'] = date
-        self.data['weight'] = weight
+        self.data = dict(date=date, weight=weight)
 
     def get(self, key):
         """Returns the value of the dataset corresponding to key or
