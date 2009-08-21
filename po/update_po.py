@@ -22,14 +22,14 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 import os, sys
 
 
-def get_version():
+def _get_version():
     """Returns the current version of Pondus."""
     srcdir = os.path.dirname(os.path.abspath(sys.path[0]))
     sys.path.insert(1, srcdir)
     from pondus import __version__
     return __version__
 
-def get_language_codes():
+def _get_language_codes():
     """Returns a list of language codes of available translations"""
     language_codes = []
     podir = '.'
@@ -39,7 +39,7 @@ def get_language_codes():
         language_codes.append(os.path.splitext(file_)[0])
     return language_codes
 
-def create_pot(version, files_to_translate):
+def _create_pot(version, files_to_translate):
     """Creates pondus.pot, the template file for translations."""
     gettext_command = ['xgettext']
     gettext_options = [
@@ -53,31 +53,31 @@ def create_pot(version, files_to_translate):
     os.system(' '.join(gettext_command))
     return None
 
-def update_po(languages):
+def _update_po(languages):
     """Merges the existing .po files with the new pondus.pot."""
     for lang in languages:
         command = 'msgmerge --update ' + lang + '.po pondus.pot'
         os.system(command)
     return None
 
+if __name__ == '__main__':
+    # list of source files containing translatable strings
+    files_to_translate = [('../pondus/core/initialize.py'),
+                ('../pondus/core/filelock.py'),
+                ('../pondus/core/option_parser.py'),
+                ('../pondus/core/plot.py'),
+                ('../pondus/core/util.py'),
+                ('../pondus/gui/dialog_add.py'),
+                ('../pondus/gui/dialog_csv_export.py'),
+                ('../pondus/gui/dialog_csv_import.py'),
+                ('../pondus/gui/dialog_plot.py'),
+                ('../pondus/gui/dialog_preferences.py'),
+                ('../pondus/gui/dialog_save_file.py'),
+                ('../pondus/gui/dialog_select_file.py'),
+                ('../pondus/gui/window_main.py')]
+    # list of existing translations
+    languages = _get_language_codes()
+    version = _get_version()
 
-# list of source files containing translatable strings
-files_to_translate = [('../pondus/core/initialize.py'),
-            ('../pondus/core/filelock.py'),
-            ('../pondus/core/option_parser.py'),
-            ('../pondus/core/plot.py'),
-            ('../pondus/core/util.py'),
-            ('../pondus/gui/dialog_add.py'),
-            ('../pondus/gui/dialog_csv_export.py'),
-            ('../pondus/gui/dialog_csv_import.py'),
-            ('../pondus/gui/dialog_plot.py'),
-            ('../pondus/gui/dialog_preferences.py'),
-            ('../pondus/gui/dialog_save_file.py'),
-            ('../pondus/gui/dialog_select_file.py'),
-            ('../pondus/gui/window_main.py')]
-# list of existing translations
-languages = get_language_codes()
-version = get_version()
-
-create_pot(version, files_to_translate)
-update_po(languages)
+    _create_pot(version, files_to_translate)
+    _update_po(languages)

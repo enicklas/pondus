@@ -28,7 +28,7 @@ tmpdir = 'tmp'
 podir = 'po'
 modir = 'po/mo'
 
-def get_language_codes():
+def _get_language_codes():
     """Returns a list of language codes of available translations"""
     language_codes = []
     for file_ in os.listdir(podir):
@@ -37,7 +37,7 @@ def get_language_codes():
         language_codes.append(os.path.splitext(file_)[0])
     return language_codes
 
-def get_scripts():
+def _get_scripts():
     """Returns the main script without .py extension. On windows,
     a script with an extension is used. When building a source
     distribution, no script is returned."""
@@ -53,10 +53,10 @@ def get_scripts():
         shutil.copyfile('pondus.py', scriptpath)
         return [scriptpath]
 
-def create_mo():
+def _create_mo():
     """Creates the .mo files to be distributed with the source."""
     if not os.path.exists(modir):
-        for lang in get_language_codes():
+        for lang in _get_language_codes():
             pofile = os.path.join('po', lang + '.po')
             modir_lang = os.path.join(modir, lang, 'LC_MESSAGES')
             mofile = os.path.join(modir_lang, 'pondus.mo')
@@ -65,16 +65,17 @@ def create_mo():
             print 'generating', mofile
             os.system('msgfmt %s -o %s' % (pofile, mofile))
 
-def create_man():
+def _create_man():
     """Creates the gzipped man file to be distributed with the source."""
     if not os.path.exists('data/pondus.1.gz'):
         os.system('a2x -f manpage data/pondus.1.txt')
         os.system('gzip -9 data/pondus.1')
 
-def clean_up():
+def _clean_up():
     """Removes the temporarily generated data."""
     if os.path.exists(tmpdir):
         shutil.rmtree(tmpdir)
+
 
 long_description = """
 Pondus keeps track of your body weight. It aims to be simple to use,
@@ -92,12 +93,12 @@ data_files = [
         ('share/pixmaps', ['data/icons/pondus.xpm']),
         ('share/icons/hicolor/48x48/apps', ['data/icons/pondus.png']),
         ('share/icons/hicolor/scalable/apps', ['data/icons/pondus.svg'])]
-for lang in get_language_codes():
+for lang in _get_language_codes():
     data_files.append((os.path.join('share/locale', lang, 'LC_MESSAGES'), \
             [os.path.join(modir, lang, 'LC_MESSAGES/pondus.mo')]))
 
-create_mo()
-create_man()
+_create_mo()
+_create_man()
 
 setup(name = 'pondus',
       version = __version__,
@@ -107,11 +108,11 @@ setup(name = 'pondus',
       author_email = 'eike@ephys.de',
       url = 'http://www.ephys.de/software/pondus/',
       license = 'GPLv3+',
-      scripts = get_scripts(),
+      scripts = _get_scripts(),
       data_files = data_files,
       package_dir = {'pondus': 'pondus'},
       packages = ['pondus', 'pondus.core', 'pondus.gui'],
       requires = ['python(>= 2.4)', 'pygtk(>=2.6)', 'matplotlib']
       )
 
-clean_up()
+_clean_up()

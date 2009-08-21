@@ -28,7 +28,7 @@ from pondus.core import option_parser
 from pondus.core.filelock import FileLock
 
 
-def gettext_install():
+def _gettext_install():
     """Installs string translations; uses local data if available."""
     basepath = os.path.abspath(sys.path[0])
     if os.path.exists(os.path.join(basepath, 'po/mo')):
@@ -36,7 +36,7 @@ def gettext_install():
     else:
         gettext.install('pondus', os.path.join(basepath, '../share/locale'))
 
-def get_path(localpath, syspath, filename):
+def _get_path(localpath, syspath, filename):
     """Returns the full path to the file with filename. If it exists,
     localpath is used, otherwise the corresponding system directory."""
     basepath = os.path.abspath(sys.path[0])
@@ -49,7 +49,7 @@ def get_path(localpath, syspath, filename):
     else:
         print _('Error: Could not find'), sysfilepath
 
-def test_mpl():
+def _test_mpl_availability():
     """Tests availability of matplotlib to decide whether plotting
     should be enlabled."""
     try:
@@ -60,7 +60,7 @@ def test_mpl():
     else:
         return True
 
-def test_gtk():
+def _test_gtk_availability():
     """Tests availability of pygtk and quits if not found."""
     try:
         import gtk
@@ -69,7 +69,7 @@ def test_gtk():
         print _('Please make sure this library is installed.')
         sys.exit(1)
 
-def test_etree():
+def _test_etree_availability():
     """Tests availability of ElementTree and quits if not found."""
     try:
         from xml.etree.cElementTree import parse
@@ -91,16 +91,16 @@ def check_datadir(filepath):
 def initialize():
     """Initializes the main program with the non-default values and checks
     availability of dependencies."""
-    gettext_install()
+    _gettext_install()
     option_parser.parse_options()
-    test_gtk()
-    test_etree()
+    _test_gtk_availability()
+    _test_etree_availability()
     check_datadir(parameters.userdatafile)
     parameters.filelock = FileLock()
-    parameters.have_mpl = test_mpl()
-    parameters.plot_button_path = get_path('data/icons/', \
+    parameters.have_mpl = _test_mpl_availability()
+    parameters.plot_button_path = _get_path('data/icons/', \
                         '../share/pondus/', 'plot.png')
-    parameters.logo_path = get_path('data/icons/', \
+    parameters.logo_path = _get_path('data/icons/', \
                         '../share/icons/hicolor/48x48/apps/', 'pondus.png')
     parameters.config = config_parser.read_config( \
                     parameters.config_default, parameters.configfile)
