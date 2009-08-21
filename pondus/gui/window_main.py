@@ -28,8 +28,7 @@ from pondus.gui import guiutil
 from pondus.gui.dialog_add import AddDataDialog
 from pondus.gui.dialog_message import MessageDialog
 from pondus.gui.dialog_preferences import PreferencesDialog
-from pondus.gui.dialog_csv_import import CSVDialogImport
-from pondus.gui.dialog_csv_export import CSVDialogExport
+from pondus.gui.dialog_csv import CSVDialogExport, CSVDialogImport
 
 if parameters.have_mpl:
     from pondus.gui.dialog_plot import PlotDialog

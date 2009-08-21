@@ -25,21 +25,22 @@ from pondus import parameters, user_data
 from pondus.core import csv_parser
 from pondus.gui.dialog_message import MessageDialog
 from pondus.gui.dialog_save_file import SaveFileDialog
+from pondus.gui.dialog_select_file import SelectFileDialog
 
 
-class CSVDialogExport(object):
-    """Displays the csv export dialog."""
+class CSVDialogBase(object):
+    """Common base class for the csv ex-/import dialogs."""
 
-    def __init__(self):
+    def __init__(self, title, data_label_text, file_label_text):
         self.dialog = gtk.Dialog(flags=gtk.DIALOG_NO_SEPARATOR)
-        self.dialog.set_title(_('CSV Export'))
+        self.dialog.set_title(title)
 
         self.datasets = user_data.user.measurements
         self.filename = _('weight.csv')
 
         databox = gtk.VBox()
         databox.set_border_width(5)
-        data_label = gtk.Label(_('Data to export:'))
+        data_label = gtk.Label(data_label_text)
         data_label.set_alignment(xalign=0, yalign=0.5)
         databox.pack_start(data_label)
         self.data_button = gtk.RadioButton(label=_('Weight Measurements'))
@@ -56,7 +57,7 @@ class CSVDialogExport(object):
 
         filebox = gtk.VBox()
         filebox.set_border_width(5)
-        file_label = gtk.Label(_('CSV File to save to:'))
+        file_label = gtk.Label(file_label_text)
         file_label.set_alignment(xalign=0, yalign=0.5)
         filebox.pack_start(file_label)
         filehbox = gtk.HBox(homogeneous=False, spacing=5)
@@ -78,6 +79,24 @@ class CSVDialogExport(object):
 
         # show the content
         self.dialog.show_all()
+
+    def on_data_change(self, widget, key):
+        """Updates the datasets to be im-/exported."""
+        if widget.get_active():
+            if key == 'meas':
+                self.datasets = user_data.user.measurements
+            elif key == 'plan':
+                self.datasets = user_data.user.plan
+
+
+class CSVDialogExport(CSVDialogBase):
+    """Constructs the csv export dialog."""
+
+    def __init__(self):
+        title = _('CSV Export')
+        data_label_text = _('Data to export:')
+        file_label_text = _('CSV File to save to:')
+        CSVDialogBase.__init__(self, title, data_label_text, file_label_text)
 
     def run(self):
         """Runs the dialog and closes it afterwards."""
@@ -101,10 +120,45 @@ class CSVDialogExport(object):
         if newpath is not None:
             self.file_entry.set_text(newpath)
 
-    def on_data_change(self, widget, key):
-        """Updates the datasets to be exported."""
-        if widget.get_active():
-            if key == 'meas':
-                self.datasets = user_data.user.measurements
-            elif key == 'plan':
-                self.datasets = user_data.user.plan
+
+class CSVDialogImport(CSVDialogBase):
+    """Constructs the csv import dialog."""
+
+    def __init__(self):
+        title = _('CSV Import')
+        data_label_text = _('Import data to:')
+        file_label_text = _('CSV File to read from:')
+        CSVDialogBase.__init__(self, title, data_label_text, file_label_text)
+
+    def run(self):
+        """Runs the dialog and closes it afterwards."""
+        response = self.dialog.run()
+        if response == gtk.RESPONSE_OK:
+            filepath = os.path.expanduser(self.file_entry.get_text())
+            if os.path.isfile(filepath):
+                self.importcsv(filepath)
+            else:
+                title = _('Error: Not a valid File')
+                message = _('The given path does not point to a valid file!')
+                MessageDialog(type_='error', title=title, \
+                                                    message=message).run()
+                return self.run()
+        self.dialog.hide()
+
+    def importcsv(self, filepath):
+        """Imports the data from the csv file."""
+        if csv_parser.read_csv(self.datasets, filepath):
+            title = _('Import successful')
+            message = _('The import was successful.')
+            MessageDialog(type_='info', title=title, message=message).run()
+        else:
+            title = _('Import not successful')
+            message = _('An error occured during the import.')
+            MessageDialog(type_='error', title=title, message=message).run()
+
+    def select_file(self, button):
+        """Runs the file selection dialog and updates the file entry
+        accordingly."""
+        newpath = SelectFileDialog().run()
+        if newpath is not None:
+            self.file_entry.set_text(newpath)
