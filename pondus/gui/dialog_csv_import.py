@@ -2,7 +2,7 @@
 
 """
 This file is part of Pondus, a personal weight manager.
-Copyright (C) 2008  Eike Nicklas <eike@ephys.de>
+Copyright (C) 2008-09  Eike Nicklas <eike@ephys.de>
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -34,7 +34,7 @@ class CSVDialogImport(object):
         self.dialog = gtk.Dialog(flags=gtk.DIALOG_NO_SEPARATOR)
         self.dialog.set_title(_('CSV Import'))
 
-        self.datasetdata = user_data.user.measurements
+        self.datasets = user_data.user.measurements
         self.filename = _('weight.csv')
 
         databox = gtk.VBox()
@@ -89,20 +89,21 @@ class CSVDialogImport(object):
             else:
                 title = _('Error: Not a valid File')
                 message = _('The given path does not point to a valid file!')
-                MessageDialog(type='error', title=title, message=message).run()
+                MessageDialog(type_='error', title=title, \
+                                                    message=message).run()
                 return self.run()
         self.dialog.hide()
 
     def importcsv(self, filepath):
         """Imports the data from the csv file."""
-        if csv_parser.read_csv(self.datasetdata, filepath):
+        if csv_parser.read_csv(self.datasets, filepath):
             title = _('Import successful')
             message = _('The import was successful.')
-            MessageDialog(type='info', title=title, message=message).run()
+            MessageDialog(type_='info', title=title, message=message).run()
         else:
             title = _('Import not successful')
             message = _('An error occured during the import.')
-            MessageDialog(type='error', title=title, message=message).run()
+            MessageDialog(type_='error', title=title, message=message).run()
 
     def select_file(self, button):
         """Runs the file selection dialog and updates the file entry
@@ -112,9 +113,9 @@ class CSVDialogImport(object):
             self.file_entry.set_text(newpath)
 
     def on_data_change(self, widget, key):
-        """Updates the datasetdata to import to."""
+        """Updates the datasets to import to."""
         if widget.get_active():
             if key == 'meas':
-                self.datasetdata = user_data.user.measurements
+                self.datasets = user_data.user.measurements
             elif key == 'plan':
-                self.datasetdata = user_data.user.plan
+                self.datasets = user_data.user.plan

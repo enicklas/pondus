@@ -241,7 +241,7 @@ class MainWindow(object):
             self.datasetdata.add(newdata)
             new_weight = newdata.get('weight')
             if parameters.config['preferences.unit_system'] == 'imperial':
-               new_weight = util.kg_to_lbs(new_weight)
+                new_weight = util.kg_to_lbs(new_weight)
             new_weight = round(new_weight, 1)
             self.datalist.set(treeiter,
                 1, str(newdata.get('date')),
@@ -274,11 +274,11 @@ class MainWindow(object):
         callback function."""
         # delete selected dataset
         if event.keyval == gtk.keysyms.Delete and \
-                    self.removeaction.get_sensitive() == True:
+                    self.removeaction.get_sensitive():
             self.remove_dialog(widget)
         # edit selected dataset
         if event.keyval in [gtk.keysyms.Return, gtk.keysyms.KP_Enter] \
-                    and self.editaction.get_sensitive() == True:
+                    and self.editaction.get_sensitive():
             self.edit_dialog(widget)
 
     def button_pressed(self, widget, event):
@@ -300,28 +300,28 @@ class MainWindow(object):
         self.set_selection_active(self.treeselection)
         self.set_plot_action_active()
 
-
-    # other functions
-
     def set_selection_active(self, widget):
         """Tests, whether a dataset is selected and sets sensitivity of
         actions accordingly."""
         if widget.get_selected()[1] is None:
             self.removeaction.set_sensitive(False)
             self.editaction.set_sensitive(False)
-        elif self.removeaction.get_sensitive() == False:
+        elif not self.removeaction.get_sensitive():
             self.removeaction.set_sensitive(True)
             self.editaction.set_sensitive(True)
+
+
+    # helper methods
 
     def set_plot_action_active(self):
         """Tests, whether a dataset exists and matplotlib is available
         and sets sensitivity of the plot action accordingly."""
-        if (len(user_data.user.measurements) == 0 and \
-                    (len(user_data.user.plan) == 0 \
+        if (not user_data.user.measurements and \
+                    (not user_data.user.plan \
                     or not parameters.config['preferences.use_weight_plan'])) \
                     or not parameters.have_mpl:
             self.plotaction.set_sensitive(False)
-        elif self.plotaction.get_sensitive() == False and parameters.have_mpl:
+        elif not self.plotaction.get_sensitive() and parameters.have_mpl:
             self.plotaction.set_sensitive(True)
 
     def check_modeselector(self):

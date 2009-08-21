@@ -45,23 +45,23 @@ class SaveFileDialog(object):
 
         # connect the signals
         self.filetypeselector.connect('changed', self.update_file_ending)
-
         # buttons in action area
         self.chooser.add_button(gtk.STOCK_CANCEL, gtk.RESPONSE_CANCEL)
         self.chooser.add_button(gtk.STOCK_OK, gtk.RESPONSE_OK)
-
+        # show the dialog
         self.chooser.show_all()
 
 
-    def run(self, plot):
+    def run(self, plot=None):
         """Runs the dialog and closes it afterwards."""
         response = self.chooser.run()
         if response == gtk.RESPONSE_OK:
             self.update_file_ending(self.filetypeselector)
+            filename = self.chooser.get_filename()
             if plot is not None:
-                plot.save_to_file(self.chooser.get_filename())
+                plot.save_to_file(filename)
             self.chooser.hide()
-            return self.chooser.get_filename()
+            return filename
         self.chooser.hide()
 
     def update_file_ending(self, filetypeselector):

@@ -40,16 +40,16 @@ class AddDataDialog(object):
 
         self.dialog = gtk.Dialog(flags=gtk.DIALOG_NO_SEPARATOR)
         # set the title
-        if edit == False:
-            self.dialog.set_title(_('Add Dataset'))
-        else:
+        if edit:
             self.dialog.set_title(_('Edit Dataset'))
+        else:
+            self.dialog.set_title(_('Add Dataset'))
 
         # create the labels and entry boxes
         date_box = gtk.VBox(spacing=5)
         date_box.set_border_width(5)
-        if parameters.config['preferences.use_calendar'] == True:
-            ddate = self.dataset.get('date')
+        if parameters.config['preferences.use_calendar']:
+            date_ = self.dataset.get('date')
             date_label = gtk.Label(_('Date:'))
             date_label.set_alignment(xalign=0, yalign=0.5)
             self.calendar = gtk.Calendar()
@@ -58,19 +58,17 @@ class AddDataDialog(object):
                                             gtk.CALENDAR_SHOW_HEADING | \
                                             gtk.CALENDAR_SHOW_DAY_NAMES | \
                                             gtk.CALENDAR_WEEK_START_MONDAY)
-            self.calendar.select_month(ddate.month-1, ddate.year)
-            self.calendar.select_day(ddate.day)
-
+            self.calendar.select_month(date_.month-1, date_.year)
+            self.calendar.select_day(date_.day)
             date_box.pack_start(date_label)
             date_box.pack_start(self.calendar)
         else:
-            sdate = str(self.dataset.get('date'))
-            date_label = gtk.Label(_('Date: (YYYY-MM-DD)'))
+            date_ = str(self.dataset.get('date'))
+            date_label = gtk.Label(_('Date (YYYY-MM-DD):'))
             date_label.set_alignment(xalign=0, yalign=0.5)
             self.date_entry = gtk.Entry()
-            self.date_entry.set_text(sdate)
+            self.date_entry.set_text(date_)
             self.date_entry.set_activates_default(True)
-
             date_box.pack_start(date_label)
             date_box.pack_start(self.date_entry)
 
@@ -79,12 +77,8 @@ class AddDataDialog(object):
         weight_label = gtk.Label(_('Weight') + ' (' \
             + util.get_weight_unit() + '):')
         weight_label.set_alignment(xalign=0, yalign=0.5)
-        weight_adj = gtk.Adjustment(
-                                value=weight,
-                                lower=0,
-                                upper=1000,
-                                step_incr=0.1,
-                                page_incr=1.0)
+        weight_adj = gtk.Adjustment(value=weight, lower=0, upper=1000, \
+                                    step_incr=0.1, page_incr=1.0)
         self.weight_entry = gtk.SpinButton(adjustment=weight_adj, digits=1)
         self.weight_entry.set_numeric(True)
         self.weight_entry.set_activates_default(True)
@@ -103,7 +97,7 @@ class AddDataDialog(object):
         # connect the signals
         self.weight_insert_signal = \
                 self.weight_entry.connect('insert_text', self.on_insert)
-        if parameters.config['preferences.use_calendar'] == False:
+        if not parameters.config['preferences.use_calendar']:
             self.date_entry.connect('focus-in-event', self.on_focus)
             self.date_insert_signal = \
                     self.date_entry.connect('insert_text', self.on_insert)
@@ -117,7 +111,7 @@ class AddDataDialog(object):
         if response == gtk.RESPONSE_OK:
             # try to create a new dataset from the given data
             try:
-                if parameters.config['preferences.use_calendar'] == True:
+                if parameters.config['preferences.use_calendar']:
                     updated_year, updated_month, updated_day = \
                             self.calendar.get_date()
                     updated_date = \
@@ -130,7 +124,8 @@ class AddDataDialog(object):
             except:
                 title = _('Error: Wrong Format')
                 message = _('The data entered is not in the correct format!')
-                MessageDialog(type='error', title=title, message=message).run()
+                MessageDialog(type_='error', title=title, \
+                                                    message=message).run()
                 return self.run()
             self.dataset.set('date', updated_date)
             self.dataset.set('weight', updated_weight)
@@ -154,18 +149,21 @@ class AddDataDialog(object):
         if text in ['+', '-']:
             position = entry.get_position()
             entry.emit_stop_by_name('insert_text')
-            if parameters.config['preferences.use_calendar'] == False:
-                if entry == self.date_entry:
+            # check first for use_calendar; date_entry can not exist
+            if not parameters.config['preferences.use_calendar'] \
+                            and entry == self.date_entry:
                     gobject.idle_add(self.date_key_press, entry, text, \
                                                 position)
             if entry == self.weight_entry:
                 gobject.idle_add(self.weight_key_press, text)
 
+    # helper methods
+
     def date_key_press(self, entry, text, position):
         """Tests, which key was pressed and increments/decrements the
         date in date entry by one day if possible."""
         try:
-            date = util.str2date(entry.get_text())
+            date_ = util.str2date(entry.get_text())
         except:
             entry.handler_block(self.date_insert_signal)
             orig_text = entry.get_text()
@@ -176,11 +174,11 @@ class AddDataDialog(object):
             return
         else:
             if text == '+':
-                date += timedelta(days=1)
+                date_ += timedelta(days=1)
             elif text == '-':
-                date -= timedelta(days=1)
+                date_ -= timedelta(days=1)
             entry.handler_block(self.date_insert_signal)
-            entry.set_text(str(date))
+            entry.set_text(str(date_))
             entry.set_position(-1)
             entry.handler_unblock(self.date_insert_signal)
 

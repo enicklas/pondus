@@ -37,7 +37,7 @@ class PlotDialog(object):
 
     def __init__(self):
         self.dialog = gtk.Dialog(title=_('Plot Weight'))
-        self.dialog.set_default_size(600,450)
+        self.dialog.set_default_size(600, 450)
 
         # drawing area for the plot
         self.plot = Plot()
@@ -103,8 +103,10 @@ class PlotDialog(object):
         self.update_daterange(self.dateselector)
 
         # connect the signals
-        self.start_date_entry.connect('key-press-event', self.on_keypress_in_entry)
-        self.end_date_entry.connect('key-press-event', self.on_keypress_in_entry)
+        self.start_date_entry.connect('key-press-event', \
+                                    self.on_keypress_in_entry)
+        self.end_date_entry.connect('key-press-event', \
+                                    self.on_keypress_in_entry)
         self.dateselector.connect('changed', self.update_daterange)
         self.plotselector.connect('changed', self.update_plot_type)
         self.smoothselector.connect('changed', self.update_plot_smoothness)
@@ -116,7 +118,7 @@ class PlotDialog(object):
 
     def run(self):
         """Runs the dialog and closes it afterwards."""
-        response = self.dialog.run()
+        self.dialog.run()
         self.dialog.hide()
 
     # callback functions
@@ -129,12 +131,12 @@ class PlotDialog(object):
         except:
             title = _('Error: Wrong Format')
             message = _('The data entered is not in the correct format!')
-            MessageDialog(type='error', title=title, message=message).run()
+            MessageDialog(type_='error', title=title, message=message).run()
             return
         if mindate >= maxdate:
             title = _('Error: Wrong Format')
             message = _('The start date has to be before the end date!')
-            MessageDialog(type='error', title=title, message=message).run()
+            MessageDialog(type_='error', title=title, message=message).run()
             return
         self.plot.set_plotrange(mindate, maxdate)
         self.dateselector.set_active(4)
@@ -184,7 +186,7 @@ class PlotDialog(object):
         self.plot.set_plot_plan(plot_plan_button.get_active())
         self.plot.update_plot()
 
-    # helper functions
+    # helper methods
 
     def get_daterange(self):
         """Returns start and end date of the plot to be created,

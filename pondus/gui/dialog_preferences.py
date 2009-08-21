@@ -108,7 +108,8 @@ class PreferencesDialog(object):
                         self.newconfig['preferences.use_weight_plan'])
         self.dialog.vbox.pack_start(self.use_plan_button)
 
-        self.use_calendar_button = gtk.CheckButton(_('Use Calendar in Add Dialog'))
+        self.use_calendar_button = \
+                    gtk.CheckButton(_('Use Calendar in Add Dialog'))
         self.use_calendar_button.set_border_width(5)
         self.use_calendar_button.set_active( \
                         self.newconfig['preferences.use_calendar'])
@@ -129,6 +130,7 @@ class PreferencesDialog(object):
         """Runs the dialog and updates the configuration."""
         response = self.dialog.run()
         if response == gtk.RESPONSE_OK:
+            # set new config
             self.newconfig['window.remember_size'] = \
                                     self.remember_button.get_active()
             self.newconfig['preferences.use_weight_plan'] = \
@@ -136,14 +138,15 @@ class PreferencesDialog(object):
             self.newconfig['preferences.use_calendar'] = \
                                     self.use_calendar_button.get_active()
             parameters.config = self.newconfig
+            # set new user height
             newheight1 = self.height_entry1.get_value()
             newheight2 = self.height_entry2.get_value()
             if self.newconfig['preferences.unit_system'] == 'metric':
-                user_data.user.height = util.metric_to_height(newheight1, \
-                                                                newheight2)
+                user_data.user.height = \
+                            util.metric_to_height(newheight1, newheight2)
             else: 
-                user_data.user.height = util.imperial_to_height(newheight1, \
-                                                                newheight2)
+                user_data.user.height = \
+                            util.imperial_to_height(newheight1, newheight2)
         self.dialog.hide()
 
     # callback functions
@@ -164,7 +167,7 @@ class PreferencesDialog(object):
                 self.set_imperial(height_cm)
             self.newconfig['preferences.unit_system'] = data
 
-    # helper functions
+    # helper methods
     def set_imperial(self, height_cm):
         """Sets the height display to imperial units."""
         feet, inches = util.height_to_imperial(height_cm)

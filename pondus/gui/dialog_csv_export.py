@@ -2,7 +2,7 @@
 
 """
 This file is part of Pondus, a personal weight manager.
-Copyright (C) 2008  Eike Nicklas <eike@ephys.de>
+Copyright (C) 2008-09  Eike Nicklas <eike@ephys.de>
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -34,7 +34,7 @@ class CSVDialogExport(object):
         self.dialog = gtk.Dialog(flags=gtk.DIALOG_NO_SEPARATOR)
         self.dialog.set_title(_('CSV Export'))
 
-        self.datasetdata = user_data.user.measurements
+        self.datasets = user_data.user.measurements
         self.filename = _('weight.csv')
 
         databox = gtk.VBox()
@@ -87,24 +87,24 @@ class CSVDialogExport(object):
         self.dialog.hide()
 
     def exportcsv(self):
-        """Saves the datasetdata to a csv file."""
+        """Saves the datasets to a csv file."""
         csvpath = os.path.expanduser(self.file_entry.get_text())
-        csv_parser.write_csv(self.datasetdata, csvpath)
+        csv_parser.write_csv(self.datasets, csvpath)
         title = _('Export successful')
         message = _('The export was successful.')
-        MessageDialog(type='info', title=title, message=message).run()
+        MessageDialog(type_='info', title=title, message=message).run()
 
     def select_file(self, button):
         """Runs the file selection dialog and updates the file entry
         accordingly."""
-        newpath = SaveFileDialog(self.filename, ['.csv']).run(None)
+        newpath = SaveFileDialog(self.filename, ['.csv']).run()
         if newpath is not None:
             self.file_entry.set_text(newpath)
 
     def on_data_change(self, widget, key):
-        """Updates the datasetdata to be exported."""
+        """Updates the datasets to be exported."""
         if widget.get_active():
             if key == 'meas':
-                self.datasetdata = user_data.user.measurements
+                self.datasets = user_data.user.measurements
             elif key == 'plan':
-                self.datasetdata = user_data.user.plan
+                self.datasets = user_data.user.plan
