@@ -217,6 +217,7 @@ class PlotDialog(object):
         return mindate, maxdate
 
     def set_dateselector_default(self):
+        """Sets the default daterange of the plot to 3 months, if sensible."""
         if self.plot.get_mindate() > date.today() - timedelta(days=91) \
                 or self.plot.get_maxdate() < date.today() - timedelta(days=91):
             self.dateselector.set_active(0)

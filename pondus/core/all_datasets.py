@@ -29,7 +29,6 @@ class AllDatasets(object):
     internally."""
 
     def __init__(self, datasets):
-        """Reads all datasets from filepath."""
         self.datasets = datasets
 
     def __iter__(self):

@@ -27,6 +27,8 @@ from pondus.gui.dialog_message import MessageDialog
 
 
 class FileLock(object):
+    """Implements a very simple file locking mechanism to prevent two
+    instances of editing the same file."""
 
     def __init__(self):
         """Gets data neccessary to lock the datafile, asks for confirmation

@@ -26,6 +26,8 @@ from pondus import parameters
 
 
 def parse_options():
+    """Parses the command line options and performs the corresponding
+    actions."""
     parser = OptionParser(version='%prog '+__version__)
     parser.add_option('-i', '--input',
         dest='filename',
@@ -36,6 +38,7 @@ def parse_options():
         _set_datafilepath(options.filename)
 
 def _set_datafilepath(filepath):
+    """Updates the path to the file containing the weight data."""
     filepath = os.path.expanduser(filepath)
     if not os.path.isabs(filepath):
         filepath = os.path.join(os.getcwd(), filepath)

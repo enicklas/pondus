@@ -361,4 +361,5 @@ class MainWindow(object):
 
     # main function
     def main(self):
+        """Starts the gtk main loop."""
         gtk.main()
