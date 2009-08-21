@@ -136,7 +136,7 @@ class AddDataDialog(object):
             return None
 
 
-    # callback functions
+    # callback methods
 
     def on_focus(self, entry, event):
         """Prevents a selection and puts the cursor at the end

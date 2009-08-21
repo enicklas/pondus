@@ -55,17 +55,17 @@ class Person(object):
         measurements_el = SubElement(weight_el, 'measurements')
         plan_el = SubElement(weight_el, 'plan')
         for dataset in self.measurements:
-            self._add_dataset_to_element(dataset, measurements_el)
+            _add_dataset_to_element(dataset, measurements_el)
         for dataset in self.plan:
-            self._add_dataset_to_element(dataset, plan_el)
+            _add_dataset_to_element(dataset, plan_el)
         user_tree = ElementTree(person_el)
         user_tree.write(filepath, encoding='UTF-8')
 
-    def _add_dataset_to_element(self, dataset, element):
-        """Adds a dataset object to an element, which is the parent in
-        the ElementTree."""
-        dataset_el = SubElement(element, 'dataset')
-        dataset_el.set('id', str(dataset.id))
-        for parameter, value in dataset.data.iteritems():
-            sub_el = SubElement(dataset_el, parameter)
-            sub_el.text = str(value)
+def _add_dataset_to_element(dataset, element):
+    """Adds a dataset object to an element, which is the parent in
+    the ElementTree."""
+    dataset_el = SubElement(element, 'dataset')
+    dataset_el.set('id', str(dataset.id))
+    for parameter, value in dataset.data.iteritems():
+        sub_el = SubElement(dataset_el, parameter)
+        sub_el.text = str(value)
