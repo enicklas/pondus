@@ -1,17 +1,18 @@
 # translation of es.po to
 # Spanish translations for pondus package
 # Traducciones al español para el paquete pondus.
-# Copyright (C) 2008 THE pondus'S COPYRIGHT HOLDER
+# Copyright (C) 2008-09 THE pondus'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the pondus package.
 # Enrique José Hernández Blasco <quique.jh@gmail.com>, 2008.
+# Jose Luis Jiménez Pérez de la Lastra <jimenezjl@gmail.com>, 2009
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: es\n"
 "Report-Msgid-Bugs-To: pondus-dev@sharesource.org\n"
 "POT-Creation-Date: 2009-08-31 20:22+0200\n"
-"PO-Revision-Date: 2008-12-03 22:58+0100\n"
-"Last-Translator: Enrique J. Hernández\n"
+"PO-Revision-Date: 2009-09-01 10:16+0100\n"
+"Last-Translator: Jose Luis Jiménez\n"
 "Language-Team:  <en@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -21,12 +22,11 @@ msgstr ""
 
 #: ../pondus/core/initialize.py:50
 msgid "Error: Could not find"
-msgstr "Error: No pude encontrar"
+msgstr "Error: No se pudo encontrar"
 
 #: ../pondus/core/initialize.py:58
-#, fuzzy
 msgid "Note: python-matplotlib is not installed, plotting disabled!"
-msgstr "Nota: Matplotlib no está disponible, gráficos deshabilitados "
+msgstr "Nota: python-Matplotlib no está instalado, gráfico deshabilitado "
 
 #: ../pondus/core/initialize.py:69
 msgid "Please make sure this library is installed."
@@ -38,23 +38,23 @@ msgstr "Por favor, comprueba que la librería ElementTree está instalada"
 
 #: ../pondus/core/filelock.py:47
 msgid "Datafile locked, continue?"
-msgstr "Fichero de datos bloqueado, ¿continuar?"
+msgstr "Archivo de datos bloqueado, ¿continuar?"
 
 #: ../pondus/core/filelock.py:48
 msgid ""
 "Another instance of pondus seems to be editing the same datafile. Do you "
 "really want to continue and loose all the changes from the other instance?"
 msgstr ""
-"Otra instancia de pondus parece estar editando el mismo fichero de datos. "
+"Otra instancia de pondus parece estar editando el mismo archivo de datos. "
 "¿Realmente quieres continuar y perder todos los cambios de la otra instancia?"
 
 #: ../pondus/core/option_parser.py:46
 msgid "Reading file"
-msgstr "Leyendo fichero"
+msgstr "Leyendo archivo"
 
 #: ../pondus/core/option_parser.py:51
 msgid "Error: This is a directory, not a file!"
-msgstr "Error: Esto es un directorio, no un fichero"
+msgstr "Error: Esto es un directorio, no un archivo"
 
 #: ../pondus/core/option_parser.py:52
 msgid "Using the standard file ~/.pondus/user_data.xml instead."
@@ -90,12 +90,10 @@ msgid "Add Dataset"
 msgstr "Añadir conjunto de datos"
 
 #: ../pondus/gui/dialog_add.py:53
-#, fuzzy
 msgid "Date:"
-msgstr "Fecha"
+msgstr "Fecha:"
 
 #: ../pondus/gui/dialog_add.py:67
-#, fuzzy
 msgid "Date (YYYY-MM-DD):"
 msgstr "Fecha (AAAA-MM-DD):"
 
@@ -130,7 +128,7 @@ msgstr "Datos a exportar"
 
 #: ../pondus/gui/dialog_csv.py:98
 msgid "CSV File to save to:"
-msgstr "Fichero CSV para guardar en:"
+msgstr "Archivo CSV para guardar en:"
 
 #: ../pondus/gui/dialog_csv.py:112
 msgid "Export successful"
@@ -150,19 +148,19 @@ msgstr "Importar datos de:"
 
 #: ../pondus/gui/dialog_csv.py:130
 msgid "CSV File to read from:"
-msgstr "Fichero CSV para leer desde: "
+msgstr "Archivo CSV para leer desde: "
 
 #: ../pondus/gui/dialog_csv.py:141
 msgid "Error: Not a valid File"
-msgstr "Error: El fichero no es válido"
+msgstr "Error: El Archivo no es válido"
 
 #: ../pondus/gui/dialog_csv.py:142
 msgid "The given path does not point to a valid file!"
-msgstr "La ruta dada no apunta a un fichero válido"
+msgstr "La ruta dada no indica a un fichero válido"
 
 #: ../pondus/gui/dialog_csv.py:151
 msgid "Import successful"
-msgstr "Importación correcta"
+msgstr "Importación con éxito"
 
 #: ../pondus/gui/dialog_csv.py:152
 msgid "The import was successful."
@@ -170,7 +168,7 @@ msgstr "La importación se realizó con éxito"
 
 #: ../pondus/gui/dialog_csv.py:155
 msgid "Import not successful"
-msgstr "Importación no exitosa"
+msgstr "Importación sin éxito"
 
 #: ../pondus/gui/dialog_csv.py:156
 msgid "An error occured during the import."
@@ -193,9 +191,8 @@ msgid "Last Year"
 msgstr "Último Año"
 
 #: ../pondus/gui/dialog_plot.py:67
-#, fuzzy
 msgid "Last 3 Months"
-msgstr "Último Mes"
+msgstr "Últimos 3 Meses"
 
 #: ../pondus/gui/dialog_plot.py:68
 msgid "Last Month"
@@ -203,7 +200,7 @@ msgstr "Último Mes"
 
 #: ../pondus/gui/dialog_plot.py:69
 msgid "Custom"
-msgstr ""
+msgstr "Costumbre"
 
 #: ../pondus/gui/dialog_plot.py:76
 msgid "Data to plot:"
@@ -211,15 +208,15 @@ msgstr "Datos a dibujar"
 
 #: ../pondus/gui/dialog_plot.py:86
 msgid "Raw and Smooth"
-msgstr ""
+msgstr "Rugoso y Suave"
 
 #: ../pondus/gui/dialog_plot.py:87
 msgid "Raw"
-msgstr ""
+msgstr "Rugoso"
 
 #: ../pondus/gui/dialog_plot.py:88
 msgid "Smooth"
-msgstr ""
+msgstr "Suave"
 
 #: ../pondus/gui/dialog_plot.py:91
 msgid "Include Weight Plan"
@@ -279,7 +276,7 @@ msgstr "Usar Planificador de Peso:"
 
 #: ../pondus/gui/dialog_preferences.py:112
 msgid "Use Calendar in Add Dialog"
-msgstr ""
+msgstr "Usar Calendario en el Cuadro de añadir datos"
 
 #: ../pondus/gui/dialog_preferences.py:118
 msgid "Remember Window Size"
@@ -287,7 +284,7 @@ msgstr "Recordar el tamaño de ventana"
 
 #: ../pondus/gui/dialog_save_file.py:31
 msgid "Save to File"
-msgstr "Guardar a Fichero"
+msgstr "Guardar a Archivo"
 
 #: ../pondus/gui/dialog_save_file.py:37
 msgid "Save as File Type:"
@@ -295,7 +292,7 @@ msgstr "Guardar como:"
 
 #: ../pondus/gui/dialog_select_file.py:30
 msgid "Select File"
-msgstr "Seleccionar Fichero"
+msgstr "Seleccionar Archivo"
 
 #: ../pondus/gui/window_main.py:61
 msgid "Plot data"
@@ -335,9 +332,8 @@ msgstr "Planificador de Peso"
 
 #: ../pondus/gui/window_main.py:187
 msgid "Not owning the file lock. Backing up the data to"
-msgstr ""
-"No le pertenece el fichero cerrojo. Guardando copia de respaldo de los datos "
-"a"
+msgstr "No tiene permisos sobre el Archivo. Guardando copia de seguridad de los datos a"
+
 
 #: ../pondus/gui/window_main.py:209
 msgid "Remove Data?"
