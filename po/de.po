@@ -6,10 +6,10 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: Pondus 0.5.3+hg\n"
+"Project-Id-Version: Pondus 0.6.0+hg\n"
 "Report-Msgid-Bugs-To: pondus-dev@sharesource.org\n"
 "POT-Creation-Date: 2009-08-31 20:22+0200\n"
-"PO-Revision-Date: 2009-07-11 23:17+0100\n"
+"PO-Revision-Date: 2009-09-01 20:17+0100\n"
 "Last-Translator: Eike Nicklas <eike@ephys.de>\n"
 "Language-Team: German <gnome-de@gnome.org>\n"
 "MIME-Version: 1.0\n"
@@ -21,9 +21,8 @@ msgid "Error: Could not find"
 msgstr "Fehler: Folgende Datei konnte nicht gefunden werden:"
 
 #: ../pondus/core/initialize.py:58
-#, fuzzy
 msgid "Note: python-matplotlib is not installed, plotting disabled!"
-msgstr "Achtung: Matplotlib nicht verfügbar, Plotfunktion deaktiviert!"
+msgstr "Achtung: python-matplotlib ist nicht installiert, Plotfunktion deaktiviert!"
 
 #: ../pondus/core/initialize.py:69
 msgid "Please make sure this library is installed."
@@ -92,7 +91,6 @@ msgid "Date:"
 msgstr "Datum:"
 
 #: ../pondus/gui/dialog_add.py:67
-#, fuzzy
 msgid "Date (YYYY-MM-DD):"
 msgstr "Datum (JJJJ-MM-TT):"
 
@@ -190,9 +188,8 @@ msgid "Last Year"
 msgstr "Letztes Jahr"
 
 #: ../pondus/gui/dialog_plot.py:67
-#, fuzzy
 msgid "Last 3 Months"
-msgstr "Letzter Monat"
+msgstr "Letzte 3 Monate"
 
 #: ../pondus/gui/dialog_plot.py:68
 msgid "Last Month"
