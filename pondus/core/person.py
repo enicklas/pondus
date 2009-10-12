@@ -48,7 +48,7 @@ class Person(object):
 
     def write_to_file(self, filepath):
         """Writes the person data to the xml file."""
-        person_el = Element('person', format='0.5.0')
+        person_el = Element('person', format='0.7')
         height_el = SubElement(person_el, 'height')
         height_el.text = str(self.height)
         weight_el = SubElement(person_el, 'weight')
@@ -65,7 +65,6 @@ def _add_dataset_to_element(dataset, element):
     """Adds a dataset object to an element, which is the parent in
     the ElementTree."""
     dataset_el = SubElement(element, 'dataset')
-    dataset_el.set('id', str(dataset.id))
     for parameter, value in dataset.__dict__.iteritems():
         sub_el = SubElement(dataset_el, parameter)
         sub_el.text = str(value)

@@ -67,10 +67,14 @@ def read(filepath):
 
 def _add_dataset_to_dict(dataset_el, datasets):
     """Adds a dataset element to a dictionary of Dataset objects."""
-    dataset = Dataset(int(dataset_el.get('id')), \
+    try:
+        id_ = int(dataset_el.find('id').text)
+    except:
+        id_ = int(dataset_el.get('id'))
+    dataset = Dataset(id_, \
                       util.str2date(dataset_el.find('date').text), \
                       float(dataset_el.find('weight').text))
-    datasets[int(dataset_el.get('id'))] = dataset
+    datasets[id_] = dataset
 
 def _add_dataset_to_dict_convert(dataset_el, datasets):
     """Adds a dataset element to a dictionary of Dataset objects and
