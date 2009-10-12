@@ -33,10 +33,10 @@ class AddDataDialog(object):
     def __init__(self, dataset, edit):
         self.dataset = dataset
         # get default values for entry boxes
-        weight = self.dataset.weight
         if parameters.config['preferences.unit_system'] == 'imperial':
-            weight = util.kg_to_lbs(weight)
-        weight = round(weight, 1)
+            weight = self.dataset.weight_lbs
+        else:
+            weight = self.dataset.weight
 
         self.dialog = gtk.Dialog(flags=gtk.DIALOG_NO_SEPARATOR)
         # set the title
@@ -114,21 +114,21 @@ class AddDataDialog(object):
                 if parameters.config['preferences.use_calendar']:
                     updated_year, updated_month, updated_day = \
                             self.calendar.get_date()
-                    updated_date = \
+                    self.dataset.date = \
                             date(updated_year, updated_month+1, updated_day)
                 else:
-                    updated_date = util.str2date(self.date_entry.get_text())
-                updated_weight = self.weight_entry.get_value()
+                    self.dataset.date = \
+                            util.str2date(self.date_entry.get_text())
                 if parameters.config['preferences.unit_system'] == 'imperial':
-                    updated_weight = round(util.lbs_to_kg(updated_weight), 2)
+                    self.dataset.weight_lbs = self.weight_entry.get_value()
+                else:
+                    self.dataset.weight = self.weight_entry.get_value()
             except:
                 title = _('Error: Wrong Format')
                 message = _('The data entered is not in the correct format!')
                 MessageDialog(type_='error', title=title, \
                                                     message=message).run()
                 return self.run()
-            self.dataset.date = updated_date
-            self.dataset.weight = updated_weight
             self.dialog.hide()
             return self.dataset
         else:

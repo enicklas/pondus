@@ -23,7 +23,6 @@ import gtk
 from pondus import user_data
 from pondus import parameters
 from pondus.core import config_parser
-from pondus.core import util
 from pondus.gui import guiutil
 from pondus.gui.dialog_add import AddDataDialog
 from pondus.gui.dialog_message import MessageDialog
@@ -238,10 +237,10 @@ class MainWindow(object):
         newdata = dialog.run()
         if newdata is not None:
             self.datasetdata.add(newdata)
-            new_weight = newdata.weight
             if parameters.config['preferences.unit_system'] == 'imperial':
-                new_weight = util.kg_to_lbs(new_weight)
-            new_weight = round(new_weight, 1)
+                new_weight = newdata.weight_lbs
+            else:
+                new_weight = newdata.weight
             self.datalist.set(treeiter,
                 1, str(newdata.date),
                 2, str(new_weight))
@@ -351,10 +350,10 @@ class MainWindow(object):
 
     def append_dataset(self, dataset):
         """Appends a dataset to the list model."""
-        dataset_list = dataset.as_list()
         if parameters.config['preferences.unit_system'] == 'imperial':
-            dataset_list[2] = util.kg_to_lbs(dataset_list[2])
-        dataset_list[2] = round(dataset_list[2], 1)
+            dataset_list = [dataset.id, dataset.date, dataset.weight_lbs]
+        else:
+            dataset_list = [dataset.id, dataset.date, dataset.weight]
         return self.datalist.append(dataset_list)
 
 

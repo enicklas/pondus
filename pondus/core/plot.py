@@ -122,7 +122,7 @@ class Plot(object):
                     util.bmi(dataset.weight, user_data.user.height)) \
                     for dataset in datasets]
         elif parameters.config['preferences.unit_system'] == 'imperial':
-            data = [(dataset.date, util.kg_to_lbs(dataset.weight)) \
+            data = [(dataset.date, dataset.weight_lbs) \
                     for dataset in datasets]
         else:
             data = [(dataset.date, dataset.weight) for dataset in datasets]

@@ -27,10 +27,8 @@ class Dataset(object):
         self.date = date
         self.weight = weight
 
-    def as_list(self):
-        """Returns the values of a dataset as a list."""
-        return [self.id, self.date, self.weight]
-
-    def as_string_list(self):
-        """Returns the values of the dataset as a list of strings."""
-        return [str(self.date), str(self.weight)]
+    def _get_weight_lbs(self):
+        return round(self.weight / 0.45359237, 1)
+    def _set_weight_lbs(self, new_weight_lbs):
+        self.weight = round(new_weight_lbs * 0.45359237, 2)
+    weight_lbs = property(_get_weight_lbs, _set_weight_lbs)

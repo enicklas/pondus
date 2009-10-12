@@ -29,7 +29,7 @@ def write_csv(datasets, csvfilepath):
     csvfile = open(csvfilepath, 'w')
     csvwriter = csv.writer(csvfile)
     for dataset in datasets:
-        csvwriter.writerow(dataset.as_string_list())
+        csvwriter.writerow([str(dataset.date), str(dataset.weight)])
     csvfile.close()
 
 def read_csv(datasets, csvfilepath):

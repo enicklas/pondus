@@ -47,14 +47,6 @@ def bmi(weight, height):
     in metric units, i.e. kg and cm."""
     return weight/(height/100.0)**2
 
-def kg_to_lbs(weight):
-    """Converts the weight in kg to lbs."""
-    return weight/0.45359237
-
-def lbs_to_kg(weight):
-    """Converts the weight in lbs to kg."""
-    return weight*0.45359237
-
 def get_weight_unit():
     """Returns the weight unit preferred by the user."""
     if parameters.config['preferences.unit_system'] == 'metric':
