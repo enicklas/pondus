@@ -66,6 +66,6 @@ def _add_dataset_to_element(dataset, element):
     the ElementTree."""
     dataset_el = SubElement(element, 'dataset')
     dataset_el.set('id', str(dataset.id))
-    for parameter, value in dataset.data.iteritems():
+    for parameter, value in dataset.__dict__.iteritems():
         sub_el = SubElement(dataset_el, parameter)
         sub_el.text = str(value)

@@ -33,7 +33,7 @@ class AddDataDialog(object):
     def __init__(self, dataset, edit):
         self.dataset = dataset
         # get default values for entry boxes
-        weight = self.dataset.get('weight')
+        weight = self.dataset.weight
         if parameters.config['preferences.unit_system'] == 'imperial':
             weight = util.kg_to_lbs(weight)
         weight = round(weight, 1)
@@ -49,7 +49,7 @@ class AddDataDialog(object):
         date_box = gtk.VBox(spacing=5)
         date_box.set_border_width(5)
         if parameters.config['preferences.use_calendar']:
-            date_ = self.dataset.get('date')
+            date_ = self.dataset.date
             date_label = gtk.Label(_('Date:'))
             date_label.set_alignment(xalign=0, yalign=0.5)
             self.calendar = gtk.Calendar()
@@ -63,7 +63,7 @@ class AddDataDialog(object):
             date_box.pack_start(date_label)
             date_box.pack_start(self.calendar)
         else:
-            date_ = str(self.dataset.get('date'))
+            date_ = str(self.dataset.date)
             date_label = gtk.Label(_('Date (YYYY-MM-DD):'))
             date_label.set_alignment(xalign=0, yalign=0.5)
             self.date_entry = gtk.Entry()
@@ -127,8 +127,8 @@ class AddDataDialog(object):
                 MessageDialog(type_='error', title=title, \
                                                     message=message).run()
                 return self.run()
-            self.dataset.set('date', updated_date)
-            self.dataset.set('weight', updated_weight)
+            self.dataset.date = updated_date
+            self.dataset.weight = updated_weight
             self.dialog.hide()
             return self.dataset
         else:

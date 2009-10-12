@@ -238,12 +238,12 @@ class MainWindow(object):
         newdata = dialog.run()
         if newdata is not None:
             self.datasetdata.add(newdata)
-            new_weight = newdata.get('weight')
+            new_weight = newdata.weight
             if parameters.config['preferences.unit_system'] == 'imperial':
                 new_weight = util.kg_to_lbs(new_weight)
             new_weight = round(new_weight, 1)
             self.datalist.set(treeiter,
-                1, str(newdata.get('date')),
+                1, str(newdata.date),
                 2, str(new_weight))
 
     def plot_dialog(self, widget):

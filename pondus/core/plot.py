@@ -118,16 +118,14 @@ class Plot(object):
     def _get_plot_data(self, datasets):
         """Returns the list of datatuples to be plotted."""
         if self.PLOT_BMI:
-            data = [(dataset.get('date'), \
-                    util.bmi(dataset.get('weight'), user_data.user.height)) \
+            data = [(dataset.date, \
+                    util.bmi(dataset.weight, user_data.user.height)) \
                     for dataset in datasets]
         elif parameters.config['preferences.unit_system'] == 'imperial':
-            data = [(dataset.get('date'), \
-                    util.kg_to_lbs(dataset.get('weight'))) \
+            data = [(dataset.date, util.kg_to_lbs(dataset.weight)) \
                     for dataset in datasets]
         else:
-            data = [(dataset.get('date'), dataset.get('weight')) \
-                                for dataset in datasets]
+            data = [(dataset.date, dataset.weight) for dataset in datasets]
         data.sort()
         return data
 

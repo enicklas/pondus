@@ -24,21 +24,13 @@ class Dataset(object):
     def __init__(self, id_, date, weight):
         """Creates a new dataset with the given values."""
         self.id =  id_
-        self.data = dict(date=date, weight=weight)
-
-    def get(self, key):
-        """Returns the value of the dataset corresponding to key or
-        an empty string."""
-        return self.data.get(key, '')
-
-    def set(self, key, value):
-        """Sets the property corresponding to key to value."""
-        self.data[key] = value
+        self.date = date
+        self.weight = weight
 
     def as_list(self):
         """Returns the values of a dataset as a list."""
-        return [self.id] + self.data.values()
+        return [self.id, self.date, self.weight]
 
     def as_string_list(self):
         """Returns the values of the dataset as a list of strings."""
-        return [str(value) for value in self.data.itervalues()]
+        return [str(self.date), str(self.weight)]
