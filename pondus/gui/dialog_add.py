@@ -164,7 +164,7 @@ class AddDataDialog(object):
         date in date entry by one day if possible."""
         try:
             date_ = util.str2date(entry.get_text())
-        except:
+        except ValueError:
             entry.handler_block(self.date_insert_signal)
             orig_text = entry.get_text()
             new_text = orig_text[:position] + text + orig_text[position:]

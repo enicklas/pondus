@@ -69,7 +69,7 @@ def _add_dataset_to_dict(dataset_el, datasets):
     """Adds a dataset element to a dictionary of Dataset objects."""
     try:
         id_ = int(dataset_el.find('id').text)
-    except:
+    except AttributeError:
         id_ = int(dataset_el.get('id'))
     dataset = Dataset(id_, \
                       util.str2date(dataset_el.find('date').text), \

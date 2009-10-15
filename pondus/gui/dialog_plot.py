@@ -128,7 +128,7 @@ class PlotDialog(object):
         try:
             mindate = util.str2date(self.start_date_entry.get_text())
             maxdate = util.str2date(self.end_date_entry.get_text())
-        except:
+        except ValueError:
             title = _('Error: Wrong Format')
             message = _('The data entered is not in the correct format!')
             MessageDialog(type_='error', title=title, message=message).run()
