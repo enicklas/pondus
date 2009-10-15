@@ -62,18 +62,11 @@ def _update_po(languages):
 
 if __name__ == '__main__':
     # list of source files containing translatable strings
-    files_to_translate = [('../pondus/core/initialize.py'),
-                ('../pondus/core/filelock.py'),
-                ('../pondus/core/option_parser.py'),
-                ('../pondus/core/plot.py'),
-                ('../pondus/core/util.py'),
-                ('../pondus/gui/dialog_add.py'),
-                ('../pondus/gui/dialog_csv.py'),
-                ('../pondus/gui/dialog_plot.py'),
-                ('../pondus/gui/dialog_preferences.py'),
-                ('../pondus/gui/dialog_save_file.py'),
-                ('../pondus/gui/dialog_select_file.py'),
-                ('../pondus/gui/window_main.py')]
+    files_to_translate = []
+    for root, dirs, files in os.walk('../pondus/'):
+        for f in files:
+            if os.path.splitext(f)[1] == '.py':
+                files_to_translate.append(os.path.join(root, f))
     # list of existing translations
     languages = _get_language_codes()
     version = _get_version()
