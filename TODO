@@ -46,10 +46,6 @@ features:
     - support not only `,` as field separator
     - support `,` as decimal separator
 
-design:
-~~~~~~~~
- * simplify dataset: use id also as key in data?
-
 
 later
 -------
