@@ -94,7 +94,7 @@ data_files = [
         ('share/icons/hicolor/48x48/apps', ['data/icons/pondus.png']),
         ('share/icons/hicolor/scalable/apps', ['data/icons/pondus.svg'])]
 for lang in _get_language_codes():
-    data_files.append((os.path.join('share/locale', lang, 'LC_MESSAGES'), \
+    data_files.append((os.path.join('share/locale', lang, 'LC_MESSAGES'),
             [os.path.join(modir, lang, 'LC_MESSAGES/pondus.mo')]))
 
 _create_mo()

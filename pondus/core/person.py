@@ -35,8 +35,8 @@ class Person(object):
 
     def __init__(self, filepath):
         """Creates a new person object from the xml file at filepath."""
-        if os.path.isfile(filepath) or parameters.use_custom_file \
-                or not os.path.isfile(parameters.datafile_old):
+        if (os.path.isfile(filepath) or parameters.use_custom_file
+                or not os.path.isfile(parameters.datafile_old)):
             person_data = xml_parser.read(filepath)
             self.height = person_data['height']
             self.measurements = AllDatasets(person_data['measurements'])

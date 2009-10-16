@@ -124,8 +124,7 @@ class MainWindow(object):
         # add list displaying the datasets
         self.contentbox = gtk.VBox(spacing=5)
         datawindow = gtk.ScrolledWindow()
-        datawindow.set_policy(gtk.POLICY_AUTOMATIC, \
-            gtk.POLICY_AUTOMATIC)
+        datawindow.set_policy(gtk.POLICY_AUTOMATIC, gtk.POLICY_AUTOMATIC)
         datawindow.set_shadow_type(gtk.SHADOW_IN)
         self.datalist = gtk.ListStore(int, str, str)
         self.display_data(self.datasetdata)
@@ -177,21 +176,20 @@ class MainWindow(object):
                                         self.window.get_allocation().width
                 parameters.config['window.height'] = \
                                         self.window.get_allocation().height
-            config_parser.write_config(parameters.config, \
-                                        parameters.configfile)
+            config_parser.write_config(
+                            parameters.config, parameters.configfile)
             parameters.filelock.unlock()
         else:
             backupfile = parameters.userdatafile + '.backup'
             user_data.user.write_to_file(filepath=backupfile)
-            print _('Not owning the file lock. Backing up the data to'), \
-                    '\n', backupfile
+            print (_('Not owning the file lock. Backing up the data to'),
+                    '\n', backupfile)
         gtk.main_quit()
 
     def add_dialog(self, widget):
         """Runs the dialog to add a new dataset and then adds it to
         self.datasetdata and self.datalist."""
-        dialog = AddDataDialog(self.datasetdata.get_new_dataset(), \
-                                edit=False)
+        dialog = AddDataDialog(self.datasetdata.get_new_dataset(), edit=False)
         newdata = dialog.run()
         if newdata is not None:
             self.datasetdata.add(newdata)
@@ -232,8 +230,7 @@ class MainWindow(object):
         to self.datasetdata and self.datalist."""
         (listmodel, treeiter) = self.treeselection.get_selected()
         id_selected = listmodel.get_value(treeiter, 0)
-        dialog = AddDataDialog(self.datasetdata.get(id_selected), \
-                                edit=True)
+        dialog = AddDataDialog(self.datasetdata.get(id_selected), edit=True)
         newdata = dialog.run()
         if newdata is not None:
             self.datasetdata.add(newdata)
@@ -271,12 +268,12 @@ class MainWindow(object):
         """Tests, which key was pressed and triggers the appropriate
         callback function."""
         # delete selected dataset
-        if event.keyval == gtk.keysyms.Delete and \
-                    self.removeaction.get_sensitive():
+        if (event.keyval == gtk.keysyms.Delete
+                and self.removeaction.get_sensitive()):
             self.remove_dialog(widget)
         # edit selected dataset
-        if event.keyval in [gtk.keysyms.Return, gtk.keysyms.KP_Enter] \
-                    and self.editaction.get_sensitive():
+        if (event.keyval in [gtk.keysyms.Return, gtk.keysyms.KP_Enter]
+                    and self.editaction.get_sensitive()):
             self.edit_dialog(widget)
 
     def button_pressed(self, widget, event):
@@ -314,10 +311,10 @@ class MainWindow(object):
     def set_plot_action_active(self):
         """Tests, whether a dataset exists and matplotlib is available
         and sets sensitivity of the plot action accordingly."""
-        if (not user_data.user.measurements and \
-                    (not user_data.user.plan \
-                    or not parameters.config['preferences.use_weight_plan'])) \
-                    or not parameters.have_mpl:
+        if ((not user_data.user.measurements and
+                    (not user_data.user.plan
+                    or not parameters.config['preferences.use_weight_plan']))
+                    or not parameters.have_mpl):
             self.plotaction.set_sensitive(False)
         elif not self.plotaction.get_sensitive() and parameters.have_mpl:
             self.plotaction.set_sensitive(True)
@@ -325,11 +322,11 @@ class MainWindow(object):
     def check_modeselector(self):
         """Checks, whether the modeselector should be displayed and
         hides or shows it accordingly."""
-        if parameters.config['preferences.use_weight_plan'] \
-            and self.modeselector not in self.contentbox.get_children():
+        if (parameters.config['preferences.use_weight_plan']
+            and self.modeselector not in self.contentbox.get_children()):
             self.contentbox.pack_end(self.modeselector, False, True)
-        elif not parameters.config['preferences.use_weight_plan'] \
-            and self.modeselector in self.contentbox.get_children():
+        elif (not parameters.config['preferences.use_weight_plan']
+            and self.modeselector in self.contentbox.get_children()):
             self.modeselector.set_active(0)
             self.contentbox.remove(self.modeselector)
         self.contentbox.show_all()
@@ -337,8 +334,8 @@ class MainWindow(object):
     def add_column(self, title, columnId):
         """Adds a column to the list view: First, create the
         gtk.TreeViewColumn and then set some needed properties."""
-        column = gtk.TreeViewColumn(title, gtk.CellRendererText(), \
-            text=columnId)
+        column = gtk.TreeViewColumn(
+                            title, gtk.CellRendererText(), text=columnId)
         column.set_sort_column_id(columnId)
         self.dataview.append_column(column)
 

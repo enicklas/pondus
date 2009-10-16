@@ -118,11 +118,11 @@ class Plot(object):
     def _get_plot_data(self, datasets):
         """Returns the list of datatuples to be plotted."""
         if self.PLOT_BMI:
-            data = [(dataset.date, \
-                    util.bmi(dataset.weight, user_data.user.height)) \
+            data = [(dataset.date,
+                    util.bmi(dataset.weight, user_data.user.height))
                     for dataset in datasets]
         elif parameters.config['preferences.unit_system'] == 'imperial':
-            data = [(dataset.date, dataset.weight_lbs) \
+            data = [(dataset.date, dataset.weight_lbs)
                     for dataset in datasets]
         else:
             data = [(dataset.date, dataset.weight) for dataset in datasets]
@@ -143,7 +143,7 @@ class Plot(object):
         except IndexError:
             mindate_plan = None
             maxdate_plan = None
-        self.MINDATE, self.MAXDATE = util.compare_with_possible_nones( \
+        self.MINDATE, self.MAXDATE = util.compare_with_possible_nones(
                     mindate_meas, maxdate_meas, mindate_plan, maxdate_plan)
         self.start_date, self.end_date = self.MINDATE, self.MAXDATE
 
@@ -157,17 +157,17 @@ class Plot(object):
         if self.PLOT_RAW and self.plot_data_measurement:
             xvalues = [tup[0] for tup in self.plot_data_measurement]
             yvalues = [tup[1] for tup in self.plot_data_measurement]
-            self.ax.plot_date(dates.date2num(xvalues), yvalues, \
+            self.ax.plot_date(dates.date2num(xvalues), yvalues,
                             fmt='bo-', ms=4.0)
         if self.PLOT_SMOOTH and self.plot_data_measurement:
             xvalues = [tup[0] for tup in self.plot_data_measurement]
             yvalues = [tup[2] for tup in self.plot_data_measurement]
-            self.ax.plot_date(dates.date2num(xvalues), yvalues, \
+            self.ax.plot_date(dates.date2num(xvalues), yvalues,
                             fmt='co-', ms=4.0)
         if self.PLOT_PLAN and self.plot_data_plan:
             xvalues = [tup[0] for tup in self.plot_data_plan]
             yvalues = [tup[1] for tup in self.plot_data_plan]
-            self.ax.plot_date(dates.date2num(xvalues), yvalues, \
+            self.ax.plot_date(dates.date2num(xvalues), yvalues,
                             fmt='ro-', ms=4.0)
 
     def _format_plot(self):
@@ -177,8 +177,8 @@ class Plot(object):
         # format x-axis
         daterange = self.end_date - self.start_date
         majorlocator, majorformatter, minorlocator = _get_locators(daterange)
-        self.ax.set_xlim(dates.date2num(self.start_date), \
-                         dates.date2num(self.end_date))
+        self.ax.set_xlim(
+                dates.date2num(self.start_date), dates.date2num(self.end_date))
         self.ax.xaxis.set_major_locator(majorlocator)
         self.ax.xaxis.set_major_formatter(majorformatter)
         self.ax.xaxis.set_minor_locator(minorlocator)
@@ -199,7 +199,7 @@ class Plot(object):
         y_min, y_max = self._get_yrange(self.plot_data_measurement)
         if self.PLOT_PLAN:
             y_min_plan, y_max_plan = self._get_yrange(self.plot_data_plan)
-            y_min, y_max = util.compare_with_possible_nones( \
+            y_min, y_max = util.compare_with_possible_nones(
                                 y_min, y_max, y_min_plan, y_max_plan)
         # y_min, y_max can be None if no datasets in selected daterange
         if y_min is not None:
@@ -212,9 +212,9 @@ class Plot(object):
         Returns None, None if no measurements exist in the current date
         range."""
         try:
-            y_min = min(dataset[1] for dataset in datasets \
+            y_min = min(dataset[1] for dataset in datasets
                         if self.start_date <= dataset[0] <= self.end_date)
-            y_max = max(dataset[1] for dataset in datasets \
+            y_max = max(dataset[1] for dataset in datasets
                         if self.start_date <= dataset[0] <= self.end_date)
             return y_min, y_max
         except ValueError:
@@ -242,7 +242,7 @@ def _smooth_data(data):
         weights = []
         for delta in deltas:
             weights.append(alpha**(delta))
-        weighted_data = [datapoints[k]*weights[k] \
+        weighted_data = [datapoints[k] * weights[k]
                             for k in xrange(len(datapoints))]
         weighted_average = sum(weighted_data)/sum(weights)
         smooth_data.append((data[i][0], data[i][1], weighted_average))

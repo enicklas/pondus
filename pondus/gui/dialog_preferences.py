@@ -93,8 +93,8 @@ class PreferencesDialog(object):
         if self.newconfig['preferences.unit_system'] == 'metric':
             self.unit_button.set_active(True)
         unit_hbox.pack_start(self.unit_button)
-        self.unit_button = gtk.RadioButton(group=self.unit_button, \
-                                                        label=_('imperial'))
+        self.unit_button = gtk.RadioButton(
+                            group=self.unit_button, label=_('imperial'))
         self.unit_button.connect('toggled', self.on_unit_change, 'imperial')
         if self.newconfig['preferences.unit_system'] == 'imperial':
             self.unit_button.set_active(True)
@@ -104,14 +104,14 @@ class PreferencesDialog(object):
 
         self.use_plan_button = gtk.CheckButton(_('Use Weight Planner'))
         self.use_plan_button.set_border_width(5)
-        self.use_plan_button.set_active( \
+        self.use_plan_button.set_active(
                         self.newconfig['preferences.use_weight_plan'])
         self.dialog.vbox.pack_start(self.use_plan_button)
 
         self.use_calendar_button = \
                     gtk.CheckButton(_('Use Calendar in Add Dialog'))
         self.use_calendar_button.set_border_width(5)
-        self.use_calendar_button.set_active( \
+        self.use_calendar_button.set_active(
                         self.newconfig['preferences.use_calendar'])
         self.dialog.vbox.pack_start(self.use_calendar_button)
 
@@ -153,14 +153,14 @@ class PreferencesDialog(object):
     def on_unit_change(self, widget, data):
         """Remembers the selected weight unit to be saved later."""
         if widget.get_active():
-            if data == 'metric' \
-                    and self.newconfig['preferences.unit_system'] == 'imperial':
+            if (data == 'metric'
+                and self.newconfig['preferences.unit_system'] == 'imperial'):
                 newheight1 = self.height_entry1.get_value()
                 newheight2 = self.height_entry2.get_value()
                 height_cm = util.imperial_to_height(newheight1, newheight2)
                 self.set_metric(height_cm)
-            elif data == 'imperial' \
-                    and self.newconfig['preferences.unit_system'] == 'metric':
+            elif (data == 'imperial'
+                    and self.newconfig['preferences.unit_system'] == 'metric'):
                 newheight1 = self.height_entry1.get_value()
                 newheight2 = self.height_entry2.get_value()
                 height_cm = util.metric_to_height(newheight1, newheight2)

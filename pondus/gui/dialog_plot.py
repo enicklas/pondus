@@ -103,10 +103,10 @@ class PlotDialog(object):
         self.update_daterange(self.dateselector)
 
         # connect the signals
-        self.start_date_entry.connect('key-press-event', \
-                                    self.on_keypress_in_entry)
-        self.end_date_entry.connect('key-press-event', \
-                                    self.on_keypress_in_entry)
+        self.start_date_entry.connect(
+                        'key-press-event', self.on_keypress_in_entry)
+        self.end_date_entry.connect(
+                        'key-press-event', self.on_keypress_in_entry)
         self.dateselector.connect('changed', self.update_daterange)
         self.plotselector.connect('changed', self.update_plot_type)
         self.smoothselector.connect('changed', self.update_plot_smoothness)
@@ -218,8 +218,8 @@ class PlotDialog(object):
 
     def set_dateselector_default(self):
         """Sets the default daterange of the plot to 3 months, if sensible."""
-        if self.plot.get_mindate() > date.today() - timedelta(days=91) \
-                or self.plot.get_maxdate() < date.today() - timedelta(days=91):
+        if (self.plot.get_mindate() > date.today() - timedelta(days=91)
+            or self.plot.get_maxdate() < date.today() - timedelta(days=91)):
             self.dateselector.set_active(0)
         else:
             self.dateselector.set_active(2)

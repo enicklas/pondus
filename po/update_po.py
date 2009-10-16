@@ -43,10 +43,10 @@ def _create_pot(version, files_to_translate):
     """Creates pondus.pot, the template file for translations."""
     gettext_command = ['xgettext']
     gettext_options = [
-            '-L Python', \
-            '-o pondus.pot', \
-            '--package-name=Pondus', \
-            ''.join(['--package-version=', version]), \
+            '-L Python',
+            '-o pondus.pot',
+            '--package-name=Pondus',
+            ''.join(['--package-version=', version]),
             '--msgid-bugs-address=pondus-dev@sharesource.org']
     gettext_command.extend(gettext_options)
     gettext_command.extend(files_to_translate)

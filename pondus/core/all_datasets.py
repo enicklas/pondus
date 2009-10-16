@@ -73,8 +73,8 @@ class AllDatasets(object):
         """Returns the last measured weight."""
         if self.datasets:
             # create an intermediate list of tuples (date, id)
-            intermed = [(dataset.date, id_) \
-                for id_, dataset in self.datasets.iteritems()]
+            intermed = [(dataset.date, id_)
+                        for id_, dataset in self.datasets.iteritems()]
             # find id of most recent dataset and get its weight value
             return self.datasets[max(intermed)[1]].weight
         else:

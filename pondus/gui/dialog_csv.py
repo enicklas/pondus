@@ -47,8 +47,8 @@ class CSVDialogBase(object):
         self.data_button.set_active(True)
         self.data_button.connect('toggled', self.on_data_change, 'meas')
         databox.pack_start(self.data_button)
-        self.data_button = gtk.RadioButton(group=self.data_button, \
-                                           label=_('Weight Plan'))
+        self.data_button = gtk.RadioButton(
+                            group=self.data_button, label=_('Weight Plan'))
         self.data_button.connect('toggled', self.on_data_change, 'plan')
         if not parameters.config['preferences.use_weight_plan']:
             self.data_button.set_sensitive(False)
@@ -62,8 +62,8 @@ class CSVDialogBase(object):
         filebox.pack_start(file_label)
         filehbox = gtk.HBox(homogeneous=False, spacing=5)
         self.file_entry = gtk.Entry()
-        self.file_entry.set_text(os.path.join(os.path.expanduser('~'), \
-                                 self.filename))
+        self.file_entry.set_text(
+                    os.path.join(os.path.expanduser('~'), self.filename))
         filehbox.pack_start(self.file_entry)
         choose_button = gtk.Button(stock=gtk.STOCK_OPEN)
         filehbox.pack_start(choose_button)
@@ -140,8 +140,8 @@ class CSVDialogImport(CSVDialogBase):
             else:
                 title = _('Error: Not a valid File')
                 message = _('The given path does not point to a valid file!')
-                MessageDialog(type_='error', title=title, \
-                                                    message=message).run()
+                MessageDialog(
+                        type_='error', title=title, message=message).run()
                 return self.run()
         self.dialog.hide()
 

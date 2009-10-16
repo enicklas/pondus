@@ -98,9 +98,9 @@ def initialize():
     check_datadir(parameters.userdatafile)
     parameters.filelock = FileLock()
     parameters.have_mpl = _test_mpl_availability()
-    parameters.plot_button_path = _get_path('data/icons/', \
-                        '../share/pondus/', 'plot.png')
-    parameters.logo_path = _get_path('data/icons/', \
-                        '../share/icons/hicolor/48x48/apps/', 'pondus.png')
-    parameters.config = config_parser.read_config( \
-                    parameters.config_default, parameters.configfile)
+    parameters.plot_button_path = _get_path(
+            'data/icons/', '../share/pondus/', 'plot.png')
+    parameters.logo_path = _get_path(
+            'data/icons/', '../share/icons/hicolor/48x48/apps/', 'pondus.png')
+    parameters.config = config_parser.read_config(
+            parameters.config_default, parameters.configfile)

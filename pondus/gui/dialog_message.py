@@ -27,14 +27,14 @@ class MessageDialog(object):
 
     def __init__(self, type_, title, message):
         if type_ == 'error':
-            self.dialog = gtk.MessageDialog(type=gtk.MESSAGE_ERROR, \
-                                            buttons=gtk.BUTTONS_CLOSE)
+            self.dialog = gtk.MessageDialog(
+                    type=gtk.MESSAGE_ERROR, buttons=gtk.BUTTONS_CLOSE)
         elif type_ == 'info':
-            self.dialog = gtk.MessageDialog(type=gtk.MESSAGE_INFO, \
-                                            buttons=gtk.BUTTONS_CLOSE)
+            self.dialog = gtk.MessageDialog(
+                    type=gtk.MESSAGE_INFO, buttons=gtk.BUTTONS_CLOSE)
         elif type_ == 'question':
-            self.dialog = gtk.MessageDialog(type=gtk.MESSAGE_QUESTION, \
-                                            buttons=gtk.BUTTONS_YES_NO)
+            self.dialog = gtk.MessageDialog(
+                    type=gtk.MESSAGE_QUESTION, buttons=gtk.BUTTONS_YES_NO)
         self.dialog.set_title(title)
         self.dialog.set_markup(message)
         self.dialog.show_all()

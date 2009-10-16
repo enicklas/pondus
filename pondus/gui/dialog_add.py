@@ -54,9 +54,9 @@ class AddDataDialog(object):
             date_label.set_alignment(xalign=0, yalign=0.5)
             self.calendar = gtk.Calendar()
             if parameters.config['preferences.unit_system'] == 'metric':
-                self.calendar.set_display_options( \
-                                            gtk.CALENDAR_SHOW_HEADING | \
-                                            gtk.CALENDAR_SHOW_DAY_NAMES | \
+                self.calendar.set_display_options(
+                                            gtk.CALENDAR_SHOW_HEADING |
+                                            gtk.CALENDAR_SHOW_DAY_NAMES |
                                             gtk.CALENDAR_WEEK_START_MONDAY)
             self.calendar.select_month(date_.month-1, date_.year)
             self.calendar.select_day(date_.day)
@@ -74,10 +74,10 @@ class AddDataDialog(object):
 
         weight_box = gtk.VBox(spacing=5)
         weight_box.set_border_width(5)
-        weight_label = gtk.Label(_('Weight') + ' (' \
-            + util.get_weight_unit() + '):')
+        weight_label = gtk.Label(
+                (_('Weight') + ' (' + util.get_weight_unit() + '):'))
         weight_label.set_alignment(xalign=0, yalign=0.5)
-        weight_adj = gtk.Adjustment(value=weight, lower=0, upper=1000, \
+        weight_adj = gtk.Adjustment(value=weight, lower=0, upper=1000,
                                     step_incr=0.1, page_incr=1.0)
         self.weight_entry = gtk.SpinButton(adjustment=weight_adj, digits=1)
         self.weight_entry.set_numeric(True)
@@ -126,8 +126,8 @@ class AddDataDialog(object):
             except:
                 title = _('Error: Wrong Format')
                 message = _('The data entered is not in the correct format!')
-                MessageDialog(type_='error', title=title, \
-                                                    message=message).run()
+                MessageDialog(
+                        type_='error', title=title, message=message).run()
                 return self.run()
             self.dialog.hide()
             return self.dataset
@@ -150,10 +150,10 @@ class AddDataDialog(object):
             position = entry.get_position()
             entry.emit_stop_by_name('insert_text')
             # check first for use_calendar; date_entry can not exist
-            if not parameters.config['preferences.use_calendar'] \
-                            and entry == self.date_entry:
-                    gobject.idle_add(self.date_key_press, entry, text, \
-                                                position)
+            if (not parameters.config['preferences.use_calendar']
+                            and entry == self.date_entry):
+                    gobject.idle_add(
+                            self.date_key_press, entry, text, position)
             if entry == self.weight_entry:
                 gobject.idle_add(self.weight_key_press, text)
 

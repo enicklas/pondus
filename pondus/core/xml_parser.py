@@ -71,8 +71,8 @@ def _add_dataset_to_dict(dataset_el, datasets):
         id_ = int(dataset_el.find('id').text)
     except AttributeError:
         id_ = int(dataset_el.get('id'))
-    dataset = Dataset(id_, \
-                      util.str2date(dataset_el.find('date').text), \
+    dataset = Dataset(id_,
+                      util.str2date(dataset_el.find('date').text),
                       float(dataset_el.find('weight').text))
     datasets[id_] = dataset
 
@@ -80,8 +80,8 @@ def _add_dataset_to_dict_convert(dataset_el, datasets):
     """Adds a dataset element to a dictionary of Dataset objects and
     converts the weight from lbs to kg."""
     weight = float(dataset_el.find('weight').text)
-    dataset = Dataset(int(dataset_el.get('id')), \
-                      util.str2date(dataset_el.find('date').text), \
+    dataset = Dataset(int(dataset_el.get('id')),
+                      util.str2date(dataset_el.find('date').text),
                       weight)
     dataset.weight_lbs = weight
     datasets[int(dataset_el.get('id'))] = dataset
