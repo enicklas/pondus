@@ -6,6 +6,7 @@ Pondus NEWS
  * Add ``Last 3 Months'' daterange to plot dialog and make it default if
    the weight history goes further back than 3 months and if measurements
    exist in the last 3 months
+ * When using imperial units, interpret csv-im-/exported data as lbs
  * Fix crash when trying to smooth nonexistent data
  * Minor performance improvements and code cleanup
  * Updated translations: de, es, pl

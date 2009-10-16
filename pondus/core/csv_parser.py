@@ -20,6 +20,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 import csv
 
+from pondus import parameters
 from pondus.core import util
 from pondus.core.dataset import Dataset
 
@@ -28,8 +29,13 @@ def write_csv(datasets, csvfilepath):
     datasets."""
     csvfile = open(csvfilepath, 'w')
     csvwriter = csv.writer(csvfile)
+    if parameters.config['preferences.unit_system'] == 'imperial':
+        weight_key = 'weight_lbs'
+    else:
+        weight_key = 'weight'
     for dataset in datasets:
-        csvwriter.writerow([str(dataset.date), str(round(dataset.weight, 1))])
+        csvwriter.writerow([str(dataset.date),
+                            str(round(getattr(dataset, weight_key), 1))])
     csvfile.close()
 
 def read_csv(datasets, csvfilepath):
@@ -45,6 +51,8 @@ def read_csv(datasets, csvfilepath):
             date = util.str2date(row[0])
             weight = round(float(row[1]), 1)
             dataset = Dataset(id_, date, weight)
+            if parameters.config['preferences.unit_system'] == 'imperial':
+                dataset.weight_lbs = weight
             new_datasets.append(dataset)
             id_ += 1
     except:
