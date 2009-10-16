@@ -65,6 +65,6 @@ def _add_dataset_to_element(dataset, element):
     """Adds a dataset object to an element, which is the parent in
     the ElementTree."""
     dataset_el = SubElement(element, 'dataset')
-    for parameter, value in dataset.__dict__.iteritems():
-        sub_el = SubElement(dataset_el, parameter)
-        sub_el.text = str(value)
+    for key in parameters.keys_required:
+        sub_el = SubElement(dataset_el, key)
+        sub_el.text = str(getattr(dataset, key))
