@@ -22,7 +22,11 @@ class Dataset(object):
     """Implements the structure of single weight measurements."""
 
     def __init__(self, id_, date, weight):
-        """Creates a new dataset with the given values."""
+        """Creates a new dataset with the given values.
+
+        Weight is always in kg. Weight has one digit precision when using
+        metric units and two digits precision when using imperial units to
+        ensure proper conversion to lbs."""
         self.id =  id_
         self.date = date
         self.weight = weight

@@ -240,7 +240,7 @@ class MainWindow(object):
             if parameters.config['preferences.unit_system'] == 'imperial':
                 new_weight = newdata.weight_lbs
             else:
-                new_weight = newdata.weight
+                new_weight = round(newdata.weight, 1)
             self.datalist.set(treeiter,
                 1, str(newdata.date),
                 2, str(new_weight))
@@ -353,7 +353,7 @@ class MainWindow(object):
         if parameters.config['preferences.unit_system'] == 'imperial':
             dataset_list = [dataset.id, dataset.date, dataset.weight_lbs]
         else:
-            dataset_list = [dataset.id, dataset.date, dataset.weight]
+            dataset_list = [dataset.id, dataset.date, round(dataset.weight, 1)]
         return self.datalist.append(dataset_list)
 
 

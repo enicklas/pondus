@@ -29,7 +29,7 @@ def write_csv(datasets, csvfilepath):
     csvfile = open(csvfilepath, 'w')
     csvwriter = csv.writer(csvfile)
     for dataset in datasets:
-        csvwriter.writerow([str(dataset.date), str(dataset.weight)])
+        csvwriter.writerow([str(dataset.date), str(round(dataset.weight, 1))])
     csvfile.close()
 
 def read_csv(datasets, csvfilepath):
@@ -43,7 +43,7 @@ def read_csv(datasets, csvfilepath):
     try:
         for row in csvreader:
             date = util.str2date(row[0])
-            weight = float(row[1])
+            weight = round(float(row[1]), 1)
             dataset = Dataset(id_, date, weight)
             new_datasets.append(dataset)
             id_ += 1
