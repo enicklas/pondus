@@ -79,12 +79,3 @@ class AllDatasets(object):
             return self.datasets[max(intermed)[1]].weight
         else:
             return 0.0
-
-
-class AllDatasetsOld(AllDatasets):
-    """Defines the structure how all the datasets are stored
-    internally. Subclass to support the legacy xml scheme."""
-
-    def __init__(self, filepath):
-        """Reads all datasets from filepath."""
-        self.datasets = xml_parser.read_old(filepath)

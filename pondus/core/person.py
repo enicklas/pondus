@@ -22,7 +22,7 @@ import os
 
 from pondus import parameters
 from pondus.core import xml_parser
-from pondus.core.all_datasets import AllDatasets, AllDatasetsOld
+from pondus.core.all_datasets import AllDatasets
 
 try:
     from xml.etree.cElementTree import Element, SubElement, ElementTree
@@ -43,8 +43,10 @@ class Person(object):
             self.plan = AllDatasets(person_data['plan'])
         else:
             self.height = 0.0
-            self.measurements =  AllDatasetsOld(parameters.datafile_old)
-            self.plan = AllDatasetsOld(parameters.planfile_old)
+            self.measurements = AllDatasets(
+                            xml_parser.read_old(parameters.datafile_old))
+            self.plan = AllDatasets(
+                            xml_parser.read_old(parameters.planfile_old))
 
     def write_to_file(self, filepath):
         """Writes the person data to the xml file."""
