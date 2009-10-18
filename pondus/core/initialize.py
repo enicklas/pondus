@@ -23,7 +23,6 @@ import os
 import sys
 
 from pondus import parameters
-from pondus import user_data
 from pondus.core import config_parser
 from pondus.core import option_parser
 from pondus.core.filelock import FileLock
@@ -108,6 +107,7 @@ def initialize():
 
 def shutdown():
     """Saves the data to disk."""
+    from pondus import user_data
     if parameters.filelock.own_lock():
         user_data.user.write_to_file(filepath=parameters.userdatafile)
         config_parser.write_config(parameters.config, parameters.configfile)
