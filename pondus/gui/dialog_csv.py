@@ -107,8 +107,8 @@ class CSVDialogExport(CSVDialogBase):
 
     def exportcsv(self):
         """Saves the datasets to a csv file."""
-        csvpath = os.path.expanduser(self.file_entry.get_text())
-        csv_parser.write_csv(self.datasets, csvpath)
+        filepath = os.path.expanduser(self.file_entry.get_text())
+        csv_parser.write_csv(self.datasets, filepath)
         title = _('Export successful')
         message = _('The export was successful.')
         MessageDialog(type_='info', title=title, message=message).run()
