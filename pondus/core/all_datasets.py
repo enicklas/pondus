@@ -20,7 +20,6 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 from datetime import date
 
-from pondus.core import xml_parser
 from pondus.core.dataset import Dataset
 
 
