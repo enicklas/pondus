@@ -21,13 +21,14 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 import os
 
 from pondus import parameters
-from pondus.core import xml_parser
+from pondus.core import util
 from pondus.core.all_datasets import AllDatasets
+from pondus.core.dataset import Dataset
 
 try:
-    from xml.etree.cElementTree import Element, SubElement, ElementTree
+    from xml.etree.cElementTree import Element, SubElement, ElementTree, parse
 except ImportError:
-    from elementtree.ElementTree import Element, SubElement, ElementTree
+    from elementtree.ElementTree import Element, SubElement, ElementTree, parse
 
 
 class Person(object):
@@ -35,18 +36,10 @@ class Person(object):
 
     def __init__(self, filepath):
         """Creates a new person object from the xml file at filepath."""
-        if (os.path.isfile(filepath) or parameters.use_custom_file
-                or not os.path.isfile(parameters.datafile_old)):
-            person_data = xml_parser.read(filepath)
-            self.height = person_data['height']
-            self.measurements = AllDatasets(person_data['measurements'])
-            self.plan = AllDatasets(person_data['plan'])
-        else:
-            self.height = 0.0
-            self.measurements = AllDatasets(
-                            xml_parser.read_old(parameters.datafile_old))
-            self.plan = AllDatasets(
-                            xml_parser.read_old(parameters.planfile_old))
+        self.height = 0.0
+        self.measurements = AllDatasets({})
+        self.plan = AllDatasets({})
+        self._read_from_file(filepath)
 
     def write_to_file(self, filepath):
         """Writes the person data to the xml file."""
@@ -63,6 +56,49 @@ class Person(object):
         user_tree = ElementTree(person_el)
         user_tree.write(filepath, encoding='UTF-8')
 
+    def _read_from_file(self, filepath):
+        """Parses the xml-file in filepath and adds the data to the
+        person object."""
+        # if the standard file or the custom file exist, read from it
+        if os.path.isfile(filepath):
+            user_tree = parse(filepath)
+            height_element = user_tree.find('height')
+            if height_element is not None:
+                self.height = float(height_element.text)
+            measurements = user_tree.findall('weight/measurements/dataset')
+            plan = user_tree.findall('weight/plan/dataset')
+            for dataset_el in measurements:
+                self.measurements.add(_dataset_from_element(dataset_el))
+            for dataset_el in plan:
+                self.plan.add(_dataset_from_element(dataset_el))
+            return
+        # if using a custom file, that does not exist, start with empty data
+        elif parameters.use_custom_file:
+            return
+        # if none of the above, try to import from the legacy data structure
+        elif os.path.isfile(parameters.datafile_old):
+            self._read_old_data(parameters.datafile_old, self.measurements)
+            self._read_old_data(parameters.planfile_old, self.plan)
+            return
+        # looks like this is the first start of pondus, start with empty data
+        else:
+            return
+
+    def _read_old_data(self, filepath, datasets):
+        """Parses the legacy xml-file in filepath and adds the data to
+        datasets."""
+        if os.path.isfile(filepath):
+            user_tree = parse(filepath)
+            dataset_list = user_tree.findall('dataset')
+            for dataset_el in dataset_list:
+                datasets.add(_dataset_from_element(dataset_el))
+        # convert from old units to new standard of always saving weight in kg
+        # one-time conversion, performance does not matter
+        if parameters.convert_weight_data_to_kg:
+            for dataset in datasets:
+                dataset.weight_lbs = dataset.weight
+
+
 def _add_dataset_to_element(dataset, element):
     """Adds a dataset object to an element, which is the parent in
     the ElementTree."""
@@ -70,3 +106,14 @@ def _add_dataset_to_element(dataset, element):
     for key in parameters.keys_required:
         sub_el = SubElement(dataset_el, key)
         sub_el.text = str(getattr(dataset, key))
+
+def _dataset_from_element(dataset_el):
+    """Parses a dataset xml-element and returns it as a Dataset object."""
+    try:
+        id_ = int(dataset_el.find('id').text)
+    except AttributeError:
+        id_ = int(dataset_el.get('id'))
+    dataset = Dataset(id_,
+                  util.str2date(dataset_el.find('date').text),
+                  float(dataset_el.find('weight').text))
+    return dataset
