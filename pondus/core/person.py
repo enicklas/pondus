@@ -20,7 +20,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 import os
 
-from pondus import parameters
+from pondus.core import parameters
 from pondus.core import util
 from pondus.core.all_datasets import AllDatasets
 from pondus.core.dataset import Dataset

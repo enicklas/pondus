@@ -22,7 +22,7 @@ import gtk
 import gobject
 from datetime import date, timedelta
 
-from pondus import parameters
+from pondus.core import parameters
 from pondus.core import util
 from pondus.gui.dialog_message import MessageDialog
 

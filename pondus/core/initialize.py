@@ -22,7 +22,7 @@ import gettext
 import os
 import sys
 
-from pondus import parameters
+from pondus.core import parameters
 from pondus.core import config_parser
 from pondus.core import option_parser
 from pondus.core.filelock import FileLock

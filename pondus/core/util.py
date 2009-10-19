@@ -21,7 +21,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 from datetime import date
 from time import strptime
 
-from pondus import parameters
+from pondus.core import parameters
 
 def str2date(datestring):
     """Converts a string in the format YYYY-MM-DD into a date object."""

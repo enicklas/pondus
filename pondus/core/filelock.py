@@ -22,7 +22,7 @@ import os
 import sys
 import gtk
 
-from pondus import parameters
+from pondus.core import parameters
 from pondus.gui.dialog_message import MessageDialog
 
 

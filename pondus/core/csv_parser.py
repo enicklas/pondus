@@ -20,7 +20,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 import csv
 
-from pondus import parameters
+from pondus.core import parameters
 from pondus.core import util
 from pondus.core.dataset import Dataset
 

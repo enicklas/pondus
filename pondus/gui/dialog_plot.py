@@ -24,7 +24,7 @@ from datetime import date, timedelta
 from matplotlib.backends.backend_gtkagg import FigureCanvasGTKAgg \
     as FigureCanvas
 
-from pondus import parameters
+from pondus.core import parameters
 from pondus.core import util
 from pondus.core.plot import Plot
 from pondus.gui.dialog_message import MessageDialog

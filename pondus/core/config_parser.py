@@ -21,7 +21,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 import ConfigParser
 import os
 
-from pondus import parameters
+from pondus.core import parameters
 
 def read_config(default_config, conffile):
     """Reads the configuration file and returns the updated default_config

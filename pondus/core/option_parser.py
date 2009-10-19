@@ -22,7 +22,7 @@ import os
 from optparse import OptionParser
 
 from pondus import __version__
-from pondus import parameters
+from pondus.core import parameters
 
 
 def parse_options():

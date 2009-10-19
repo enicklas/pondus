@@ -20,7 +20,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 import gtk
 
-from pondus import parameters
+from pondus.core import parameters
 
 def sort_function_weight(listmodel, iter1, iter2, data):
     """Sorts the weight column correctly, i.e. interprets the weight

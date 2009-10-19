@@ -22,7 +22,7 @@ from datetime import timedelta
 from matplotlib.figure import Figure
 from matplotlib import dates
 
-from pondus import parameters
+from pondus.core import parameters
 from pondus.core import util
 
 
