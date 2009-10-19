@@ -88,4 +88,4 @@ Written by Eike Nicklas <mailto:eike@ephys.de[]>
 COPYRIGHT
 ---------
 Copyright \(C) 2007-2009 Eike Nicklas. Free use of this software is
-granted under the terms of the GNU General Public License (GPL).
+granted under the terms of the MIT License.
