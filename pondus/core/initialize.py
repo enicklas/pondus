@@ -26,6 +26,7 @@ from pondus import parameters
 from pondus.core import config_parser
 from pondus.core import option_parser
 from pondus.core.filelock import FileLock
+from pondus.core.person import Person
 
 
 def _gettext_install():
@@ -104,16 +105,16 @@ def initialize():
             'data/icons/', '../share/icons/hicolor/48x48/apps/', 'pondus.png')
     parameters.config = config_parser.read_config(
             parameters.config_default, parameters.configfile)
+    parameters.user = Person(parameters.userdatafile)
 
 def shutdown():
     """Saves the data to disk."""
-    from pondus import user_data
     if parameters.filelock.own_lock():
-        user_data.user.write_to_file(filepath=parameters.userdatafile)
+        parameters.user.write_to_file(filepath=parameters.userdatafile)
         config_parser.write_config(parameters.config, parameters.configfile)
         parameters.filelock.unlock()
     else:
         backupfile = parameters.userdatafile + '.backup'
-        user_data.user.write_to_file(filepath=backupfile)
+        parameters.user.write_to_file(filepath=backupfile)
         print (_('Not owning the file lock. Backing up the data to'), '\n',
                 backupfile)

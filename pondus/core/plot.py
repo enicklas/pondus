@@ -22,7 +22,6 @@ from datetime import timedelta
 from matplotlib.figure import Figure
 from matplotlib import dates
 
-from pondus import user_data
 from pondus import parameters
 from pondus.core import util
 
@@ -105,10 +104,10 @@ class Plot(object):
     def _set_current_plot_data(self):
         """Updates the plot data according to the current settings."""
         self.plot_data_measurement = \
-                        self._get_plot_data(user_data.user.measurements)
+                        self._get_plot_data(parameters.user.measurements)
         # for performance improvements, only get plan data if really needed
         if self.PLOT_PLAN:
-            self.plot_data_plan = self._get_plot_data(user_data.user.plan)
+            self.plot_data_plan = self._get_plot_data(parameters.user.plan)
         else:
             self.plot_data_plan = []
         if self.PLOT_SMOOTH:
@@ -119,7 +118,7 @@ class Plot(object):
         """Returns the list of datatuples to be plotted."""
         if self.PLOT_BMI:
             data = [(dataset.date,
-                    util.bmi(dataset.weight, user_data.user.height))
+                    util.bmi(dataset.weight, parameters.user.height))
                     for dataset in datasets]
         elif parameters.config['preferences.unit_system'] == 'imperial':
             data = [(dataset.date, dataset.weight_lbs)

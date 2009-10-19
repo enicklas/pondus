@@ -20,7 +20,6 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 import gtk
 
-from pondus import user_data
 from pondus import parameters
 from pondus.core import initialize
 from pondus.gui import guiutil
@@ -38,7 +37,7 @@ class MainWindow(object):
 
     def __init__(self):
         # display weight measurements by default
-        self.datasetdata = user_data.user.measurements
+        self.datasetdata = parameters.user.measurements
 
         # create the window
         self.window = gtk.Window(gtk.WINDOW_TOPLEVEL)
@@ -278,9 +277,9 @@ class MainWindow(object):
         the weight plan is displayed and edited."""
         key = self.modeselector.get_active()
         if key == 0:
-            self.datasetdata = user_data.user.measurements
+            self.datasetdata = parameters.user.measurements
         elif key == 1:
-            self.datasetdata = user_data.user.plan
+            self.datasetdata = parameters.user.plan
         self.display_data(self.datasetdata)
         self.set_selection_active(self.treeselection)
         self.set_plot_action_active()
@@ -301,8 +300,8 @@ class MainWindow(object):
     def set_plot_action_active(self):
         """Tests, whether a dataset exists and matplotlib is available
         and sets sensitivity of the plot action accordingly."""
-        if ((not user_data.user.measurements and
-                    (not user_data.user.plan
+        if ((not parameters.user.measurements and
+                    (not parameters.user.plan
                     or not parameters.config['preferences.use_weight_plan']))
                     or not parameters.have_mpl):
             self.plotaction.set_sensitive(False)

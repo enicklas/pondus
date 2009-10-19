@@ -29,6 +29,9 @@ planfile_old = os.path.expanduser('~/.pondus/weight-plan.xml')
 # using standard or custom location for datafile?
 use_custom_file = False
 
+# user data
+user = None
+
 # configuration
 config_default = {'window.remember_size': False,
                   'window.width': 180,

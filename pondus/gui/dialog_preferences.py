@@ -21,7 +21,6 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 import gtk
 
 from pondus import parameters
-from pondus import user_data
 from pondus.core import util
 
 
@@ -72,9 +71,9 @@ class PreferencesDialog(object):
         self.height_label1 = gtk.Label()
         self.height_label2 = gtk.Label()
         if self.newconfig['preferences.unit_system'] == 'metric':
-            self.set_metric(user_data.user.height)
+            self.set_metric(parameters.user.height)
         else:
-            self.set_imperial(user_data.user.height)
+            self.set_imperial(parameters.user.height)
         height_hbox.pack_start(self.height_entry1)
         height_hbox.pack_start(self.height_label1, False, True)
         height_hbox.pack_start(self.height_entry2)
@@ -142,10 +141,10 @@ class PreferencesDialog(object):
             newheight1 = self.height_entry1.get_value()
             newheight2 = self.height_entry2.get_value()
             if self.newconfig['preferences.unit_system'] == 'metric':
-                user_data.user.height = \
+                parameters.user.height = \
                             util.metric_to_height(newheight1, newheight2)
             else: 
-                user_data.user.height = \
+                parameters.user.height = \
                             util.imperial_to_height(newheight1, newheight2)
         self.dialog.hide()
 

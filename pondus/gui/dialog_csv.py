@@ -21,7 +21,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 import gtk
 import os
 
-from pondus import parameters, user_data
+from pondus import parameters
 from pondus.core import csv_parser
 from pondus.gui.dialog_message import MessageDialog
 from pondus.gui.dialog_save_file import SaveFileDialog
@@ -35,7 +35,7 @@ class CSVDialogBase(object):
         self.dialog = gtk.Dialog(flags=gtk.DIALOG_NO_SEPARATOR)
         self.dialog.set_title(title)
 
-        self.datasets = user_data.user.measurements
+        self.datasets = parameters.user.measurements
         self.filename = _('weight.csv')
 
         databox = gtk.VBox()
@@ -84,9 +84,9 @@ class CSVDialogBase(object):
         """Updates the datasets to be im-/exported."""
         if widget.get_active():
             if key == 'meas':
-                self.datasets = user_data.user.measurements
+                self.datasets = parameters.user.measurements
             elif key == 'plan':
-                self.datasets = user_data.user.plan
+                self.datasets = parameters.user.plan
 
 
 class CSVDialogExport(CSVDialogBase):

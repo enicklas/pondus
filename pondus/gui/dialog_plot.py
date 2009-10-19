@@ -24,7 +24,7 @@ from datetime import date, timedelta
 from matplotlib.backends.backend_gtkagg import FigureCanvasGTKAgg \
     as FigureCanvas
 
-from pondus import user_data
+from pondus import parameters
 from pondus.core import util
 from pondus.core.plot import Plot
 from pondus.gui.dialog_message import MessageDialog
@@ -79,7 +79,7 @@ class PlotDialog(object):
         self.plotselector.append_text(_('Weight'))
         self.plotselector.append_text(_('Body Mass Index'))
         self.plotselector.set_active(0)
-        if user_data.user.height < 30:
+        if parameters.user.height < 30:
             self.plotselector.set_sensitive(False)
         plot_options_box.pack_start(self.plotselector, False, False)
         self.smoothselector = gtk.combo_box_new_text()
