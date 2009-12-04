@@ -9,6 +9,7 @@ see LICENSE or http://www.opensource.org/licenses/mit-license.php
 """
 
 import gtk
+import threading
 
 from pondus.core import parameters
 from pondus.core import initialize
@@ -18,8 +19,8 @@ from pondus.gui.dialog_message import MessageDialog
 from pondus.gui.dialog_preferences import PreferencesDialog
 from pondus.gui.dialog_csv import CSVDialogExport, CSVDialogImport
 
-if parameters.have_mpl:
-    from pondus.gui.dialog_plot import PlotDialog
+PlotDialog = None
+
 
 class MainWindow(object):
     """Implements the main window and defines the functions to start
@@ -44,12 +45,6 @@ class MainWindow(object):
         # register icons
         guiutil.register_icons()
 
-        # tooltip for plot icon depends on availability of matplotlib
-        if parameters.have_mpl:
-            plot_tooltip = _('Plot data')
-        else:
-            plot_tooltip = _('Matplotlib not available!')
-
         # set up UIManager
         uimanager = gtk.UIManager()
         accelgroup = uimanager.get_accel_group()
@@ -63,7 +58,7 @@ class MainWindow(object):
             ('remove', gtk.STOCK_REMOVE, None, '<Control>d',
                 _('Delete selected line'), self.remove_dialog),
             ('plot', 'pondus_plot', _('Plot'), '<Control>p',
-                plot_tooltip, self.plot_dialog),
+                _('Matplotlib not available!'), self.plot_dialog),
             ('preferences', gtk.STOCK_PREFERENCES, None, None,
                 _('Preferences'), self.preferences_dialog),
             ('quit', gtk.STOCK_QUIT, None, '<Control>q',
@@ -109,6 +104,8 @@ class MainWindow(object):
         self.editaction.set_visible(False)
         uimanager.get_widget('/Toolbar/edit').set_no_show_all(True)
         uimanager.get_widget('/Toolbar/quit').set_no_show_all(True)
+
+        self.plotbutton = uimanager.get_widget('/Toolbar/plot')
 
         # add list displaying the datasets
         self.contentbox = gtk.VBox(spacing=5)
@@ -336,4 +333,33 @@ class MainWindow(object):
     # main function
     def main(self):
         """Starts the gtk main loop."""
+        gtk.gdk.threads_init()
+        MplTester().start()
         gtk.main()
+
+class MplTester(threading.Thread):
+    """Tests availability of matplotlib in a separate thread and enables
+    plotting, if possible."""
+
+    def __init__(self):
+        """Initializes the thread."""
+        threading.Thread.__init__(self)
+
+    def run(self):
+        """Tries to import matplotlib and enables plotting, if possible."""
+        try:
+            from matplotlib import dates
+        except ImportError:
+            print _('Note: python-matplotlib is not installed, plotting disabled!')
+        else:
+            parameters.have_mpl = True
+            # speed up opening of plot dialog by importing it here
+            global PlotDialog
+            if PlotDialog is None:
+                from pondus.gui.dialog_plot import PlotDialog
+            # enable plot action in main window
+            mainwindow.set_plot_action_active()
+            # set correct tooltip on plotbutton
+            mainwindow.plotbutton.set_tooltip_text(_('Plot data'))
+
+mainwindow = MainWindow()

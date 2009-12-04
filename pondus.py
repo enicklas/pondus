@@ -12,5 +12,5 @@ see LICENSE or http://www.opensource.org/licenses/mit-license.php
 if __name__ == '__main__':
     from pondus.core import initialize
     initialize.initialize()
-    from pondus.gui.window_main import MainWindow
-    MainWindow().main()
+    from pondus.gui.window_main import mainwindow
+    mainwindow.main()

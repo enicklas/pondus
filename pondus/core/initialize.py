@@ -40,17 +40,6 @@ def _get_path(localpath, syspath, filename):
     else:
         print _('Error: Could not find'), sysfilepath
 
-def _test_mpl_availability():
-    """Tests availability of matplotlib to decide whether plotting
-    should be enlabled."""
-    try:
-        from matplotlib import dates
-    except ImportError:
-        print _('Note: python-matplotlib is not installed, plotting disabled!')
-        return False
-    else:
-        return True
-
 def _test_gtk_availability():
     """Tests availability of pygtk and quits if not found."""
     try:
@@ -88,7 +77,6 @@ def initialize():
     _test_etree_availability()
     check_datadir(parameters.userdatafile)
     parameters.filelock = FileLock()
-    parameters.have_mpl = _test_mpl_availability()
     parameters.plot_button_path = _get_path(
             'data/icons/', '../share/pondus/', 'plot.png')
     parameters.logo_path = _get_path(

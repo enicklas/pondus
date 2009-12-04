@@ -5,6 +5,9 @@ Pondus NEWS
 --------------------------
  * *Switch to MIT license*:
    http://www.opensource.org/licenses/mit-license.php
+ * *Bump minimum required version of pygtk to 2.12*
+ * Import matplotlib in a separate thread in the background to reduce
+   startup time. Plotting is enabled once the import is completed.
  * Add ``Last 3 Months'' daterange to plot dialog and make it default if
    the weight history goes further back than 3 months and if measurements
    exist in the last 3 months

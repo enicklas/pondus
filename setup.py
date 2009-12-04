@@ -102,7 +102,7 @@ setup(name = 'pondus',
       data_files = data_files,
       package_dir = {'pondus': 'pondus'},
       packages = ['pondus', 'pondus.core', 'pondus.gui'],
-      requires = ['python(>= 2.4)', 'pygtk(>=2.6)', 'matplotlib']
+      requires = ['python(>= 2.4)', 'pygtk(>=2.12)', 'matplotlib']
       )
 
 _clean_up()
