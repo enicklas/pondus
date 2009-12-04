@@ -52,11 +52,11 @@ class MainWindow(object):
         action_group = gtk.ActionGroup('pondus_actions')
         action_group.add_actions([
             ('add', gtk.STOCK_ADD, None, '<Control>a',
-                _('Add more data'), self.add_dialog),
+                _('Add dataset'), self.add_dialog),
             ('edit', gtk.STOCK_EDIT, None, '<Control>e',
-                _('Edit selected line'), self.edit_dialog),
+                _('Edit selected dataset'), self.edit_dialog),
             ('remove', gtk.STOCK_REMOVE, None, '<Control>d',
-                _('Delete selected line'), self.remove_dialog),
+                _('Delete selected dataset'), self.remove_dialog),
             ('plot', 'pondus_plot', _('Plot'), '<Control>p',
                 _('Matplotlib not available!'), self.plot_dialog),
             ('preferences', gtk.STOCK_PREFERENCES, None, None,
@@ -360,6 +360,6 @@ class MplTester(threading.Thread):
             # enable plot action in main window
             mainwindow.set_plot_action_active()
             # set correct tooltip on plotbutton
-            mainwindow.plotbutton.set_tooltip_text(_('Plot data'))
+            mainwindow.plotbutton.set_tooltip_text(_('Plot weight data'))
 
 mainwindow = MainWindow()

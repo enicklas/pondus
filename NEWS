@@ -13,6 +13,7 @@ Pondus NEWS
    exist in the last 3 months
  * When using imperial units, interpret csv-im-/exported data as lbs
  * Fix crash when trying to smooth nonexistent data
+ * Add more tooltips to improve usability
  * Minor performance improvements and code cleanup
  * Updated translations: de, es, pl
 

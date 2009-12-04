@@ -43,15 +43,19 @@ class PlotDialog(object):
 
         self.start_date_entry = gtk.Entry()
         self.start_date_entry.set_width_chars(10)
+        self.start_date_entry.set_tooltip_text(_('Start date'))
         date_selection_box.pack_start(self.start_date_entry, False, False)
 
         date_selection_box.pack_start(gtk.Label('-'), False, False)
 
         self.end_date_entry = gtk.Entry()
         self.end_date_entry.set_width_chars(10)
+        self.end_date_entry.set_tooltip_text(_('End date'))
         date_selection_box.pack_start(self.end_date_entry, False, False)
 
         self.dateselector = gtk.combo_box_new_text()
+        self.dateselector.set_tooltip_text(
+                    _('Select date range of plot'))
         self.dateselector.append_text(_('All Time'))
         self.dateselector.append_text(_('Last Year'))
         self.dateselector.append_text(_('Last 3 Months'))
@@ -71,6 +75,8 @@ class PlotDialog(object):
         self.plotselector.set_active(0)
         if parameters.user.height < 30:
             self.plotselector.set_sensitive(False)
+            self.plotselector.set_tooltip_text(_('To plot your BMI, \
+you need to enter your height in the preferences dialog.'))
         plot_options_box.pack_start(self.plotselector, False, False)
         self.smoothselector = gtk.combo_box_new_text()
         self.smoothselector.append_text(_('Raw and Smooth'))
@@ -81,6 +87,9 @@ class PlotDialog(object):
         self.plot_plan = gtk.CheckButton(_('Include Weight Plan'))
         self.plot_plan.set_active(self.plot.get_plot_plan())
         self.plot_plan.set_sensitive(self.plot.get_plot_plan())
+        if not self.plot.get_plot_plan():
+            self.plot_plan.set_tooltip_text(_('The weight planner can be \
+enabled in the preferences dialog.'))
         plot_options_box.pack_start(self.plot_plan, True, False)
         self.dialog.vbox.pack_start(plot_options_box, False, False)
 

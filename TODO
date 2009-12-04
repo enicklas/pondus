@@ -22,8 +22,6 @@ features:
 usability:
 ~~~~~~~~~~~
  * add dialog: increase date by month on pg_up
- * plot: tooltip if bmi disabled telling neccessity to enter height
- * more tooltips to ease usage?
  * use frames in pref dialog?
 
 code clean up:

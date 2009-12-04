@@ -91,7 +91,7 @@ class PreferencesDialog(object):
         unit_box.pack_start(unit_hbox)
         self.dialog.vbox.pack_start(unit_box)
 
-        self.use_plan_button = gtk.CheckButton(_('Use Weight Planner'))
+        self.use_plan_button = gtk.CheckButton(_('Enable Weight Planner'))
         self.use_plan_button.set_border_width(5)
         self.use_plan_button.set_active(
                         self.newconfig['preferences.use_weight_plan'])
@@ -102,6 +102,8 @@ class PreferencesDialog(object):
         self.use_calendar_button.set_border_width(5)
         self.use_calendar_button.set_active(
                         self.newconfig['preferences.use_calendar'])
+        self.use_calendar_button.set_tooltip_text(_('Use a calendar widget \
+instead of a text entry to enter dates in the add/edit dialog'))
         self.dialog.vbox.pack_start(self.use_calendar_button)
 
         self.remember_button = gtk.CheckButton(_('Remember Window Size'))
