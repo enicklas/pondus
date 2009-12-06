@@ -66,7 +66,6 @@ other applications. Currently, the only supported format is
 BUGS
 ----
 Look for known bugs and report new bugs at
-http://sharesource.org/project/pondus/bugs/[] or
 http://bitbucket.org/eike/pondus/issues/[]
 
 
@@ -74,8 +73,7 @@ RESOURCES
 ---------
 Homepage: http://www.ephys.de/software/pondus/[]
 
-Project Homepage: http://sharesource.org/project/pondus/[]
-or http://bitbucket.org/eike/pondus/[]
+Project Homepage: http://bitbucket.org/eike/pondus/[]
 
 Mailing List: <mailto:pondus-dev@sharesource.org[]>
 
