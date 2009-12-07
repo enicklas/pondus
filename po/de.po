@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: Pondus 0.6.0+hg\n"
 "Report-Msgid-Bugs-To: pondus-dev@sharesource.org\n"
 "POT-Creation-Date: 2009-12-04 22:28+0100\n"
-"PO-Revision-Date: 2009-09-01 20:17+0100\n"
+"PO-Revision-Date: 2009-12-07 23:31+0100\n"
 "Last-Translator: Eike Nicklas <eike@ephys.de>\n"
 "Language-Team: German <gnome-de@gnome.org>\n"
 "MIME-Version: 1.0\n"
@@ -181,17 +181,15 @@ msgstr "Wähle Datumsbereich:"
 
 #: ../pondus/gui/dialog_plot.py:46
 msgid "Start date"
-msgstr ""
+msgstr "Anfangsdatum"
 
 #: ../pondus/gui/dialog_plot.py:53
-#, fuzzy
 msgid "End date"
-msgstr "Ändere Datensatz"
+msgstr "Enddatum"
 
 #: ../pondus/gui/dialog_plot.py:58
-#, fuzzy
 msgid "Select date range of plot"
-msgstr "Wähle Datumsbereich:"
+msgstr "Wähle Datumsbereich des Diagramms"
 
 #: ../pondus/gui/dialog_plot.py:59
 msgid "All Time"
@@ -221,6 +219,8 @@ msgstr "Zu plottende Daten:"
 msgid ""
 "To plot your BMI, you need to enter your height in the preferences dialog."
 msgstr ""
+"Um den BMI darzustellen, muss die Körpergröße im Optionsdialog angegeben "
+"werden."
 
 #: ../pondus/gui/dialog_plot.py:82
 msgid "Raw and Smooth"
@@ -240,7 +240,7 @@ msgstr "Gewichtsplan anzeigen"
 
 #: ../pondus/gui/dialog_plot.py:91
 msgid "The weight planner can be enabled in the preferences dialog."
-msgstr ""
+msgstr "Der Gewichtsplaner kann im Optionsdialog aktiviert werden."
 
 #: ../pondus/gui/dialog_plot.py:97
 msgid "Save Plot"
@@ -291,9 +291,8 @@ msgid "imperial"
 msgstr "angloamerikanisch"
 
 #: ../pondus/gui/dialog_preferences.py:94
-#, fuzzy
 msgid "Enable Weight Planner"
-msgstr "Benutze Gewichtsplaner"
+msgstr "Aktiviere Gewichtsplaner"
 
 #: ../pondus/gui/dialog_preferences.py:101
 msgid "Use Calendar in Add Dialog"
@@ -304,6 +303,8 @@ msgid ""
 "Use a calendar widget instead of a text entry to enter dates in the add/edit "
 "dialog"
 msgstr ""
+"Benutze ein Kalenderwidget anstatt des Texteingabefeldes zum Eingeben von "
+"Daten im Hinzufügen-/Änderndialog"
 
 #: ../pondus/gui/dialog_preferences.py:109
 msgid "Remember Window Size"
@@ -322,19 +323,16 @@ msgid "Select File"
 msgstr "Wähle Datei aus"
 
 #: ../pondus/gui/window_main.py:55
-#, fuzzy
 msgid "Add dataset"
 msgstr "Füge Datensatz hinzu"
 
 #: ../pondus/gui/window_main.py:57
-#, fuzzy
 msgid "Edit selected dataset"
-msgstr "Ändere ausgewählte Zeile"
+msgstr "Ändere ausgewählten Datensatz"
 
 #: ../pondus/gui/window_main.py:59
-#, fuzzy
 msgid "Delete selected dataset"
-msgstr "Lösche ausgewählte Zeile"
+msgstr "Lösche ausgewählten Datensatz"
 
 #: ../pondus/gui/window_main.py:60
 msgid "Plot"
@@ -370,12 +368,5 @@ msgstr ""
 "Achtung: python-matplotlib ist nicht installiert, Plotfunktion deaktiviert!"
 
 #: ../pondus/gui/window_main.py:363
-#, fuzzy
 msgid "Plot weight data"
 msgstr "Grafischer Gewichtsverlauf"
-
-#~ msgid "Add more data"
-#~ msgstr "Datensatz hinzufügen"
-
-#~ msgid "Plot data"
-#~ msgstr "Plotte die Daten"
