@@ -1,7 +1,7 @@
 TODO-List for Pondus
 ======================
 
-v0.6.1 or later
+v0.7.1 or later
 -----------------
  * error message when adding dataset and sorted by weight
    in `newiter = self.datalist.append(newdata.as_list())`
@@ -9,15 +9,13 @@ v0.6.1 or later
  * add file-exists-warning on save plot and csv export?
 
 
-v0.7.0 or later
+v0.8.0 or later
 -----------------
 
 features:
 ~~~~~~~~~~
- * allow defining a target weight by entering bmi
-   see http://sharesource.org/pipermail/pondus-dev/2008-October/000008.html
+ * support multiple users
  * allow selection and deletion of multiple datasets in listview
- * plot: color background to indicate over-/under-weight
 
 usability:
 ~~~~~~~~~~~
@@ -26,19 +24,19 @@ usability:
 
 code clean up:
 ~~~~~~~~~~~~~~~
- * rewrite config parser more elegantly?
  * use GTKBuilder and clearly separate core and gui?
 
 
-v0.8.0 or later
+v0.9.0 or later
 -----------------
 
 features:
 ~~~~~~~~~~
  * optional fields: body fat?
    optionally add to plot with second y-scale?
+ * allow defining a target weight by entering bmi
+   see http://sharesource.org/pipermail/pondus-dev/2008-October/000008.html
  * csv import/export
-    - allow to convert values from kg to lbs
     - support more date formats for csv import? in `util.str2date`
     - document recognized formats in dialog
     - support not only `,` as field separator
@@ -47,6 +45,7 @@ features:
 
 later
 -------
+ * plot: color background to indicate over-/under-weight
  * validate xml?
  * stick to interface guidelines? usability?
  * unit tests?

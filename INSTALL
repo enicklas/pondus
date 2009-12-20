@@ -18,8 +18,7 @@ Installation Instructions
 Linux/Unix:
 ~~~~~~~~~~~~~
 
-Pondus is available in Debian (>= Lenny), Ubuntu (>= Intrepid) and Arch
-Linux.
+Pondus is available in Debian, Ubuntu, Fedora, Arch Linux and Frugalware.
 
 On other systems, install Pondus by executing in the source directory
 (as root):
