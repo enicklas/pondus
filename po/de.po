@@ -7,7 +7,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Pondus 0.6.0+hg\n"
-"Report-Msgid-Bugs-To: pondus-dev@sharesource.org\n"
+"Report-Msgid-Bugs-To: pondus-dev@lists.berlios.de\n"
 "POT-Creation-Date: 2009-12-04 22:28+0100\n"
 "PO-Revision-Date: 2009-12-07 23:31+0100\n"
 "Last-Translator: Eike Nicklas <eike@ephys.de>\n"

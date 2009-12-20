@@ -75,7 +75,7 @@ Homepage: http://www.ephys.de/software/pondus/[]
 
 Project Homepage: http://bitbucket.org/eike/pondus/[]
 
-Mailing List: <mailto:pondus-dev@sharesource.org[]>
+Mailing List: <mailto:pondus-dev@lists.berlios.de[]>
 
 
 AUTHOR

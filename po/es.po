@@ -9,7 +9,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: es\n"
-"Report-Msgid-Bugs-To: pondus-dev@sharesource.org\n"
+"Report-Msgid-Bugs-To: pondus-dev@lists.berlios.de\n"
 "POT-Creation-Date: 2009-12-04 22:28+0100\n"
 "PO-Revision-Date: 2009-12-13 00:59+0100\n"
 "Last-Translator: Jose Luis Jiménez\n"
