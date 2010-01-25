@@ -1,53 +1,30 @@
 TODO-List for Pondus
 ======================
 
-v0.7.1 or later
------------------
- * error message when adding dataset and sorted by weight
-   in `newiter = self.datalist.append(newdata.as_list())`
-   -> causes no problems, ask on pygtk list?
- * add file-exists-warning on save plot and csv export?
-
-
-v0.8.0 or later
------------------
-
 features:
-~~~~~~~~~~
+----------
  * support multiple users
  * allow selection and deletion of multiple datasets in listview
-
-usability:
-~~~~~~~~~~~
- * add dialog: increase date by month on pg_up
- * use frames in pref dialog?
-
-code clean up:
-~~~~~~~~~~~~~~~
- * use GTKBuilder and clearly separate core and gui?
-
-
-v0.9.0 or later
------------------
-
-features:
-~~~~~~~~~~
+ * add file-exists-warning on save plot and csv export?
  * optional fields: body fat?
    optionally add to plot with second y-scale?
  * allow defining a target weight by entering bmi
    see http://sharesource.org/pipermail/pondus-dev/2008-October/000008.html
- * csv import/export
-    - support more date formats for csv import? in `util.str2date`
-    - document recognized formats in dialog
-    - support not only `,` as field separator
-    - support `,` as decimal separator
 
+usability:
+-----------
+ * add dialog: increase date by month on pg_up
+ * use frames in pref dialog?
 
-later
--------
- * plot: color background to indicate over-/under-weight
+code clean up:
+---------------
+ * use GTKBuilder and clearly separate core and gui?
+ * error message when adding dataset and sorted by weight
+   in `newiter = self.datalist.append(newdata.as_list())`
+   -> causes no problems, ask on pygtk list?
+
+other stuff:
+-------------
  * validate xml?
- * stick to interface guidelines? usability?
  * unit tests?
- * prettier logo and artwork?
  * use py2exe for windows version?
