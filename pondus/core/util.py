@@ -2,7 +2,7 @@
 
 """
 This file is part of Pondus, a personal weight manager.
-Copyright (C) 2007-09  Eike Nicklas <eike@ephys.de>
+Copyright (C) 2007-10  Eike Nicklas <eike@ephys.de>
 
 This program is free software licensed under the MIT license. For details
 see LICENSE or http://www.opensource.org/licenses/mit-license.php
@@ -17,20 +17,19 @@ def str2date(datestring):
     """Converts a string in the format YYYY-MM-DD into a date object."""
     return date(*strptime(datestring, '%Y-%m-%d')[0:3])
 
-def compare_with_possible_nones(min1, max1, min2, max2):
-    """Compares min1 with min2 and max max1 with max2 and returns the
-    total minimum and maximum. min1 and min2 can possibly be None; it is
-    assumed, that max1 and max2 then are also None."""
-    if min1 is not None and min2 is not None:
-        tot_min = min(min1, min2)
-        tot_max = max(max1, max2)
-        return tot_min, tot_max
-    if min1 is not None and min2 is None:
-        return min1, max1
-    if min1 is None and min2 is not None:
-        return min2, max2
-    else:
-        return None, None
+def nonemin(list_):
+    """Returns the minimum value in a list ignoring Nones"""
+    try:
+        return min(element for element in list_ if element is not None)
+    except ValueError:
+        return None
+
+def nonemax(list_):
+    """Returns the maximum value in a list ignoring Nones"""
+    try:
+        return max(element for element in list_ if element is not None)
+    except ValueError:
+        return None
 
 def bmi(weight, height):
     """Returns the body mass index. weight and height should be given

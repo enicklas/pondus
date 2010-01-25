@@ -2,7 +2,7 @@
 
 """
 This file is part of Pondus, a personal weight manager.
-Copyright (C) 2007-09  Eike Nicklas <eike@ephys.de>
+Copyright (C) 2007-10  Eike Nicklas <eike@ephys.de>
 
 This program is free software licensed under the MIT license. For details
 see LICENSE or http://www.opensource.org/licenses/mit-license.php
@@ -120,20 +120,16 @@ class Plot(object):
 
     def _initialize_daterange(self):
         """Sets the minimum and the maximum date in the available data."""
-        try:
-            mindate_meas = self.plot_data_measurement[0][0]
-            maxdate_meas = self.plot_data_measurement[-1][0]
-        except IndexError:
-            mindate_meas = None
-            maxdate_meas = None
-        try:
-            mindate_plan = self.plot_data_plan[0][0]
-            maxdate_plan = self.plot_data_plan[-1][0]
-        except IndexError:
-            mindate_plan = None
-            maxdate_plan = None
-        self.MINDATE, self.MAXDATE = util.compare_with_possible_nones(
-                    mindate_meas, maxdate_meas, mindate_plan, maxdate_plan)
+        mindates = []
+        maxdates = []
+        if self.plot_data_measurement:
+            mindates.append(self.plot_data_measurement[0][0])
+            maxdates.append(self.plot_data_measurement[-1][0])
+        if self.plot_data_plan:
+            mindates.append(self.plot_data_plan[0][0])
+            maxdates.append(self.plot_data_plan[-1][0])
+        self.MINDATE = min(mindates)
+        self.MAXDATE = max(maxdates)
         self.start_date, self.end_date = self.MINDATE, self.MAXDATE
 
     def _create_figure(self):
@@ -188,8 +184,8 @@ class Plot(object):
         y_min, y_max = self._get_yrange(self.plot_data_measurement)
         if self.PLOT_PLAN:
             y_min_plan, y_max_plan = self._get_yrange(self.plot_data_plan)
-            y_min, y_max = util.compare_with_possible_nones(
-                                y_min, y_max, y_min_plan, y_max_plan)
+            y_min = util.nonemin([y_min, y_min_plan])
+            y_max = util.nonemax([y_max, y_max_plan])
         # y_min, y_max can be None if no datasets in selected daterange
         if y_min is not None:
             y_min -= y_offset
