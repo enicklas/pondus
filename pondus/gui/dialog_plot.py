@@ -2,7 +2,7 @@
 
 """
 This file is part of Pondus, a personal weight manager.
-Copyright (C) 2007-09  Eike Nicklas <eike@ephys.de>
+Copyright (C) 2007-10  Eike Nicklas <eike@ephys.de>
 
 This program is free software licensed under the MIT license. For details
 see LICENSE or http://www.opensource.org/licenses/mit-license.php
@@ -184,6 +184,11 @@ enabled in the preferences dialog.'))
         """Redraws the plot and in-/excludes the weight plan."""
         self.plot.set_plot_plan(plot_plan_button.get_active())
         self.plot.update_plot()
+        self.plot.get_max_daterange()
+        # if daterange is 'All Time', rescale date axis
+        if self.dateselector.get_active() == 0:
+            self.update_daterange(self.dateselector)
+
 
     # helper methods
 

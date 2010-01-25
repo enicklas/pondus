@@ -25,9 +25,12 @@ class Plot(object):
         self.set_plot_raw(True)
         self.set_plot_smooth(True)
         self.set_plot_bmi(False)
-        # get plot data and create plot
+        # get plot data
         self._set_current_plot_data()
-        self._initialize_daterange()
+        self.get_max_daterange()
+        # plot whole date range by default
+        self.start_date, self.end_date = self.MINDATE, self.MAXDATE
+        # create plot
         self._create_figure()
         self._plot_data()
         self._format_plot()
@@ -90,6 +93,22 @@ class Plot(object):
         print _('Saving plot to'), filename
         self.figure.savefig(filename, format=filename[-3:])
 
+    def get_max_daterange(self):
+        """Sets the minimum and the maximum date in the available data."""
+        mindates = []
+        maxdates = []
+        if self.plot_data_measurement:
+            mindates.append(self.plot_data_measurement[0][0])
+            maxdates.append(self.plot_data_measurement[-1][0])
+        if self.plot_data_plan:
+            mindates.append(self.plot_data_plan[0][0])
+            maxdates.append(self.plot_data_plan[-1][0])
+        # initially, mindates can not be empty, but can that happen later,
+        # if only plan data is available in PLOT_PLAN is then set to False
+        if mindates:
+            self.MINDATE = min(mindates)
+            self.MAXDATE = max(maxdates)
+
     # internal helper methods
     def _set_current_plot_data(self):
         """Updates the plot data according to the current settings."""
@@ -117,20 +136,6 @@ class Plot(object):
             data = [(dataset.date, dataset.weight) for dataset in datasets]
         data.sort()
         return data
-
-    def _initialize_daterange(self):
-        """Sets the minimum and the maximum date in the available data."""
-        mindates = []
-        maxdates = []
-        if self.plot_data_measurement:
-            mindates.append(self.plot_data_measurement[0][0])
-            maxdates.append(self.plot_data_measurement[-1][0])
-        if self.plot_data_plan:
-            mindates.append(self.plot_data_plan[0][0])
-            maxdates.append(self.plot_data_plan[-1][0])
-        self.MINDATE = min(mindates)
-        self.MAXDATE = max(maxdates)
-        self.start_date, self.end_date = self.MINDATE, self.MAXDATE
 
     def _create_figure(self):
         """Creates the figure object containing the plot."""

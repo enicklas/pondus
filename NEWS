@@ -3,6 +3,7 @@ Pondus NEWS
 
 20xx-xx-xx: Version 0.x.x
 --------------------------
+ * Update date range when in-/excluding the plan in the plot if necessary
  * Add Swedish translation (Thanks Peter Landgren)
  * Updated translations: it
 
