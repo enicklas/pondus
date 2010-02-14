@@ -1,6 +1,10 @@
 Pondus NEWS
 =============
 
+2010-02-14: Version 0.7.2
+--------------------------
+ * Disable threaded import on non-POSIX platforms; did not work on windows
+
 2010-01-25: Version 0.7.1
 --------------------------
  * Update date range when in-/excluding the plan in the plot if necessary

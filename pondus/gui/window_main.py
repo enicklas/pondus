@@ -9,6 +9,7 @@ see LICENSE or http://www.opensource.org/licenses/mit-license.php
 """
 
 import gtk
+import os
 import threading
 
 from pondus.core import parameters
@@ -333,33 +334,41 @@ class MainWindow(object):
     # main function
     def main(self):
         """Starts the gtk main loop."""
-        gtk.gdk.threads_init()
-        MplTester().start()
+        if os.name == 'posix':
+            gtk.gdk.threads_init()
+            MplTester().start()
+        else:
+            import_mpl()
         gtk.main()
 
+
 class MplTester(threading.Thread):
-    """Tests availability of matplotlib in a separate thread and enables
-    plotting, if possible."""
+    """Tests availability of matplotlib in a separate thread."""
 
     def __init__(self):
         """Initializes the thread."""
         threading.Thread.__init__(self)
 
     def run(self):
-        """Tries to import matplotlib and enables plotting, if possible."""
-        try:
-            from matplotlib import dates
-        except ImportError:
-            print _('Note: python-matplotlib is not installed, plotting disabled!')
-        else:
-            parameters.have_mpl = True
-            # speed up opening of plot dialog by importing it here
-            global PlotDialog
-            if PlotDialog is None:
-                from pondus.gui.dialog_plot import PlotDialog
-            # enable plot action in main window
-            mainwindow.set_plot_action_active()
-            # set correct tooltip on plotbutton
-            mainwindow.plotbutton.set_tooltip_text(_('Plot weight data'))
+        """Tries to import matplotlib and enable plotting."""
+        import_mpl()
+
+
+def import_mpl():
+    """Tests availability of matplotlib and enables plotting, if possible."""
+    try:
+        from matplotlib import dates
+    except ImportError:
+        print _('Note: python-matplotlib is not installed, plotting disabled!')
+    else:
+        parameters.have_mpl = True
+        # speed up opening of plot dialog by importing it here
+        global PlotDialog
+        if PlotDialog is None:
+            from pondus.gui.dialog_plot import PlotDialog
+        # enable plot action in main window
+        mainwindow.set_plot_action_active()
+        # set correct tooltip on plotbutton
+        mainwindow.plotbutton.set_tooltip_text(_('Plot weight data'))
 
 mainwindow = MainWindow()
