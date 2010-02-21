@@ -20,7 +20,7 @@ from pondus.gui.dialog_message import MessageDialog
 class AddDataDialog(object):
     """Implements the user interface to add or edit datasets."""
 
-    def __init__(self, dataset, edit):
+    def __init__(self, parent_window, dataset, edit):
         self.dataset = dataset
         # get default values for entry boxes
         if parameters.config['preferences.unit_system'] == 'imperial':
@@ -28,7 +28,8 @@ class AddDataDialog(object):
         else:
             weight = self.dataset.weight
 
-        self.dialog = gtk.Dialog(flags=gtk.DIALOG_NO_SEPARATOR)
+        self.dialog = gtk.Dialog(parent=parent_window,
+                                flags=gtk.DIALOG_NO_SEPARATOR)
         # set the title
         if edit:
             self.dialog.set_title(_('Edit Dataset'))

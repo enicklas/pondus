@@ -166,7 +166,8 @@ class MainWindow(object):
     def add_dialog(self, widget):
         """Runs the dialog to add a new dataset and then adds it to
         self.datasetdata and self.datalist."""
-        dialog = AddDataDialog(self.datasetdata.get_new_dataset(), edit=False)
+        dialog = AddDataDialog(self.window,
+                            self.datasetdata.get_new_dataset(), edit=False)
         newdata = dialog.run()
         if newdata is not None:
             self.datasetdata.add(newdata)
@@ -207,7 +208,8 @@ class MainWindow(object):
         to self.datasetdata and self.datalist."""
         (listmodel, treeiter) = self.treeselection.get_selected()
         id_selected = listmodel.get_value(treeiter, 0)
-        dialog = AddDataDialog(self.datasetdata.get(id_selected), edit=True)
+        dialog = AddDataDialog(self.window,
+                            self.datasetdata.get(id_selected), edit=True)
         newdata = dialog.run()
         if newdata is not None:
             self.datasetdata.add(newdata)
