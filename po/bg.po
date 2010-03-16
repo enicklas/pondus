@@ -1,7 +1,7 @@
 # translation of pondus.translations.pondus.po to Bulgarian
 # Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the PACKAGE package.
-#
+# 
 # Yasen Pramatarov <yasen@lindeas.com>, 2010.
 msgid ""
 msgstr ""
@@ -18,12 +18,10 @@ msgstr ""
 
 #: ../pondus/core/filelock.py:37
 msgid "Datafile locked, continue?"
-msgstr ""
+msgstr "Файлът с данни е заключен. Да се продължи ли?"
 
 #: ../pondus/core/filelock.py:38
-msgid ""
-"Another instance of pondus seems to be editing the same datafile. Do you "
-"really want to continue and loose all the changes from the other instance?"
+msgid "Another instance of pondus seems to be editing the same datafile. Do you really want to continue and loose all the changes from the other instance?"
 msgstr ""
 
 #: ../pondus/core/initialize.py:41
@@ -98,7 +96,7 @@ msgstr "Грешка: неправилен формат"
 
 #: ../pondus/gui/dialog_add.py:118 ../pondus/gui/dialog_plot.py:132
 msgid "The data entered is not in the correct format!"
-msgstr ""
+msgstr "Въведените данни не са в правилен формат!"
 
 #: ../pondus/gui/dialog_csv.py:29
 msgid "weight.csv"
@@ -166,7 +164,7 @@ msgstr "Внасянето е неуспешно."
 
 #: ../pondus/gui/dialog_csv.py:146
 msgid "An error occured during the import."
-msgstr ""
+msgstr "Възникна грешка по време на внасянето."
 
 #: ../pondus/gui/dialog_plot.py:29
 msgid "Plot Weight"
@@ -230,19 +228,19 @@ msgstr ""
 
 #: ../pondus/gui/dialog_plot.py:87
 msgid "Include Weight Plan"
-msgstr ""
+msgstr "Включване на планиране на теглото"
 
 #: ../pondus/gui/dialog_plot.py:91
 msgid "The weight planner can be enabled in the preferences dialog."
-msgstr ""
+msgstr "Планирането на теглото може да се включи от прозореца с настройки."
 
 #: ../pondus/gui/dialog_plot.py:97
 msgid "Save Plot"
-msgstr ""
+msgstr "Запазване на графиката"
 
 #: ../pondus/gui/dialog_plot.py:137
 msgid "The start date has to be before the end date!"
-msgstr ""
+msgstr "Началната дата трябва да е преди крайната дата!"
 
 #: ../pondus/gui/dialog_plot.py:176
 msgid "weight_plot.png"
@@ -286,17 +284,15 @@ msgstr ""
 
 #: ../pondus/gui/dialog_preferences.py:94
 msgid "Enable Weight Planner"
-msgstr ""
+msgstr "Включване на планиране на теглото"
 
 #: ../pondus/gui/dialog_preferences.py:101
 msgid "Use Calendar in Add Dialog"
-msgstr ""
+msgstr "Календар при добавяне на данни"
 
 #: ../pondus/gui/dialog_preferences.py:105
-msgid ""
-"Use a calendar widget instead of a text entry to enter dates in the add/edit "
-"dialog"
-msgstr ""
+msgid "Use a calendar widget instead of a text entry to enter dates in the add/edit dialog"
+msgstr "Използване на календар вместо текстово поле за въвеждане на дати при добавяне или редакция на данни"
 
 #: ../pondus/gui/dialog_preferences.py:109
 msgid "Remember Window Size"
@@ -361,4 +357,3 @@ msgstr ""
 #: ../pondus/gui/window_main.py:363
 msgid "Plot weight data"
 msgstr ""
-
