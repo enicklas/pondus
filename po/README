@@ -1,8 +1,19 @@
 Handling Translations for Pondus
 ==================================
 
+Transifex
+-----------
+
+Translations can be created or updated via
+https://www.transifex.net/projects/p/pondus/c/translations/[Transifex].
+The changes will be committed automatically to the
+http://bitbucket.org/eike/pondus-translations/[translations repository].
+
+The manual way
+----------------
+
 Creating a new translation:
------------------------------
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 Run `msginit` in `po/` and follow the instructions.
 
@@ -16,7 +27,7 @@ Thanks!
 
 
 Updating a translation:
--------------------------
+~~~~~~~~~~~~~~~~~~~~~~~~~
 
 Shortly before new releases, a notification will be sent to the mailing
 list asking for an update of the translations.  Then, you can download the
