@@ -26,15 +26,15 @@ msgstr ""
 
 #: ../pondus/core/initialize.py:41
 msgid "Error: Could not find"
-msgstr ""
+msgstr "Грешка: Не може да се открие"
 
 #: ../pondus/core/initialize.py:49
 msgid "Please make sure this library is installed."
-msgstr ""
+msgstr "Проверете дали тази библиотека е инсталирана."
 
 #: ../pondus/core/initialize.py:60
 msgid "Please make sure ElementTree is installed."
-msgstr ""
+msgstr "Проверете дали ElementTree е инсталирано."
 
 #: ../pondus/core/initialize.py:97
 msgid "Not owning the file lock. Backing up the data to"
@@ -50,7 +50,7 @@ msgstr "Грешка: Това е директория, а не файл!"
 
 #: ../pondus/core/option_parser.py:42
 msgid "Using the standard file ~/.pondus/user_data.xml instead."
-msgstr ""
+msgstr "Използване вместо това на стандартния файл ~/.pondus/user_data.xml"
 
 #: ../pondus/core/plot.py:40 ../pondus/gui/dialog_plot.py:74
 msgid "Body Mass Index"
@@ -120,7 +120,7 @@ msgstr "Данни за изнасяне:"
 
 #: ../pondus/gui/dialog_csv.py:88
 msgid "CSV File to save to:"
-msgstr ""
+msgstr "Файл CSV за запазване:"
 
 #: ../pondus/gui/dialog_csv.py:102
 msgid "Export successful"
@@ -140,15 +140,15 @@ msgstr "Внасяне на данни в:"
 
 #: ../pondus/gui/dialog_csv.py:120
 msgid "CSV File to read from:"
-msgstr ""
+msgstr "Файл CSV за четене:"
 
 #: ../pondus/gui/dialog_csv.py:131
 msgid "Error: Not a valid File"
-msgstr ""
+msgstr "Грешка: Невалиден файл"
 
 #: ../pondus/gui/dialog_csv.py:132
 msgid "The given path does not point to a valid file!"
-msgstr ""
+msgstr "Даденият път не съдържа валиден файл!"
 
 #: ../pondus/gui/dialog_csv.py:141
 msgid "Import successful"
@@ -168,7 +168,7 @@ msgstr "Възникна грешка по време на внасянето."
 
 #: ../pondus/gui/dialog_plot.py:29
 msgid "Plot Weight"
-msgstr ""
+msgstr "Графика на теглото"
 
 #: ../pondus/gui/dialog_plot.py:41
 msgid "Select Date Range:"
@@ -184,11 +184,11 @@ msgstr "Крайна дата"
 
 #: ../pondus/gui/dialog_plot.py:58
 msgid "Select date range of plot"
-msgstr ""
+msgstr "Изберете период за показване"
 
 #: ../pondus/gui/dialog_plot.py:59
 msgid "All Time"
-msgstr ""
+msgstr "Целият период"
 
 #: ../pondus/gui/dialog_plot.py:60
 msgid "Last Year"
@@ -204,11 +204,11 @@ msgstr "Последния месец"
 
 #: ../pondus/gui/dialog_plot.py:63
 msgid "Custom"
-msgstr ""
+msgstr "Настроен"
 
 #: ../pondus/gui/dialog_plot.py:70
 msgid "Data to plot:"
-msgstr ""
+msgstr "Данни за изчертаване:"
 
 #: ../pondus/gui/dialog_plot.py:78
 msgid "To plot your BMI, you need to enter your height in the preferences dialog."
@@ -216,15 +216,15 @@ msgstr ""
 
 #: ../pondus/gui/dialog_plot.py:82
 msgid "Raw and Smooth"
-msgstr ""
+msgstr "Точно и усреднено"
 
 #: ../pondus/gui/dialog_plot.py:83
 msgid "Raw"
-msgstr ""
+msgstr "Точно"
 
 #: ../pondus/gui/dialog_plot.py:84
 msgid "Smooth"
-msgstr ""
+msgstr "Усреднено"
 
 #: ../pondus/gui/dialog_plot.py:87
 msgid "Include Weight Plan"
@@ -280,7 +280,7 @@ msgstr "метрична"
 
 #: ../pondus/gui/dialog_preferences.py:86
 msgid "imperial"
-msgstr ""
+msgstr "имперска"
 
 #: ../pondus/gui/dialog_preferences.py:94
 msgid "Enable Weight Planner"
@@ -352,8 +352,8 @@ msgstr "Наистина ли искате да изтриете тези дан
 
 #: ../pondus/gui/window_main.py:353
 msgid "Note: python-matplotlib is not installed, plotting disabled!"
-msgstr ""
+msgstr "Бележка: python-matplotlib не е инсталирано, затова чертаенето на графики е изключено!"
 
 #: ../pondus/gui/window_main.py:363
 msgid "Plot weight data"
-msgstr ""
+msgstr "Графика на данните за теглото"
