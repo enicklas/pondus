@@ -22,7 +22,7 @@ msgstr "Файлът с данни е заключен. Да се продълж
 
 #: ../pondus/core/filelock.py:38
 msgid "Another instance of pondus seems to be editing the same datafile. Do you really want to continue and loose all the changes from the other instance?"
-msgstr ""
+msgstr "Изглежда друго копие на програмата редактира същия файл с данни. Наистина ли искате да се продължи и да се загубят всички промени от другото копие?"
 
 #: ../pondus/core/initialize.py:41
 msgid "Error: Could not find"
@@ -38,7 +38,7 @@ msgstr "Проверете дали ElementTree е инсталирано."
 
 #: ../pondus/core/initialize.py:97
 msgid "Not owning the file lock. Backing up the data to"
-msgstr ""
+msgstr "Файлът е заключен. Създава се резервно копие на данните в "
 
 #: ../pondus/core/option_parser.py:36
 msgid "Reading file"
@@ -212,7 +212,7 @@ msgstr "Данни за изчертаване:"
 
 #: ../pondus/gui/dialog_plot.py:78
 msgid "To plot your BMI, you need to enter your height in the preferences dialog."
-msgstr ""
+msgstr "За да се изчертае вашия ИТМ (индекс телесна маса), трябва да въведете в настройките височината си."
 
 #: ../pondus/gui/dialog_plot.py:82
 msgid "Raw and Smooth"
