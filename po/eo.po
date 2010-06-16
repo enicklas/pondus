@@ -1,0 +1,369 @@
+# Esperanto Translation of Pondus
+# Copyright (C) 2010
+# This file is distributed under the same license as the pondus package.
+# Axel Rousseau <axel@esperanto-jeunes.org>, 2010
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Pondus 0.7.0+hg\n"
+"Report-Msgid-Bugs-To: pondus-dev@lists.berlios.de\n"
+"POT-Creation-Date: 2009-12-22 23:36+0100\n"
+"PO-Revision-Date: 2010-06-15 12:18+0100\n"
+"Last-Translator: Axel Rousseau <axel@esperanto-jeunes.org>\n"
+"Language-Team: ESPERANTO <eo@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Poedit-Language: Esperanto\n"
+
+#: ../pondus/core/filelock.py:37
+msgid "Datafile locked, continue?"
+msgstr "Datumdosiero ŝlosita, ĉu ni daŭrigu ?"
+
+#: ../pondus/core/filelock.py:38
+msgid "Another instance of pondus seems to be editing the same datafile. Do you really want to continue and loose all the changes from the other instance?"
+msgstr "Ŝajnas ke alia apero de pondus redaktas la saman datumdosieron. Ĉu vi vere deziras daŭrigi kaj perdi ĉiujn ŝanĝojn de la alia apero ?"
+
+#: ../pondus/core/initialize.py:41
+msgid "Error: Could not find"
+msgstr "Eraro : Ne eblis trovi"
+
+#: ../pondus/core/initialize.py:49
+msgid "Please make sure this library is installed."
+msgstr "Bonvolu certiĝi ke tiu biblioteko instaliĝis"
+
+#: ../pondus/core/initialize.py:60
+msgid "Please make sure ElementTree is installed."
+msgstr "Bonvolu certiĝi ke ElementTree instaliĝis"
+
+#: ../pondus/core/initialize.py:97
+msgid "Not owning the file lock. Backing up the data to"
+msgstr ""
+
+#: ../pondus/core/option_parser.py:36
+msgid "Reading file"
+msgstr "Legante dosieron"
+
+#: ../pondus/core/option_parser.py:41
+msgid "Error: This is a directory, not a file!"
+msgstr "Eraro: Estas dosierujo, ne dosiero !"
+
+#: ../pondus/core/option_parser.py:42
+msgid "Using the standard file ~/.pondus/user_data.xml instead."
+msgstr "Uzi aprioran dosieron  ~/.pondus/user_data.xml anstataŭ."
+
+#: ../pondus/core/plot.py:40
+#: ../pondus/gui/dialog_plot.py:74
+msgid "Body Mass Index"
+msgstr "Korpomasa indico"
+
+#: ../pondus/core/plot.py:42
+#: ../pondus/gui/dialog_add.py:68
+#: ../pondus/gui/dialog_plot.py:73
+#: ../pondus/gui/window_main.py:119
+msgid "Weight"
+msgstr "Pezo"
+
+#: ../pondus/core/plot.py:90
+msgid "Saving plot to"
+msgstr ""
+
+#: ../pondus/core/util.py:43
+msgid "kg"
+msgstr "kg"
+
+#: ../pondus/core/util.py:45
+msgid "lbs"
+msgstr "lbs"
+
+#: ../pondus/gui/dialog_add.py:34
+msgid "Edit Dataset"
+msgstr "Redakti  Datumaron"
+
+#: ../pondus/gui/dialog_add.py:36
+msgid "Add Dataset"
+msgstr "Aldoni Datumaron"
+
+#: ../pondus/gui/dialog_add.py:43
+msgid "Date:"
+msgstr "Dato:"
+
+#: ../pondus/gui/dialog_add.py:57
+msgid "Date (YYYY-MM-DD):"
+msgstr "Dato (JJJJ-MM-TT)"
+
+#: ../pondus/gui/dialog_add.py:117
+#: ../pondus/gui/dialog_plot.py:131
+#: ../pondus/gui/dialog_plot.py:136
+msgid "Error: Wrong Format"
+msgstr "Eraro: Netaŭga Formato"
+
+#: ../pondus/gui/dialog_add.py:118
+#: ../pondus/gui/dialog_plot.py:132
+msgid "The data entered is not in the correct format!"
+msgstr ""
+
+#: ../pondus/gui/dialog_csv.py:29
+msgid "weight.csv"
+msgstr "weight.csv"
+
+#: ../pondus/gui/dialog_csv.py:36
+#: ../pondus/gui/window_main.py:128
+msgid "Weight Measurements"
+msgstr "Pezaj Mezuroj"
+
+#: ../pondus/gui/dialog_csv.py:41
+msgid "Weight Plan"
+msgstr "Peza Plano"
+
+#: ../pondus/gui/dialog_csv.py:86
+#: ../pondus/gui/window_main.py:88
+msgid "CSV Export"
+msgstr "CSV Eksportado"
+
+#: ../pondus/gui/dialog_csv.py:87
+msgid "Data to export:"
+msgstr "Datumoj por eksporti:"
+
+#: ../pondus/gui/dialog_csv.py:88
+msgid "CSV File to save to:"
+msgstr ""
+
+#: ../pondus/gui/dialog_csv.py:102
+msgid "Export successful"
+msgstr "Eksportado suksesis"
+
+#: ../pondus/gui/dialog_csv.py:103
+msgid "The export was successful."
+msgstr ""
+
+#: ../pondus/gui/dialog_csv.py:118
+#: ../pondus/gui/window_main.py:87
+msgid "CSV Import"
+msgstr "CSV Importado"
+
+#: ../pondus/gui/dialog_csv.py:119
+msgid "Import data to:"
+msgstr ""
+
+#: ../pondus/gui/dialog_csv.py:120
+msgid "CSV File to read from:"
+msgstr ""
+
+#: ../pondus/gui/dialog_csv.py:131
+msgid "Error: Not a valid File"
+msgstr "Eraro: Ne valida Dosiero"
+
+#: ../pondus/gui/dialog_csv.py:132
+msgid "The given path does not point to a valid file!"
+msgstr ""
+
+#: ../pondus/gui/dialog_csv.py:141
+msgid "Import successful"
+msgstr ""
+
+#: ../pondus/gui/dialog_csv.py:142
+msgid "The import was successful."
+msgstr ""
+
+#: ../pondus/gui/dialog_csv.py:145
+msgid "Import not successful"
+msgstr ""
+
+#: ../pondus/gui/dialog_csv.py:146
+msgid "An error occured during the import."
+msgstr ""
+
+#: ../pondus/gui/dialog_plot.py:29
+msgid "Plot Weight"
+msgstr "Grafika Reprezento de Pezo"
+
+#: ../pondus/gui/dialog_plot.py:41
+msgid "Select Date Range:"
+msgstr "Elektu datan intervalon"
+
+#: ../pondus/gui/dialog_plot.py:46
+msgid "Start date"
+msgstr "Dato de komenco"
+
+#: ../pondus/gui/dialog_plot.py:53
+msgid "End date"
+msgstr "Dato de fino"
+
+#: ../pondus/gui/dialog_plot.py:58
+msgid "Select date range of plot"
+msgstr "Elektu datan intervalon de grafika reprezento"
+
+#: ../pondus/gui/dialog_plot.py:59
+msgid "All Time"
+msgstr "Ĉiam"
+
+#: ../pondus/gui/dialog_plot.py:60
+msgid "Last Year"
+msgstr "Lasta Jaro"
+
+#: ../pondus/gui/dialog_plot.py:61
+msgid "Last 3 Months"
+msgstr "Lastaj 3 Monatoj"
+
+#: ../pondus/gui/dialog_plot.py:62
+msgid "Last Month"
+msgstr "Lasta Monato"
+
+#: ../pondus/gui/dialog_plot.py:63
+msgid "Custom"
+msgstr "Propra"
+
+#: ../pondus/gui/dialog_plot.py:70
+msgid "Data to plot:"
+msgstr "Datumoj por grafikigi :"
+
+#: ../pondus/gui/dialog_plot.py:78
+msgid "To plot your BMI, you need to enter your height in the preferences dialog."
+msgstr ""
+
+#: ../pondus/gui/dialog_plot.py:82
+msgid "Raw and Smooth"
+msgstr "Kruda kaj Glata"
+
+#: ../pondus/gui/dialog_plot.py:83
+msgid "Raw"
+msgstr "Kruda"
+
+#: ../pondus/gui/dialog_plot.py:84
+msgid "Smooth"
+msgstr "Glata"
+
+#: ../pondus/gui/dialog_plot.py:87
+msgid "Include Weight Plan"
+msgstr ""
+
+#: ../pondus/gui/dialog_plot.py:91
+msgid "The weight planner can be enabled in the preferences dialog."
+msgstr ""
+
+#: ../pondus/gui/dialog_plot.py:97
+msgid "Save Plot"
+msgstr "Konservi grafikaĵon"
+
+#: ../pondus/gui/dialog_plot.py:137
+msgid "The start date has to be before the end date!"
+msgstr ""
+
+#: ../pondus/gui/dialog_plot.py:176
+msgid "weight_plot.png"
+msgstr "weight_plot.png"
+
+#: ../pondus/gui/dialog_preferences.py:24
+#: ../pondus/gui/window_main.py:63
+msgid "Preferences"
+msgstr "Agordoj"
+
+#: ../pondus/gui/dialog_preferences.py:28
+msgid "User Height:"
+msgstr "Uzanta Grandeco:"
+
+#: ../pondus/gui/dialog_preferences.py:52
+msgid "m"
+msgstr "m"
+
+#: ../pondus/gui/dialog_preferences.py:53
+msgid "cm"
+msgstr "cm"
+
+#: ../pondus/gui/dialog_preferences.py:54
+msgid "ft"
+msgstr "ft"
+
+#: ../pondus/gui/dialog_preferences.py:55
+msgid "in"
+msgstr "in"
+
+#: ../pondus/gui/dialog_preferences.py:76
+msgid "Preferred Unit System:"
+msgstr "preferata Unua Sistemo:"
+
+#: ../pondus/gui/dialog_preferences.py:80
+msgid "metric"
+msgstr "metra"
+
+#: ../pondus/gui/dialog_preferences.py:86
+msgid "imperial"
+msgstr "imperia"
+
+#: ../pondus/gui/dialog_preferences.py:94
+msgid "Enable Weight Planner"
+msgstr "Ebligi Pezcelon"
+
+#: ../pondus/gui/dialog_preferences.py:101
+msgid "Use Calendar in Add Dialog"
+msgstr ""
+
+#: ../pondus/gui/dialog_preferences.py:105
+msgid "Use a calendar widget instead of a text entry to enter dates in the add/edit dialog"
+msgstr ""
+
+#: ../pondus/gui/dialog_preferences.py:109
+msgid "Remember Window Size"
+msgstr "Memoru fenestran grandecon"
+
+#: ../pondus/gui/dialog_save_file.py:21
+msgid "Save to File"
+msgstr "Konservi al la dosiero..."
+
+#: ../pondus/gui/dialog_save_file.py:27
+msgid "Save as File Type:"
+msgstr "Konservi kiel dosiera tipo:"
+
+#: ../pondus/gui/dialog_select_file.py:20
+msgid "Select File"
+msgstr "Elekti dosieron"
+
+#: ../pondus/gui/window_main.py:55
+msgid "Add dataset"
+msgstr "Aldoni Datumaron"
+
+#: ../pondus/gui/window_main.py:57
+msgid "Edit selected dataset"
+msgstr "Redakti elektitan datumaron"
+
+#: ../pondus/gui/window_main.py:59
+msgid "Delete selected dataset"
+msgstr "Forigi elektitan datumaron"
+
+#: ../pondus/gui/window_main.py:60
+msgid "Plot"
+msgstr "Grafikaĵo"
+
+#: ../pondus/gui/window_main.py:61
+msgid "Matplotlib not available!"
+msgstr "Matplotlib ne estas disponebla."
+
+#: ../pondus/gui/window_main.py:65
+msgid "Quit"
+msgstr "Forlasi"
+
+#: ../pondus/gui/window_main.py:118
+msgid "Date"
+msgstr "Dato"
+
+#: ../pondus/gui/window_main.py:129
+msgid "Weight Planner"
+msgstr "Pezcelo"
+
+#: ../pondus/gui/window_main.py:182
+msgid "Remove Data?"
+msgstr "Ĉu forigi Datumojn?"
+
+#: ../pondus/gui/window_main.py:183
+msgid "Do you really want to delete this dataset?"
+msgstr "Ĉu vi vere volas forigi ĉi tiun datumaron?"
+
+#: ../pondus/gui/window_main.py:353
+msgid "Note: python-matplotlib is not installed, plotting disabled!"
+msgstr ""
+
+#: ../pondus/gui/window_main.py:363
+msgid "Plot weight data"
+msgstr ""
+
