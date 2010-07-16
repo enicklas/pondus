@@ -216,7 +216,7 @@ msgstr "Données à tracer :"
 
 #: ../pondus/gui/dialog_plot.py:78
 msgid "To plot your BMI, you need to enter your height in the preferences dialog."
-msgstr ""
+msgstr "Pour tracer votre IMC, vous devez saisir votre taille dans les préférences."
 
 #: ../pondus/gui/dialog_plot.py:82
 msgid "Raw and Smooth"
@@ -236,7 +236,7 @@ msgstr "Inclure le plan de poids"
 
 #: ../pondus/gui/dialog_plot.py:91
 msgid "The weight planner can be enabled in the preferences dialog."
-msgstr ""
+msgstr "Le planificateur de poids peut être activé dans les préférences."
 
 #: ../pondus/gui/dialog_plot.py:97
 msgid "Save Plot"
@@ -287,9 +287,8 @@ msgid "imperial"
 msgstr "impérial"
 
 #: ../pondus/gui/dialog_preferences.py:94
-#, fuzzy
 msgid "Enable Weight Planner"
-msgstr "Utiliser le planificateur de poids"
+msgstr "Activer le planificateur de poids"
 
 #: ../pondus/gui/dialog_preferences.py:101
 msgid "Use Calendar in Add Dialog"
@@ -297,7 +296,7 @@ msgstr "Utiliser le calendrier dans le menu d'ajout"
 
 #: ../pondus/gui/dialog_preferences.py:105
 msgid "Use a calendar widget instead of a text entry to enter dates in the add/edit dialog"
-msgstr ""
+msgstr "Utiliser un widget calendrier plutôt qu'une entrée texte pour saisir les dates dans la fenêtre d'ajout/édition"
 
 #: ../pondus/gui/dialog_preferences.py:109
 msgid "Remember Window Size"
