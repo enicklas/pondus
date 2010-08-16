@@ -220,20 +220,16 @@ def _smooth_data(data):
     avg_datapoints = 3
     smooth_data = []
     for i in xrange(0, len(data)):
-        deltas = []
-        datapoints = []
+        weights = []
+        weighted_data = []
         for j in xrange(i-avg_datapoints, i+avg_datapoints+1):
             try:
                 delta = abs((data[j][0] - data[i][0]).days)
-                deltas.append(delta)
-                datapoints.append(data[j][1])
+                weight = alpha**delta
+                weighted_data.append(data[j][1] * weight)
+                weights.append(weight)
             except IndexError:
                 pass
-        weights = []
-        for delta in deltas:
-            weights.append(alpha**(delta))
-        weighted_data = [datapoints[k] * weights[k]
-                            for k in xrange(len(datapoints))]
         weighted_average = sum(weighted_data)/sum(weights)
         smooth_data.append((data[i][0], data[i][1], weighted_average))
     return smooth_data
