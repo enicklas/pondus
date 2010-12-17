@@ -40,7 +40,7 @@ Windows:
 ~~~~~~~~~~
 
 A Windows installer can be found at
-    http://www.ephys.de/software/pondus/[]
+    http://bitbucket.org/eike/pondus/[]
 
 However, before installing Pondus, you have to make sure that Python,
 GTK+, and PyGTK are installed (NumPy and Matplotlib are recommended).
