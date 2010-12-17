@@ -5,9 +5,7 @@ Transifex
 -----------
 
 Translations can be created or updated via
-https://www.transifex.net/projects/p/pondus/c/translations/[Transifex].
-The changes will be committed automatically to the
-http://bitbucket.org/eike/pondus-translations/[translations repository].
+https://www.transifex.net/projects/p/pondus/[Transifex].
 
 The manual way
 ----------------
