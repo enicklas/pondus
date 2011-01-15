@@ -8,8 +8,7 @@ features:
  * add file-exists-warning on save plot and csv export?
  * optional fields: body fat?
    optionally add to plot with second y-scale?
- * allow defining a target weight by entering bmi
-   see http://sharesource.org/pipermail/pondus-dev/2008-October/000008.html
+ * add more import/export features
 
 usability:
 -----------
@@ -19,6 +18,7 @@ usability:
 code clean up:
 ---------------
  * use GTKBuilder and clearly separate core and gui?
+ * use logging instead of just printing to stdout
  * error message when adding dataset and sorted by weight
    in `newiter = self.datalist.append(newdata.as_list())`
    -> causes no problems, ask on pygtk list?
