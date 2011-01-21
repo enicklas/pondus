@@ -1,11 +1,13 @@
 Pondus NEWS
 =============
 
-2010-xx-xx: Version 0.x.x
+2011-01-21: Version 0.7.3
 --------------------------
  * Make add/edit dialog transient (Thanks niqueco for the initial patch)
+ * Documentation updates: official homepage is now at bitbucket
  * Add Bulgarian translation (Thanks Yasen Pramatarov)
  * Add Esperanto translation (Thanks Axel Rousseau)
+ * Updated translations: fr
 
 2010-02-14: Version 0.7.2
 --------------------------

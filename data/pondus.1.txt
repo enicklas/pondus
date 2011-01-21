@@ -83,5 +83,5 @@ Written by Eike Nicklas <mailto:eike@ephys.de[]>
 
 COPYRIGHT
 ---------
-Copyright \(C) 2007-2010 Eike Nicklas. Free use of this software is
+Copyright \(C) 2007-2011 Eike Nicklas. Free use of this software is
 granted under the terms of the MIT License.
