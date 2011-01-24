@@ -1,6 +1,10 @@
 Pondus NEWS
 =============
 
+2011-xx-xx: Version 0.x.x
+--------------------------
+ * Add Hebrew translation (Thanks Yaron Shahrabani)
+
 2011-01-21: Version 0.7.3
 --------------------------
  * Make add/edit dialog transient (Thanks niqueco for the initial patch)
