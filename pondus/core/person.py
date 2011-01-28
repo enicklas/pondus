@@ -72,7 +72,6 @@ class Person(object):
             return
         # this is the first start of pondus, start with empty data
 
-
     def _read_old_data(self, filepath, datasets):
         """Parses the legacy xml-file in filepath and adds the data to
         datasets."""
