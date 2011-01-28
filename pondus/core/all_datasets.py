@@ -2,7 +2,7 @@
 
 """
 This file is part of Pondus, a personal weight manager.
-Copyright (C) 2007-10  Eike Nicklas <eike@ephys.de>
+Copyright (C) 2007-11  Eike Nicklas <eike@ephys.de>
 
 This program is free software licensed under the MIT license. For details
 see LICENSE or http://www.opensource.org/licenses/mit-license.php
@@ -15,7 +15,8 @@ from pondus.core.dataset import Dataset
 
 class AllDatasets(object):
     """Defines the structure how all the datasets are stored
-    internally."""
+    internally. AllDatasets.datasets is a dictionary of Dataset objects
+    with their ids as keys."""
 
     def __init__(self, datasets):
         self.datasets = datasets
@@ -34,8 +35,7 @@ class AllDatasets(object):
         self.datasets[dataset.id] = dataset
 
     def remove(self, id_):
-        """Removes the dataset with the given id from the
-        datasets."""
+        """Removes the dataset with the given id from the datasets."""
         del self.datasets[id_]
 
     def get(self, id_):
@@ -60,11 +60,12 @@ class AllDatasets(object):
 
     def _last_measured_weight(self):
         """Returns the last measured weight."""
-        if self.datasets:
-            # create an intermediate list of tuples (date, id)
-            intermed = [(dataset.date, id_)
-                        for id_, dataset in self.datasets.iteritems()]
+        try:
+            # create an intermediate iterator of tuples (date, id)
+            intermed = ((dataset.date, id_)
+                        for id_, dataset in self.datasets.iteritems())
             # find id of most recent dataset and get its weight value
             return self.datasets[max(intermed)[1]].weight
-        else:
+        except ValueError:
+            # no datasets exist
             return 0.0
