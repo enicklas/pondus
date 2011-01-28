@@ -52,18 +52,6 @@ def _test_gtk_availability():
         sys.exit(1)
 
 
-def _test_etree_availability():
-    """Tests availability of ElementTree and quits if not found."""
-    try:
-        from xml.etree.cElementTree import parse
-    except ImportError:
-        try:
-            from elementtree.ElementTree import parse
-        except ImportError:
-            print _('Please make sure ElementTree is installed.')
-            sys.exit(1)
-
-
 def check_datadir(filepath):
     """Checks, whether the directory containing the user data exists
     and creates it if necessary."""
@@ -79,7 +67,6 @@ def initialize():
     _gettext_install()
     option_parser.parse_options()
     _test_gtk_availability()
-    _test_etree_availability()
     check_datadir(parameters.userdatafile)
     parameters.filelock = FileLock()
     parameters.plot_button_path = _get_path(

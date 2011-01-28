@@ -15,10 +15,7 @@ from pondus.core import util
 from pondus.core.all_datasets import AllDatasets
 from pondus.core.dataset import Dataset
 
-try:
-    from xml.etree.cElementTree import Element, SubElement, ElementTree, parse
-except ImportError:
-    from elementtree.ElementTree import Element, SubElement, ElementTree, parse
+from xml.etree.cElementTree import Element, SubElement, ElementTree, parse
 
 
 class Person(object):
