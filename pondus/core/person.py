@@ -2,7 +2,7 @@
 
 """
 This file is part of Pondus, a personal weight manager.
-Copyright (C) 2007-10  Eike Nicklas <eike@ephys.de>
+Copyright (C) 2007-11  Eike Nicklas <eike@ephys.de>
 
 This program is free software licensed under the MIT license. For details
 see LICENSE or http://www.opensource.org/licenses/mit-license.php
@@ -70,9 +70,8 @@ class Person(object):
             self._read_old_data(parameters.datafile_old, self.measurements)
             self._read_old_data(parameters.planfile_old, self.plan)
             return
-        # looks like this is the first start of pondus, start with empty data
-        else:
-            return
+        # this is the first start of pondus, start with empty data
+
 
     def _read_old_data(self, filepath, datasets):
         """Parses the legacy xml-file in filepath and adds the data to
@@ -96,6 +95,7 @@ def _add_dataset_to_element(dataset, element):
     for key in parameters.keys_required:
         sub_el = SubElement(dataset_el, key)
         sub_el.text = str(getattr(dataset, key))
+
 
 def _dataset_from_element(dataset_el):
     """Parses a dataset xml-element and returns it as a Dataset object."""
