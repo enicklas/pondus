@@ -2,9 +2,8 @@ Installation Instructions for Pondus
 ======================================
 
 Pondus is developed and tested on Debian GNU/Linux, but should run on
-every system, where the requirements (Python (>= 2.4), PyGTK (>= 2.12),
-python-elementtree (only for Python < 2.5); Matplotlib is recommended)
-are available.
+every system where Python (>= 2.5) and PyGTK (>= 2.12) are available.
+Matplotlib is recommended.
 
 Testing without installation
 ------------------------------
