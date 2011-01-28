@@ -61,11 +61,9 @@ class AllDatasets(object):
     def _last_measured_weight(self):
         """Returns the last measured weight."""
         try:
-            # create an intermediate iterator of tuples (date, id)
-            intermed = ((dataset.date, id_)
-                        for id_, dataset in self.datasets.iteritems())
-            # find id of most recent dataset and get its weight value
-            return self.datasets[max(intermed)[1]].weight
+            latest_dataset = max(self.datasets.itervalues(),
+                        key=lambda dataset: dataset.date)
+            return latest_dataset.weight
         except ValueError:
             # no datasets exist
             return 0.0
