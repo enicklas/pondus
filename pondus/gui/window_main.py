@@ -2,7 +2,7 @@
 
 """
 This file is part of Pondus, a personal weight manager.
-Copyright (C) 2007-10  Eike Nicklas <eike@ephys.de>
+Copyright (C) 2007-11  Eike Nicklas <eike@ephys.de>
 
 This program is free software licensed under the MIT license. For details
 see LICENSE or http://www.opensource.org/licenses/mit-license.php
@@ -150,9 +150,7 @@ class MainWindow(object):
         # display window with content
         self.window.show_all()
 
-
     # callback functions
-
     def destroy(self, widget, data=None):
         """Quits the application cleanly."""
         if parameters.config['window.remember_size']:
@@ -196,9 +194,9 @@ class MainWindow(object):
             if self.datalist.iter_is_valid(treeiter):
                 self.treeselection.select_iter(treeiter)
             else:
-                lastpath = len(self.datalist)-1
+                lastpath = len(self.datalist) - 1
                 if lastpath >= 0:
-                    self.treeselection.select_path(len(self.datalist)-1)
+                    self.treeselection.select_path(len(self.datalist) - 1)
                 else:
                     self.set_selection_active(self.treeselection)
                     self.set_plot_action_active()
@@ -284,9 +282,7 @@ class MainWindow(object):
             self.removeaction.set_sensitive(True)
             self.editaction.set_sensitive(True)
 
-
     # helper methods
-
     def set_plot_action_active(self):
         """Tests, whether a dataset exists and matplotlib is available
         and sets sensitivity of the plot action accordingly."""
@@ -310,12 +306,12 @@ class MainWindow(object):
             self.contentbox.remove(self.modeselector)
         self.contentbox.show_all()
 
-    def add_column(self, title, columnId):
+    def add_column(self, title, column_id):
         """Adds a column to the list view: First, create the
         gtk.TreeViewColumn and then set some needed properties."""
         column = gtk.TreeViewColumn(
-                            title, gtk.CellRendererText(), text=columnId)
-        column.set_sort_column_id(columnId)
+                            title, gtk.CellRendererText(), text=column_id)
+        column.set_sort_column_id(column_id)
         self.dataview.append_column(column)
 
     def display_data(self, datasetdata):
@@ -331,7 +327,6 @@ class MainWindow(object):
         else:
             dataset_list = [dataset.id, dataset.date, round(dataset.weight, 1)]
         return self.datalist.append(dataset_list)
-
 
     # main function
     def main(self):

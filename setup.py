@@ -3,20 +3,24 @@
 
 """
 This file is part of Pondus, a personal weight manager.
-Copyright (C) 2007-10  Eike Nicklas <eike@ephys.de>
+Copyright (C) 2007-11  Eike Nicklas <eike@ephys.de>
 
 This program is free software licensed under the MIT license. For details
 see LICENSE or http://www.opensource.org/licenses/mit-license.php
 """
 
 from distutils.core import setup
-import os, shutil, sys
+import os
+import shutil
+import sys
 
 from pondus import __version__
+
 
 tmpdir = 'tmp'
 podir = 'po'
 modir = 'po/mo'
+
 
 def _get_language_codes():
     """Returns a list of language codes of available translations"""
@@ -26,6 +30,7 @@ def _get_language_codes():
             continue
         language_codes.append(os.path.splitext(file_)[0])
     return language_codes
+
 
 def _get_scripts():
     """Returns the main script without .py extension. On windows,
@@ -43,6 +48,7 @@ def _get_scripts():
         shutil.copyfile('pondus.py', scriptpath)
         return [scriptpath]
 
+
 def _create_mo():
     """Creates the .mo files to be distributed with the source."""
     if not os.path.exists(modir):
@@ -55,11 +61,13 @@ def _create_mo():
             print 'generating', mofile
             os.system('msgfmt %s -o %s' % (pofile, mofile))
 
+
 def _create_man():
     """Creates the gzipped man file to be distributed with the source."""
     if not os.path.exists('data/pondus.1.gz'):
         os.system('a2x -f manpage data/pondus.1.txt')
         os.system('gzip -9 data/pondus.1')
+
 
 def _clean_up():
     """Removes the temporarily generated data."""
@@ -102,7 +110,6 @@ setup(name = 'pondus',
       data_files = data_files,
       package_dir = {'pondus': 'pondus'},
       packages = ['pondus', 'pondus.core', 'pondus.gui'],
-      requires = ['python(>= 2.4)', 'pygtk(>=2.12)', 'matplotlib']
-      )
+      requires = ['python(>= 2.4)', 'pygtk(>=2.12)', 'matplotlib'])
 
 _clean_up()

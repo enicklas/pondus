@@ -2,7 +2,7 @@
 
 """
 This file is part of Pondus, a personal weight manager.
-Copyright (C) 2007-10  Eike Nicklas <eike@ephys.de>
+Copyright (C) 2007-11  Eike Nicklas <eike@ephys.de>
 
 This program is free software licensed under the MIT license. For details
 see LICENSE or http://www.opensource.org/licenses/mit-license.php
@@ -126,9 +126,7 @@ class AddDataDialog(object):
             self.dialog.hide()
             return None
 
-
     # callback methods
-
     def on_focus(self, entry, event):
         """Prevents a selection and puts the cursor at the end
         of the entry instead."""

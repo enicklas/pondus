@@ -2,11 +2,12 @@
 
 """
 This file is part of Pondus, a personal weight manager.
-Copyright (C) 2007-10  Eike Nicklas <eike@ephys.de>
+Copyright (C) 2007-11  Eike Nicklas <eike@ephys.de>
 
 This program is free software licensed under the MIT license. For details
 see LICENSE or http://www.opensource.org/licenses/mit-license.php
 """
+
 
 class Dataset(object):
     """Implements the structure of single weight measurements."""
@@ -17,7 +18,7 @@ class Dataset(object):
         Weight is always in kg. Weight has one digit precision when using
         metric units and two digits precision when using imperial units to
         ensure proper conversion to lbs."""
-        self.id =  id_
+        self.id = id_
         self.date = date
         self.weight = weight
 

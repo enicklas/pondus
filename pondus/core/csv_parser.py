@@ -2,7 +2,7 @@
 
 """
 This file is part of Pondus, a personal weight manager.
-Copyright (C) 2008-10  Eike Nicklas <eike@ephys.de>
+Copyright (C) 2008-11  Eike Nicklas <eike@ephys.de>
 
 This program is free software licensed under the MIT license. For details
 see LICENSE or http://www.opensource.org/licenses/mit-license.php
@@ -13,6 +13,7 @@ import csv
 from pondus.core import parameters
 from pondus.core import util
 from pondus.core.dataset import Dataset
+
 
 def write_csv(datasets, csvfilepath):
     """Creates a csv-file at csvfilepath containing the data from
@@ -27,6 +28,7 @@ def write_csv(datasets, csvfilepath):
         csvwriter.writerow([str(dataset.date),
                             str(round(getattr(dataset, weight_key), 1))])
     csvfile.close()
+
 
 def read_csv(datasets, csvfilepath):
     """Reads the csv-file at csvfilepath and adds the data to

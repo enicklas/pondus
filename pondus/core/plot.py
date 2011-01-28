@@ -2,7 +2,7 @@
 
 """
 This file is part of Pondus, a personal weight manager.
-Copyright (C) 2007-10  Eike Nicklas <eike@ephys.de>
+Copyright (C) 2007-11  Eike Nicklas <eike@ephys.de>
 
 This program is free software licensed under the MIT license. For details
 see LICENSE or http://www.opensource.org/licenses/mit-license.php
@@ -29,7 +29,7 @@ class Plot(object):
         self._set_current_plot_data()
         self.get_max_daterange()
         # plot whole date range by default
-        self.start_date, self.end_date = self.MINDATE, self.MAXDATE
+        self.start_date, self.end_date = self.mindate, self.maxdate
         # create plot
         self._create_figure()
         self._plot_data()
@@ -38,38 +38,38 @@ class Plot(object):
     # external api
     def set_plot_bmi(self, plot_bmi):
         """Sets the parameter describing whether weight or BMI is plotted."""
-        self.PLOT_BMI = plot_bmi
-        if self.PLOT_BMI:
-            self.YLABEL = _('Body Mass Index')
+        self.plot_bmi = plot_bmi
+        if self.plot_bmi:
+            self.ylabel = _('Body Mass Index')
         else:
-            self.YLABEL = _('Weight') + ' (' + util.get_weight_unit() + ')'
+            self.ylabel = _('Weight') + ' (' + util.get_weight_unit() + ')'
 
     def set_plot_plan(self, plot_plan):
         """Sets the parameter describing whether the weight plan is plotted."""
-        self.PLOT_PLAN = plot_plan
+        self.plot_plan = plot_plan
 
     def set_plot_raw(self, plot_raw):
         """Sets the parameter describing whether the actual weight data
         is plotted."""
-        self.PLOT_RAW = plot_raw
+        self.plot_raw = plot_raw
 
     def set_plot_smooth(self, plot_smooth):
         """Sets the parameter describing whether the smoothed weight data
         is plotted."""
-        self.PLOT_SMOOTH = plot_smooth
+        self.plot_smooth = plot_smooth
 
     def get_plot_plan(self):
         """Returns the parameter describing whether the weight plan is
         plotted."""
-        return self.PLOT_PLAN
+        return self.plot_plan
 
     def get_mindate(self):
         """Returns the minimum date in the datasets."""
-        return self.MINDATE
+        return self.mindate
 
     def get_maxdate(self):
         """Returns the maximum date in the datasets."""
-        return self.MAXDATE
+        return self.maxdate
 
     def set_plotrange(self, start_date, end_date):
         """Updates the axis scaling of the plot."""
@@ -106,8 +106,8 @@ class Plot(object):
         # initially, mindates can not be empty, but can that happen later,
         # if only plan data is available in PLOT_PLAN is then set to False
         if mindates:
-            self.MINDATE = min(mindates)
-            self.MAXDATE = max(maxdates)
+            self.mindate = min(mindates)
+            self.maxdate = max(maxdates)
 
     # internal helper methods
     def _set_current_plot_data(self):
@@ -115,17 +115,17 @@ class Plot(object):
         self.plot_data_measurement = \
                         self._get_plot_data(parameters.user.measurements)
         # for performance improvements, only get plan data if really needed
-        if self.PLOT_PLAN:
+        if self.plot_plan:
             self.plot_data_plan = self._get_plot_data(parameters.user.plan)
         else:
             self.plot_data_plan = []
-        if self.PLOT_SMOOTH:
+        if self.plot_smooth:
             self.plot_data_measurement = \
                             _smooth_data(self.plot_data_measurement)
 
     def _get_plot_data(self, datasets):
         """Returns the list of datatuples to be plotted."""
-        if self.PLOT_BMI:
+        if self.plot_bmi:
             data = [(dataset.date,
                     util.bmi(dataset.weight, parameters.user.height))
                     for dataset in datasets]
@@ -144,17 +144,17 @@ class Plot(object):
 
     def _plot_data(self):
         """Plots the data."""
-        if self.PLOT_RAW and self.plot_data_measurement:
+        if self.plot_raw and self.plot_data_measurement:
             xvalues = [tup[0] for tup in self.plot_data_measurement]
             yvalues = [tup[1] for tup in self.plot_data_measurement]
             self.ax.plot_date(dates.date2num(xvalues), yvalues,
                             fmt='bo-', ms=4.0)
-        if self.PLOT_SMOOTH and self.plot_data_measurement:
+        if self.plot_smooth and self.plot_data_measurement:
             xvalues = [tup[0] for tup in self.plot_data_measurement]
             yvalues = [tup[2] for tup in self.plot_data_measurement]
             self.ax.plot_date(dates.date2num(xvalues), yvalues,
                             fmt='co-', ms=4.0)
-        if self.PLOT_PLAN and self.plot_data_plan:
+        if self.plot_plan and self.plot_data_plan:
             xvalues = [tup[0] for tup in self.plot_data_plan]
             yvalues = [tup[1] for tup in self.plot_data_plan]
             self.ax.plot_date(dates.date2num(xvalues), yvalues,
@@ -177,17 +177,17 @@ class Plot(object):
         if y_min is not None:
             self.ax.set_ylim(y_min, y_max)
         # set label on y-axis
-        self.ax.set_ylabel(self.YLABEL)
+        self.ax.set_ylabel(self.ylabel)
 
     def _get_ylimits(self):
         """Returns the minimum and the maximum y-value in the current date
         range. Offsets are used for proper axis scaling."""
-        if self.PLOT_BMI:
+        if self.plot_bmi:
             y_offset = 0.1
         else:
             y_offset = 0.5
         y_min, y_max = self._get_yrange(self.plot_data_measurement)
-        if self.PLOT_PLAN:
+        if self.plot_plan:
             y_min_plan, y_max_plan = self._get_yrange(self.plot_data_plan)
             y_min = util.nonemin([y_min, y_min_plan])
             y_max = util.nonemax([y_max, y_max_plan])
@@ -230,9 +230,10 @@ def _smooth_data(data):
                 weights.append(weight)
             except IndexError:
                 pass
-        weighted_average = sum(weighted_data)/sum(weights)
+        weighted_average = sum(weighted_data) / sum(weights)
         smooth_data.append((data[i][0], data[i][1], weighted_average))
     return smooth_data
+
 
 def _get_locators(daterange):
     """Returns sane locators and formatters for the given daterange."""
@@ -244,15 +245,15 @@ def _get_locators(daterange):
         majorlocator = dates.YearLocator(2)
         majorformatter = dates.DateFormatter("%Y")
         minorlocator = dates.YearLocator()
-    elif daterange >= timedelta(days = 700):
+    elif daterange >= timedelta(days=700):
         majorlocator = dates.YearLocator()
         majorformatter = dates.DateFormatter("%Y")
         minorlocator = dates.MonthLocator(bymonth=(1, 4, 7, 10))
-    elif daterange >= timedelta(days = 200):
+    elif daterange >= timedelta(days=200):
         majorlocator = dates.MonthLocator(bymonth=(1, 4, 7, 10))
         majorformatter = dates.DateFormatter("%b %Y")
         minorlocator = dates.MonthLocator()
-    elif daterange >= timedelta(days = 50):
+    elif daterange >= timedelta(days=50):
         majorlocator = dates.MonthLocator()
         majorformatter = dates.DateFormatter("%b %Y")
         minorlocator = dates.WeekdayLocator(byweekday=6)

@@ -41,7 +41,6 @@ class SaveFileDialog(object):
         # show the dialog
         self.chooser.show_all()
 
-
     def run(self, plot=None):
         """Runs the dialog and closes it afterwards."""
         response = self.chooser.run()
@@ -58,5 +57,5 @@ class SaveFileDialog(object):
         """Updates the file ending of the target file."""
         ending = filetypeselector.get_active_text()
         filename = os.path.split(self.chooser.get_filename())[1]
-        filebase  = os.path.splitext(filename)[0]
+        filebase = os.path.splitext(filename)[0]
         self.chooser.set_current_name(filebase + ending)

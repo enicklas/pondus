@@ -3,13 +3,14 @@
 
 """
 This file is part of Pondus, a personal weight manager.
-Copyright (C) 2008-10  Eike Nicklas <eike@ephys.de>
+Copyright (C) 2008-11  Eike Nicklas <eike@ephys.de>
 
 This program is free software licensed under the MIT license. For details
 see LICENSE or http://www.opensource.org/licenses/mit-license.php
 """
 
-import os, sys
+import os
+import sys
 
 
 def _get_version():
@@ -18,6 +19,7 @@ def _get_version():
     sys.path.insert(1, srcdir)
     from pondus import __version__
     return __version__
+
 
 def _get_language_codes():
     """Returns a list of language codes of available translations"""
@@ -28,6 +30,7 @@ def _get_language_codes():
             continue
         language_codes.append(os.path.splitext(file_)[0])
     return language_codes
+
 
 def _create_pot(version, files_to_translate):
     """Creates pondus.pot, the template file for translations."""
@@ -43,12 +46,14 @@ def _create_pot(version, files_to_translate):
     os.system(' '.join(gettext_command))
     return None
 
+
 def _update_po(languages):
     """Merges the existing .po files with the new pondus.pot."""
     for lang in languages:
         command = 'msgmerge --update ' + lang + '.po pondus.pot'
         os.system(command)
     return None
+
 
 if __name__ == '__main__':
     # list of source files containing translatable strings

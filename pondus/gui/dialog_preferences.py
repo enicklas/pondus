@@ -2,7 +2,7 @@
 
 """
 This file is part of Pondus, a personal weight manager.
-Copyright (C) 2008-10  Eike Nicklas <eike@ephys.de>
+Copyright (C) 2008-11  Eike Nicklas <eike@ephys.de>
 
 This program is free software licensed under the MIT license. For details
 see LICENSE or http://www.opensource.org/licenses/mit-license.php
@@ -135,7 +135,7 @@ instead of a text entry to enter dates in the add/edit dialog'))
             if self.newconfig['preferences.unit_system'] == 'metric':
                 parameters.user.height = \
                             util.metric_to_height(newheight1, newheight2)
-            else: 
+            else:
                 parameters.user.height = \
                             util.imperial_to_height(newheight1, newheight2)
         self.dialog.hide()

@@ -2,7 +2,7 @@
 
 """
 This file is part of Pondus, a personal weight manager.
-Copyright (C) 2007-10  Eike Nicklas <eike@ephys.de>
+Copyright (C) 2007-11  Eike Nicklas <eike@ephys.de>
 
 This program is free software licensed under the MIT license. For details
 see LICENSE or http://www.opensource.org/licenses/mit-license.php
@@ -18,7 +18,7 @@ from pondus.core import parameters
 def parse_options():
     """Parses the command line options and performs the corresponding
     actions."""
-    parser = OptionParser(version='%prog '+__version__)
+    parser = OptionParser(version='%prog ' + __version__)
     parser.add_option('-i', '--input',
         dest='filename',
         help='read data from FILE instead of the standard location',
@@ -26,6 +26,7 @@ def parse_options():
     (options, args) = parser.parse_args()
     if options.filename:
         _set_datafilepath(options.filename)
+
 
 def _set_datafilepath(filepath):
     """Updates the path to the file containing the weight data."""

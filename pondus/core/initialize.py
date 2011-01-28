@@ -2,7 +2,7 @@
 
 """
 This file is part of Pondus, a personal weight manager.
-Copyright (C) 2007-10  Eike Nicklas <eike@ephys.de>
+Copyright (C) 2007-11  Eike Nicklas <eike@ephys.de>
 
 This program is free software licensed under the MIT license. For details
 see LICENSE or http://www.opensource.org/licenses/mit-license.php
@@ -27,6 +27,7 @@ def _gettext_install():
     else:
         gettext.install('pondus', os.path.join(basepath, '../share/locale'))
 
+
 def _get_path(localpath, syspath, filename):
     """Returns the full path to the file with filename. If it exists,
     localpath is used, otherwise the corresponding system directory."""
@@ -40,6 +41,7 @@ def _get_path(localpath, syspath, filename):
     else:
         print _('Error: Could not find'), sysfilepath
 
+
 def _test_gtk_availability():
     """Tests availability of pygtk and quits if not found."""
     try:
@@ -48,6 +50,7 @@ def _test_gtk_availability():
         print strerror
         print _('Please make sure this library is installed.')
         sys.exit(1)
+
 
 def _test_etree_availability():
     """Tests availability of ElementTree and quits if not found."""
@@ -60,6 +63,7 @@ def _test_etree_availability():
             print _('Please make sure ElementTree is installed.')
             sys.exit(1)
 
+
 def check_datadir(filepath):
     """Checks, whether the directory containing the user data exists
     and creates it if necessary."""
@@ -67,6 +71,7 @@ def check_datadir(filepath):
         dirpath = os.path.dirname(filepath)
         if not os.path.exists(dirpath):
             os.makedirs(dirpath)
+
 
 def initialize():
     """Initializes the main program with the non-default values and checks
@@ -84,6 +89,7 @@ def initialize():
     parameters.config = config_parser.read_config(
             parameters.config_default, parameters.configfile)
     parameters.user = Person(parameters.userdatafile)
+
 
 def shutdown():
     """Saves the data to disk."""

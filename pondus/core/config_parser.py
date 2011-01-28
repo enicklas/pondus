@@ -2,7 +2,7 @@
 
 """
 This file is part of Pondus, a personal weight manager.
-Copyright (C) 2008-10  Eike Nicklas <eike@ephys.de>
+Copyright (C) 2008-11  Eike Nicklas <eike@ephys.de>
 
 This program is free software licensed under the MIT license. For details
 see LICENSE or http://www.opensource.org/licenses/mit-license.php
@@ -12,6 +12,7 @@ import ConfigParser
 import os
 
 from pondus.core import parameters
+
 
 def read_config(default_config, conffile):
     """Reads the configuration file and returns the updated default_config
@@ -44,6 +45,7 @@ def read_config(default_config, conffile):
             config['preferences.use_calendar'] = \
                             conf.getboolean('preferences', 'use_calendar')
     return config
+
 
 def write_config(config, conffile):
     """Writes the config dictionary to the configuration file."""

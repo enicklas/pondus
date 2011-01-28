@@ -2,7 +2,7 @@
 
 """
 This file is part of Pondus, a personal weight manager.
-Copyright (C) 2007-10  Eike Nicklas <eike@ephys.de>
+Copyright (C) 2007-11  Eike Nicklas <eike@ephys.de>
 
 This program is free software licensed under the MIT license. For details
 see LICENSE or http://www.opensource.org/licenses/mit-license.php
@@ -189,9 +189,7 @@ enabled in the preferences dialog.'))
         if self.dateselector.get_active() == 0:
             self.update_daterange(self.dateselector)
 
-
     # helper methods
-
     def get_daterange(self):
         """Returns start and end date of the plot to be created,
         depending on the current setting of self.dateselector."""

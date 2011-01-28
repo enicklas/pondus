@@ -2,7 +2,7 @@
 
 """
 This file is part of Pondus, a personal weight manager.
-Copyright (C) 2008-10  Eike Nicklas <eike@ephys.de>
+Copyright (C) 2008-11  Eike Nicklas <eike@ephys.de>
 
 This program is free software licensed under the MIT license. For details
 see LICENSE or http://www.opensource.org/licenses/mit-license.php
@@ -10,6 +10,7 @@ see LICENSE or http://www.opensource.org/licenses/mit-license.php
 
 import gtk
 import os
+
 
 class SelectFileDialog(object):
     """Allows the user to select a file."""
