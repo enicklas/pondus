@@ -10,7 +10,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: es\n"
 "Report-Msgid-Bugs-To: pondus-dev@lists.berlios.de\n"
-"POT-Creation-Date: 2011-01-21 21:17+0100\n"
+"POT-Creation-Date: 2011-02-02 23:28+0100\n"
 "PO-Revision-Date: 2009-12-13 00:59+0100\n"
 "Last-Translator: Jose Luis Jiménez\n"
 "Language-Team:  <en@li.org>\n"
@@ -21,11 +21,11 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: KBabel 1.11.4\n"
 
-#: ../pondus/core/util.py:42
+#: ../pondus/core/util.py:47
 msgid "kg"
 msgstr "kg"
 
-#: ../pondus/core/util.py:44
+#: ../pondus/core/util.py:49
 msgid "lbs"
 msgstr "lbs"
 
@@ -41,46 +41,48 @@ msgstr ""
 "Otra instancia de pondus parece estar editando el mismo archivo de datos. "
 "¿Realmente quieres continuar y perder todos los cambios de la otra instancia?"
 
-#: ../pondus/core/initialize.py:41
-msgid "Error: Could not find"
+#: ../pondus/core/initialize.py:44
+#, fuzzy, python-format
+msgid "Could not find %s"
 msgstr "Error: No se pudo encontrar"
 
-#: ../pondus/core/initialize.py:49
-msgid "Please make sure this library is installed."
-msgstr "Por favor, comprueba que esta biblioteca está instalada"
-
-#: ../pondus/core/initialize.py:60
-msgid "Please make sure ElementTree is installed."
+#: ../pondus/core/initialize.py:53
+#, fuzzy
+msgid "Please make sure pygtk is installed."
 msgstr "Por favor, comprueba que la librería ElementTree está instalada"
 
-#: ../pondus/core/initialize.py:97
-msgid "Not owning the file lock. Backing up the data to"
+#: ../pondus/core/initialize.py:93
+#, fuzzy, python-format
+msgid "Not owning the file lock. Backing up the data to %s"
 msgstr ""
 "No tiene permisos sobre el Archivo. Guardando copia de seguridad de los "
 "datos a"
 
-#: ../pondus/core/plot.py:43 ../pondus/gui/dialog_plot.py:74
+#: ../pondus/core/plot.py:44 ../pondus/gui/dialog_plot.py:74
 msgid "Body Mass Index"
 msgstr "Índice de Masa Corporal"
 
-#: ../pondus/core/plot.py:45 ../pondus/gui/dialog_plot.py:73
-#: ../pondus/gui/dialog_add.py:69 ../pondus/gui/window_main.py:120
+#: ../pondus/core/plot.py:46 ../pondus/gui/dialog_plot.py:73
+#: ../pondus/gui/dialog_add.py:69 ../pondus/gui/window_main.py:121
 msgid "Weight"
 msgstr "Peso"
 
-#: ../pondus/core/plot.py:93
-msgid "Saving plot to"
+#: ../pondus/core/plot.py:94
+#, fuzzy, python-format
+msgid "Saving plot to %s"
 msgstr "Guardando el gráfico a"
 
-#: ../pondus/core/option_parser.py:36
-msgid "Reading file"
+#: ../pondus/core/option_parser.py:38
+#, fuzzy, python-format
+msgid "Reading file %s"
 msgstr "Leyendo archivo"
 
-#: ../pondus/core/option_parser.py:41
-msgid "Error: This is a directory, not a file!"
+#: ../pondus/core/option_parser.py:43
+#, fuzzy
+msgid "You passed a directory, not a file!"
 msgstr "Error: Esto es un directorio, no un archivo"
 
-#: ../pondus/core/option_parser.py:42
+#: ../pondus/core/option_parser.py:45
 msgid "Using the standard file ~/.pondus/user_data.xml instead."
 msgstr "Usando el fichero estándar ~/.pondus/user_data.xml"
 
@@ -88,7 +90,7 @@ msgstr "Usando el fichero estándar ~/.pondus/user_data.xml"
 msgid "weight.csv"
 msgstr "peso.csv"
 
-#: ../pondus/gui/dialog_csv.py:36 ../pondus/gui/window_main.py:129
+#: ../pondus/gui/dialog_csv.py:36 ../pondus/gui/window_main.py:130
 msgid "Weight Measurements"
 msgstr "Medidas de peso"
 
@@ -96,7 +98,7 @@ msgstr "Medidas de peso"
 msgid "Weight Plan"
 msgstr "Plan de peso"
 
-#: ../pondus/gui/dialog_csv.py:86 ../pondus/gui/window_main.py:89
+#: ../pondus/gui/dialog_csv.py:86 ../pondus/gui/window_main.py:90
 msgid "CSV Export"
 msgstr "Exportar a CSV "
 
@@ -116,7 +118,7 @@ msgstr "Exportación realizada con éxito"
 msgid "The export was successful."
 msgstr "La exportación fue realizada con éxito"
 
-#: ../pondus/gui/dialog_csv.py:118 ../pondus/gui/window_main.py:88
+#: ../pondus/gui/dialog_csv.py:118 ../pondus/gui/window_main.py:89
 msgid "CSV Import"
 msgstr "Importar CSV "
 
@@ -259,7 +261,7 @@ msgstr "Fecha:"
 msgid "Date (YYYY-MM-DD):"
 msgstr "Fecha (AAAA-MM-DD):"
 
-#: ../pondus/gui/dialog_preferences.py:24 ../pondus/gui/window_main.py:64
+#: ../pondus/gui/dialog_preferences.py:24 ../pondus/gui/window_main.py:65
 msgid "Preferences"
 msgstr "Preferencias"
 
@@ -315,55 +317,56 @@ msgstr ""
 msgid "Remember Window Size"
 msgstr "Recordar el tamaño de ventana"
 
-#: ../pondus/gui/dialog_select_file.py:20
+#: ../pondus/gui/dialog_select_file.py:21
 msgid "Select File"
 msgstr "Seleccionar Archivo"
 
-#: ../pondus/gui/window_main.py:56
+#: ../pondus/gui/window_main.py:57
 msgid "Add dataset"
 msgstr "Añadir conjunto de datos"
 
-#: ../pondus/gui/window_main.py:58
+#: ../pondus/gui/window_main.py:59
 msgid "Edit selected dataset"
 msgstr "Editar conjunto de datos seleccionado"
 
-#: ../pondus/gui/window_main.py:60
+#: ../pondus/gui/window_main.py:61
 msgid "Delete selected dataset"
 msgstr "Borrar conjunto de datos seleccionado"
 
-#: ../pondus/gui/window_main.py:61
+#: ../pondus/gui/window_main.py:62
 msgid "Plot"
 msgstr "Gráfico"
 
-#: ../pondus/gui/window_main.py:62
+#: ../pondus/gui/window_main.py:63
 msgid "Matplotlib not available!"
 msgstr "Matplotlib no está disponible"
 
-#: ../pondus/gui/window_main.py:66
+#: ../pondus/gui/window_main.py:67
 msgid "Quit"
 msgstr "Salir"
 
-#: ../pondus/gui/window_main.py:119
+#: ../pondus/gui/window_main.py:120
 msgid "Date"
 msgstr "Fecha"
 
-#: ../pondus/gui/window_main.py:130
+#: ../pondus/gui/window_main.py:131
 msgid "Weight Planner"
 msgstr "Planificador de Peso"
 
-#: ../pondus/gui/window_main.py:184
+#: ../pondus/gui/window_main.py:183
 msgid "Remove Data?"
 msgstr "¿Borrar datos?"
 
-#: ../pondus/gui/window_main.py:185
+#: ../pondus/gui/window_main.py:184
 msgid "Do you really want to delete this dataset?"
 msgstr "¿Realmente quieres borrar este conjunto de datos?"
 
-#: ../pondus/gui/window_main.py:364
-msgid "Note: python-matplotlib is not installed, plotting disabled!"
+#: ../pondus/gui/window_main.py:361
+#, fuzzy
+msgid "python-matplotlib is not installed, plotting disabled!"
 msgstr "Nota: python-Matplotlib no está instalado, gráfico deshabilitado "
 
-#: ../pondus/gui/window_main.py:374
+#: ../pondus/gui/window_main.py:371
 msgid "Plot weight data"
 msgstr "Gráfico del peso"
 
@@ -374,6 +377,9 @@ msgstr "Guardar a Archivo"
 #: ../pondus/gui/dialog_save_file.py:27
 msgid "Save as File Type:"
 msgstr "Guardar como:"
+
+#~ msgid "Please make sure this library is installed."
+#~ msgstr "Por favor, comprueba que esta biblioteca está instalada"
 
 #~ msgid "Add more data"
 #~ msgstr "Añadir más datos"

@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Pondus 0.7.0+hg\n"
 "Report-Msgid-Bugs-To: pondus-dev@lists.berlios.de\n"
-"POT-Creation-Date: 2011-01-21 21:17+0100\n"
+"POT-Creation-Date: 2011-02-02 23:28+0100\n"
 "PO-Revision-Date: 2010-06-15 12:18+0100\n"
 "Last-Translator: Axel Rousseau <axel@esperanto-jeunes.org>\n"
 "Language-Team: ESPERANTO <eo@li.org>\n"
@@ -17,11 +17,11 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "X-Poedit-Language: Esperanto\n"
 
-#: ../pondus/core/util.py:42
+#: ../pondus/core/util.py:47
 msgid "kg"
 msgstr "kg"
 
-#: ../pondus/core/util.py:44
+#: ../pondus/core/util.py:49
 msgid "lbs"
 msgstr "lbs"
 
@@ -37,44 +37,46 @@ msgstr ""
 "Ŝajnas ke alia apero de pondus redaktas la saman datumdosieron. Ĉu vi vere "
 "deziras daŭrigi kaj perdi ĉiujn ŝanĝojn de la alia apero ?"
 
-#: ../pondus/core/initialize.py:41
-msgid "Error: Could not find"
+#: ../pondus/core/initialize.py:44
+#, fuzzy, python-format
+msgid "Could not find %s"
 msgstr "Eraro : Ne eblis trovi"
 
-#: ../pondus/core/initialize.py:49
-msgid "Please make sure this library is installed."
-msgstr "Bonvolu certiĝi ke tiu biblioteko instaliĝis"
-
-#: ../pondus/core/initialize.py:60
-msgid "Please make sure ElementTree is installed."
+#: ../pondus/core/initialize.py:53
+#, fuzzy
+msgid "Please make sure pygtk is installed."
 msgstr "Bonvolu certiĝi ke ElementTree instaliĝis"
 
-#: ../pondus/core/initialize.py:97
-msgid "Not owning the file lock. Backing up the data to"
+#: ../pondus/core/initialize.py:93
+#, python-format
+msgid "Not owning the file lock. Backing up the data to %s"
 msgstr ""
 
-#: ../pondus/core/plot.py:43 ../pondus/gui/dialog_plot.py:74
+#: ../pondus/core/plot.py:44 ../pondus/gui/dialog_plot.py:74
 msgid "Body Mass Index"
 msgstr "Korpomasa indico"
 
-#: ../pondus/core/plot.py:45 ../pondus/gui/dialog_plot.py:73
-#: ../pondus/gui/dialog_add.py:69 ../pondus/gui/window_main.py:120
+#: ../pondus/core/plot.py:46 ../pondus/gui/dialog_plot.py:73
+#: ../pondus/gui/dialog_add.py:69 ../pondus/gui/window_main.py:121
 msgid "Weight"
 msgstr "Pezo"
 
-#: ../pondus/core/plot.py:93
-msgid "Saving plot to"
+#: ../pondus/core/plot.py:94
+#, python-format
+msgid "Saving plot to %s"
 msgstr ""
 
-#: ../pondus/core/option_parser.py:36
-msgid "Reading file"
+#: ../pondus/core/option_parser.py:38
+#, fuzzy, python-format
+msgid "Reading file %s"
 msgstr "Legante dosieron"
 
-#: ../pondus/core/option_parser.py:41
-msgid "Error: This is a directory, not a file!"
+#: ../pondus/core/option_parser.py:43
+#, fuzzy
+msgid "You passed a directory, not a file!"
 msgstr "Eraro: Estas dosierujo, ne dosiero !"
 
-#: ../pondus/core/option_parser.py:42
+#: ../pondus/core/option_parser.py:45
 msgid "Using the standard file ~/.pondus/user_data.xml instead."
 msgstr "Uzi aprioran dosieron  ~/.pondus/user_data.xml anstataŭ."
 
@@ -82,7 +84,7 @@ msgstr "Uzi aprioran dosieron  ~/.pondus/user_data.xml anstataŭ."
 msgid "weight.csv"
 msgstr "weight.csv"
 
-#: ../pondus/gui/dialog_csv.py:36 ../pondus/gui/window_main.py:129
+#: ../pondus/gui/dialog_csv.py:36 ../pondus/gui/window_main.py:130
 msgid "Weight Measurements"
 msgstr "Pezaj Mezuroj"
 
@@ -90,7 +92,7 @@ msgstr "Pezaj Mezuroj"
 msgid "Weight Plan"
 msgstr "Peza Plano"
 
-#: ../pondus/gui/dialog_csv.py:86 ../pondus/gui/window_main.py:89
+#: ../pondus/gui/dialog_csv.py:86 ../pondus/gui/window_main.py:90
 msgid "CSV Export"
 msgstr "CSV Eksportado"
 
@@ -110,7 +112,7 @@ msgstr "Eksportado suksesis"
 msgid "The export was successful."
 msgstr ""
 
-#: ../pondus/gui/dialog_csv.py:118 ../pondus/gui/window_main.py:88
+#: ../pondus/gui/dialog_csv.py:118 ../pondus/gui/window_main.py:89
 msgid "CSV Import"
 msgstr "CSV Importado"
 
@@ -252,7 +254,7 @@ msgstr "Dato:"
 msgid "Date (YYYY-MM-DD):"
 msgstr "Dato (JJJJ-MM-TT)"
 
-#: ../pondus/gui/dialog_preferences.py:24 ../pondus/gui/window_main.py:64
+#: ../pondus/gui/dialog_preferences.py:24 ../pondus/gui/window_main.py:65
 msgid "Preferences"
 msgstr "Agordoj"
 
@@ -306,55 +308,55 @@ msgstr ""
 msgid "Remember Window Size"
 msgstr "Memoru fenestran grandecon"
 
-#: ../pondus/gui/dialog_select_file.py:20
+#: ../pondus/gui/dialog_select_file.py:21
 msgid "Select File"
 msgstr "Elekti dosieron"
 
-#: ../pondus/gui/window_main.py:56
+#: ../pondus/gui/window_main.py:57
 msgid "Add dataset"
 msgstr "Aldoni Datumaron"
 
-#: ../pondus/gui/window_main.py:58
+#: ../pondus/gui/window_main.py:59
 msgid "Edit selected dataset"
 msgstr "Redakti elektitan datumaron"
 
-#: ../pondus/gui/window_main.py:60
+#: ../pondus/gui/window_main.py:61
 msgid "Delete selected dataset"
 msgstr "Forigi elektitan datumaron"
 
-#: ../pondus/gui/window_main.py:61
+#: ../pondus/gui/window_main.py:62
 msgid "Plot"
 msgstr "Grafikaĵo"
 
-#: ../pondus/gui/window_main.py:62
+#: ../pondus/gui/window_main.py:63
 msgid "Matplotlib not available!"
 msgstr "Matplotlib ne estas disponebla."
 
-#: ../pondus/gui/window_main.py:66
+#: ../pondus/gui/window_main.py:67
 msgid "Quit"
 msgstr "Forlasi"
 
-#: ../pondus/gui/window_main.py:119
+#: ../pondus/gui/window_main.py:120
 msgid "Date"
 msgstr "Dato"
 
-#: ../pondus/gui/window_main.py:130
+#: ../pondus/gui/window_main.py:131
 msgid "Weight Planner"
 msgstr "Pezcelo"
 
-#: ../pondus/gui/window_main.py:184
+#: ../pondus/gui/window_main.py:183
 msgid "Remove Data?"
 msgstr "Ĉu forigi Datumojn?"
 
-#: ../pondus/gui/window_main.py:185
+#: ../pondus/gui/window_main.py:184
 msgid "Do you really want to delete this dataset?"
 msgstr "Ĉu vi vere volas forigi ĉi tiun datumaron?"
 
-#: ../pondus/gui/window_main.py:364
-msgid "Note: python-matplotlib is not installed, plotting disabled!"
+#: ../pondus/gui/window_main.py:361
+msgid "python-matplotlib is not installed, plotting disabled!"
 msgstr ""
 
-#: ../pondus/gui/window_main.py:374
+#: ../pondus/gui/window_main.py:371
 msgid "Plot weight data"
 msgstr ""
 
@@ -365,3 +367,6 @@ msgstr "Konservi al la dosiero..."
 #: ../pondus/gui/dialog_save_file.py:27
 msgid "Save as File Type:"
 msgstr "Konservi kiel dosiera tipo:"
+
+#~ msgid "Please make sure this library is installed."
+#~ msgstr "Bonvolu certiĝi ke tiu biblioteko instaliĝis"
