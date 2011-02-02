@@ -18,7 +18,6 @@ usability:
 code clean up:
 ---------------
  * use GTKBuilder and clearly separate core and gui?
- * use logging instead of just printing to stdout
  * error message when adding dataset and sorted by weight
    in `newiter = self.datalist.append(newdata.as_list())`
    -> causes no problems, ask on pygtk list?

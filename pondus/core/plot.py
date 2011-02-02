@@ -14,6 +14,7 @@ from matplotlib import dates
 
 from pondus.core import parameters
 from pondus.core import util
+from pondus.core.logger import logger
 
 
 class Plot(object):
@@ -90,7 +91,7 @@ class Plot(object):
     def save_to_file(self, filename):
         """Saves the plot to filename. The filename's ending must be
         a valid format to save to."""
-        print _('Saving plot to'), filename
+        logger.info(_('Saving plot to %s'), filename)
         self.figure.savefig(filename, format=filename[-3:])
 
     def get_max_daterange(self):

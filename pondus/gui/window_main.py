@@ -14,6 +14,7 @@ import threading
 
 from pondus.core import parameters
 from pondus.core import initialize
+from pondus.core.logger import logger
 from pondus.gui import guiutil
 from pondus.gui.dialog_add import AddDataDialog
 from pondus.gui.dialog_message import MessageDialog
@@ -356,7 +357,8 @@ def import_mpl():
     try:
         from matplotlib import dates
     except ImportError:
-        print _('Note: python-matplotlib is not installed, plotting disabled!')
+        logger.warning( \
+            _('python-matplotlib is not installed, plotting disabled!'))
     else:
         parameters.have_mpl = True
         # speed up opening of plot dialog by importing it here

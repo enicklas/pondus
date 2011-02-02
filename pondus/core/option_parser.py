@@ -13,6 +13,7 @@ from optparse import OptionParser
 
 from pondus import __version__
 from pondus.core import parameters
+from pondus.core.logger import logger
 
 
 def parse_options():
@@ -34,10 +35,11 @@ def _set_datafilepath(filepath):
     if not os.path.isabs(filepath):
         filepath = os.path.join(os.getcwd(), filepath)
     if not os.path.isdir(filepath):
-        print _('Reading file'), filepath
+        logger.info(_('Reading file %s'), filepath)
         parameters.userdatafile = filepath
         parameters.use_custom_file = True
         return
     else:
-        print _('Error: This is a directory, not a file!')
-        print _('Using the standard file ~/.pondus/user_data.xml instead.')
+        logger.warning(_('You passed a directory, not a file!'))
+        logger.warning( \
+                _('Using the standard file ~/.pondus/user_data.xml instead.'))

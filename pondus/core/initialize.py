@@ -9,12 +9,14 @@ see LICENSE or http://www.opensource.org/licenses/mit-license.php
 """
 
 import gettext
+import logging
 import os
 import sys
 
 from pondus.core import parameters
 from pondus.core import config_parser
 from pondus.core import option_parser
+from pondus.core.logger import logger
 from pondus.core.filelock import FileLock
 from pondus.core.person import Person
 
@@ -39,16 +41,16 @@ def _get_path(localpath, syspath, filename):
     if os.path.exists(sysfilepath):
         return sysfilepath
     else:
-        print _('Error: Could not find'), sysfilepath
+        logger.error(_('Could not find %s'), sysfilepath)
+        sys.exit(1)
 
 
 def _test_gtk_availability():
     """Tests availability of pygtk and quits if not found."""
     try:
         import gtk
-    except ImportError, strerror:
-        print strerror
-        print _('Please make sure this library is installed.')
+    except ImportError:
+        logger.error(_('Please make sure pygtk is installed.'))
         sys.exit(1)
 
 
@@ -87,5 +89,7 @@ def shutdown():
     else:
         backupfile = parameters.userdatafile + '.backup'
         parameters.user.write_to_file(filepath=backupfile)
-        print (_('Not owning the file lock. Backing up the data to'), '\n',
+        logger.warning(
+                _('Not owning the file lock. Backing up the data to %s'),
                 backupfile)
+    logging.shutdown()
