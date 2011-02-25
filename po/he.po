@@ -1,10 +1,10 @@
-# SOME DESCRIPTIVE TITLE.
-# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
-# This file is distributed under the same license as the PACKAGE package.
+# Translation of pondus to Hebrew.
+# Copyright (C) 2011
+# This file is distributed under the same license as the pondus package.
 # Yaron Shahrabani <sh.yaron@gmail.com>, 2011.
 msgid ""
 msgstr ""
-"Project-Id-Version: Pondus 0.7.2+hg\n"
+"Project-Id-Version: Pondus 0.7.3+hg\n"
 "Report-Msgid-Bugs-To: pondus-dev@lists.berlios.de\n"
 "POT-Creation-Date: 2011-02-02 23:28+0100\n"
 "PO-Revision-Date: 2011-01-24 10:23+0300\n"
@@ -39,19 +39,18 @@ msgstr ""
 "להמשיך ולאבד את כל השינויים מהעותק הנוכחי?"
 
 #: ../pondus/core/initialize.py:44
-#, fuzzy, python-format
+#, python-format
 msgid "Could not find %s"
-msgstr "שגיאה: לא ניתן למצוא"
+msgstr "לא ניתן למצוא %s"
 
 #: ../pondus/core/initialize.py:53
-#, fuzzy
 msgid "Please make sure pygtk is installed."
-msgstr "נא לוודא שה־ElementTree הזה מותקן."
+msgstr "נא לוודא שה־pygtk הזה מותקן."
 
 #: ../pondus/core/initialize.py:93
-#, fuzzy, python-format
+#, python-format
 msgid "Not owning the file lock. Backing up the data to %s"
-msgstr "נעילת הקובץ אינה בלעדית לך. הנתונים יגובו אל"
+msgstr "נעילת הקובץ אינה בלעדית לך. הנתונים יגובו אל %s"
 
 #: ../pondus/core/plot.py:44 ../pondus/gui/dialog_plot.py:74
 msgid "Body Mass Index"
@@ -63,19 +62,18 @@ msgid "Weight"
 msgstr "משקל"
 
 #: ../pondus/core/plot.py:94
-#, fuzzy, python-format
+#, python-format
 msgid "Saving plot to %s"
-msgstr "שמירת הרישום אל"
+msgstr "שמירת הרישום אל %s"
 
 #: ../pondus/core/option_parser.py:38
-#, fuzzy, python-format
+#, python-format
 msgid "Reading file %s"
-msgstr "הקובץ נקרא"
+msgstr "הקובץ נקרא %s"
 
 #: ../pondus/core/option_parser.py:43
-#, fuzzy
 msgid "You passed a directory, not a file!"
-msgstr "שגיאה: זוהי תיקייה, לא קובץ!"
+msgstr "זוהי תיקייה, לא קובץ!"
 
 #: ../pondus/core/option_parser.py:45
 msgid "Using the standard file ~/.pondus/user_data.xml instead."
@@ -357,9 +355,8 @@ msgid "Do you really want to delete this dataset?"
 msgstr "האם אכן ברצונך למחוק מערך נתונים זה?"
 
 #: ../pondus/gui/window_main.py:361
-#, fuzzy
 msgid "python-matplotlib is not installed, plotting disabled!"
-msgstr "לתשומת לבך: הספרייה python-matplotlib אינה מותקנת, הרישום מנוטרל!"
+msgstr "הספרייה python-matplotlib אינה מותקנת, הרישום מנוטרל!"
 
 #: ../pondus/gui/window_main.py:371
 msgid "Plot weight data"

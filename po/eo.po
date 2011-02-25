@@ -1,16 +1,16 @@
 # Esperanto Translation of Pondus
-# Copyright (C) 2010
+# Copyright (C) 2010-11
 # This file is distributed under the same license as the pondus package.
 # Axel Rousseau <axel@esperanto-jeunes.org>, 2010
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: Pondus 0.7.0+hg\n"
+"Project-Id-Version: Pondus 0.7.3+hg\n"
 "Report-Msgid-Bugs-To: pondus-dev@lists.berlios.de\n"
 "POT-Creation-Date: 2011-02-02 23:28+0100\n"
 "PO-Revision-Date: 2010-06-15 12:18+0100\n"
 "Last-Translator: Axel Rousseau <axel@esperanto-jeunes.org>\n"
-"Language-Team: ESPERANTO <eo@li.org>\n"
+"Language-Team: Esperanto <eo@li.org>\n"
 "Language: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
@@ -38,14 +38,13 @@ msgstr ""
 "deziras daŭrigi kaj perdi ĉiujn ŝanĝojn de la alia apero ?"
 
 #: ../pondus/core/initialize.py:44
-#, fuzzy, python-format
+#, python-format
 msgid "Could not find %s"
-msgstr "Eraro : Ne eblis trovi"
+msgstr "Ne eblis trovi %s"
 
 #: ../pondus/core/initialize.py:53
-#, fuzzy
 msgid "Please make sure pygtk is installed."
-msgstr "Bonvolu certiĝi ke ElementTree instaliĝis"
+msgstr "Bonvolu certiĝi ke pygtk instaliĝis"
 
 #: ../pondus/core/initialize.py:93
 #, python-format
@@ -67,14 +66,13 @@ msgid "Saving plot to %s"
 msgstr ""
 
 #: ../pondus/core/option_parser.py:38
-#, fuzzy, python-format
+#, python-format
 msgid "Reading file %s"
-msgstr "Legante dosieron"
+msgstr "Legante dosieron %s"
 
 #: ../pondus/core/option_parser.py:43
-#, fuzzy
 msgid "You passed a directory, not a file!"
-msgstr "Eraro: Estas dosierujo, ne dosiero !"
+msgstr "Estas dosierujo, ne dosiero!"
 
 #: ../pondus/core/option_parser.py:45
 msgid "Using the standard file ~/.pondus/user_data.xml instead."

@@ -1,13 +1,13 @@
 # French translations for pondus package
 # Traductions françaises du paquet pondus.
-# Copyright (C) 2008-09 THE pondus'S COPYRIGHT HOLDER
+# Copyright (C) 2008-11 THE pondus'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the pondus package.
 # Fabrice Haberer-Proust <info@proustmedia.de>, 2008.
 # Arnaud Launay <asl@launay.org>, 2009
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: pondus 0.5.3+hg\n"
+"Project-Id-Version: pondus 0.7.3+hg\n"
 "Report-Msgid-Bugs-To: pondus-dev@lists.berlios.de\n"
 "POT-Creation-Date: 2011-02-02 23:28+0100\n"
 "PO-Revision-Date: 2008-07-14 20:01+0200\n"
@@ -41,19 +41,18 @@ msgstr ""
 "effectués par l'autre instance ?"
 
 #: ../pondus/core/initialize.py:44
-#, fuzzy, python-format
+#, python-format
 msgid "Could not find %s"
-msgstr "Erreur : fichier introuvable :"
+msgstr "Fichier introuvable: %s"
 
 #: ../pondus/core/initialize.py:53
-#, fuzzy
 msgid "Please make sure pygtk is installed."
-msgstr "Veuillez vérifier que ElementTree est installé."
+msgstr "Veuillez vérifier que pygtk est installé."
 
 #: ../pondus/core/initialize.py:93
-#, fuzzy, python-format
+#, python-format
 msgid "Not owning the file lock. Backing up the data to %s"
-msgstr "Ne possède pas le fichier de verrouillage. Sauvegarde des données vers"
+msgstr "Ne possède pas le fichier de verrouillage. Sauvegarde des données vers %s"
 
 #: ../pondus/core/plot.py:44 ../pondus/gui/dialog_plot.py:74
 msgid "Body Mass Index"
@@ -65,19 +64,18 @@ msgid "Weight"
 msgstr "Poids"
 
 #: ../pondus/core/plot.py:94
-#, fuzzy, python-format
+#, python-format
 msgid "Saving plot to %s"
-msgstr "Enregistrer le diagramme sous"
+msgstr "Enregistrer le diagramme sous %s"
 
 #: ../pondus/core/option_parser.py:38
-#, fuzzy, python-format
+#, python-format
 msgid "Reading file %s"
-msgstr "Lecture du fichier"
+msgstr "Lecture du fichier %s"
 
 #: ../pondus/core/option_parser.py:43
-#, fuzzy
 msgid "You passed a directory, not a file!"
-msgstr "Erreur : ceci est un répertoire, pas un fichier"
+msgstr "Ceci est un répertoire, pas un fichier"
 
 #: ../pondus/core/option_parser.py:45
 msgid "Using the standard file ~/.pondus/user_data.xml instead."
@@ -364,9 +362,8 @@ msgid "Do you really want to delete this dataset?"
 msgstr "Êtes vous certain(e) de vouloir supprimer cet enregistrement ?"
 
 #: ../pondus/gui/window_main.py:361
-#, fuzzy
 msgid "python-matplotlib is not installed, plotting disabled!"
-msgstr "Attention : Matplotlib indisponible, tracé désactivé"
+msgstr "Matplotlib indisponible, tracé désactivé"
 
 #: ../pondus/gui/window_main.py:371
 #, fuzzy

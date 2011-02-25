@@ -1,12 +1,12 @@
-# Italian translations for PACKAGE package
-# Traduzioni italiane per il pacchetto PACKAGE..
-# Copyright (C) 2008 THE PACKAGE'S COPYRIGHT HOLDER
-# This file is distributed under the same license as the PACKAGE package.
+# Italian translations for pondus package
+# Traduzioni italiane per il pacchetto pondus.
+# Copyright (C) 2008-2011 THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the pondus package.
 # Stefano Costa <steko@iosa.it>, 2008.
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: Pondus 0.7.0\n"
+"Project-Id-Version: Pondus 0.7.3+hg\n"
 "Report-Msgid-Bugs-To: pondus-dev@lists.berlios.de\n"
 "POT-Creation-Date: 2011-02-02 23:28+0100\n"
 "PO-Revision-Date: 2009-12-23 21:04+0100\n"
@@ -40,19 +40,18 @@ msgstr ""
 "esecuzione?"
 
 #: ../pondus/core/initialize.py:44
-#, fuzzy, python-format
+#, python-format
 msgid "Could not find %s"
-msgstr "Errore: impossibile trovare"
+msgstr "Impossibile trovare %s"
 
 #: ../pondus/core/initialize.py:53
-#, fuzzy
 msgid "Please make sure pygtk is installed."
-msgstr "Verificare che ElementTree sia installato."
+msgstr "Verificare che pygtk sia installato."
 
 #: ../pondus/core/initialize.py:93
-#, fuzzy, python-format
+#, python-format
 msgid "Not owning the file lock. Backing up the data to %s"
-msgstr "Non si dispone del blocco sul file. Verrà effettuato un backup in"
+msgstr "Non si dispone del blocco sul file. Verrà effettuato un backup in %s"
 
 #: ../pondus/core/plot.py:44 ../pondus/gui/dialog_plot.py:74
 msgid "Body Mass Index"
@@ -64,19 +63,18 @@ msgid "Weight"
 msgstr "Peso"
 
 #: ../pondus/core/plot.py:94
-#, fuzzy, python-format
+#, python-format
 msgid "Saving plot to %s"
-msgstr "Salvataggio del grafico in"
+msgstr "Salvataggio del grafico in %s"
 
 #: ../pondus/core/option_parser.py:38
-#, fuzzy, python-format
+#, python-format
 msgid "Reading file %s"
-msgstr "Lettura del file"
+msgstr "Lettura del file %s"
 
 #: ../pondus/core/option_parser.py:43
-#, fuzzy
 msgid "You passed a directory, not a file!"
-msgstr "Errore: Questa è una directory, non un file!"
+msgstr "Questa è una directory, non un file!"
 
 #: ../pondus/core/option_parser.py:45
 msgid "Using the standard file ~/.pondus/user_data.xml instead."
@@ -357,10 +355,9 @@ msgid "Do you really want to delete this dataset?"
 msgstr "Si desidera veramente rimuovere questa misurazione?"
 
 #: ../pondus/gui/window_main.py:361
-#, fuzzy
 msgid "python-matplotlib is not installed, plotting disabled!"
 msgstr ""
-"Avviso: Matplotlib non è disponibile, la creazione di grafici è disabilitata"
+"Matplotlib non è disponibile, la creazione di grafici è disabilitata"
 
 #: ../pondus/gui/window_main.py:371
 msgid "Plot weight data"

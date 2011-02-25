@@ -1,6 +1,6 @@
 # translation of sv.po to svenska
-# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
-# This file is distributed under the same license as the PACKAGE package.
+# Copyright (C) 2009-11 THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the pondus package.
 #
 # Peter Landgren <peter.talken@telia.com>, 2009.
 msgid ""
@@ -38,19 +38,18 @@ msgstr ""
 "du verkligen fortsätta och förlora alla ändringar från den andra instansen?"
 
 #: ../pondus/core/initialize.py:44
-#, fuzzy, python-format
+#, python-format
 msgid "Could not find %s"
-msgstr "Fel: kunde inte hitta"
+msgstr "Kunde inte hitta %s"
 
 #: ../pondus/core/initialize.py:53
-#, fuzzy
 msgid "Please make sure pygtk is installed."
-msgstr "Se till att ElementTree är installerat."
+msgstr "Se till att pygtk är installerat."
 
 #: ../pondus/core/initialize.py:93
-#, fuzzy, python-format
+#, python-format
 msgid "Not owning the file lock. Backing up the data to %s"
-msgstr "Äger ej fillåsningen. Sparar data till"
+msgstr "Äger ej fillåsningen. Sparar data till %s"
 
 #: ../pondus/core/plot.py:44 ../pondus/gui/dialog_plot.py:74
 msgid "Body Mass Index"
@@ -62,19 +61,18 @@ msgid "Weight"
 msgstr "Vikt"
 
 #: ../pondus/core/plot.py:94
-#, fuzzy, python-format
+#, python-format
 msgid "Saving plot to %s"
-msgstr "Sparar diagram till"
+msgstr "Sparar diagram till %s"
 
 #: ../pondus/core/option_parser.py:38
-#, fuzzy, python-format
+#, python-format
 msgid "Reading file %s"
-msgstr "Läser fil"
+msgstr "Läser fil %s"
 
 #: ../pondus/core/option_parser.py:43
-#, fuzzy
 msgid "You passed a directory, not a file!"
-msgstr "Fel: Dette är en mapp, ej en fil!"
+msgstr "Dette är en mapp, ej en fil!"
 
 #: ../pondus/core/option_parser.py:45
 msgid "Using the standard file ~/.pondus/user_data.xml instead."
@@ -356,9 +354,8 @@ msgid "Do you really want to delete this dataset?"
 msgstr "Vill du verkligen ta bort dessa data?"
 
 #: ../pondus/gui/window_main.py:361
-#, fuzzy
 msgid "python-matplotlib is not installed, plotting disabled!"
-msgstr "Notera: python matlibplot är ej installerat, plottning ej möjligt!"
+msgstr "python matlibplot är ej installerat, plottning ej möjligt!"
 
 #: ../pondus/gui/window_main.py:371
 msgid "Plot weight data"
