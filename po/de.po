@@ -2,20 +2,21 @@
 # Copyright (C) 2008-11
 # This file is distributed under the same license as the Pondus package.
 # Eike Nicklas <eike@ephys.de>, 2008-11
-#
+# <fab@fedoraproject.org>, 2011
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: Pondus 0.7.3+hg\n"
 "Report-Msgid-Bugs-To: pondus-dev@lists.berlios.de\n"
 "POT-Creation-Date: 2011-02-02 23:28+0100\n"
-"PO-Revision-Date: 2011-02-03 14:40+0100\n"
-"Last-Translator: Eike Nicklas <eike@ephys.de>\n"
-"Language-Team: German <gnome-de@gnome.org>\n"
-"Language: de\n"
+"PO-Revision-Date: 2011-02-22 00:04+0000\n"
+"Last-Translator: fab <fab@fedoraproject.org>\n"
+"Language-Team: German <>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Language: de\n"
+"Plural-Forms: nplurals=2; plural=(n != 1)\n"
 
 #: ../pondus/core/util.py:47
 msgid "kg"
@@ -41,16 +42,16 @@ msgstr ""
 #: ../pondus/core/initialize.py:44
 #, python-format
 msgid "Could not find %s"
-msgstr "Folgende Datei konnte nicht gefunden werden: %s"
+msgstr "Konnte Datei %s nicht finden."
 
 #: ../pondus/core/initialize.py:53
 msgid "Please make sure pygtk is installed."
-msgstr "Bitte stelle sicher, dass PyGTK installiert ist."
+msgstr "Bitte stellen Sie sicher, dass PyGTK installiert ist."
 
 #: ../pondus/core/initialize.py:93
 #, python-format
 msgid "Not owning the file lock. Backing up the data to %s"
-msgstr "Datei ist gesperrt. Sichere die Daten nach %s"
+msgstr "Datei ist gesperrt. Die Daten werden in %s gesichert."
 
 #: ../pondus/core/plot.py:44 ../pondus/gui/dialog_plot.py:74
 msgid "Body Mass Index"
@@ -64,16 +65,16 @@ msgstr "Gewicht"
 #: ../pondus/core/plot.py:94
 #, python-format
 msgid "Saving plot to %s"
-msgstr "Speichere Diagramm nach %s"
+msgstr "Diagramm wird als %s gespeichert"
 
 #: ../pondus/core/option_parser.py:38
 #, python-format
 msgid "Reading file %s"
-msgstr "Lese Datei %s"
+msgstr "Datei %s wird gelesen"
 
 #: ../pondus/core/option_parser.py:43
 msgid "You passed a directory, not a file!"
-msgstr "Dies ist ein Verzeichnis, keine Datei!"
+msgstr "Sie haben ein Verzeichnis und keine Datei übergeben!"
 
 #: ../pondus/core/option_parser.py:45
 msgid "Using the standard file ~/.pondus/user_data.xml instead."
