@@ -91,6 +91,10 @@ def _add_dataset_to_element(dataset, element):
     for key in parameters.keys_required:
         sub_el = SubElement(dataset_el, key)
         sub_el.text = str(getattr(dataset, key))
+    for key in parameters.keys_optional:
+        if getattr(dataset, key) is not None:
+            sub_el = SubElement(dataset_el, key)
+            sub_el.text = str(getattr(dataset, key))
 
 
 def _dataset_from_element(dataset_el):
@@ -102,4 +106,10 @@ def _dataset_from_element(dataset_el):
     dataset = Dataset(id_,
                   util.str2date(dataset_el.find('date').text),
                   float(dataset_el.find('weight').text))
+    bodyfat_el = dataset_el.find('bodyfat')
+    if bodyfat_el is not None:
+        dataset.bodyfat = float(bodyfat_el.text)
+    note_el = dataset_el.find('note')
+    if note_el is not None:
+        dataset.note = str(note_el.text)
     return dataset
