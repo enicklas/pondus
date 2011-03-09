@@ -38,12 +38,10 @@ def read_config(default_config, conffile):
             elif conf.get('preferences', 'weight_unit') == 'lbs':
                 config['preferences.unit_system'] = 'imperial'
                 parameters.convert_weight_data_to_kg = True
-        if conf.has_option('preferences', 'use_weight_plan'):
-            config['preferences.use_weight_plan'] = \
-                            conf.getboolean('preferences', 'use_weight_plan')
-        if conf.has_option('preferences', 'use_calendar'):
-            config['preferences.use_calendar'] = \
-                            conf.getboolean('preferences', 'use_calendar')
+        for option in ['use_weight_plan', 'use_calendar']:
+            if conf.has_option('preferences', option):
+                config['.'.join(['preferences', option])] = \
+                                conf.getboolean('preferences', option)
     return config
 
 
