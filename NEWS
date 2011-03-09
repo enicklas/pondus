@@ -4,6 +4,8 @@ Pondus NEWS
 2011-xx-xx: Version 0.x.x
 --------------------------
  * *Bump minimum required version of python to 2.5*
+ * Add option to track body fat percentage (can be activated in preferences)
+ * Add option to add notes to datasets (can be activated in preferences)
  * Add Hebrew translation (Thanks Yaron Shahrabani)
  * Add Turkish translation (Thanks Muhammet Kara)
  * Updated translations: de

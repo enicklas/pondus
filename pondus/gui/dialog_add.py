@@ -27,6 +27,14 @@ class AddDataDialog(object):
             weight = self.dataset.weight_lbs
         else:
             weight = self.dataset.weight
+        if parameters.config['preferences.use_bodyfat']:
+            bodyfat = self.dataset.bodyfat
+            if bodyfat is None:
+                bodyfat = 0.0
+        if parameters.config['preferences.use_note']:
+            note = self.dataset.note
+            if note is None:
+                note = ''
 
         self.dialog = gtk.Dialog(parent=parent_window,
                                 flags=gtk.DIALOG_NO_SEPARATOR)
@@ -79,6 +87,39 @@ class AddDataDialog(object):
         self.dialog.vbox.pack_start(date_box)
         self.dialog.vbox.pack_start(weight_box)
 
+
+        if parameters.config['preferences.use_bodyfat']:
+            bodyfat_box = gtk.VBox(spacing=5)
+            bodyfat_box.set_border_width(5)
+            bodyfat_label = gtk.Label(_('Bodyfat (%):'))
+            bodyfat_label.set_alignment(xalign=0, yalign=0.5)
+            bodyfat_adj = gtk.Adjustment(value=bodyfat, lower=0, upper=100,
+                                        step_incr=0.1, page_incr=1.0)
+            self.bodyfat_entry = gtk.SpinButton(adjustment=bodyfat_adj,
+                                                digits=1)
+            self.bodyfat_entry.set_numeric(True)
+            self.bodyfat_entry.set_activates_default(True)
+            bodyfat_box.pack_start(bodyfat_label)
+            bodyfat_box.pack_start(self.bodyfat_entry)
+            self.dialog.vbox.pack_start(bodyfat_box)
+
+        if parameters.config['preferences.use_note']:
+            note_box = gtk.VBox(spacing=5)
+            note_box.set_border_width(5)
+            textwindow = gtk.ScrolledWindow()
+            textwindow.set_policy(gtk.POLICY_AUTOMATIC, gtk.POLICY_AUTOMATIC)
+            note_label = gtk.Label(_('Note:'))
+            note_label.set_alignment(xalign=0, yalign=0.5)
+            self.note_view = gtk.TextView()
+            self.note_view.set_editable(True)
+            self.note_view.set_wrap_mode(gtk.WRAP_WORD)
+            self.note_buffer = self.note_view.get_buffer()
+            self.note_buffer.set_text(note)
+            textwindow.add(self.note_view)
+            note_box.pack_start(note_label)
+            note_box.pack_start(textwindow)
+            self.dialog.vbox.pack_start(note_box)
+
         # buttons in action area
         self.dialog.add_button(gtk.STOCK_CANCEL, gtk.RESPONSE_CANCEL)
         self.dialog.add_button(gtk.STOCK_OK, gtk.RESPONSE_OK)
@@ -114,6 +155,20 @@ class AddDataDialog(object):
                     self.dataset.weight_lbs = self.weight_entry.get_value()
                 else:
                     self.dataset.weight = self.weight_entry.get_value()
+                if parameters.config['preferences.use_bodyfat']:
+                    bodyfat = self.bodyfat_entry.get_value()
+                    if bodyfat > 0.1:
+                        self.dataset.bodyfat = bodyfat
+                    else:
+                        self.dataset.bodyfat = None
+                if parameters.config['preferences.use_note']:
+                    note = self.note_buffer.get_text(
+                            self.note_buffer.get_start_iter(),
+                            self.note_buffer.get_end_iter()).strip()
+                    if note != '':
+                        self.dataset.note = note
+                    else:
+                        self.dataset.note = None
             except:
                 title = _('Error: Wrong Format')
                 message = _('The data entered is not in the correct format!')
@@ -138,7 +193,7 @@ class AddDataDialog(object):
         if text in ['+', '-']:
             position = entry.get_position()
             entry.emit_stop_by_name('insert_text')
-            # check first for use_calendar; date_entry can not exist
+            # check first for use_calendar; date_entry might not exist
             if (not parameters.config['preferences.use_calendar']
                             and entry == self.date_entry):
                     gobject.idle_add(
