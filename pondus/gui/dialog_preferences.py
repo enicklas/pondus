@@ -97,6 +97,18 @@ class PreferencesDialog(object):
                         self.newconfig['preferences.use_weight_plan'])
         self.dialog.vbox.pack_start(self.use_plan_button)
 
+        self.use_bodyfat_button = gtk.CheckButton(_('Track Bodyfat'))
+        self.use_bodyfat_button.set_border_width(5)
+        self.use_bodyfat_button.set_active(
+                        self.newconfig['preferences.use_bodyfat'])
+        self.dialog.vbox.pack_start(self.use_bodyfat_button)
+
+        self.use_note_button = gtk.CheckButton(_('Append Notes to Datasets'))
+        self.use_note_button.set_border_width(5)
+        self.use_note_button.set_active(
+                        self.newconfig['preferences.use_note'])
+        self.dialog.vbox.pack_start(self.use_note_button)
+
         self.use_calendar_button = \
                     gtk.CheckButton(_('Use Calendar in Add Dialog'))
         self.use_calendar_button.set_border_width(5)
@@ -126,6 +138,10 @@ instead of a text entry to enter dates in the add/edit dialog'))
                                     self.remember_button.get_active()
             self.newconfig['preferences.use_weight_plan'] = \
                                     self.use_plan_button.get_active()
+            self.newconfig['preferences.use_bodyfat'] = \
+                                    self.use_bodyfat_button.get_active()
+            self.newconfig['preferences.use_note'] = \
+                                    self.use_note_button.get_active()
             self.newconfig['preferences.use_calendar'] = \
                                     self.use_calendar_button.get_active()
             parameters.config = self.newconfig

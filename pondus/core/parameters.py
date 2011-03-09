@@ -28,6 +28,8 @@ config_default = {'window.remember_size': False,
                   'window.height': 300,
                   'preferences.unit_system': 'metric',
                   'preferences.use_calendar': False,
+                  'preferences.use_bodyfat': False,
+                  'preferences.use_note': False,
                   'preferences.use_weight_plan': False}
 config = dict(config_default)
 have_mpl = False

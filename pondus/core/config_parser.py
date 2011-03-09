@@ -38,7 +38,8 @@ def read_config(default_config, conffile):
             elif conf.get('preferences', 'weight_unit') == 'lbs':
                 config['preferences.unit_system'] = 'imperial'
                 parameters.convert_weight_data_to_kg = True
-        for option in ['use_weight_plan', 'use_calendar']:
+        for option in ['use_weight_plan', 'use_calendar', 'use_bodyfat',
+                        'use_note']:
             if conf.has_option('preferences', option):
                 config['.'.join(['preferences', option])] = \
                                 conf.getboolean('preferences', option)
