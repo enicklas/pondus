@@ -1,0 +1,372 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: pondus\n"
+"Report-Msgid-Bugs-To: http://bitbucket.org/eike/pondus/issues\n"
+"POT-Creation-Date: 2011-02-03 22:59+0100\n"
+"PO-Revision-Date: 2011-03-12 22:19+0000\n"
+"Last-Translator: kara <muhammet.k@gmail.com>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Language: tr\n"
+"Plural-Forms: nplurals=1; plural=0\n"
+
+#: ../pondus/core/util.py:47
+msgid "kg"
+msgstr "kg"
+
+#: ../pondus/core/util.py:49
+msgid "lbs"
+msgstr "lbs"
+
+#: ../pondus/core/filelock.py:37
+msgid "Datafile locked, continue?"
+msgstr "Veri dosyası kilitlendi, devam edilsin mi?"
+
+#: ../pondus/core/filelock.py:38
+msgid ""
+"Another instance of pondus seems to be editing the same datafile. Do you "
+"really want to continue and loose all the changes from the other instance?"
+msgstr ""
+"pondus'un başka bir örneği aynı veri dosyasını düzenliyor gibi görünüyor. "
+"Gerçekten devam etmek istiyor musunuz? (Diğer örnekteki tüm değişiklikleri "
+"kaybedeceksiniz.)"
+
+#: ../pondus/core/initialize.py:44
+#, python-format
+msgid "Could not find %s"
+msgstr "%s bulunamadı"
+
+#: ../pondus/core/initialize.py:53
+msgid "Please make sure pygtk is installed."
+msgstr "Lütfen pygtk kurulu olduğundan emin olun."
+
+#: ../pondus/core/initialize.py:93
+#, python-format
+msgid "Not owning the file lock. Backing up the data to %s"
+msgstr "Dosya kilidi yok. Veriler %s içine yedekleniyor"
+
+#: ../pondus/core/plot.py:44 ../pondus/gui/dialog_plot.py:74
+msgid "Body Mass Index"
+msgstr "Vücut Kitle İndeksi"
+
+#: ../pondus/core/plot.py:46 ../pondus/gui/dialog_plot.py:73
+#: ../pondus/gui/dialog_add.py:69 ../pondus/gui/window_main.py:121
+msgid "Weight"
+msgstr "Ağırlık"
+
+#: ../pondus/core/plot.py:94
+#, python-format
+msgid "Saving plot to %s"
+msgstr "Grafik %s içine kaydediliyor"
+
+#: ../pondus/core/option_parser.py:38
+#, python-format
+msgid "Reading file %s"
+msgstr "%s dosyası okunuyor"
+
+#: ../pondus/core/option_parser.py:43
+msgid "You passed a directory, not a file!"
+msgstr "Bir dosya değil, dizin girdiniz!"
+
+#: ../pondus/core/option_parser.py:45
+msgid "Using the standard file ~/.pondus/user_data.xml instead."
+msgstr "Onun yerine ~/.pondus/User_data.xml standart dosyası kullanılıyor."
+
+#: ../pondus/gui/dialog_csv.py:29
+msgid "weight.csv"
+msgstr "weight.csv"
+
+#: ../pondus/gui/dialog_csv.py:36 ../pondus/gui/window_main.py:130
+msgid "Weight Measurements"
+msgstr "Ağırlık Ölçümleri"
+
+#: ../pondus/gui/dialog_csv.py:41
+msgid "Weight Plan"
+msgstr "Ağırlık Planı"
+
+#: ../pondus/gui/dialog_csv.py:86 ../pondus/gui/window_main.py:90
+msgid "CSV Export"
+msgstr "CSV Dışa Aktar"
+
+#: ../pondus/gui/dialog_csv.py:87
+msgid "Data to export:"
+msgstr "Dışa aktarılacak veri:"
+
+#: ../pondus/gui/dialog_csv.py:88
+msgid "CSV File to save to:"
+msgstr "Kaydedilecek CSV Dosyası:"
+
+#: ../pondus/gui/dialog_csv.py:102
+msgid "Export successful"
+msgstr "Dışa aktarım başarılı"
+
+#: ../pondus/gui/dialog_csv.py:103
+msgid "The export was successful."
+msgstr "Dışa aktarım başarıyla gerçekleştirildi."
+
+#: ../pondus/gui/dialog_csv.py:118 ../pondus/gui/window_main.py:89
+msgid "CSV Import"
+msgstr "CSV İçe Aktar"
+
+#: ../pondus/gui/dialog_csv.py:119
+msgid "Import data to:"
+msgstr "Veriyi içe aktar:"
+
+#: ../pondus/gui/dialog_csv.py:120
+msgid "CSV File to read from:"
+msgstr "Okunacak CSV Dosyası:"
+
+#: ../pondus/gui/dialog_csv.py:131
+msgid "Error: Not a valid File"
+msgstr "Hata: Geçerli bir dosya değil"
+
+#: ../pondus/gui/dialog_csv.py:132
+msgid "The given path does not point to a valid file!"
+msgstr "Verilen yol geçerli bir dosyayı göstermiyor!"
+
+#: ../pondus/gui/dialog_csv.py:141
+msgid "Import successful"
+msgstr "İçe aktarım başarılı"
+
+#: ../pondus/gui/dialog_csv.py:142
+msgid "The import was successful."
+msgstr "İçe aktarım başarıyla gerçekleştirildi."
+
+#: ../pondus/gui/dialog_csv.py:145
+msgid "Import not successful"
+msgstr "İçe aktarım başarısız"
+
+#: ../pondus/gui/dialog_csv.py:146
+msgid "An error occured during the import."
+msgstr "İçe aktarım sırasında bir hata oluştu."
+
+#: ../pondus/gui/dialog_plot.py:29
+msgid "Plot Weight"
+msgstr "Ağırlık Grafiği Çiz"
+
+#: ../pondus/gui/dialog_plot.py:41
+msgid "Select Date Range:"
+msgstr "Tarih Aralığı Seçin:"
+
+#: ../pondus/gui/dialog_plot.py:46
+msgid "Start date"
+msgstr "Başlangıç ​​tarihi"
+
+#: ../pondus/gui/dialog_plot.py:53
+msgid "End date"
+msgstr "Bitiş tarihi"
+
+#: ../pondus/gui/dialog_plot.py:58
+msgid "Select date range of plot"
+msgstr "Grafiğin tarih aralığını seçin"
+
+#: ../pondus/gui/dialog_plot.py:59
+msgid "All Time"
+msgstr "Tüm Zamanlar"
+
+#: ../pondus/gui/dialog_plot.py:60
+msgid "Last Year"
+msgstr "Geçen Yıl"
+
+#: ../pondus/gui/dialog_plot.py:61
+msgid "Last 3 Months"
+msgstr "Son 3 Ay"
+
+#: ../pondus/gui/dialog_plot.py:62
+msgid "Last Month"
+msgstr "Geçen Ay"
+
+#: ../pondus/gui/dialog_plot.py:63
+msgid "Custom"
+msgstr "Özel"
+
+#: ../pondus/gui/dialog_plot.py:70
+msgid "Data to plot:"
+msgstr "Grafiği çizilecek veri:"
+
+#: ../pondus/gui/dialog_plot.py:78
+msgid ""
+"To plot your BMI, you need to enter your height in the preferences dialog."
+msgstr ""
+"VKİ grafiğinizin çizilebilmesi için, tercihler ​​iletişim kutusuna boyunuzu "
+"girmelisiniz."
+
+#: ../pondus/gui/dialog_plot.py:82
+msgid "Raw and Smooth"
+msgstr "Ham ve Pürüzsüz"
+
+#: ../pondus/gui/dialog_plot.py:83
+msgid "Raw"
+msgstr "Ham"
+
+#: ../pondus/gui/dialog_plot.py:84
+msgid "Smooth"
+msgstr "Pürüzsüz"
+
+#: ../pondus/gui/dialog_plot.py:87
+msgid "Include Weight Plan"
+msgstr "Ağırlık Planını Dahil Et"
+
+#: ../pondus/gui/dialog_plot.py:91
+msgid "The weight planner can be enabled in the preferences dialog."
+msgstr "Ağırlık planlayıcısı, tercihler iletişim kutusundan açılabilir."
+
+#: ../pondus/gui/dialog_plot.py:97
+msgid "Save Plot"
+msgstr "Grafiği Kaydet"
+
+#: ../pondus/gui/dialog_plot.py:131 ../pondus/gui/dialog_plot.py:136
+#: ../pondus/gui/dialog_add.py:118
+msgid "Error: Wrong Format"
+msgstr "Hata: Yanlış Biçim"
+
+#: ../pondus/gui/dialog_plot.py:132 ../pondus/gui/dialog_add.py:119
+msgid "The data entered is not in the correct format!"
+msgstr "Girilen veri doğru biçimde değil!"
+
+#: ../pondus/gui/dialog_plot.py:137
+msgid "The start date has to be before the end date!"
+msgstr "Başlangıç ​​tarihi bitiş tarihinden önce olmalıdır!"
+
+#: ../pondus/gui/dialog_plot.py:176
+msgid "weight_plot.png"
+msgstr "weight_plot.png"
+
+#: ../pondus/gui/dialog_add.py:35
+msgid "Edit Dataset"
+msgstr "Veri Kümesi Düzenle"
+
+#: ../pondus/gui/dialog_add.py:37
+msgid "Add Dataset"
+msgstr "Veri Kümesi Ekle"
+
+#: ../pondus/gui/dialog_add.py:44
+msgid "Date:"
+msgstr "Tarih:"
+
+#: ../pondus/gui/dialog_add.py:58
+msgid "Date (YYYY-MM-DD):"
+msgstr "Tarih (YYYY-AA-GG):"
+
+#: ../pondus/gui/dialog_preferences.py:24 ../pondus/gui/window_main.py:65
+msgid "Preferences"
+msgstr "Tercihler"
+
+#: ../pondus/gui/dialog_preferences.py:28
+msgid "User Height:"
+msgstr "Kullanıcının Boyu:"
+
+#: ../pondus/gui/dialog_preferences.py:52
+msgid "m"
+msgstr "m"
+
+#: ../pondus/gui/dialog_preferences.py:53
+msgid "cm"
+msgstr "cm"
+
+#: ../pondus/gui/dialog_preferences.py:54
+msgid "ft"
+msgstr "ft"
+
+#: ../pondus/gui/dialog_preferences.py:55
+msgid "in"
+msgstr "in"
+
+#: ../pondus/gui/dialog_preferences.py:76
+msgid "Preferred Unit System:"
+msgstr "Tercih Edilen Birim Sistemi:"
+
+#: ../pondus/gui/dialog_preferences.py:80
+msgid "metric"
+msgstr "metrik"
+
+#: ../pondus/gui/dialog_preferences.py:86
+msgid "imperial"
+msgstr "ingiliz"
+
+#: ../pondus/gui/dialog_preferences.py:94
+msgid "Enable Weight Planner"
+msgstr "Ağırlık Planlayıcısını Etkinleştir"
+
+#: ../pondus/gui/dialog_preferences.py:101
+msgid "Use Calendar in Add Dialog"
+msgstr "Ekle İletişim Kutusunda Takvim Kullan"
+
+#: ../pondus/gui/dialog_preferences.py:105
+msgid ""
+"Use a calendar widget instead of a text entry to enter dates in the add/edit"
+" dialog"
+msgstr ""
+"Ekle/düzenle iletişim kutusunda tarihleri girmek için metin girişi yerine "
+"bir takvim uygulamacığı kullan"
+
+#: ../pondus/gui/dialog_preferences.py:109
+msgid "Remember Window Size"
+msgstr "Pencere Boyutunu Hatırla"
+
+#: ../pondus/gui/dialog_select_file.py:21
+msgid "Select File"
+msgstr "Dosya Seç"
+
+#: ../pondus/gui/window_main.py:57
+msgid "Add dataset"
+msgstr "Veri kümesi ekle"
+
+#: ../pondus/gui/window_main.py:59
+msgid "Edit selected dataset"
+msgstr "Seçilen veri kümesini düzenle"
+
+#: ../pondus/gui/window_main.py:61
+msgid "Delete selected dataset"
+msgstr "Seçilen veri kümesini sil"
+
+#: ../pondus/gui/window_main.py:62
+msgid "Plot"
+msgstr "Grafik çiz"
+
+#: ../pondus/gui/window_main.py:63
+msgid "Matplotlib not available!"
+msgstr "Matplotlib mevcut değil!"
+
+#: ../pondus/gui/window_main.py:67
+msgid "Quit"
+msgstr "Kapat"
+
+#: ../pondus/gui/window_main.py:120
+msgid "Date"
+msgstr "Tarih"
+
+#: ../pondus/gui/window_main.py:131
+msgid "Weight Planner"
+msgstr "Ağırlık Planlayıcısı"
+
+#: ../pondus/gui/window_main.py:183
+msgid "Remove Data?"
+msgstr "Veri Kaldırılsın mı?"
+
+#: ../pondus/gui/window_main.py:184
+msgid "Do you really want to delete this dataset?"
+msgstr "Gerçekten bu veri kümesini silmek istiyor musunuz?"
+
+#: ../pondus/gui/window_main.py:361
+msgid "python-matplotlib is not installed, plotting disabled!"
+msgstr "python-matplotlib kurulu değil. Grafik çizimi devre dışı bırakıldı!"
+
+#: ../pondus/gui/window_main.py:371
+msgid "Plot weight data"
+msgstr "Ağırlık verisi grafiği çiz"
+
+#: ../pondus/gui/dialog_save_file.py:21
+msgid "Save to File"
+msgstr "Dosyaya Kaydet"
+
+#: ../pondus/gui/dialog_save_file.py:27
+msgid "Save as File Type:"
+msgstr "Farklı Kaydet Dosya Türü:"
