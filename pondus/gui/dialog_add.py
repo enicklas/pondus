@@ -130,6 +130,8 @@ class AddDataDialog(object):
         # connect the signals
         self.weight_insert_signal = \
                 self.weight_entry.connect('insert_text', self.on_insert)
+        self.bodyfat_insert_signal = \
+                self.bodyfat_entry.connect('insert_text', self.on_insert)
         if not parameters.config['preferences.use_calendar']:
             self.date_entry.connect('focus-in-event', self.on_focus)
             self.date_insert_signal = \
@@ -190,7 +192,7 @@ class AddDataDialog(object):
 
     def on_insert(self, entry, text, length, *args):
         """Prevents '+' and '-' from being inserted into the entry and
-        triggers the appropriate callback function in stead."""
+        triggers the appropriate callback function instead."""
         if text in ['+', '-']:
             position = entry.get_position()
             entry.emit_stop_by_name('insert_text')
@@ -199,11 +201,10 @@ class AddDataDialog(object):
                             and entry == self.date_entry):
                     gobject.idle_add(
                             self.date_key_press, entry, text, position)
-            if entry == self.weight_entry:
-                gobject.idle_add(self.weight_key_press, text)
+            if entry in [self.weight_entry, self.bodyfat_entry]:
+                gobject.idle_add(self.spin_key_press, entry, text)
 
     # helper methods
-
     def date_key_press(self, entry, text, position):
         """Tests, which key was pressed and increments/decrements the
         date in date entry by one day if possible."""
@@ -227,10 +228,10 @@ class AddDataDialog(object):
             entry.set_position(-1)
             entry.handler_unblock(self.date_insert_signal)
 
-    def weight_key_press(self, text):
+    def spin_key_press(self, entry, text):
         """Tests, which key was pressed and increments/decrements the
-        value in the weight entry by 0.1 if possible."""
+        value in the given entry by 0.1 if possible."""
         if text == '+':
-            self.weight_entry.spin(gtk.SPIN_STEP_FORWARD, increment=0.1)
+            entry.spin(gtk.SPIN_STEP_FORWARD, increment=0.1)
         elif text == '-':
-            self.weight_entry.spin(gtk.SPIN_STEP_BACKWARD, increment=0.1)
+            entry.spin(gtk.SPIN_STEP_BACKWARD, increment=0.1)
