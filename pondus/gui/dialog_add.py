@@ -70,7 +70,9 @@ class AddDataDialog(object):
             self.date_entry.set_activates_default(True)
             date_box.pack_start(date_label, False, True)
             date_box.pack_start(self.date_entry, False, True)
+        self.dialog.vbox.pack_start(date_box, False, True)
 
+        weight_bodyfat_box = gtk.HBox(spacing=5)
         weight_box = gtk.VBox(spacing=5)
         weight_box.set_border_width(5)
         weight_label = gtk.Label(
@@ -83,10 +85,7 @@ class AddDataDialog(object):
         self.weight_entry.set_activates_default(True)
         weight_box.pack_start(weight_label, False, True)
         weight_box.pack_start(self.weight_entry, False, True)
-
-        self.dialog.vbox.pack_start(date_box, False, True)
-        self.dialog.vbox.pack_start(weight_box, False, True)
-
+        weight_bodyfat_box.pack_start(weight_box)
 
         if parameters.config['preferences.use_bodyfat']:
             bodyfat_box = gtk.VBox(spacing=5)
@@ -101,7 +100,9 @@ class AddDataDialog(object):
             self.bodyfat_entry.set_activates_default(True)
             bodyfat_box.pack_start(bodyfat_label, False, True)
             bodyfat_box.pack_start(self.bodyfat_entry, False, True)
-            self.dialog.vbox.pack_start(bodyfat_box, False, True)
+            weight_bodyfat_box.pack_start(bodyfat_box)
+
+        self.dialog.vbox.pack_start(weight_bodyfat_box, False, True)
 
         if parameters.config['preferences.use_note']:
             note_box = gtk.VBox(spacing=5)
