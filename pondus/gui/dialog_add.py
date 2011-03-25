@@ -59,8 +59,8 @@ class AddDataDialog(object):
                                             gtk.CALENDAR_WEEK_START_MONDAY)
             self.calendar.select_month(date_.month-1, date_.year)
             self.calendar.select_day(date_.day)
-            date_box.pack_start(date_label)
-            date_box.pack_start(self.calendar)
+            date_box.pack_start(date_label, False, True)
+            date_box.pack_start(self.calendar, False, True)
         else:
             date_ = str(self.dataset.date)
             date_label = gtk.Label(_('Date (YYYY-MM-DD):'))
@@ -68,8 +68,8 @@ class AddDataDialog(object):
             self.date_entry = gtk.Entry()
             self.date_entry.set_text(date_)
             self.date_entry.set_activates_default(True)
-            date_box.pack_start(date_label)
-            date_box.pack_start(self.date_entry)
+            date_box.pack_start(date_label, False, True)
+            date_box.pack_start(self.date_entry, False, True)
 
         weight_box = gtk.VBox(spacing=5)
         weight_box.set_border_width(5)
@@ -81,11 +81,11 @@ class AddDataDialog(object):
         self.weight_entry = gtk.SpinButton(adjustment=weight_adj, digits=1)
         self.weight_entry.set_numeric(True)
         self.weight_entry.set_activates_default(True)
-        weight_box.pack_start(weight_label)
-        weight_box.pack_start(self.weight_entry)
+        weight_box.pack_start(weight_label, False, True)
+        weight_box.pack_start(self.weight_entry, False, True)
 
-        self.dialog.vbox.pack_start(date_box)
-        self.dialog.vbox.pack_start(weight_box)
+        self.dialog.vbox.pack_start(date_box, False, True)
+        self.dialog.vbox.pack_start(weight_box, False, True)
 
 
         if parameters.config['preferences.use_bodyfat']:
@@ -99,9 +99,9 @@ class AddDataDialog(object):
                                                 digits=1)
             self.bodyfat_entry.set_numeric(True)
             self.bodyfat_entry.set_activates_default(True)
-            bodyfat_box.pack_start(bodyfat_label)
-            bodyfat_box.pack_start(self.bodyfat_entry)
-            self.dialog.vbox.pack_start(bodyfat_box)
+            bodyfat_box.pack_start(bodyfat_label, False, True)
+            bodyfat_box.pack_start(self.bodyfat_entry, False, True)
+            self.dialog.vbox.pack_start(bodyfat_box, False, True)
 
         if parameters.config['preferences.use_note']:
             note_box = gtk.VBox(spacing=5)
@@ -116,8 +116,8 @@ class AddDataDialog(object):
             self.note_buffer = self.note_view.get_buffer()
             self.note_buffer.set_text(note)
             textwindow.add(self.note_view)
-            note_box.pack_start(note_label)
-            note_box.pack_start(textwindow)
+            note_box.pack_start(note_label, False, True)
+            note_box.pack_start(textwindow, True, True)
             self.dialog.vbox.pack_start(note_box)
 
         # buttons in action area
