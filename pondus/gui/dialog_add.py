@@ -130,7 +130,8 @@ class AddDataDialog(object):
         # connect the signals
         self.weight_insert_signal = \
                 self.weight_entry.connect('insert_text', self.on_insert)
-        self.bodyfat_insert_signal = \
+        if parameters.config['preferences.use_bodyfat']:
+            self.bodyfat_insert_signal = \
                 self.bodyfat_entry.connect('insert_text', self.on_insert)
         if not parameters.config['preferences.use_calendar']:
             self.date_entry.connect('focus-in-event', self.on_focus)
