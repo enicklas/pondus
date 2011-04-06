@@ -10,6 +10,9 @@ see LICENSE or http://www.opensource.org/licenses/mit-license.php
 
 import os
 import sys
+
+import pygtk
+pygtk.require('2.0')
 import gtk
 
 from pondus.core import parameters

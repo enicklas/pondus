@@ -8,6 +8,9 @@ This program is free software licensed under the MIT license. For details
 see LICENSE or http://www.opensource.org/licenses/mit-license.php
 """
 
+import pygtk
+pygtk.require('2.0')
+
 import gtk
 import gobject
 from datetime import date, timedelta

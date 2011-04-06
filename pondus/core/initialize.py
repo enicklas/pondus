@@ -48,6 +48,8 @@ def _get_path(localpath, syspath, filename):
 def _test_gtk_availability():
     """Tests availability of pygtk and quits if not found."""
     try:
+        import pygtk
+        pygtk.require('2.0')
         import gtk
     except ImportError:
         logger.error(_('Please make sure pygtk is installed.'))
