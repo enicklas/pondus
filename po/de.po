@@ -8,14 +8,14 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Pondus 0.7.3+hg\n"
 "Report-Msgid-Bugs-To: pondus-dev@lists.berlios.de\n"
-"POT-Creation-Date: 2011-02-02 23:28+0100\n"
+"POT-Creation-Date: 2011-04-08 21:16+0200\n"
 "PO-Revision-Date: 2011-02-22 00:04+0000\n"
-"Last-Translator: fab <fab@fedoraproject.org>\n"
+"Last-Translator: Eike Nicklas <eike@ephys.de>\n"
 "Language-Team: German <>\n"
+"Language: de\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Language: de\n"
 "Plural-Forms: nplurals=2; plural=(n != 1)\n"
 
 #: ../pondus/core/util.py:47
@@ -26,11 +26,11 @@ msgstr "kg"
 msgid "lbs"
 msgstr "lbs"
 
-#: ../pondus/core/filelock.py:37
+#: ../pondus/core/filelock.py:40
 msgid "Datafile locked, continue?"
 msgstr "Datei gesperrt, fortfahren?"
 
-#: ../pondus/core/filelock.py:38
+#: ../pondus/core/filelock.py:41
 msgid ""
 "Another instance of pondus seems to be editing the same datafile. Do you "
 "really want to continue and loose all the changes from the other instance?"
@@ -44,21 +44,21 @@ msgstr ""
 msgid "Could not find %s"
 msgstr "Konnte Datei %s nicht finden."
 
-#: ../pondus/core/initialize.py:53
+#: ../pondus/core/initialize.py:55
 msgid "Please make sure pygtk is installed."
 msgstr "Bitte stellen Sie sicher, dass PyGTK installiert ist."
 
-#: ../pondus/core/initialize.py:93
+#: ../pondus/core/initialize.py:95
 #, python-format
 msgid "Not owning the file lock. Backing up the data to %s"
 msgstr "Datei ist gesperrt. Die Daten werden in %s gesichert."
 
-#: ../pondus/core/plot.py:44 ../pondus/gui/dialog_plot.py:74
+#: ../pondus/core/plot.py:44 ../pondus/gui/dialog_plot.py:77
 msgid "Body Mass Index"
 msgstr "Body Mass Index"
 
-#: ../pondus/core/plot.py:46 ../pondus/gui/dialog_plot.py:73
-#: ../pondus/gui/dialog_add.py:69 ../pondus/gui/window_main.py:121
+#: ../pondus/core/plot.py:46 ../pondus/gui/dialog_plot.py:76
+#: ../pondus/gui/dialog_add.py:82 ../pondus/gui/window_main.py:124
 msgid "Weight"
 msgstr "Gewicht"
 
@@ -80,227 +80,243 @@ msgstr "Sie haben ein Verzeichnis und keine Datei übergeben!"
 msgid "Using the standard file ~/.pondus/user_data.xml instead."
 msgstr "Benutze stattdessen die Standarddatei ~/.pondus/user_data.xml"
 
-#: ../pondus/gui/dialog_csv.py:29
+#: ../pondus/gui/dialog_csv.py:32
 msgid "weight.csv"
 msgstr "gewicht.csv"
 
-#: ../pondus/gui/dialog_csv.py:36 ../pondus/gui/window_main.py:130
+#: ../pondus/gui/dialog_csv.py:39 ../pondus/gui/window_main.py:133
 msgid "Weight Measurements"
 msgstr "Gewichtsmessungen"
 
-#: ../pondus/gui/dialog_csv.py:41
+#: ../pondus/gui/dialog_csv.py:44
 msgid "Weight Plan"
 msgstr "Gewichtsplaner"
 
-#: ../pondus/gui/dialog_csv.py:86 ../pondus/gui/window_main.py:90
+#: ../pondus/gui/dialog_csv.py:89 ../pondus/gui/window_main.py:93
 msgid "CSV Export"
 msgstr "CSV Export"
 
-#: ../pondus/gui/dialog_csv.py:87
+#: ../pondus/gui/dialog_csv.py:90
 msgid "Data to export:"
 msgstr "Zu exportierende Daten:"
 
-#: ../pondus/gui/dialog_csv.py:88
+#: ../pondus/gui/dialog_csv.py:91
 msgid "CSV File to save to:"
 msgstr "CSV Zieldatei:"
 
-#: ../pondus/gui/dialog_csv.py:102
+#: ../pondus/gui/dialog_csv.py:105
 msgid "Export successful"
 msgstr "Export erfolgreich"
 
-#: ../pondus/gui/dialog_csv.py:103
+#: ../pondus/gui/dialog_csv.py:106
 msgid "The export was successful."
 msgstr "Der Export war erfolgreich."
 
-#: ../pondus/gui/dialog_csv.py:118 ../pondus/gui/window_main.py:89
+#: ../pondus/gui/dialog_csv.py:121 ../pondus/gui/window_main.py:92
 msgid "CSV Import"
 msgstr "CSV Import"
 
-#: ../pondus/gui/dialog_csv.py:119
+#: ../pondus/gui/dialog_csv.py:122
 msgid "Import data to:"
 msgstr "Importiere Daten nach:"
 
-#: ../pondus/gui/dialog_csv.py:120
+#: ../pondus/gui/dialog_csv.py:123
 msgid "CSV File to read from:"
 msgstr "Zu lesende CSV Datei:"
 
-#: ../pondus/gui/dialog_csv.py:131
+#: ../pondus/gui/dialog_csv.py:134
 msgid "Error: Not a valid File"
 msgstr "Fehler: Keine Datei"
 
-#: ../pondus/gui/dialog_csv.py:132
+#: ../pondus/gui/dialog_csv.py:135
 msgid "The given path does not point to a valid file!"
 msgstr "Der angegebene Pfad ist keine Datei!"
 
-#: ../pondus/gui/dialog_csv.py:141
+#: ../pondus/gui/dialog_csv.py:144
 msgid "Import successful"
 msgstr "Import erfolgreich"
 
-#: ../pondus/gui/dialog_csv.py:142
+#: ../pondus/gui/dialog_csv.py:145
 msgid "The import was successful."
 msgstr "Der Import war erfolgreich."
 
-#: ../pondus/gui/dialog_csv.py:145
+#: ../pondus/gui/dialog_csv.py:148
 msgid "Import not successful"
 msgstr "Import nicht erfolgreich"
 
-#: ../pondus/gui/dialog_csv.py:146
+#: ../pondus/gui/dialog_csv.py:149
 msgid "An error occured during the import."
 msgstr "Beim Import ist ein Fehler aufgetreten."
 
-#: ../pondus/gui/dialog_plot.py:29
+#: ../pondus/gui/dialog_plot.py:32
 msgid "Plot Weight"
 msgstr "Grafischer Gewichtsverlauf"
 
-#: ../pondus/gui/dialog_plot.py:41
+#: ../pondus/gui/dialog_plot.py:44
 msgid "Select Date Range:"
 msgstr "Wähle Datumsbereich:"
 
-#: ../pondus/gui/dialog_plot.py:46
+#: ../pondus/gui/dialog_plot.py:49
 msgid "Start date"
 msgstr "Anfangsdatum"
 
-#: ../pondus/gui/dialog_plot.py:53
+#: ../pondus/gui/dialog_plot.py:56
 msgid "End date"
 msgstr "Enddatum"
 
-#: ../pondus/gui/dialog_plot.py:58
+#: ../pondus/gui/dialog_plot.py:61
 msgid "Select date range of plot"
 msgstr "Wähle Datumsbereich des Diagramms"
 
-#: ../pondus/gui/dialog_plot.py:59
+#: ../pondus/gui/dialog_plot.py:62
 msgid "All Time"
 msgstr "Alle Zeiten"
 
-#: ../pondus/gui/dialog_plot.py:60
+#: ../pondus/gui/dialog_plot.py:63
 msgid "Last Year"
 msgstr "Letztes Jahr"
 
-#: ../pondus/gui/dialog_plot.py:61
+#: ../pondus/gui/dialog_plot.py:64
 msgid "Last 3 Months"
 msgstr "Letzte 3 Monate"
 
-#: ../pondus/gui/dialog_plot.py:62
+#: ../pondus/gui/dialog_plot.py:65
 msgid "Last Month"
 msgstr "Letzter Monat"
 
-#: ../pondus/gui/dialog_plot.py:63
+#: ../pondus/gui/dialog_plot.py:66
 msgid "Custom"
 msgstr "Angepasst"
 
-#: ../pondus/gui/dialog_plot.py:70
+#: ../pondus/gui/dialog_plot.py:73
 msgid "Data to plot:"
 msgstr "Zu plottende Daten:"
 
-#: ../pondus/gui/dialog_plot.py:78
+#: ../pondus/gui/dialog_plot.py:81
 msgid ""
 "To plot your BMI, you need to enter your height in the preferences dialog."
 msgstr ""
 "Um den BMI darzustellen, muss die Körpergröße im Optionsdialog angegeben "
 "werden."
 
-#: ../pondus/gui/dialog_plot.py:82
+#: ../pondus/gui/dialog_plot.py:85
 msgid "Raw and Smooth"
 msgstr "Rohdaten und Geglättet"
 
-#: ../pondus/gui/dialog_plot.py:83
+#: ../pondus/gui/dialog_plot.py:86
 msgid "Raw"
 msgstr "Rohdaten"
 
-#: ../pondus/gui/dialog_plot.py:84
+#: ../pondus/gui/dialog_plot.py:87
 msgid "Smooth"
 msgstr "Geglättet"
 
-#: ../pondus/gui/dialog_plot.py:87
+#: ../pondus/gui/dialog_plot.py:90
 msgid "Include Weight Plan"
 msgstr "Gewichtsplan anzeigen"
 
-#: ../pondus/gui/dialog_plot.py:91
+#: ../pondus/gui/dialog_plot.py:94
 msgid "The weight planner can be enabled in the preferences dialog."
 msgstr "Der Gewichtsplaner kann im Optionsdialog aktiviert werden."
 
-#: ../pondus/gui/dialog_plot.py:97
+#: ../pondus/gui/dialog_plot.py:100
 msgid "Save Plot"
 msgstr "Diagramm speichern"
 
-#: ../pondus/gui/dialog_plot.py:131 ../pondus/gui/dialog_plot.py:136
-#: ../pondus/gui/dialog_add.py:118
+#: ../pondus/gui/dialog_plot.py:134 ../pondus/gui/dialog_plot.py:139
+#: ../pondus/gui/dialog_add.py:180
 msgid "Error: Wrong Format"
 msgstr "Fehler: Falsches Format"
 
-#: ../pondus/gui/dialog_plot.py:132 ../pondus/gui/dialog_add.py:119
+#: ../pondus/gui/dialog_plot.py:135 ../pondus/gui/dialog_add.py:181
 msgid "The data entered is not in the correct format!"
 msgstr "Die eingegebenen Daten haben nicht das richtige Format!"
 
-#: ../pondus/gui/dialog_plot.py:137
+#: ../pondus/gui/dialog_plot.py:140
 msgid "The start date has to be before the end date!"
 msgstr "Das Anfangsdatum muss vor dem Enddatum liegen!"
 
-#: ../pondus/gui/dialog_plot.py:176
+#: ../pondus/gui/dialog_plot.py:179
 msgid "weight_plot.png"
 msgstr "gewichtsdiagramm.png"
 
-#: ../pondus/gui/dialog_add.py:35
+#: ../pondus/gui/dialog_add.py:46
 msgid "Edit Dataset"
 msgstr "Ändere Datensatz"
 
-#: ../pondus/gui/dialog_add.py:37
+#: ../pondus/gui/dialog_add.py:48
 msgid "Add Dataset"
 msgstr "Füge Datensatz hinzu"
 
-#: ../pondus/gui/dialog_add.py:44
+#: ../pondus/gui/dialog_add.py:55
 msgid "Date:"
 msgstr "Datum:"
 
-#: ../pondus/gui/dialog_add.py:58
+#: ../pondus/gui/dialog_add.py:69
 msgid "Date (YYYY-MM-DD):"
 msgstr "Datum (JJJJ-MM-TT):"
 
-#: ../pondus/gui/dialog_preferences.py:24 ../pondus/gui/window_main.py:65
+#: ../pondus/gui/dialog_add.py:96
+msgid "Bodyfat (%):"
+msgstr "Körperfett (%):"
+
+#: ../pondus/gui/dialog_add.py:115
+msgid "Note:"
+msgstr "Notiz:"
+
+#: ../pondus/gui/dialog_preferences.py:27 ../pondus/gui/window_main.py:68
 msgid "Preferences"
 msgstr "Optionen"
 
-#: ../pondus/gui/dialog_preferences.py:28
+#: ../pondus/gui/dialog_preferences.py:31
 msgid "User Height:"
 msgstr "Körpergröße:"
 
-#: ../pondus/gui/dialog_preferences.py:52
+#: ../pondus/gui/dialog_preferences.py:55
 msgid "m"
 msgstr "m"
 
-#: ../pondus/gui/dialog_preferences.py:53
+#: ../pondus/gui/dialog_preferences.py:56
 msgid "cm"
 msgstr "cm"
 
-#: ../pondus/gui/dialog_preferences.py:54
+#: ../pondus/gui/dialog_preferences.py:57
 msgid "ft"
 msgstr "ft"
 
-#: ../pondus/gui/dialog_preferences.py:55
+#: ../pondus/gui/dialog_preferences.py:58
 msgid "in"
 msgstr "in"
 
-#: ../pondus/gui/dialog_preferences.py:76
+#: ../pondus/gui/dialog_preferences.py:79
 msgid "Preferred Unit System:"
 msgstr "Bevorzugtes Einheitensystem:"
 
-#: ../pondus/gui/dialog_preferences.py:80
+#: ../pondus/gui/dialog_preferences.py:83
 msgid "metric"
 msgstr "metrisch"
 
-#: ../pondus/gui/dialog_preferences.py:86
+#: ../pondus/gui/dialog_preferences.py:89
 msgid "imperial"
 msgstr "angloamerikanisch"
 
-#: ../pondus/gui/dialog_preferences.py:94
+#: ../pondus/gui/dialog_preferences.py:97
 msgid "Enable Weight Planner"
 msgstr "Aktiviere Gewichtsplaner"
 
-#: ../pondus/gui/dialog_preferences.py:101
+#: ../pondus/gui/dialog_preferences.py:103
+msgid "Track Bodyfat"
+msgstr "Körperfett speichern"
+
+#: ../pondus/gui/dialog_preferences.py:109
+msgid "Append Notes to Datasets"
+msgstr "Notizen an Datensatz anhängen"
+
+#: ../pondus/gui/dialog_preferences.py:116
 msgid "Use Calendar in Add Dialog"
 msgstr "Benutze Kalender im Hinzufügen-Fenster"
 
-#: ../pondus/gui/dialog_preferences.py:105
+#: ../pondus/gui/dialog_preferences.py:120
 msgid ""
 "Use a calendar widget instead of a text entry to enter dates in the add/edit "
 "dialog"
@@ -308,66 +324,66 @@ msgstr ""
 "Benutze ein Kalenderwidget anstatt des Texteingabefeldes zum Eingeben von "
 "Daten im Hinzufügen-/Änderndialog"
 
-#: ../pondus/gui/dialog_preferences.py:109
+#: ../pondus/gui/dialog_preferences.py:124
 msgid "Remember Window Size"
 msgstr "Speichere Fenstergröße"
 
-#: ../pondus/gui/dialog_select_file.py:21
+#: ../pondus/gui/dialog_select_file.py:24
 msgid "Select File"
 msgstr "Wähle Datei aus"
 
-#: ../pondus/gui/window_main.py:57
+#: ../pondus/gui/window_main.py:60
 msgid "Add dataset"
 msgstr "Füge Datensatz hinzu"
 
-#: ../pondus/gui/window_main.py:59
+#: ../pondus/gui/window_main.py:62
 msgid "Edit selected dataset"
 msgstr "Ändere ausgewählten Datensatz"
 
-#: ../pondus/gui/window_main.py:61
+#: ../pondus/gui/window_main.py:64
 msgid "Delete selected dataset"
 msgstr "Lösche ausgewählten Datensatz"
 
-#: ../pondus/gui/window_main.py:62
+#: ../pondus/gui/window_main.py:65
 msgid "Plot"
 msgstr "Diagramm"
 
-#: ../pondus/gui/window_main.py:63
+#: ../pondus/gui/window_main.py:66
 msgid "Matplotlib not available!"
 msgstr "Matplotlib nicht verfügbar!"
 
-#: ../pondus/gui/window_main.py:67
+#: ../pondus/gui/window_main.py:70
 msgid "Quit"
 msgstr "Beenden"
 
-#: ../pondus/gui/window_main.py:120
+#: ../pondus/gui/window_main.py:123
 msgid "Date"
 msgstr "Datum"
 
-#: ../pondus/gui/window_main.py:131
+#: ../pondus/gui/window_main.py:134
 msgid "Weight Planner"
 msgstr "Gewichtsplaner"
 
-#: ../pondus/gui/window_main.py:183
+#: ../pondus/gui/window_main.py:186
 msgid "Remove Data?"
 msgstr "Datensatz löschen?"
 
-#: ../pondus/gui/window_main.py:184
+#: ../pondus/gui/window_main.py:187
 msgid "Do you really want to delete this dataset?"
 msgstr "Möchtest du diesen Datensatz wirklich löschen?"
 
-#: ../pondus/gui/window_main.py:361
+#: ../pondus/gui/window_main.py:364
 msgid "python-matplotlib is not installed, plotting disabled!"
 msgstr "python-matplotlib ist nicht installiert, Plotfunktion deaktiviert!"
 
-#: ../pondus/gui/window_main.py:371
+#: ../pondus/gui/window_main.py:374
 msgid "Plot weight data"
 msgstr "Grafischer Gewichtsverlauf"
 
-#: ../pondus/gui/dialog_save_file.py:21
+#: ../pondus/gui/dialog_save_file.py:24
 msgid "Save to File"
 msgstr "Speichere in Datei"
 
-#: ../pondus/gui/dialog_save_file.py:27
+#: ../pondus/gui/dialog_save_file.py:30
 msgid "Save as File Type:"
 msgstr "Speichere Datei im Format:"
