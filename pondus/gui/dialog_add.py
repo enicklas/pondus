@@ -205,7 +205,9 @@ class AddDataDialog(object):
                             and entry == self.date_entry):
                     gobject.idle_add(
                             self.date_key_press, entry, text, position)
-            if entry in [self.weight_entry, self.bodyfat_entry]:
+            if entry == self.weight_entry \
+                    or (parameters.config['preferences.use_bodyfat'] \
+                        and entry==self.bodyfat_entry):
                 gobject.idle_add(self.spin_key_press, entry, text)
 
     # helper methods
