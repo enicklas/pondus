@@ -31,31 +31,27 @@ class PlotDialog(object):
     def __init__(self):
         self.dialog = gtk.Dialog(title=_('Plot Weight'))
         self.dialog.set_default_size(600, 450)
-
         # drawing area for the plot
         self.plot = Plot()
         self.canvas = FigureCanvas(self.plot.figure)
         self.dialog.vbox.set_spacing(5)
         self.dialog.vbox.pack_start(self.canvas)
-
         # date selection
         date_selection_box = gtk.HBox(homogeneous=False, spacing=5)
-
         date_label = gtk.Label(_('Select Date Range:'))
         date_selection_box.pack_start(date_label, False, False)
-
+        # start date
         self.start_date_entry = gtk.Entry()
         self.start_date_entry.set_width_chars(10)
         self.start_date_entry.set_tooltip_text(_('Start date'))
         date_selection_box.pack_start(self.start_date_entry, False, False)
-
         date_selection_box.pack_start(gtk.Label('-'), False, False)
-
+        # end date
         self.end_date_entry = gtk.Entry()
         self.end_date_entry.set_width_chars(10)
         self.end_date_entry.set_tooltip_text(_('End date'))
         date_selection_box.pack_start(self.end_date_entry, False, False)
-
+        # preset date ranges
         self.dateselector = gtk.combo_box_new_text()
         self.dateselector.set_tooltip_text(
                     _('Select date range of plot'))
@@ -67,8 +63,7 @@ class PlotDialog(object):
         self.set_dateselector_default()
         date_selection_box.pack_start(self.dateselector, False, False)
         self.dialog.vbox.pack_start(date_selection_box, False, False)
-
-        # plot options
+        # select data to plot
         plot_options_box = gtk.HBox(homogeneous=False, spacing=5)
         date_label = gtk.Label(_('Data to plot:'))
         plot_options_box.pack_start(date_label, False, False)
@@ -81,12 +76,11 @@ class PlotDialog(object):
             self.plotselector.set_tooltip_text(_('To plot your BMI, \
 you need to enter your height in the preferences dialog.'))
         plot_options_box.pack_start(self.plotselector, False, False)
-        self.smoothselector = gtk.combo_box_new_text()
-        self.smoothselector.append_text(_('Raw and Smooth'))
-        self.smoothselector.append_text(_('Raw'))
-        self.smoothselector.append_text(_('Smooth'))
-        self.smoothselector.set_active(0)
-        plot_options_box.pack_start(self.smoothselector, False, False)
+        # smooth data checkbox
+        self.smooth_data = gtk.CheckButton(_('Smooth'))
+        self.smooth_data.set_active(self.plot.get_plot_smooth())
+        plot_options_box.pack_start(self.smooth_data, True, False)
+        # plot plan checkbox
         self.plot_plan = gtk.CheckButton(_('Include Weight Plan'))
         self.plot_plan.set_active(self.plot.get_plot_plan())
         self.plot_plan.set_sensitive(self.plot.get_plot_plan())
@@ -95,15 +89,12 @@ you need to enter your height in the preferences dialog.'))
 enabled in the preferences dialog.'))
         plot_options_box.pack_start(self.plot_plan, True, False)
         self.dialog.vbox.pack_start(plot_options_box, False, False)
-
         # buttons in action field
         save_button = gtk.Button(label=_('Save Plot'))
         self.dialog.action_area.pack_start(save_button, False, False)
         self.dialog.add_button(gtk.STOCK_CLOSE, gtk.RESPONSE_CLOSE)
-
         # initialize text entries and format plot
         self.update_daterange(self.dateselector)
-
         # connect the signals
         self.start_date_entry.connect(
                         'key-press-event', self.on_keypress_in_entry)
@@ -111,10 +102,9 @@ enabled in the preferences dialog.'))
                         'key-press-event', self.on_keypress_in_entry)
         self.dateselector.connect('changed', self.update_daterange)
         self.plotselector.connect('changed', self.update_plot_type)
-        self.smoothselector.connect('changed', self.update_plot_smoothness)
-        save_button.connect('clicked', self.save_plot)
+        self.smooth_data.connect('toggled', self.on_toggle_smooth_data)
         self.plot_plan.connect('toggled', self.on_toggle_plot_plan)
-
+        save_button.connect('clicked', self.save_plot)
         # show the content
         self.dialog.show_all()
 
@@ -125,22 +115,22 @@ enabled in the preferences dialog.'))
 
     # callback functions
 
-    def update_plot(self, button):
+    def set_custom_date_range(self):
         """Redraws the plot with the current start/end dates."""
         try:
-            mindate = util.str2date(self.start_date_entry.get_text())
-            maxdate = util.str2date(self.end_date_entry.get_text())
+            start_date = util.str2date(self.start_date_entry.get_text())
+            end_date = util.str2date(self.end_date_entry.get_text())
         except ValueError:
             title = _('Error: Wrong Format')
             message = _('The data entered is not in the correct format!')
             MessageDialog(type_='error', title=title, message=message).run()
             return
-        if mindate >= maxdate:
+        if start_date >= end_date:
             title = _('Error: Wrong Format')
             message = _('The start date has to be before the end date!')
             MessageDialog(type_='error', title=title, message=message).run()
             return
-        self.plot.set_plotrange(mindate, maxdate)
+        self.plot.set_plotrange(start_date, end_date)
         self.dateselector.set_active(4)
 
     def update_daterange(self, dateselector):
@@ -160,18 +150,9 @@ enabled in the preferences dialog.'))
             self.plot.set_plot_bmi(True)
         self.plot.update_plot()
 
-    def update_plot_smoothness(self, smoothselector):
+    def on_toggle_smooth_data(self, smooth_data_button):
         """Redraws the plot with the desired data (raw or smoothed)."""
-        key = smoothselector.get_active()
-        if key == 0:
-            self.plot.set_plot_smooth(True)
-            self.plot.set_plot_raw(True)
-        elif key == 1:
-            self.plot.set_plot_smooth(False)
-            self.plot.set_plot_raw(True)
-        elif key == 2:
-            self.plot.set_plot_smooth(True)
-            self.plot.set_plot_raw(False)
+        self.plot.set_plot_smooth(smooth_data_button.get_active())
         self.plot.update_plot()
 
     def save_plot(self, button):
@@ -181,7 +162,7 @@ enabled in the preferences dialog.'))
     def on_keypress_in_entry(self, entry, event):
         """Updates the plot when Enter is pressed."""
         if event.keyval in [gtk.keysyms.Return, gtk.keysyms.KP_Enter]:
-            self.update_plot(None)
+            self.set_custom_date_range()
 
     def on_toggle_plot_plan(self, plot_plan_button):
         """Redraws the plot and in-/excludes the weight plan."""

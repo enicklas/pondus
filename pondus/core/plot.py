@@ -19,6 +19,7 @@ from pondus.core.logger import logger
 
 class Plot(object):
     """Creates the weight plot and implements methods to modify it."""
+
     def __init__(self):
         """Initializes the plot data and creates the plot."""
         # default settings
@@ -64,6 +65,10 @@ class Plot(object):
         plotted."""
         return self.plot_plan
 
+    def get_plot_smooth(self):
+        """Returns the parameter describing whether the data is smoothed."""
+        return self.plot_smooth
+
     def get_mindate(self):
         """Returns the minimum date in the datasets."""
         return self.mindate
@@ -105,7 +110,7 @@ class Plot(object):
             mindates.append(self.plot_data_plan[0][0])
             maxdates.append(self.plot_data_plan[-1][0])
         # initially, mindates can not be empty, but can that happen later,
-        # if only plan data is available in PLOT_PLAN is then set to False
+        # if only plan data is available and PLOT_PLAN is then set to False
         if mindates:
             self.mindate = min(mindates)
             self.maxdate = max(maxdates)
