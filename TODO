@@ -6,7 +6,6 @@ features:
  * support multiple users
  * allow selection and deletion of multiple datasets in listview
  * add file-exists-warning on save plot and csv export?
- * optionally add body fat to plot with second y-scale?
  * add more import/export features
 
 usability:

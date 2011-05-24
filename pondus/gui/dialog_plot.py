@@ -65,23 +65,50 @@ class PlotDialog(object):
         self.dialog.vbox.pack_start(date_selection_box, False, False)
         # select data to plot
         plot_options_box = gtk.HBox(homogeneous=False, spacing=5)
-        date_label = gtk.Label(_('Data to plot:'))
-        plot_options_box.pack_start(date_label, False, False)
-        self.plotselector = gtk.combo_box_new_text()
-        self.plotselector.append_text(_('Weight'))
-        self.plotselector.append_text(_('Body Mass Index'))
-        self.plotselector.set_active(0)
+        # left data type selector
+        data_label_left = gtk.Label(_('Data Left:'))
+        plot_options_box.pack_start(data_label_left, False, False)
+        self.plotselector_left = gtk.combo_box_new_text()
+        self.plotselector_left.set_name('left')
+        self.plotselector_left.append_text(_('Weight'))
+        self.plotselector_keys = ['weight']
+        if parameters.config['preferences.use_bodyfat']:
+            self.plotselector_left.append_text(_('Bodyfat'))
+            self.plotselector_keys.append('bodyfat')
         if parameters.user.height < 30:
-            self.plotselector.set_sensitive(False)
-            self.plotselector.set_tooltip_text(_('To plot your BMI, \
+            self.plotselector_left.set_tooltip_text(_('To plot your BMI, \
 you need to enter your height in the preferences dialog.'))
-        plot_options_box.pack_start(self.plotselector, False, False)
+        else:
+            self.plotselector_left.append_text(_('Body Mass Index'))
+            self.plotselector_keys.append('bmi')
+        self.plotselector_left.set_active(0)
+        plot_options_box.pack_start(self.plotselector_left, False, False)
+        # right data type selector
+        data_label_right = gtk.Label(_('Right:'))
+        plot_options_box.pack_start(data_label_right, False, False)
+        self.plotselector_right = gtk.combo_box_new_text()
+        self.plotselector_right.set_name('right')
+        self.plotselector_right.append_text(_('Weight'))
+        if parameters.config['preferences.use_bodyfat']:
+            self.plotselector_right.append_text(_('Bodyfat'))
+            self.plotselector_right.set_active(1)
+        if parameters.user.height < 30:
+            self.plotselector_right.set_tooltip_text(_('To plot your BMI, \
+you need to enter your height in the preferences dialog.'))
+        else:
+            self.plotselector_right.append_text(_('Body Mass Index'))
+        self.plotselector_right.append_text(_('None'))
+        self.plotselector_keys.append(None)
+        if not parameters.config['preferences.use_bodyfat']:
+            self.plotselector_right.set_active( \
+                    self.plotselector_keys.index(None))
+        plot_options_box.pack_start(self.plotselector_right, False, False)
         # smooth data checkbox
         self.smooth_data = gtk.CheckButton(_('Smooth'))
         self.smooth_data.set_active(self.plot.get_smooth())
         plot_options_box.pack_start(self.smooth_data, True, False)
         # plot plan checkbox
-        self.plot_plan = gtk.CheckButton(_('Include Weight Plan'))
+        self.plot_plan = gtk.CheckButton(_('Show Plan'))
         self.plot_plan.set_active(self.plot.get_show_plan())
         self.plot_plan.set_sensitive(self.plot.get_show_plan())
         if not self.plot.get_show_plan():
@@ -101,7 +128,8 @@ enabled in the preferences dialog.'))
         self.end_date_entry.connect(
                         'key-press-event', self.on_keypress_in_entry)
         self.dateselector.connect('changed', self.update_daterange)
-        self.plotselector.connect('changed', self.update_plot_type)
+        self.plotselector_left.connect('changed', self.update_plot_type)
+        self.plotselector_right.connect('changed', self.update_plot_type)
         self.smooth_data.connect('toggled', self.on_toggle_smooth_data)
         self.plot_plan.connect('toggled', self.on_toggle_plot_plan)
         save_button.connect('clicked', self.save_plot)
@@ -143,11 +171,13 @@ enabled in the preferences dialog.'))
 
     def update_plot_type(self, plotselector):
         """Redraws the plot with the desired data (weight or bmi)."""
+        if plotselector.get_name() == 'left':
+            set_type_function = self.plot.set_left_type
+        elif plotselector.get_name() == 'right':
+            set_type_function = self.plot.set_right_type
         key = plotselector.get_active()
-        if key == 0:
-            self.plot.set_left_type('weight')
-        elif key == 1:
-            self.plot.set_left_type('bmi')
+        set_type_function(self.plotselector_keys[key])
+        self.update_daterange(self.dateselector)
 
     def on_toggle_smooth_data(self, smooth_data_button):
         """Redraws the plot with the desired data (raw or smoothed)."""

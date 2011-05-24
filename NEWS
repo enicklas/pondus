@@ -5,6 +5,7 @@ Pondus NEWS
 --------------------------
  * *Bump minimum required version of python to 2.5*
  * Add option to track body fat percentage (can be activated in preferences)
+ * Plot bodyfat using second y-axis in graph
  * Add option to add notes to datasets (can be activated in preferences)
  * Add Finnish translation (Thanks Esa Rautiainen)
  * Add Hebrew translation (Thanks Yaron Shahrabani)

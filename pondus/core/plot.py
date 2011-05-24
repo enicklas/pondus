@@ -22,7 +22,8 @@ class Plot(object):
     ylabels = {
             'weight': _('Weight') + ' (' + util.get_weight_unit() + ')',
             'bmi': _('Body Mass Index'),
-            'bodyfat': _('Bodyfat (%)')
+            'bodyfat': _('Bodyfat (%)'),
+            None: ''
             }
     show_plan = False
     smooth = False
@@ -39,7 +40,8 @@ class Plot(object):
         self.show_plan = parameters.config['preferences.use_weight_plan']
         self.smooth = False
         self.left_datatype = 'weight'
-        self.right_datatype = None
+        if parameters.config['preferences.use_bodyfat']:
+            self.right_datatype = 'bodyfat'
         # get plot data
         self._update_plot_data()
         self._get_max_daterange()
@@ -87,6 +89,7 @@ class Plot(object):
         the plot."""
         self.left_datatype = datatype
         self._update_left_data()
+        self._get_max_daterange()
         self._update_plot()
 
     def set_right_type(self, datatype):
@@ -94,6 +97,7 @@ class Plot(object):
         the plot."""
         self.right_datatype = datatype
         self._update_right_data()
+        self._get_max_daterange()
         self._update_plot()
 
     def set_date_range(self, start_date, end_date):
@@ -120,7 +124,7 @@ class Plot(object):
                     self.left_datatype)
         self.left_plan = self._get_plot_data(parameters.user.plan, \
                     self.left_datatype)
-        if self.smooth and self.left_data is not None:
+        if self.smooth and len(self.left_data) > 0:
             self.left_data = _smooth_data(self.left_data)
 
     def _update_right_data(self):
@@ -129,7 +133,7 @@ class Plot(object):
                     self.right_datatype)
         self.right_plan = self._get_plot_data(parameters.user.plan, \
                     self.right_datatype)
-        if self.smooth and self.right_data is not None:
+        if self.smooth and len(self.right_data) > 0:
             self.right_data = _smooth_data(self.right_data)
 
     def _get_plot_data(self, datasets, datatype):
@@ -149,17 +153,19 @@ class Plot(object):
             return sorted((dataset.date, dataset.bodyfat)
                     for dataset in datasets if dataset.bodyfat is not None)
         elif datatype is None:
-            return None
+            return []
 
     def _create_figure(self):
         """Creates the figure object containing the plot."""
         self.figure = Figure()
         self.ax_left = self.figure.add_subplot(111)
+        self.ax_right = self.ax_left.twinx()
 
     def _update_plot(self):
         """Updates the plot with the current settings."""
         # clear old plot data...
         self.ax_left.clear()
+        self.ax_right.clear()
         # ...and create the new data
         self._plot_data()
         self._format_plot()
@@ -176,7 +182,17 @@ class Plot(object):
             xvalues = [tup[0] for tup in self.left_plan]
             yvalues = [tup[1] for tup in self.left_plan]
             self.ax_left.plot_date(dates.date2num(xvalues), yvalues,
-                            fmt='ro-', ms=4.0)
+                            fmt='ro--', ms=4.0)
+        if self.right_data:
+            xvalues = [tup[0] for tup in self.right_data]
+            yvalues = [tup[1] for tup in self.right_data]
+            self.ax_right.plot_date(dates.date2num(xvalues), yvalues,
+                            fmt='go-', ms=4.0)
+        if self.right_plan and self.show_plan:
+            xvalues = [tup[0] for tup in self.right_plan]
+            yvalues = [tup[1] for tup in self.right_plan]
+            self.ax_right.plot_date(dates.date2num(xvalues), yvalues,
+                            fmt='yo--', ms=4.0)
 
     def _format_plot(self):
         """Formats the plot, i.e. scales axes, sets ticks, etc."""
@@ -191,22 +207,40 @@ class Plot(object):
         self.ax_left.xaxis.set_major_formatter(majorformatter)
         self.ax_left.xaxis.set_minor_locator(minorlocator)
         # format y-axis
-        y_min, y_max = self._get_ylimits()
+        y_min, y_max = self._get_ylimits(yaxis='left')
         if y_min is not None:
+            self.ax_left.set_visible(True)
             self.ax_left.set_ylim(y_min, y_max)
+        else:
+            self.ax_left.set_visible(False)
+        y_min, y_max = self._get_ylimits(yaxis='right')
+        if y_min is not None:
+            self.ax_right.set_visible(True)
+            self.ax_right.set_ylim(y_min, y_max)
+        else:
+            self.ax_right.set_visible(False)
         # set label on y-axis
         self.ax_left.set_ylabel(self.ylabels[self.left_datatype])
+        self.ax_right.set_ylabel(self.ylabels[self.right_datatype])
 
-    def _get_ylimits(self):
+    def _get_ylimits(self, yaxis):
         """Returns the minimum and the maximum y-value in the current date
         range. Offsets are used for proper axis scaling."""
-        if self.left_datatype == 'bmi':
+        if yaxis == 'left':
+            datatype = self.left_datatype
+            data_meas = self.left_data
+            data_plan = self.left_plan
+        if yaxis == 'right':
+            datatype = self.right_datatype
+            data_meas = self.right_data
+            data_plan = self.right_plan
+        if datatype == 'bmi':
             y_offset = 0.1
         else:
             y_offset = 0.5
-        y_min, y_max = self._get_yrange(self.left_data)
+        y_min, y_max = self._get_yrange(data_meas)
         if self.show_plan:
-            y_min_plan, y_max_plan = self._get_yrange(self.left_plan)
+            y_min_plan, y_max_plan = self._get_yrange(data_plan)
             y_min = util.nonemin([y_min, y_min_plan])
             y_max = util.nonemax([y_max, y_max_plan])
         # y_min, y_max can be None if no datasets in selected daterange
