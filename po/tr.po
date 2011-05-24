@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: pondus\n"
 "Report-Msgid-Bugs-To: pondus-dev@lists.berlios.de\n"
-"POT-Creation-Date: 2011-04-08 21:16+0200\n"
+"POT-Creation-Date: 2011-05-24 21:54+0200\n"
 "PO-Revision-Date: 2011-03-12 22:19+0000\n"
 "Last-Translator: kara <muhammet.k@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -52,16 +52,22 @@ msgstr "Lütfen pygtk kurulu olduğundan emin olun."
 msgid "Not owning the file lock. Backing up the data to %s"
 msgstr "Dosya kilidi yok. Veriler %s içine yedekleniyor"
 
-#: ../pondus/core/plot.py:44 ../pondus/gui/dialog_plot.py:77
-msgid "Body Mass Index"
-msgstr "Vücut Kitle İndeksi"
-
-#: ../pondus/core/plot.py:46 ../pondus/gui/dialog_plot.py:76
-#: ../pondus/gui/dialog_add.py:82 ../pondus/gui/window_main.py:124
+#: ../pondus/core/plot.py:23 ../pondus/gui/dialog_plot.py:73
+#: ../pondus/gui/dialog_plot.py:91 ../pondus/gui/dialog_add.py:82
+#: ../pondus/gui/window_main.py:124
 msgid "Weight"
 msgstr "Ağırlık"
 
-#: ../pondus/core/plot.py:94
+#: ../pondus/core/plot.py:24 ../pondus/gui/dialog_plot.py:82
+#: ../pondus/gui/dialog_plot.py:99
+msgid "Body Mass Index"
+msgstr "Vücut Kitle İndeksi"
+
+#: ../pondus/core/plot.py:25
+msgid "Bodyfat (%)"
+msgstr ""
+
+#: ../pondus/core/plot.py:112
 #, python-format
 msgid "Saving plot to %s"
 msgstr "Grafik %s içine kaydediliyor"
@@ -83,7 +89,7 @@ msgstr "Onun yerine ~/.pondus/User_data.xml standart dosyası kullanılıyor."
 msgid "weight.csv"
 msgstr "weight.csv"
 
-#: ../pondus/gui/dialog_csv.py:39 ../pondus/gui/window_main.py:133
+#: ../pondus/gui/dialog_csv.py:39 ../pondus/gui/window_main.py:134
 msgid "Weight Measurements"
 msgstr "Ağırlık Ölçümleri"
 
@@ -151,91 +157,98 @@ msgstr "İçe aktarım sırasında bir hata oluştu."
 msgid "Plot Weight"
 msgstr "Ağırlık Grafiği Çiz"
 
-#: ../pondus/gui/dialog_plot.py:44
+#: ../pondus/gui/dialog_plot.py:41
 msgid "Select Date Range:"
 msgstr "Tarih Aralığı Seçin:"
 
-#: ../pondus/gui/dialog_plot.py:49
+#: ../pondus/gui/dialog_plot.py:46
 msgid "Start date"
 msgstr "Başlangıç ​​tarihi"
 
-#: ../pondus/gui/dialog_plot.py:56
+#: ../pondus/gui/dialog_plot.py:52
 msgid "End date"
 msgstr "Bitiş tarihi"
 
-#: ../pondus/gui/dialog_plot.py:61
+#: ../pondus/gui/dialog_plot.py:57
 msgid "Select date range of plot"
 msgstr "Grafiğin tarih aralığını seçin"
 
-#: ../pondus/gui/dialog_plot.py:62
+#: ../pondus/gui/dialog_plot.py:58
 msgid "All Time"
 msgstr "Tüm Zamanlar"
 
-#: ../pondus/gui/dialog_plot.py:63
+#: ../pondus/gui/dialog_plot.py:59
 msgid "Last Year"
 msgstr "Geçen Yıl"
 
-#: ../pondus/gui/dialog_plot.py:64
+#: ../pondus/gui/dialog_plot.py:60
 msgid "Last 3 Months"
 msgstr "Son 3 Ay"
 
-#: ../pondus/gui/dialog_plot.py:65
+#: ../pondus/gui/dialog_plot.py:61
 msgid "Last Month"
 msgstr "Geçen Ay"
 
-#: ../pondus/gui/dialog_plot.py:66
+#: ../pondus/gui/dialog_plot.py:62
 msgid "Custom"
 msgstr "Özel"
 
-#: ../pondus/gui/dialog_plot.py:73
-msgid "Data to plot:"
-msgstr "Grafiği çizilecek veri:"
+#: ../pondus/gui/dialog_plot.py:69
+#, fuzzy
+msgid "Data Left:"
+msgstr "Dışa aktarılacak veri:"
 
-#: ../pondus/gui/dialog_plot.py:81
+#: ../pondus/gui/dialog_plot.py:76 ../pondus/gui/dialog_plot.py:93
+msgid "Bodyfat"
+msgstr ""
+
+#: ../pondus/gui/dialog_plot.py:79 ../pondus/gui/dialog_plot.py:96
 msgid ""
 "To plot your BMI, you need to enter your height in the preferences dialog."
 msgstr ""
 "VKİ grafiğinizin çizilebilmesi için, tercihler ​​iletişim kutusuna boyunuzu "
 "girmelisiniz."
 
-#: ../pondus/gui/dialog_plot.py:85
-msgid "Raw and Smooth"
-msgstr "Ham ve Pürüzsüz"
-
-#: ../pondus/gui/dialog_plot.py:86
-msgid "Raw"
-msgstr "Ham"
-
 #: ../pondus/gui/dialog_plot.py:87
+#, fuzzy
+msgid "Right:"
+msgstr "Ağırlık"
+
+#: ../pondus/gui/dialog_plot.py:100
+msgid "None"
+msgstr ""
+
+#: ../pondus/gui/dialog_plot.py:107
 msgid "Smooth"
 msgstr "Pürüzsüz"
 
-#: ../pondus/gui/dialog_plot.py:90
-msgid "Include Weight Plan"
-msgstr "Ağırlık Planını Dahil Et"
+#: ../pondus/gui/dialog_plot.py:111
+#, fuzzy
+msgid "Show Plan"
+msgstr "Ağırlık Planı"
 
-#: ../pondus/gui/dialog_plot.py:94
+#: ../pondus/gui/dialog_plot.py:115
 msgid "The weight planner can be enabled in the preferences dialog."
 msgstr "Ağırlık planlayıcısı, tercihler iletişim kutusundan açılabilir."
 
-#: ../pondus/gui/dialog_plot.py:100
+#: ../pondus/gui/dialog_plot.py:120
 msgid "Save Plot"
 msgstr "Grafiği Kaydet"
 
-#: ../pondus/gui/dialog_plot.py:134 ../pondus/gui/dialog_plot.py:139
+#: ../pondus/gui/dialog_plot.py:152 ../pondus/gui/dialog_plot.py:157
 #: ../pondus/gui/dialog_add.py:180
 msgid "Error: Wrong Format"
 msgstr "Hata: Yanlış Biçim"
 
-#: ../pondus/gui/dialog_plot.py:135 ../pondus/gui/dialog_add.py:181
+#: ../pondus/gui/dialog_plot.py:153 ../pondus/gui/dialog_add.py:181
 msgid "The data entered is not in the correct format!"
 msgstr "Girilen veri doğru biçimde değil!"
 
-#: ../pondus/gui/dialog_plot.py:140
+#: ../pondus/gui/dialog_plot.py:158
 msgid "The start date has to be before the end date!"
 msgstr "Başlangıç ​​tarihi bitiş tarihinden önce olmalıdır!"
 
-#: ../pondus/gui/dialog_plot.py:179
+#: ../pondus/gui/dialog_plot.py:188
 msgid "weight_plot.png"
 msgstr "weight_plot.png"
 
@@ -259,8 +272,12 @@ msgstr "Tarih (YYYY-AA-GG):"
 msgid "Bodyfat (%):"
 msgstr ""
 
-#: ../pondus/gui/dialog_add.py:115
+#: ../pondus/gui/dialog_add.py:115 ../pondus/gui/guiutil.py:49
 msgid "Note:"
+msgstr ""
+
+#: ../pondus/gui/guiutil.py:45
+msgid "Bodyfat:"
 msgstr ""
 
 #: ../pondus/gui/dialog_preferences.py:27 ../pondus/gui/window_main.py:68
@@ -359,23 +376,23 @@ msgstr "Kapat"
 msgid "Date"
 msgstr "Tarih"
 
-#: ../pondus/gui/window_main.py:134
+#: ../pondus/gui/window_main.py:135
 msgid "Weight Planner"
 msgstr "Ağırlık Planlayıcısı"
 
-#: ../pondus/gui/window_main.py:186
+#: ../pondus/gui/window_main.py:187
 msgid "Remove Data?"
 msgstr "Veri Kaldırılsın mı?"
 
-#: ../pondus/gui/window_main.py:187
+#: ../pondus/gui/window_main.py:188
 msgid "Do you really want to delete this dataset?"
 msgstr "Gerçekten bu veri kümesini silmek istiyor musunuz?"
 
-#: ../pondus/gui/window_main.py:364
+#: ../pondus/gui/window_main.py:368
 msgid "python-matplotlib is not installed, plotting disabled!"
 msgstr "python-matplotlib kurulu değil. Grafik çizimi devre dışı bırakıldı!"
 
-#: ../pondus/gui/window_main.py:374
+#: ../pondus/gui/window_main.py:378
 msgid "Plot weight data"
 msgstr "Ağırlık verisi grafiği çiz"
 
@@ -386,3 +403,15 @@ msgstr "Dosyaya Kaydet"
 #: ../pondus/gui/dialog_save_file.py:30
 msgid "Save as File Type:"
 msgstr "Farklı Kaydet Dosya Türü:"
+
+#~ msgid "Data to plot:"
+#~ msgstr "Grafiği çizilecek veri:"
+
+#~ msgid "Raw and Smooth"
+#~ msgstr "Ham ve Pürüzsüz"
+
+#~ msgid "Raw"
+#~ msgstr "Ham"
+
+#~ msgid "Include Weight Plan"
+#~ msgstr "Ağırlık Planını Dahil Et"

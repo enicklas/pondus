@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: pondus\n"
 "Report-Msgid-Bugs-To: pondus-dev@lists.berlios.de\n"
-"POT-Creation-Date: 2011-04-08 21:16+0200\n"
+"POT-Creation-Date: 2011-05-24 21:54+0200\n"
 "PO-Revision-Date: 2011-03-25 13:11+0000\n"
 "Last-Translator: erauti <erauti@suomi24.fi>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -51,16 +51,22 @@ msgstr "Varmista että pygtk on asennettu"
 msgid "Not owning the file lock. Backing up the data to %s"
 msgstr "Ei oikeutta tiedoston lukitsemiseen. Tallennetaan tiedot %s"
 
-#: ../pondus/core/plot.py:44 ../pondus/gui/dialog_plot.py:77
-msgid "Body Mass Index"
-msgstr "Body Mass Index"
-
-#: ../pondus/core/plot.py:46 ../pondus/gui/dialog_plot.py:76
-#: ../pondus/gui/dialog_add.py:82 ../pondus/gui/window_main.py:124
+#: ../pondus/core/plot.py:23 ../pondus/gui/dialog_plot.py:73
+#: ../pondus/gui/dialog_plot.py:91 ../pondus/gui/dialog_add.py:82
+#: ../pondus/gui/window_main.py:124
 msgid "Weight"
 msgstr "Paino"
 
-#: ../pondus/core/plot.py:94
+#: ../pondus/core/plot.py:24 ../pondus/gui/dialog_plot.py:82
+#: ../pondus/gui/dialog_plot.py:99
+msgid "Body Mass Index"
+msgstr "Body Mass Index"
+
+#: ../pondus/core/plot.py:25
+msgid "Bodyfat (%)"
+msgstr ""
+
+#: ../pondus/core/plot.py:112
 #, python-format
 msgid "Saving plot to %s"
 msgstr "Talletetaan piirros %s"
@@ -82,7 +88,7 @@ msgstr "Käytetään tilalla standardia tiedostoa ~/.pondus/user_data.xml."
 msgid "weight.csv"
 msgstr "weight.csv"
 
-#: ../pondus/gui/dialog_csv.py:39 ../pondus/gui/window_main.py:133
+#: ../pondus/gui/dialog_csv.py:39 ../pondus/gui/window_main.py:134
 msgid "Weight Measurements"
 msgstr "Painon mittaukset"
 
@@ -150,91 +156,98 @@ msgstr "Tapahtui virhe tuonnin yhteydessä"
 msgid "Plot Weight"
 msgstr "Piirrä painokäyrä"
 
-#: ../pondus/gui/dialog_plot.py:44
+#: ../pondus/gui/dialog_plot.py:41
 msgid "Select Date Range:"
 msgstr "Valitse ajanjakso:"
 
-#: ../pondus/gui/dialog_plot.py:49
+#: ../pondus/gui/dialog_plot.py:46
 msgid "Start date"
 msgstr "Aloitus pvm."
 
-#: ../pondus/gui/dialog_plot.py:56
+#: ../pondus/gui/dialog_plot.py:52
 msgid "End date"
 msgstr "Lopetus pvm."
 
-#: ../pondus/gui/dialog_plot.py:61
+#: ../pondus/gui/dialog_plot.py:57
 msgid "Select date range of plot"
 msgstr "Valitse piirron ajanjakso"
 
-#: ../pondus/gui/dialog_plot.py:62
+#: ../pondus/gui/dialog_plot.py:58
 msgid "All Time"
 msgstr "Kaikki"
 
-#: ../pondus/gui/dialog_plot.py:63
+#: ../pondus/gui/dialog_plot.py:59
 msgid "Last Year"
 msgstr "Viime vuosi"
 
-#: ../pondus/gui/dialog_plot.py:64
+#: ../pondus/gui/dialog_plot.py:60
 msgid "Last 3 Months"
 msgstr "Viimeiset 3 kuukautta"
 
-#: ../pondus/gui/dialog_plot.py:65
+#: ../pondus/gui/dialog_plot.py:61
 msgid "Last Month"
 msgstr "Viime kuukausi"
 
-#: ../pondus/gui/dialog_plot.py:66
+#: ../pondus/gui/dialog_plot.py:62
 msgid "Custom"
 msgstr "Valittu"
 
-#: ../pondus/gui/dialog_plot.py:73
-msgid "Data to plot:"
-msgstr "Tulostettavat tiedot: "
+#: ../pondus/gui/dialog_plot.py:69
+#, fuzzy
+msgid "Data Left:"
+msgstr "Tiedot, jotka viedään:"
 
-#: ../pondus/gui/dialog_plot.py:81
+#: ../pondus/gui/dialog_plot.py:76 ../pondus/gui/dialog_plot.py:93
+msgid "Bodyfat"
+msgstr ""
+
+#: ../pondus/gui/dialog_plot.py:79 ../pondus/gui/dialog_plot.py:96
 msgid ""
 "To plot your BMI, you need to enter your height in the preferences dialog."
 msgstr ""
 "Piirtääksesi BMI käyrän, tulee sinun antaa pituutesi asetustietojen "
 "lomakkeella"
 
-#: ../pondus/gui/dialog_plot.py:85
-msgid "Raw and Smooth"
-msgstr "Raaka ja sileä"
-
-#: ../pondus/gui/dialog_plot.py:86
-msgid "Raw"
-msgstr "Raaka"
-
 #: ../pondus/gui/dialog_plot.py:87
+#, fuzzy
+msgid "Right:"
+msgstr "Paino"
+
+#: ../pondus/gui/dialog_plot.py:100
+msgid "None"
+msgstr ""
+
+#: ../pondus/gui/dialog_plot.py:107
 msgid "Smooth"
 msgstr "Sileä"
 
-#: ../pondus/gui/dialog_plot.py:90
-msgid "Include Weight Plan"
-msgstr "Sisällytä painonsuunnittelu"
+#: ../pondus/gui/dialog_plot.py:111
+#, fuzzy
+msgid "Show Plan"
+msgstr "Painonsuunnittelu"
 
-#: ../pondus/gui/dialog_plot.py:94
+#: ../pondus/gui/dialog_plot.py:115
 msgid "The weight planner can be enabled in the preferences dialog."
 msgstr "Painonsuunnittelu voidaan ottaa käyttöön asetukset lomakkeella."
 
-#: ../pondus/gui/dialog_plot.py:100
+#: ../pondus/gui/dialog_plot.py:120
 msgid "Save Plot"
 msgstr "Tallenna piirros"
 
-#: ../pondus/gui/dialog_plot.py:134 ../pondus/gui/dialog_plot.py:139
+#: ../pondus/gui/dialog_plot.py:152 ../pondus/gui/dialog_plot.py:157
 #: ../pondus/gui/dialog_add.py:180
 msgid "Error: Wrong Format"
 msgstr "Virhe: Virheellinen muoto"
 
-#: ../pondus/gui/dialog_plot.py:135 ../pondus/gui/dialog_add.py:181
+#: ../pondus/gui/dialog_plot.py:153 ../pondus/gui/dialog_add.py:181
 msgid "The data entered is not in the correct format!"
 msgstr "Syötetyt tiedot eivät ole oikein muotoiltuja"
 
-#: ../pondus/gui/dialog_plot.py:140
+#: ../pondus/gui/dialog_plot.py:158
 msgid "The start date has to be before the end date!"
 msgstr "Aloituspäivämäärän tulee olla ennen päättymispäivää!"
 
-#: ../pondus/gui/dialog_plot.py:179
+#: ../pondus/gui/dialog_plot.py:188
 msgid "weight_plot.png"
 msgstr "weight_plot.png"
 
@@ -258,8 +271,12 @@ msgstr "Päivämäärä (YYYY-MM-DD):"
 msgid "Bodyfat (%):"
 msgstr ""
 
-#: ../pondus/gui/dialog_add.py:115
+#: ../pondus/gui/dialog_add.py:115 ../pondus/gui/guiutil.py:49
 msgid "Note:"
+msgstr ""
+
+#: ../pondus/gui/guiutil.py:45
+msgid "Bodyfat:"
 msgstr ""
 
 #: ../pondus/gui/dialog_preferences.py:27 ../pondus/gui/window_main.py:68
@@ -358,23 +375,23 @@ msgstr "Lopeta"
 msgid "Date"
 msgstr "Päivämäärä"
 
-#: ../pondus/gui/window_main.py:134
+#: ../pondus/gui/window_main.py:135
 msgid "Weight Planner"
 msgstr "Painonsuunnittelu"
 
-#: ../pondus/gui/window_main.py:186
+#: ../pondus/gui/window_main.py:187
 msgid "Remove Data?"
 msgstr "Poista tiedot?"
 
-#: ../pondus/gui/window_main.py:187
+#: ../pondus/gui/window_main.py:188
 msgid "Do you really want to delete this dataset?"
 msgstr "Haluatko varmasti poistaa nämä tiedot?"
 
-#: ../pondus/gui/window_main.py:364
+#: ../pondus/gui/window_main.py:368
 msgid "python-matplotlib is not installed, plotting disabled!"
 msgstr "python-matplotlib ei ole asennettuna, piirto ei käytössä!"
 
-#: ../pondus/gui/window_main.py:374
+#: ../pondus/gui/window_main.py:378
 msgid "Plot weight data"
 msgstr "Piirrä painotiedot"
 
@@ -385,3 +402,15 @@ msgstr "Tallenna tiedostoon"
 #: ../pondus/gui/dialog_save_file.py:30
 msgid "Save as File Type:"
 msgstr "Tallenna tiedostotyyppinä:"
+
+#~ msgid "Data to plot:"
+#~ msgstr "Tulostettavat tiedot: "
+
+#~ msgid "Raw and Smooth"
+#~ msgstr "Raaka ja sileä"
+
+#~ msgid "Raw"
+#~ msgstr "Raaka"
+
+#~ msgid "Include Weight Plan"
+#~ msgstr "Sisällytä painonsuunnittelu"

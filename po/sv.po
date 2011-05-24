@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: sv\n"
 "Report-Msgid-Bugs-To: pondus-dev@lists.berlios.de\n"
-"POT-Creation-Date: 2011-04-08 21:16+0200\n"
+"POT-Creation-Date: 2011-05-24 21:54+0200\n"
 "PO-Revision-Date: 2009-12-22 09:55+0100\n"
 "Last-Translator: Peter Landgren <peter.talken@telia.com>\n"
 "Language-Team: svenska <sv@li.org>\n"
@@ -51,16 +51,22 @@ msgstr "Se till att pygtk är installerat."
 msgid "Not owning the file lock. Backing up the data to %s"
 msgstr "Äger ej fillåsningen. Sparar data till %s"
 
-#: ../pondus/core/plot.py:44 ../pondus/gui/dialog_plot.py:77
-msgid "Body Mass Index"
-msgstr "Body Mass Index"
-
-#: ../pondus/core/plot.py:46 ../pondus/gui/dialog_plot.py:76
-#: ../pondus/gui/dialog_add.py:82 ../pondus/gui/window_main.py:124
+#: ../pondus/core/plot.py:23 ../pondus/gui/dialog_plot.py:73
+#: ../pondus/gui/dialog_plot.py:91 ../pondus/gui/dialog_add.py:82
+#: ../pondus/gui/window_main.py:124
 msgid "Weight"
 msgstr "Vikt"
 
-#: ../pondus/core/plot.py:94
+#: ../pondus/core/plot.py:24 ../pondus/gui/dialog_plot.py:82
+#: ../pondus/gui/dialog_plot.py:99
+msgid "Body Mass Index"
+msgstr "Body Mass Index"
+
+#: ../pondus/core/plot.py:25
+msgid "Bodyfat (%)"
+msgstr ""
+
+#: ../pondus/core/plot.py:112
 #, python-format
 msgid "Saving plot to %s"
 msgstr "Sparar diagram till %s"
@@ -82,7 +88,7 @@ msgstr "Använder standardfil ~/.pondus/user_data.xml i stället"
 msgid "weight.csv"
 msgstr "vikt.csv"
 
-#: ../pondus/gui/dialog_csv.py:39 ../pondus/gui/window_main.py:133
+#: ../pondus/gui/dialog_csv.py:39 ../pondus/gui/window_main.py:134
 msgid "Weight Measurements"
 msgstr "Viktmätningar"
 
@@ -150,90 +156,97 @@ msgstr "Ett fel inträffade under import."
 msgid "Plot Weight"
 msgstr "Rita viktkurva"
 
-#: ../pondus/gui/dialog_plot.py:44
+#: ../pondus/gui/dialog_plot.py:41
 msgid "Select Date Range:"
 msgstr "Välj dataområde"
 
-#: ../pondus/gui/dialog_plot.py:49
+#: ../pondus/gui/dialog_plot.py:46
 msgid "Start date"
 msgstr "Startdatum"
 
-#: ../pondus/gui/dialog_plot.py:56
+#: ../pondus/gui/dialog_plot.py:52
 msgid "End date"
 msgstr "Slutdatum"
 
-#: ../pondus/gui/dialog_plot.py:61
+#: ../pondus/gui/dialog_plot.py:57
 msgid "Select date range of plot"
 msgstr "Välj datumutsträckning för diagram"
 
-#: ../pondus/gui/dialog_plot.py:62
+#: ../pondus/gui/dialog_plot.py:58
 msgid "All Time"
 msgstr "All tid"
 
-#: ../pondus/gui/dialog_plot.py:63
+#: ../pondus/gui/dialog_plot.py:59
 msgid "Last Year"
 msgstr "Förra året"
 
-#: ../pondus/gui/dialog_plot.py:64
+#: ../pondus/gui/dialog_plot.py:60
 msgid "Last 3 Months"
 msgstr "Senaste 3 månaderna"
 
-#: ../pondus/gui/dialog_plot.py:65
+#: ../pondus/gui/dialog_plot.py:61
 msgid "Last Month"
 msgstr "Senaste månad"
 
-#: ../pondus/gui/dialog_plot.py:66
+#: ../pondus/gui/dialog_plot.py:62
 msgid "Custom"
 msgstr "Anpassad"
 
-#: ../pondus/gui/dialog_plot.py:73
-msgid "Data to plot:"
-msgstr "Data till diagram:"
+#: ../pondus/gui/dialog_plot.py:69
+#, fuzzy
+msgid "Data Left:"
+msgstr "Data att exportera:"
 
-#: ../pondus/gui/dialog_plot.py:81
+#: ../pondus/gui/dialog_plot.py:76 ../pondus/gui/dialog_plot.py:93
+msgid "Bodyfat"
+msgstr ""
+
+#: ../pondus/gui/dialog_plot.py:79 ../pondus/gui/dialog_plot.py:96
 msgid ""
 "To plot your BMI, you need to enter your height in the preferences dialog."
 msgstr ""
 "För att rita ditt BMI, måste du mata in din längd i inställningsdialogen."
 
-#: ../pondus/gui/dialog_plot.py:85
-msgid "Raw and Smooth"
-msgstr "Grov och utjämnad"
-
-#: ../pondus/gui/dialog_plot.py:86
-msgid "Raw"
-msgstr "Grov"
-
 #: ../pondus/gui/dialog_plot.py:87
+#, fuzzy
+msgid "Right:"
+msgstr "Vikt"
+
+#: ../pondus/gui/dialog_plot.py:100
+msgid "None"
+msgstr ""
+
+#: ../pondus/gui/dialog_plot.py:107
 msgid "Smooth"
 msgstr "Utjämnad"
 
-#: ../pondus/gui/dialog_plot.py:90
-msgid "Include Weight Plan"
-msgstr "Ta med viktsplan"
+#: ../pondus/gui/dialog_plot.py:111
+#, fuzzy
+msgid "Show Plan"
+msgstr "Viktplan"
 
-#: ../pondus/gui/dialog_plot.py:94
+#: ../pondus/gui/dialog_plot.py:115
 msgid "The weight planner can be enabled in the preferences dialog."
 msgstr "Viktplanen kan göras tillgänglig i inställningsdialogen."
 
-#: ../pondus/gui/dialog_plot.py:100
+#: ../pondus/gui/dialog_plot.py:120
 msgid "Save Plot"
 msgstr "Spara diagram"
 
-#: ../pondus/gui/dialog_plot.py:134 ../pondus/gui/dialog_plot.py:139
+#: ../pondus/gui/dialog_plot.py:152 ../pondus/gui/dialog_plot.py:157
 #: ../pondus/gui/dialog_add.py:180
 msgid "Error: Wrong Format"
 msgstr "Fel: Felaktigt format"
 
-#: ../pondus/gui/dialog_plot.py:135 ../pondus/gui/dialog_add.py:181
+#: ../pondus/gui/dialog_plot.py:153 ../pondus/gui/dialog_add.py:181
 msgid "The data entered is not in the correct format!"
 msgstr "Den inmatade uppgiften har ej rätt format!"
 
-#: ../pondus/gui/dialog_plot.py:140
+#: ../pondus/gui/dialog_plot.py:158
 msgid "The start date has to be before the end date!"
 msgstr "Startdatum måste föregå slutdatum!"
 
-#: ../pondus/gui/dialog_plot.py:179
+#: ../pondus/gui/dialog_plot.py:188
 msgid "weight_plot.png"
 msgstr "viktdiagram.png"
 
@@ -257,8 +270,12 @@ msgstr "Datum (YYYY-MM-DD):"
 msgid "Bodyfat (%):"
 msgstr ""
 
-#: ../pondus/gui/dialog_add.py:115
+#: ../pondus/gui/dialog_add.py:115 ../pondus/gui/guiutil.py:49
 msgid "Note:"
+msgstr ""
+
+#: ../pondus/gui/guiutil.py:45
+msgid "Bodyfat:"
 msgstr ""
 
 #: ../pondus/gui/dialog_preferences.py:27 ../pondus/gui/window_main.py:68
@@ -357,23 +374,23 @@ msgstr "Avsluta"
 msgid "Date"
 msgstr "Datum"
 
-#: ../pondus/gui/window_main.py:134
+#: ../pondus/gui/window_main.py:135
 msgid "Weight Planner"
 msgstr "Viktsplan"
 
-#: ../pondus/gui/window_main.py:186
+#: ../pondus/gui/window_main.py:187
 msgid "Remove Data?"
 msgstr "Tag bort data?"
 
-#: ../pondus/gui/window_main.py:187
+#: ../pondus/gui/window_main.py:188
 msgid "Do you really want to delete this dataset?"
 msgstr "Vill du verkligen ta bort dessa data?"
 
-#: ../pondus/gui/window_main.py:364
+#: ../pondus/gui/window_main.py:368
 msgid "python-matplotlib is not installed, plotting disabled!"
 msgstr "python matlibplot är ej installerat, plottning ej möjligt!"
 
-#: ../pondus/gui/window_main.py:374
+#: ../pondus/gui/window_main.py:378
 msgid "Plot weight data"
 msgstr "Rita viktsdata"
 
@@ -384,6 +401,18 @@ msgstr "Spara till fil"
 #: ../pondus/gui/dialog_save_file.py:30
 msgid "Save as File Type:"
 msgstr "Spara som filtyp:"
+
+#~ msgid "Data to plot:"
+#~ msgstr "Data till diagram:"
+
+#~ msgid "Raw and Smooth"
+#~ msgstr "Grov och utjämnad"
+
+#~ msgid "Raw"
+#~ msgstr "Grov"
+
+#~ msgid "Include Weight Plan"
+#~ msgstr "Ta med viktsplan"
 
 #~ msgid "Please make sure this library is installed."
 #~ msgstr "Se till att detta bibliotek är installerat"

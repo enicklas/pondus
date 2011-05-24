@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Pondus 0.7.3+hg\n"
 "Report-Msgid-Bugs-To: pondus-dev@lists.berlios.de\n"
-"POT-Creation-Date: 2011-04-08 21:16+0200\n"
+"POT-Creation-Date: 2011-05-24 21:54+0200\n"
 "PO-Revision-Date: 2011-01-24 10:23+0300\n"
 "Last-Translator: Yaron Shahrabani <sh.yaron@gmail.com>\n"
 "Language-Team: Gezer (Hebrew)\n"
@@ -52,16 +52,22 @@ msgstr "נא לוודא שה־pygtk הזה מותקן."
 msgid "Not owning the file lock. Backing up the data to %s"
 msgstr "נעילת הקובץ אינה בלעדית לך. הנתונים יגובו אל %s"
 
-#: ../pondus/core/plot.py:44 ../pondus/gui/dialog_plot.py:77
-msgid "Body Mass Index"
-msgstr "אינדקס מסת הגוף"
-
-#: ../pondus/core/plot.py:46 ../pondus/gui/dialog_plot.py:76
-#: ../pondus/gui/dialog_add.py:82 ../pondus/gui/window_main.py:124
+#: ../pondus/core/plot.py:23 ../pondus/gui/dialog_plot.py:73
+#: ../pondus/gui/dialog_plot.py:91 ../pondus/gui/dialog_add.py:82
+#: ../pondus/gui/window_main.py:124
 msgid "Weight"
 msgstr "משקל"
 
-#: ../pondus/core/plot.py:94
+#: ../pondus/core/plot.py:24 ../pondus/gui/dialog_plot.py:82
+#: ../pondus/gui/dialog_plot.py:99
+msgid "Body Mass Index"
+msgstr "אינדקס מסת הגוף"
+
+#: ../pondus/core/plot.py:25
+msgid "Bodyfat (%)"
+msgstr ""
+
+#: ../pondus/core/plot.py:112
 #, python-format
 msgid "Saving plot to %s"
 msgstr "שמירת הרישום אל %s"
@@ -83,7 +89,7 @@ msgstr "נעשה שימוש בקובץ התקני ‎~/.pondus/user_data.xml ב�
 msgid "weight.csv"
 msgstr "weight.csv"
 
-#: ../pondus/gui/dialog_csv.py:39 ../pondus/gui/window_main.py:133
+#: ../pondus/gui/dialog_csv.py:39 ../pondus/gui/window_main.py:134
 msgid "Weight Measurements"
 msgstr "מדידות משקל"
 
@@ -151,90 +157,97 @@ msgstr "אירעה שגיאה במהלך היבוא."
 msgid "Plot Weight"
 msgstr "רישום משקל"
 
-#: ../pondus/gui/dialog_plot.py:44
+#: ../pondus/gui/dialog_plot.py:41
 msgid "Select Date Range:"
 msgstr "בחירת טווח תאריכים:"
 
-#: ../pondus/gui/dialog_plot.py:49
+#: ../pondus/gui/dialog_plot.py:46
 msgid "Start date"
 msgstr "תאריך ההתחלה"
 
-#: ../pondus/gui/dialog_plot.py:56
+#: ../pondus/gui/dialog_plot.py:52
 msgid "End date"
 msgstr "תאריך הסיום"
 
-#: ../pondus/gui/dialog_plot.py:61
+#: ../pondus/gui/dialog_plot.py:57
 msgid "Select date range of plot"
 msgstr "נא לבחור טווח תאריכים לתוואי"
 
-#: ../pondus/gui/dialog_plot.py:62
+#: ../pondus/gui/dialog_plot.py:58
 msgid "All Time"
 msgstr "כל הזמן"
 
-#: ../pondus/gui/dialog_plot.py:63
+#: ../pondus/gui/dialog_plot.py:59
 msgid "Last Year"
 msgstr "שנה שעברה"
 
-#: ../pondus/gui/dialog_plot.py:64
+#: ../pondus/gui/dialog_plot.py:60
 msgid "Last 3 Months"
 msgstr "שלושת החודשים האחרונים"
 
-#: ../pondus/gui/dialog_plot.py:65
+#: ../pondus/gui/dialog_plot.py:61
 msgid "Last Month"
 msgstr "החודש הקודם"
 
-#: ../pondus/gui/dialog_plot.py:66
+#: ../pondus/gui/dialog_plot.py:62
 msgid "Custom"
 msgstr "התאמה אישית"
 
-#: ../pondus/gui/dialog_plot.py:73
-msgid "Data to plot:"
-msgstr "נתונים לרישום:"
+#: ../pondus/gui/dialog_plot.py:69
+#, fuzzy
+msgid "Data Left:"
+msgstr "נתונים ליצוא:"
 
-#: ../pondus/gui/dialog_plot.py:81
+#: ../pondus/gui/dialog_plot.py:76 ../pondus/gui/dialog_plot.py:93
+msgid "Bodyfat"
+msgstr ""
+
+#: ../pondus/gui/dialog_plot.py:79 ../pondus/gui/dialog_plot.py:96
 msgid ""
 "To plot your BMI, you need to enter your height in the preferences dialog."
 msgstr ""
 "כדי לערוך רישום של ה־BMI שלך עליך להזין את הגובה שלך בתיבת דו־שיח ההעדפות."
 
-#: ../pondus/gui/dialog_plot.py:85
-msgid "Raw and Smooth"
-msgstr "גולמי וחלק"
-
-#: ../pondus/gui/dialog_plot.py:86
-msgid "Raw"
-msgstr "גולמי"
-
 #: ../pondus/gui/dialog_plot.py:87
+#, fuzzy
+msgid "Right:"
+msgstr "משקל"
+
+#: ../pondus/gui/dialog_plot.py:100
+msgid "None"
+msgstr ""
+
+#: ../pondus/gui/dialog_plot.py:107
 msgid "Smooth"
 msgstr "חלק"
 
-#: ../pondus/gui/dialog_plot.py:90
-msgid "Include Weight Plan"
-msgstr "הכללת תכנית המשקל"
+#: ../pondus/gui/dialog_plot.py:111
+#, fuzzy
+msgid "Show Plan"
+msgstr "תכנית משקל"
 
-#: ../pondus/gui/dialog_plot.py:94
+#: ../pondus/gui/dialog_plot.py:115
 msgid "The weight planner can be enabled in the preferences dialog."
 msgstr "ניתן להפעיל את מתכנן המשקל בתיבת הדו־שיח העדפות."
 
-#: ../pondus/gui/dialog_plot.py:100
+#: ../pondus/gui/dialog_plot.py:120
 msgid "Save Plot"
 msgstr "שמירת הרישום"
 
-#: ../pondus/gui/dialog_plot.py:134 ../pondus/gui/dialog_plot.py:139
+#: ../pondus/gui/dialog_plot.py:152 ../pondus/gui/dialog_plot.py:157
 #: ../pondus/gui/dialog_add.py:180
 msgid "Error: Wrong Format"
 msgstr "שגיאה: המבנה שגוי"
 
-#: ../pondus/gui/dialog_plot.py:135 ../pondus/gui/dialog_add.py:181
+#: ../pondus/gui/dialog_plot.py:153 ../pondus/gui/dialog_add.py:181
 msgid "The data entered is not in the correct format!"
 msgstr "הנתונים שהוזנו אינם במבנה הנכון!"
 
-#: ../pondus/gui/dialog_plot.py:140
+#: ../pondus/gui/dialog_plot.py:158
 msgid "The start date has to be before the end date!"
 msgstr "על תאריך ההתחלה להיות לפני תאריך הסיום!"
 
-#: ../pondus/gui/dialog_plot.py:179
+#: ../pondus/gui/dialog_plot.py:188
 msgid "weight_plot.png"
 msgstr "רישום_משקל.png"
 
@@ -258,8 +271,12 @@ msgstr "תאריך (YYYY-MM-DD):"
 msgid "Bodyfat (%):"
 msgstr ""
 
-#: ../pondus/gui/dialog_add.py:115
+#: ../pondus/gui/dialog_add.py:115 ../pondus/gui/guiutil.py:49
 msgid "Note:"
+msgstr ""
+
+#: ../pondus/gui/guiutil.py:45
+msgid "Bodyfat:"
 msgstr ""
 
 #: ../pondus/gui/dialog_preferences.py:27 ../pondus/gui/window_main.py:68
@@ -358,23 +375,23 @@ msgstr "יציאה"
 msgid "Date"
 msgstr "תאריך"
 
-#: ../pondus/gui/window_main.py:134
+#: ../pondus/gui/window_main.py:135
 msgid "Weight Planner"
 msgstr "מתכנן המשקל"
 
-#: ../pondus/gui/window_main.py:186
+#: ../pondus/gui/window_main.py:187
 msgid "Remove Data?"
 msgstr "האם להסיר את הנתונים?"
 
-#: ../pondus/gui/window_main.py:187
+#: ../pondus/gui/window_main.py:188
 msgid "Do you really want to delete this dataset?"
 msgstr "האם אכן ברצונך למחוק מערך נתונים זה?"
 
-#: ../pondus/gui/window_main.py:364
+#: ../pondus/gui/window_main.py:368
 msgid "python-matplotlib is not installed, plotting disabled!"
 msgstr "הספרייה python-matplotlib אינה מותקנת, הרישום מנוטרל!"
 
-#: ../pondus/gui/window_main.py:374
+#: ../pondus/gui/window_main.py:378
 msgid "Plot weight data"
 msgstr "רישום נתוני המשקל"
 
@@ -385,6 +402,18 @@ msgstr "שמירה לקובץ"
 #: ../pondus/gui/dialog_save_file.py:30
 msgid "Save as File Type:"
 msgstr "שמירת הקובץ כסוג:"
+
+#~ msgid "Data to plot:"
+#~ msgstr "נתונים לרישום:"
+
+#~ msgid "Raw and Smooth"
+#~ msgstr "גולמי וחלק"
+
+#~ msgid "Raw"
+#~ msgstr "גולמי"
+
+#~ msgid "Include Weight Plan"
+#~ msgstr "הכללת תכנית המשקל"
 
 #~ msgid "Please make sure this library is installed."
 #~ msgstr "נא לוודא שספרייה זו מותקנת."
