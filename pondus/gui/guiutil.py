@@ -37,3 +37,16 @@ def register_icons():
             iconset = gtk.IconSet(pixbuf)
             iconfactory.add(stock_id, iconset)
     iconfactory.add_default()
+
+
+def get_tooltip(dataset):
+    tooltip = ''
+    if dataset.bodyfat is not None:
+        tooltip += _('Bodyfat:') + ' ' + str(round(dataset.bodyfat,1)) + '%'
+    if dataset.note is not None:
+        if tooltip != '':
+            tooltip += '\n'
+        tooltip += _('Note:') + ' ' + dataset.note
+    if tooltip == '':
+        return None
+    return tooltip

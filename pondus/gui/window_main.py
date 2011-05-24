@@ -117,7 +117,7 @@ class MainWindow(object):
         datawindow = gtk.ScrolledWindow()
         datawindow.set_policy(gtk.POLICY_AUTOMATIC, gtk.POLICY_AUTOMATIC)
         datawindow.set_shadow_type(gtk.SHADOW_IN)
-        self.datalist = gtk.ListStore(int, str, str)
+        self.datalist = gtk.ListStore(int, str, str, str)
         self.display_data(self.datasetdata)
         self.dataview = gtk.TreeView(self.datalist)
         self.add_column(_('Date'), 1)
@@ -125,6 +125,7 @@ class MainWindow(object):
         self.datalist.set_sort_func(2, guiutil.sort_function_weight, None)
         self.datalist.set_sort_column_id(1, gtk.SORT_DESCENDING)
         self.dataview.set_rules_hint(True)
+        self.dataview.set_tooltip_column(3)
         datawindow.add(self.dataview)
         self.contentbox.pack_start(datawindow)
 
@@ -221,7 +222,8 @@ class MainWindow(object):
                 new_weight = round(newdata.weight, 1)
             self.datalist.set(treeiter,
                 1, str(newdata.date),
-                2, str(new_weight))
+                2, str(new_weight),
+                3, guiutil.get_tooltip(newdata))
 
     def plot_dialog(self, widget):
         """Runs the plotting dialog."""
@@ -327,9 +329,11 @@ class MainWindow(object):
     def append_dataset(self, dataset):
         """Appends a dataset to the list model."""
         if parameters.config['preferences.unit_system'] == 'imperial':
-            dataset_list = [dataset.id, dataset.date, dataset.weight_lbs]
+            weight = dataset.weight_lbs
         else:
-            dataset_list = [dataset.id, dataset.date, round(dataset.weight, 1)]
+            weight = round(dataset.weight, 1)
+        dataset_list = [dataset.id, dataset.date, weight, \
+                guiutil.get_tooltip(dataset)]
         return self.datalist.append(dataset_list)
 
     # main function
