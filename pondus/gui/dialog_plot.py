@@ -78,13 +78,13 @@ you need to enter your height in the preferences dialog.'))
         plot_options_box.pack_start(self.plotselector, False, False)
         # smooth data checkbox
         self.smooth_data = gtk.CheckButton(_('Smooth'))
-        self.smooth_data.set_active(self.plot.get_plot_smooth())
+        self.smooth_data.set_active(self.plot.get_smooth())
         plot_options_box.pack_start(self.smooth_data, True, False)
         # plot plan checkbox
         self.plot_plan = gtk.CheckButton(_('Include Weight Plan'))
-        self.plot_plan.set_active(self.plot.get_plot_plan())
-        self.plot_plan.set_sensitive(self.plot.get_plot_plan())
-        if not self.plot.get_plot_plan():
+        self.plot_plan.set_active(self.plot.get_show_plan())
+        self.plot_plan.set_sensitive(self.plot.get_show_plan())
+        if not self.plot.get_show_plan():
             self.plot_plan.set_tooltip_text(_('The weight planner can be \
 enabled in the preferences dialog.'))
         plot_options_box.pack_start(self.plot_plan, True, False)
@@ -130,7 +130,7 @@ enabled in the preferences dialog.'))
             message = _('The start date has to be before the end date!')
             MessageDialog(type_='error', title=title, message=message).run()
             return
-        self.plot.set_plotrange(start_date, end_date)
+        self.plot.set_date_range(start_date, end_date)
         self.dateselector.set_active(4)
 
     def update_daterange(self, dateselector):
@@ -139,21 +139,19 @@ enabled in the preferences dialog.'))
         start_date, end_date = self.get_daterange()
         self.start_date_entry.set_text(str(start_date))
         self.end_date_entry.set_text(str(end_date))
-        self.plot.set_plotrange(start_date, end_date)
+        self.plot.set_date_range(start_date, end_date)
 
     def update_plot_type(self, plotselector):
         """Redraws the plot with the desired data (weight or bmi)."""
         key = plotselector.get_active()
         if key == 0:
-            self.plot.set_plot_bmi(False)
+            self.plot.set_left_type('weight')
         elif key == 1:
-            self.plot.set_plot_bmi(True)
-        self.plot.update_plot()
+            self.plot.set_left_type('bmi')
 
     def on_toggle_smooth_data(self, smooth_data_button):
         """Redraws the plot with the desired data (raw or smoothed)."""
-        self.plot.set_plot_smooth(smooth_data_button.get_active())
-        self.plot.update_plot()
+        self.plot.set_smooth(smooth_data_button.get_active())
 
     def save_plot(self, button):
         """Runs the dialog to save the plot to a file."""
@@ -166,9 +164,7 @@ enabled in the preferences dialog.'))
 
     def on_toggle_plot_plan(self, plot_plan_button):
         """Redraws the plot and in-/excludes the weight plan."""
-        self.plot.set_plot_plan(plot_plan_button.get_active())
-        self.plot.update_plot()
-        self.plot.get_max_daterange()
+        self.plot.set_show_plan(plot_plan_button.get_active())
         # if daterange is 'All Time', rescale date axis
         if self.dateselector.get_active() == 0:
             self.update_daterange(self.dateselector)

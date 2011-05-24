@@ -19,17 +19,30 @@ from pondus.core.logger import logger
 
 class Plot(object):
     """Creates the weight plot and implements methods to modify it."""
+    ylabels = {
+            'weight': _('Weight') + ' (' + util.get_weight_unit() + ')',
+            'bmi': _('Body Mass Index'),
+            'bodyfat': _('Bodyfat (%)')
+            }
+    show_plan = False
+    smooth = False
+    left_datatype = None
+    left_data = []
+    left_plan = []
+    right_datatype = None
+    right_data = []
+    right_plan = []
 
     def __init__(self):
         """Initializes the plot data and creates the plot."""
         # default settings
-        self.set_plot_plan(parameters.config['preferences.use_weight_plan'])
-        self.set_plot_raw(True)
-        self.set_plot_smooth(True)
-        self.set_plot_bmi(False)
+        self.show_plan = parameters.config['preferences.use_weight_plan']
+        self.smooth = False
+        self.left_datatype = 'weight'
+        self.right_datatype = None
         # get plot data
-        self._set_current_plot_data()
-        self.get_max_daterange()
+        self._update_plot_data()
+        self._get_max_daterange()
         # plot whole date range by default
         self.start_date, self.end_date = self.mindate, self.maxdate
         # create plot
@@ -38,36 +51,28 @@ class Plot(object):
         self._format_plot()
 
     # external api
-    def set_plot_bmi(self, plot_bmi):
-        """Sets the parameter describing whether weight or BMI is plotted."""
-        self.plot_bmi = plot_bmi
-        if self.plot_bmi:
-            self.ylabel = _('Body Mass Index')
-        else:
-            self.ylabel = _('Weight') + ' (' + util.get_weight_unit() + ')'
+    def set_show_plan(self, show_plan):
+        """Sets the parameter describing whether the weight plan is plotted
+        and updates the plot."""
+        self.show_plan = show_plan
+        self._get_max_daterange()
+        self._update_plot()
 
-    def set_plot_plan(self, plot_plan):
-        """Sets the parameter describing whether the weight plan is plotted."""
-        self.plot_plan = plot_plan
+    def set_smooth(self, smooth):
+        """Sets the parameter describing whether the plot data should be
+        smoothed and updates the plot"""
+        self.smooth = smooth
+        self._update_plot_data()
+        self._update_plot()
 
-    def set_plot_raw(self, plot_raw):
-        """Sets the parameter describing whether the actual weight data
-        is plotted."""
-        self.plot_raw = plot_raw
-
-    def set_plot_smooth(self, plot_smooth):
-        """Sets the parameter describing whether the smoothed weight data
-        is plotted."""
-        self.plot_smooth = plot_smooth
-
-    def get_plot_plan(self):
+    def get_show_plan(self):
         """Returns the parameter describing whether the weight plan is
         plotted."""
-        return self.plot_plan
+        return self.show_plan
 
-    def get_plot_smooth(self):
+    def get_smooth(self):
         """Returns the parameter describing whether the data is smoothed."""
-        return self.plot_smooth
+        return self.smooth
 
     def get_mindate(self):
         """Returns the minimum date in the datasets."""
@@ -77,19 +82,23 @@ class Plot(object):
         """Returns the maximum date in the datasets."""
         return self.maxdate
 
-    def set_plotrange(self, start_date, end_date):
-        """Updates the axis scaling of the plot."""
-        self.start_date, self.end_date = start_date, end_date
-        self._format_plot()
-        self.figure.canvas.draw()
+    def set_left_type(self, datatype):
+        """Sets the data type plotted on the left y-axis and updates
+        the plot."""
+        self.left_datatype = datatype
+        self._update_left_data()
+        self._update_plot()
 
-    def update_plot(self):
-        """Updates the plot with the current settings."""
-        # clear old plot data...
-        self.ax.clear()
-        # ...and create the new data
-        self._set_current_plot_data()
-        self._plot_data()
+    def set_right_type(self, datatype):
+        """Sets the data type plotted on the right y-axis and updates
+        the plot."""
+        self.right_datatype = datatype
+        self._update_right_data()
+        self._update_plot()
+
+    def set_date_range(self, start_date, end_date):
+        """Updates the range of the x-axis."""
+        self.start_date, self.end_date = start_date, end_date
         self._format_plot()
         self.figure.canvas.draw()
 
@@ -99,101 +108,105 @@ class Plot(object):
         logger.info(_('Saving plot to %s'), filename)
         self.figure.savefig(filename, format=filename[-3:])
 
-    def get_max_daterange(self):
-        """Sets the minimum and the maximum date in the available data."""
-        mindates = []
-        maxdates = []
-        if self.plot_data_measurement:
-            mindates.append(self.plot_data_measurement[0][0])
-            maxdates.append(self.plot_data_measurement[-1][0])
-        if self.plot_data_plan:
-            mindates.append(self.plot_data_plan[0][0])
-            maxdates.append(self.plot_data_plan[-1][0])
-        # initially, mindates can not be empty, but can that happen later,
-        # if only plan data is available and PLOT_PLAN is then set to False
-        if mindates:
-            self.mindate = min(mindates)
-            self.maxdate = max(maxdates)
-
     # internal helper methods
-    def _set_current_plot_data(self):
-        """Updates the plot data according to the current settings."""
-        self.plot_data_measurement = \
-                        self._get_plot_data(parameters.user.measurements)
-        # for performance improvements, only get plan data if really needed
-        if self.plot_plan:
-            self.plot_data_plan = self._get_plot_data(parameters.user.plan)
-        else:
-            self.plot_data_plan = []
-        if self.plot_smooth:
-            self.plot_data_measurement = \
-                            _smooth_data(self.plot_data_measurement)
+    def _update_plot_data(self):
+        """Update all plot data."""
+        self._update_left_data()
+        self._update_right_data()
 
-    def _get_plot_data(self, datasets):
+    def _update_left_data(self):
+        """Update the data plotted on the left y-axis."""
+        self.left_data = self._get_plot_data(parameters.user.measurements, \
+                    self.left_datatype)
+        self.left_plan = self._get_plot_data(parameters.user.plan, \
+                    self.left_datatype)
+        if self.smooth and self.left_data is not None:
+            self.left_data = _smooth_data(self.left_data)
+
+    def _update_right_data(self):
+        """Update the data plotted on the right y-axis."""
+        self.right_data = self._get_plot_data(parameters.user.measurements, \
+                    self.right_datatype)
+        self.right_plan = self._get_plot_data(parameters.user.plan, \
+                    self.right_datatype)
+        if self.smooth and self.right_data is not None:
+            self.right_data = _smooth_data(self.right_data)
+
+    def _get_plot_data(self, datasets, datatype):
         """Returns the list of datatuples to be plotted."""
-        if self.plot_bmi:
+        if datatype == 'weight':
+            if parameters.config['preferences.unit_system'] == 'imperial':
+                return sorted((dataset.date, dataset.weight_lbs)
+                        for dataset in datasets)
+            else:
+                return sorted((dataset.date, dataset.weight)
+                        for dataset in datasets)
+        elif datatype == 'bmi':
             return sorted((dataset.date,
                     util.bmi(dataset.weight, parameters.user.height))
                     for dataset in datasets)
-        elif parameters.config['preferences.unit_system'] == 'imperial':
-            return sorted((dataset.date, dataset.weight_lbs)
-                    for dataset in datasets)
-        else:
-            return sorted((dataset.date, dataset.weight)
-                    for dataset in datasets)
+        elif datatype == 'bodyfat':
+            return sorted((dataset.date, dataset.bodyfat)
+                    for dataset in datasets if dataset.bodyfat is not None)
+        elif datatype is None:
+            return None
 
     def _create_figure(self):
         """Creates the figure object containing the plot."""
         self.figure = Figure()
-        self.ax = self.figure.add_subplot(111)
+        self.ax_left = self.figure.add_subplot(111)
+
+    def _update_plot(self):
+        """Updates the plot with the current settings."""
+        # clear old plot data...
+        self.ax_left.clear()
+        # ...and create the new data
+        self._plot_data()
+        self._format_plot()
+        self.figure.canvas.draw()
 
     def _plot_data(self):
         """Plots the data."""
-        if self.plot_raw and self.plot_data_measurement:
-            xvalues = [tup[0] for tup in self.plot_data_measurement]
-            yvalues = [tup[1] for tup in self.plot_data_measurement]
-            self.ax.plot_date(dates.date2num(xvalues), yvalues,
+        if self.left_data:
+            xvalues = [tup[0] for tup in self.left_data]
+            yvalues = [tup[1] for tup in self.left_data]
+            self.ax_left.plot_date(dates.date2num(xvalues), yvalues,
                             fmt='bo-', ms=4.0)
-        if self.plot_smooth and self.plot_data_measurement:
-            xvalues = [tup[0] for tup in self.plot_data_measurement]
-            yvalues = [tup[2] for tup in self.plot_data_measurement]
-            self.ax.plot_date(dates.date2num(xvalues), yvalues,
-                            fmt='co-', ms=4.0)
-        if self.plot_plan and self.plot_data_plan:
-            xvalues = [tup[0] for tup in self.plot_data_plan]
-            yvalues = [tup[1] for tup in self.plot_data_plan]
-            self.ax.plot_date(dates.date2num(xvalues), yvalues,
+        if self.left_plan and self.show_plan:
+            xvalues = [tup[0] for tup in self.left_plan]
+            yvalues = [tup[1] for tup in self.left_plan]
+            self.ax_left.plot_date(dates.date2num(xvalues), yvalues,
                             fmt='ro-', ms=4.0)
 
     def _format_plot(self):
         """Formats the plot, i.e. scales axes, sets ticks, etc."""
         # enable grid
-        self.ax.grid(True)
+        self.ax_left.grid(True)
         # format x-axis
         daterange = self.end_date - self.start_date
         majorlocator, majorformatter, minorlocator = _get_locators(daterange)
-        self.ax.set_xlim(
+        self.ax_left.set_xlim(
                 dates.date2num(self.start_date), dates.date2num(self.end_date))
-        self.ax.xaxis.set_major_locator(majorlocator)
-        self.ax.xaxis.set_major_formatter(majorformatter)
-        self.ax.xaxis.set_minor_locator(minorlocator)
+        self.ax_left.xaxis.set_major_locator(majorlocator)
+        self.ax_left.xaxis.set_major_formatter(majorformatter)
+        self.ax_left.xaxis.set_minor_locator(minorlocator)
         # format y-axis
         y_min, y_max = self._get_ylimits()
         if y_min is not None:
-            self.ax.set_ylim(y_min, y_max)
+            self.ax_left.set_ylim(y_min, y_max)
         # set label on y-axis
-        self.ax.set_ylabel(self.ylabel)
+        self.ax_left.set_ylabel(self.ylabels[self.left_datatype])
 
     def _get_ylimits(self):
         """Returns the minimum and the maximum y-value in the current date
         range. Offsets are used for proper axis scaling."""
-        if self.plot_bmi:
+        if self.left_datatype == 'bmi':
             y_offset = 0.1
         else:
             y_offset = 0.5
-        y_min, y_max = self._get_yrange(self.plot_data_measurement)
-        if self.plot_plan:
-            y_min_plan, y_max_plan = self._get_yrange(self.plot_data_plan)
+        y_min, y_max = self._get_yrange(self.left_data)
+        if self.show_plan:
+            y_min_plan, y_max_plan = self._get_yrange(self.left_plan)
             y_min = util.nonemin([y_min, y_min_plan])
             y_max = util.nonemax([y_max, y_max_plan])
         # y_min, y_max can be None if no datasets in selected daterange
@@ -214,6 +227,28 @@ class Plot(object):
             return y_min, y_max
         except ValueError:
             return None, None
+
+    def _get_max_daterange(self):
+        """Sets the minimum and the maximum date in the available data."""
+        mindates = []
+        maxdates = []
+        if self.left_data:
+            mindates.append(self.left_data[0][0])
+            maxdates.append(self.left_data[-1][0])
+        if self.left_plan and self.show_plan:
+            mindates.append(self.left_plan[0][0])
+            maxdates.append(self.left_plan[-1][0])
+        if self.right_data:
+            mindates.append(self.right_data[0][0])
+            maxdates.append(self.right_data[-1][0])
+        if self.right_plan and self.show_plan:
+            mindates.append(self.right_plan[0][0])
+            maxdates.append(self.right_plan[-1][0])
+        # initially, mindates can not be empty, but can that happen later,
+        # if only plan data is available and show_plan is then set to False
+        if mindates:
+            self.mindate = min(mindates)
+            self.maxdate = max(maxdates)
 
 
 # internal helper functions
@@ -236,7 +271,7 @@ def _smooth_data(data):
             except IndexError:
                 pass
         weighted_average = sum(weighted_data) / sum(weights)
-        smooth_data.append((data[i][0], data[i][1], weighted_average))
+        smooth_data.append((data[i][0], weighted_average))
     return smooth_data
 
 
