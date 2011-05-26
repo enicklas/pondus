@@ -74,13 +74,13 @@ msgstr "Körperfett"
 #: ../pondus/gui/dialog_plot.py:102 ../pondus/gui/dialog_add.py:259
 #: ../pondus/gui/guiutil.py:56
 msgid "Muscle"
-msgstr ""
+msgstr "Muskelanteil"
 
 #: ../pondus/core/plot.py:27 ../pondus/gui/dialog_plot.py:82
 #: ../pondus/gui/dialog_plot.py:104 ../pondus/gui/dialog_add.py:261
 #: ../pondus/gui/guiutil.py:59
 msgid "Water"
-msgstr ""
+msgstr "Wasseranteil"
 
 #: ../pondus/core/plot.py:114
 #, python-format
@@ -197,9 +197,8 @@ msgid "Last Year"
 msgstr "Letztes Jahr"
 
 #: ../pondus/gui/dialog_plot.py:60
-#, fuzzy
 msgid "Last 6 Months"
-msgstr "Letzte 3 Monate"
+msgstr "Letzte 6 Monate"
 
 #: ../pondus/gui/dialog_plot.py:61
 msgid "Last Month"
@@ -274,14 +273,12 @@ msgid "Date"
 msgstr "Datum"
 
 #: ../pondus/gui/dialog_add.py:65
-#, fuzzy
 msgid "Date (YYYY-MM-DD)"
-msgstr "Datum (JJJJ-MM-TT):"
+msgstr "Datum (JJJJ-MM-TT)"
 
 #: ../pondus/gui/dialog_add.py:109 ../pondus/gui/guiutil.py:62
-#, fuzzy
 msgid "Note"
-msgstr "Notiz:"
+msgstr "Notiz"
 
 #: ../pondus/gui/dialog_preferences.py:27 ../pondus/gui/window_main.py:68
 msgid "Preferences"
@@ -329,12 +326,11 @@ msgstr "Körperfett speichern"
 
 #: ../pondus/gui/dialog_preferences.py:109
 msgid "Track Muscle"
-msgstr ""
+msgstr "Muskelanteil speichern"
 
 #: ../pondus/gui/dialog_preferences.py:115
-#, fuzzy
 msgid "Track Water"
-msgstr "Körperfett speichern"
+msgstr "Wasseranteil speichern"
 
 #: ../pondus/gui/dialog_preferences.py:121
 msgid "Append Notes to Datasets"
