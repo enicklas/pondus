@@ -22,7 +22,9 @@ class Plot(object):
     ylabels = {
             'weight': _('Weight') + ' (' + util.get_weight_unit() + ')',
             'bmi': _('Body Mass Index'),
-            'bodyfat': _('Bodyfat (%)'),
+            'bodyfat': _('Bodyfat') + ' (%)',
+            'muscle': _('Muscle') + ' (%)',
+            'water': _('Water') + ' (%)',
             None: ''
             }
     show_plan = False
@@ -149,9 +151,10 @@ class Plot(object):
             return sorted((dataset.date,
                     util.bmi(dataset.weight, parameters.user.height))
                     for dataset in datasets)
-        elif datatype == 'bodyfat':
-            return sorted((dataset.date, dataset.bodyfat)
-                    for dataset in datasets if dataset.bodyfat is not None)
+        elif datatype in ['bodyfat', 'muscle', 'water']:
+            return sorted((dataset.date, getattr(dataset, datatype))
+                    for dataset in datasets \
+                        if getattr(dataset, datatype) is not None)
         elif datatype is None:
             return []
 

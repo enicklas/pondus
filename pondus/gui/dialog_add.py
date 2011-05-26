@@ -30,10 +30,6 @@ class AddDataDialog(object):
             weight = self.dataset.weight_lbs
         else:
             weight = self.dataset.weight
-        if parameters.config['preferences.use_bodyfat']:
-            bodyfat = self.dataset.bodyfat
-            if bodyfat is None:
-                bodyfat = 0.0
         if parameters.config['preferences.use_note']:
             note = self.dataset.note
             if note is None:
@@ -91,21 +87,19 @@ class AddDataDialog(object):
         weight_bodyfat_box.pack_start(weight_box)
 
         if parameters.config['preferences.use_bodyfat']:
-            bodyfat_box = gtk.VBox(spacing=5)
-            bodyfat_box.set_border_width(5)
-            bodyfat_label = gtk.Label(_('Bodyfat (%):'))
-            bodyfat_label.set_alignment(xalign=0, yalign=0.5)
-            bodyfat_adj = gtk.Adjustment(value=bodyfat, lower=0, upper=100,
-                                        step_incr=0.1, page_incr=1.0)
-            self.bodyfat_entry = gtk.SpinButton(adjustment=bodyfat_adj,
-                                                digits=1)
-            self.bodyfat_entry.set_numeric(True)
-            self.bodyfat_entry.set_activates_default(True)
-            bodyfat_box.pack_start(bodyfat_label, False, True)
-            bodyfat_box.pack_start(self.bodyfat_entry, False, True)
+            bodyfat_box = self._get_percentage_box('bodyfat')
             weight_bodyfat_box.pack_start(bodyfat_box)
 
         self.dialog.vbox.pack_start(weight_bodyfat_box, False, True)
+
+        muscle_water_box = gtk.HBox(spacing=5)
+        if parameters.config['preferences.use_muscle']:
+            muscle_box = self._get_percentage_box('muscle')
+            muscle_water_box.pack_start(muscle_box)
+        if parameters.config['preferences.use_water']:
+            water_box = self._get_percentage_box('water')
+            muscle_water_box.pack_start(water_box)
+        self.dialog.vbox.pack_start(muscle_water_box, False, True)
 
         if parameters.config['preferences.use_note']:
             note_box = gtk.VBox(spacing=5)
@@ -136,6 +130,12 @@ class AddDataDialog(object):
         if parameters.config['preferences.use_bodyfat']:
             self.bodyfat_insert_signal = \
                 self.bodyfat_entry.connect('insert_text', self.on_insert)
+        if parameters.config['preferences.use_muscle']:
+            self.muscle_insert_signal = \
+                self.muscle_entry.connect('insert_text', self.on_insert)
+        if parameters.config['preferences.use_water']:
+            self.water_insert_signal = \
+                self.water_entry.connect('insert_text', self.on_insert)
         if not parameters.config['preferences.use_calendar']:
             self.date_entry.connect('focus-in-event', self.on_focus)
             self.date_insert_signal = \
@@ -162,12 +162,13 @@ class AddDataDialog(object):
                     self.dataset.weight_lbs = self.weight_entry.get_value()
                 else:
                     self.dataset.weight = self.weight_entry.get_value()
-                if parameters.config['preferences.use_bodyfat']:
-                    bodyfat = self.bodyfat_entry.get_value()
-                    if bodyfat > 0.1:
-                        self.dataset.bodyfat = bodyfat
-                    else:
-                        self.dataset.bodyfat = None
+                for key in ['bodyfat', 'muscle', 'water']:
+                    if parameters.config['preferences.use_' + key]:
+                        data = getattr(self, key+'_entry').get_value()
+                        if data > 0.1:
+                            setattr(self.dataset, key, data)
+                        else:
+                            setattr(self.dataset, key, None)
                 if parameters.config['preferences.use_note']:
                     note = self.note_buffer.get_text(
                             self.note_buffer.get_start_iter(),
@@ -207,7 +208,11 @@ class AddDataDialog(object):
                             self.date_key_press, entry, text, position)
             if entry == self.weight_entry \
                     or (parameters.config['preferences.use_bodyfat'] \
-                        and entry==self.bodyfat_entry):
+                        and entry==self.bodyfat_entry) \
+                    or (parameters.config['preferences.use_muscle'] \
+                        and entry==self.muscle_entry) \
+                    or (parameters.config['preferences.use_water'] \
+                        and entry==self.water_entry):
                 gobject.idle_add(self.spin_key_press, entry, text)
 
     # helper methods
@@ -241,3 +246,29 @@ class AddDataDialog(object):
             entry.spin(gtk.SPIN_STEP_FORWARD, increment=0.1)
         elif text == '-':
             entry.spin(gtk.SPIN_STEP_BACKWARD, increment=0.1)
+
+    def _get_percentage_box(self, key):
+        """Returns a box containing label and spinbutton for entering one of
+        bodyfat, muscle or water percentage."""
+        if parameters.config['preferences.use_' + key]:
+            box = gtk.VBox(spacing=5)
+            box.set_border_width(5)
+            if key == 'bodyfat':
+                label = gtk.Label(_('Bodyfat') + ' (%):')
+            if key == 'muscle':
+                label = gtk.Label(_('Muscle') + ' (%):')
+            if key == 'water':
+                label = gtk.Label(_('Water') + ' (%):')
+            label.set_alignment(xalign=0, yalign=0.5)
+            data = getattr(self.dataset, key)
+            if data is None:
+                data = 0.0
+            adj = gtk.Adjustment(value=data, lower=0, upper=100,
+                                        step_incr=0.1, page_incr=1.0)
+            entry = gtk.SpinButton(adjustment=adj, digits=1)
+            entry.set_numeric(True)
+            entry.set_activates_default(True)
+            setattr(self, key+'_entry', entry)
+            box.pack_start(label, False, True)
+            box.pack_start(entry, False, True)
+            return box

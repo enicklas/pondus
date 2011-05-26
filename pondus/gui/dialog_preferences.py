@@ -106,6 +106,18 @@ class PreferencesDialog(object):
                         self.newconfig['preferences.use_bodyfat'])
         self.dialog.vbox.pack_start(self.use_bodyfat_button)
 
+        self.use_muscle_button = gtk.CheckButton(_('Track Muscle'))
+        self.use_muscle_button.set_border_width(5)
+        self.use_muscle_button.set_active(
+                        self.newconfig['preferences.use_muscle'])
+        self.dialog.vbox.pack_start(self.use_muscle_button)
+
+        self.use_water_button = gtk.CheckButton(_('Track Water'))
+        self.use_water_button.set_border_width(5)
+        self.use_water_button.set_active(
+                        self.newconfig['preferences.use_water'])
+        self.dialog.vbox.pack_start(self.use_water_button)
+
         self.use_note_button = gtk.CheckButton(_('Append Notes to Datasets'))
         self.use_note_button.set_border_width(5)
         self.use_note_button.set_active(
@@ -143,6 +155,10 @@ instead of a text entry to enter dates in the add/edit dialog'))
                                     self.use_plan_button.get_active()
             self.newconfig['preferences.use_bodyfat'] = \
                                     self.use_bodyfat_button.get_active()
+            self.newconfig['preferences.use_muscle'] = \
+                                    self.use_muscle_button.get_active()
+            self.newconfig['preferences.use_water'] = \
+                                    self.use_water_button.get_active()
             self.newconfig['preferences.use_note'] = \
                                     self.use_note_button.get_active()
             self.newconfig['preferences.use_calendar'] = \

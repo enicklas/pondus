@@ -75,6 +75,12 @@ class PlotDialog(object):
         if parameters.config['preferences.use_bodyfat']:
             self.plotselector_left.append_text(_('Bodyfat'))
             self.plotselector_keys.append('bodyfat')
+        if parameters.config['preferences.use_muscle']:
+            self.plotselector_left.append_text(_('Muscle'))
+            self.plotselector_keys.append('muscle')
+        if parameters.config['preferences.use_water']:
+            self.plotselector_left.append_text(_('Water'))
+            self.plotselector_keys.append('water')
         if parameters.user.height < 30:
             self.plotselector_left.set_tooltip_text(_('To plot your BMI, \
 you need to enter your height in the preferences dialog.'))
@@ -92,6 +98,10 @@ you need to enter your height in the preferences dialog.'))
         if parameters.config['preferences.use_bodyfat']:
             self.plotselector_right.append_text(_('Bodyfat'))
             self.plotselector_right.set_active(1)
+        if parameters.config['preferences.use_muscle']:
+            self.plotselector_right.append_text(_('Muscle'))
+        if parameters.config['preferences.use_water']:
+            self.plotselector_right.append_text(_('Water'))
         if parameters.user.height < 30:
             self.plotselector_right.set_tooltip_text(_('To plot your BMI, \
 you need to enter your height in the preferences dialog.'))

@@ -40,13 +40,27 @@ def register_icons():
 
 
 def get_tooltip(dataset):
-    tooltip = ''
-    if dataset.bodyfat is not None:
-        tooltip += _('Bodyfat:') + ' ' + str(round(dataset.bodyfat,1)) + '%'
-    if dataset.note is not None:
+    """Returns a string containing the data of the optional parameters
+    of the dataset."""
+
+    def append_to_tooltip(tooltip, text):
         if tooltip != '':
             tooltip += '\n'
-        tooltip += _('Note:') + ' ' + dataset.note
+        return tooltip + text
+
+    tooltip = ''
+    if dataset.bodyfat is not None:
+        text = _('Bodyfat') + ': ' + str(round(dataset.bodyfat,1)) + '%'
+        tooltip = append_to_tooltip(tooltip, text)
+    if dataset.muscle is not None:
+        text = _('Muscle') + ': ' + str(round(dataset.muscle,1)) + '%'
+        tooltip = append_to_tooltip(tooltip, text)
+    if dataset.water is not None:
+        text = _('Water') + ': ' + str(round(dataset.water,1)) + '%'
+        tooltip = append_to_tooltip(tooltip, text)
+    if dataset.note is not None:
+        text = _('Note') + ': ' + dataset.note
+        tooltip = append_to_tooltip(tooltip, text)
     if tooltip == '':
         return None
     return tooltip
