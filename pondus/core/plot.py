@@ -212,10 +212,7 @@ class Plot(object):
         # format y-axis
         y_min, y_max = self._get_ylimits(yaxis='left')
         if y_min is not None:
-            self.ax_left.set_visible(True)
             self.ax_left.set_ylim(y_min, y_max)
-        else:
-            self.ax_left.set_visible(False)
         y_min, y_max = self._get_ylimits(yaxis='right')
         if y_min is not None:
             self.ax_right.set_visible(True)
