@@ -48,7 +48,7 @@ class AddDataDialog(object):
         date_box.set_border_width(5)
         if parameters.config['preferences.use_calendar']:
             date_ = self.dataset.date
-            date_label = gtk.Label(_('Date:'))
+            date_label = gtk.Label(_('Date') + ':')
             date_label.set_alignment(xalign=0, yalign=0.5)
             self.calendar = gtk.Calendar()
             if parameters.config['preferences.unit_system'] == 'metric':
@@ -62,7 +62,7 @@ class AddDataDialog(object):
             date_box.pack_start(self.calendar, False, True)
         else:
             date_ = str(self.dataset.date)
-            date_label = gtk.Label(_('Date (YYYY-MM-DD):'))
+            date_label = gtk.Label(_('Date (YYYY-MM-DD)') + ':')
             date_label.set_alignment(xalign=0, yalign=0.5)
             self.date_entry = gtk.Entry()
             self.date_entry.set_text(date_)
@@ -106,7 +106,7 @@ class AddDataDialog(object):
             note_box.set_border_width(5)
             textwindow = gtk.ScrolledWindow()
             textwindow.set_policy(gtk.POLICY_AUTOMATIC, gtk.POLICY_AUTOMATIC)
-            note_label = gtk.Label(_('Note:'))
+            note_label = gtk.Label(_('Note') + ':')
             note_label.set_alignment(xalign=0, yalign=0.5)
             self.note_view = gtk.TextView()
             self.note_view.set_editable(True)
