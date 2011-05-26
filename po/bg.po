@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Pondus 0.7.3+hg\n"
 "Report-Msgid-Bugs-To: pondus-dev@lists.berlios.de\n"
-"POT-Creation-Date: 2011-05-24 21:54+0200\n"
+"POT-Creation-Date: 2011-05-26 19:26+0200\n"
 "PO-Revision-Date: 2010-03-16 12:06+0200\n"
 "Last-Translator: Yasen Pramatarov <yasen@lindeas.com>\n"
 "Language-Team: Bulgarian <dict@fsa-bg.org>\n"
@@ -52,21 +52,35 @@ msgid "Not owning the file lock. Backing up the data to %s"
 msgstr "Файлът е заключен. Създава се резервно копие на данните в %s"
 
 #: ../pondus/core/plot.py:23 ../pondus/gui/dialog_plot.py:73
-#: ../pondus/gui/dialog_plot.py:91 ../pondus/gui/dialog_add.py:82
+#: ../pondus/gui/dialog_plot.py:97 ../pondus/gui/dialog_add.py:78
 #: ../pondus/gui/window_main.py:124
 msgid "Weight"
 msgstr "Тегло"
 
-#: ../pondus/core/plot.py:24 ../pondus/gui/dialog_plot.py:82
-#: ../pondus/gui/dialog_plot.py:99
+#: ../pondus/core/plot.py:24 ../pondus/gui/dialog_plot.py:88
+#: ../pondus/gui/dialog_plot.py:109
 msgid "Body Mass Index"
 msgstr "Индекс телесна маса"
 
-#: ../pondus/core/plot.py:25
-msgid "Bodyfat (%)"
+#: ../pondus/core/plot.py:25 ../pondus/gui/dialog_plot.py:76
+#: ../pondus/gui/dialog_plot.py:99 ../pondus/gui/dialog_add.py:257
+#: ../pondus/gui/guiutil.py:53
+msgid "Bodyfat"
 msgstr ""
 
-#: ../pondus/core/plot.py:112
+#: ../pondus/core/plot.py:26 ../pondus/gui/dialog_plot.py:79
+#: ../pondus/gui/dialog_plot.py:102 ../pondus/gui/dialog_add.py:259
+#: ../pondus/gui/guiutil.py:56
+msgid "Muscle"
+msgstr ""
+
+#: ../pondus/core/plot.py:27 ../pondus/gui/dialog_plot.py:82
+#: ../pondus/gui/dialog_plot.py:104 ../pondus/gui/dialog_add.py:261
+#: ../pondus/gui/guiutil.py:59
+msgid "Water"
+msgstr ""
+
+#: ../pondus/core/plot.py:114
 #, python-format
 msgid "Saving plot to %s"
 msgstr "Запазване на графиката %s"
@@ -181,7 +195,8 @@ msgid "Last Year"
 msgstr "Последната година"
 
 #: ../pondus/gui/dialog_plot.py:60
-msgid "Last 3 Months"
+#, fuzzy
+msgid "Last 6 Months"
 msgstr "Последните 3 месеца"
 
 #: ../pondus/gui/dialog_plot.py:61
@@ -197,86 +212,75 @@ msgstr "Настроен"
 msgid "Data Left:"
 msgstr "Данни за изнасяне:"
 
-#: ../pondus/gui/dialog_plot.py:76 ../pondus/gui/dialog_plot.py:93
-msgid "Bodyfat"
-msgstr ""
-
-#: ../pondus/gui/dialog_plot.py:79 ../pondus/gui/dialog_plot.py:96
+#: ../pondus/gui/dialog_plot.py:85 ../pondus/gui/dialog_plot.py:106
 msgid ""
 "To plot your BMI, you need to enter your height in the preferences dialog."
 msgstr ""
 "За да се изчертае вашия ИТМ (индекс телесна маса), трябва да въведете в "
 "настройките височината си."
 
-#: ../pondus/gui/dialog_plot.py:87
+#: ../pondus/gui/dialog_plot.py:93
 #, fuzzy
 msgid "Right:"
 msgstr "Тегло"
 
-#: ../pondus/gui/dialog_plot.py:100
+#: ../pondus/gui/dialog_plot.py:110
 msgid "None"
 msgstr ""
 
-#: ../pondus/gui/dialog_plot.py:107
+#: ../pondus/gui/dialog_plot.py:117
 msgid "Smooth"
 msgstr "Усреднено"
 
-#: ../pondus/gui/dialog_plot.py:111
+#: ../pondus/gui/dialog_plot.py:121
 #, fuzzy
 msgid "Show Plan"
 msgstr "Планиране на теглото"
 
-#: ../pondus/gui/dialog_plot.py:115
+#: ../pondus/gui/dialog_plot.py:125
 msgid "The weight planner can be enabled in the preferences dialog."
 msgstr "Планирането на теглото може да се включи от прозореца с настройки."
 
-#: ../pondus/gui/dialog_plot.py:120
+#: ../pondus/gui/dialog_plot.py:130
 msgid "Save Plot"
 msgstr "Запазване на графиката"
 
-#: ../pondus/gui/dialog_plot.py:152 ../pondus/gui/dialog_plot.py:157
-#: ../pondus/gui/dialog_add.py:180
+#: ../pondus/gui/dialog_plot.py:162 ../pondus/gui/dialog_plot.py:167
+#: ../pondus/gui/dialog_add.py:181
 msgid "Error: Wrong Format"
 msgstr "Грешка: неправилен формат"
 
-#: ../pondus/gui/dialog_plot.py:153 ../pondus/gui/dialog_add.py:181
+#: ../pondus/gui/dialog_plot.py:163 ../pondus/gui/dialog_add.py:182
 msgid "The data entered is not in the correct format!"
 msgstr "Въведените данни не са в правилен формат!"
 
-#: ../pondus/gui/dialog_plot.py:158
+#: ../pondus/gui/dialog_plot.py:168
 msgid "The start date has to be before the end date!"
 msgstr "Началната дата трябва да е преди крайната дата!"
 
-#: ../pondus/gui/dialog_plot.py:188
+#: ../pondus/gui/dialog_plot.py:198
 msgid "weight_plot.png"
 msgstr "weight_plot.png"
 
-#: ../pondus/gui/dialog_add.py:46
+#: ../pondus/gui/dialog_add.py:42
 msgid "Edit Dataset"
 msgstr "Редактиране на данните"
 
-#: ../pondus/gui/dialog_add.py:48
+#: ../pondus/gui/dialog_add.py:44
 msgid "Add Dataset"
 msgstr "Добавяне на данни"
 
-#: ../pondus/gui/dialog_add.py:55
-msgid "Date:"
-msgstr "Дата:"
+#: ../pondus/gui/dialog_add.py:51 ../pondus/gui/window_main.py:123
+msgid "Date"
+msgstr "Дата"
 
-#: ../pondus/gui/dialog_add.py:69
-msgid "Date (YYYY-MM-DD):"
+#: ../pondus/gui/dialog_add.py:65
+#, fuzzy
+msgid "Date (YYYY-MM-DD)"
 msgstr "Дата (ГГГГ-ММ-ДД):"
 
-#: ../pondus/gui/dialog_add.py:96
-msgid "Bodyfat (%):"
-msgstr ""
-
-#: ../pondus/gui/dialog_add.py:115 ../pondus/gui/guiutil.py:49
-msgid "Note:"
-msgstr ""
-
-#: ../pondus/gui/guiutil.py:45
-msgid "Bodyfat:"
+#: ../pondus/gui/dialog_add.py:109 ../pondus/gui/guiutil.py:62
+msgid "Note"
 msgstr ""
 
 #: ../pondus/gui/dialog_preferences.py:27 ../pondus/gui/window_main.py:68
@@ -324,14 +328,22 @@ msgid "Track Bodyfat"
 msgstr ""
 
 #: ../pondus/gui/dialog_preferences.py:109
+msgid "Track Muscle"
+msgstr ""
+
+#: ../pondus/gui/dialog_preferences.py:115
+msgid "Track Water"
+msgstr ""
+
+#: ../pondus/gui/dialog_preferences.py:121
 msgid "Append Notes to Datasets"
 msgstr ""
 
-#: ../pondus/gui/dialog_preferences.py:116
+#: ../pondus/gui/dialog_preferences.py:128
 msgid "Use Calendar in Add Dialog"
 msgstr "Календар при добавяне на данни"
 
-#: ../pondus/gui/dialog_preferences.py:120
+#: ../pondus/gui/dialog_preferences.py:132
 msgid ""
 "Use a calendar widget instead of a text entry to enter dates in the add/edit "
 "dialog"
@@ -339,7 +351,7 @@ msgstr ""
 "Използване на календар вместо текстово поле за въвеждане на дати при "
 "добавяне или редакция на данни"
 
-#: ../pondus/gui/dialog_preferences.py:124
+#: ../pondus/gui/dialog_preferences.py:136
 msgid "Remember Window Size"
 msgstr "Запомняне размера на прозореца"
 
@@ -371,10 +383,6 @@ msgstr "Библиотеката mathplotlib не е налична!"
 msgid "Quit"
 msgstr "Изход"
 
-#: ../pondus/gui/window_main.py:123
-msgid "Date"
-msgstr "Дата"
-
 #: ../pondus/gui/window_main.py:135
 msgid "Weight Planner"
 msgstr "Планиране на теглото"
@@ -403,6 +411,9 @@ msgstr "Запазване във файл"
 #: ../pondus/gui/dialog_save_file.py:30
 msgid "Save as File Type:"
 msgstr "Запазване като файл от вид:"
+
+#~ msgid "Date:"
+#~ msgstr "Дата:"
 
 #~ msgid "Data to plot:"
 #~ msgstr "Данни за изчертаване:"
