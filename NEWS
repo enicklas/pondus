@@ -8,6 +8,8 @@ Pondus NEWS
    (can be activated in preferences)
  * Add option to add notes to datasets (can be activated in preferences)
  * Plot bodyfat, muscle or water using second y-axis in graph
+ * Set default plot range to ``Last Year'' and replace ``Last 3 months''
+   with ``Last 6 months''
  * Display bodyfat, muscle, water and notes as tooltips in main window
  * Add Finnish translation (Thanks Esa Rautiainen)
  * Add Hebrew translation (Thanks Yaron Shahrabani)

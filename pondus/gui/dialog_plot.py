@@ -57,7 +57,7 @@ class PlotDialog(object):
                     _('Select date range of plot'))
         self.dateselector.append_text(_('All Time'))
         self.dateselector.append_text(_('Last Year'))
-        self.dateselector.append_text(_('Last 3 Months'))
+        self.dateselector.append_text(_('Last 6 Months'))
         self.dateselector.append_text(_('Last Month'))
         self.dateselector.append_text(_('Custom'))
         self.set_dateselector_default()
@@ -224,10 +224,10 @@ enabled in the preferences dialog.'))
             maxdate = date.today() + dateoffset
             mindate = maxdate - timedelta(days=365) - 2*dateoffset
         elif key == 2:
-            # select last 3 months
+            # select last 6 months
             dateoffset = timedelta(days=2)
             maxdate = date.today() + dateoffset
-            mindate = maxdate - timedelta(days=91) - 2*dateoffset
+            mindate = maxdate - timedelta(days=182) - 2*dateoffset
         elif key == 3:
             # select last month
             dateoffset = timedelta(days=1)
@@ -239,9 +239,10 @@ enabled in the preferences dialog.'))
         return mindate, maxdate
 
     def set_dateselector_default(self):
-        """Sets the default daterange of the plot to 3 months, if sensible."""
-        if (self.plot.get_mindate() > date.today() - timedelta(days=91)
-            or self.plot.get_maxdate() < date.today() - timedelta(days=91)):
+        """Sets the default daterange of the plot to last year, if sensible,
+        and to 'All Time' otherwise."""
+        if (self.plot.get_mindate() > date.today() - timedelta(days=365)
+            or self.plot.get_maxdate() < date.today() - timedelta(days=365)):
             self.dateselector.set_active(0)
         else:
-            self.dateselector.set_active(2)
+            self.dateselector.set_active(1)
