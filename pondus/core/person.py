@@ -106,10 +106,12 @@ def _dataset_from_element(dataset_el):
     dataset = Dataset(id_,
                   util.str2date(dataset_el.find('date').text),
                   float(dataset_el.find('weight').text))
-    bodyfat_el = dataset_el.find('bodyfat')
-    if bodyfat_el is not None:
-        dataset.bodyfat = float(bodyfat_el.text)
-    note_el = dataset_el.find('note')
-    if note_el is not None:
-        dataset.note = str(note_el.text)
+    for key in parameters.keys_optional:
+        key_el = dataset_el.find(key)
+        if key_el is not None:
+            if key in ['note']:
+                key_data = str(key_el.text)
+            else:
+                key_data = float(key_el.text)
+            setattr(dataset, key, key_data)
     return dataset

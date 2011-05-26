@@ -12,7 +12,8 @@ see LICENSE or http://www.opensource.org/licenses/mit-license.php
 class Dataset(object):
     """Implements the structure of single weight measurements."""
 
-    def __init__(self, id_, date, weight, bodyfat=None, note=None):
+    def __init__(self, id_, date, weight, bodyfat=None, muscle=None,
+            water=None, note=None):
         """Creates a new dataset with the given values.
 
         Weight is always in kg. Weight has one digit precision when using
@@ -22,6 +23,8 @@ class Dataset(object):
         self.date = date
         self.weight = weight
         self.bodyfat = bodyfat
+        self.muscle = muscle
+        self.water = water
         self.note = note
 
     def _get_weight_lbs(self):

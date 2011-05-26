@@ -29,6 +29,8 @@ config_default = {'window.remember_size': False,
                   'preferences.unit_system': 'metric',
                   'preferences.use_calendar': False,
                   'preferences.use_bodyfat': False,
+                  'preferences.use_muscle': False,
+                  'preferences.use_water': False,
                   'preferences.use_note': False,
                   'preferences.use_weight_plan': False}
 config = dict(config_default)
@@ -37,7 +39,7 @@ convert_weight_data_to_kg = False
 
 # tags used in the xml file and dataset objects
 keys_required = ('id', 'date', 'weight')
-keys_optional = ('bodyfat', 'note')
+keys_optional = ('bodyfat', 'muscle', 'water', 'note')
 
 # paths to button/logo icons used
 plot_button_path = '/usr/share/pondus/plot.png'

@@ -39,7 +39,7 @@ def read_config(default_config, conffile):
                 config['preferences.unit_system'] = 'imperial'
                 parameters.convert_weight_data_to_kg = True
         for option in ['use_weight_plan', 'use_calendar', 'use_bodyfat',
-                        'use_note']:
+                        'use_muscle', 'use_water', 'use_note']:
             if conf.has_option('preferences', option):
                 config['.'.join(['preferences', option])] = \
                                 conf.getboolean('preferences', option)
