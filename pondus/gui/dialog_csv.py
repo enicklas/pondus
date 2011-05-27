@@ -15,7 +15,7 @@ import gtk
 import os
 
 from pondus.core import parameters
-from pondus.core import csv_parser
+from pondus.backends.util import get_backend
 from pondus.gui.dialog_message import MessageDialog
 from pondus.gui.dialog_save_file import SaveFileDialog
 from pondus.gui.dialog_select_file import SelectFileDialog
@@ -29,7 +29,7 @@ class CSVDialogBase(object):
         self.dialog.set_title(title)
 
         self.datasets = parameters.user.measurements
-        self.filename = _('weight.csv')
+        self.backend = get_backend('csv')
 
         databox = gtk.VBox()
         databox.set_border_width(5)
@@ -55,8 +55,7 @@ class CSVDialogBase(object):
         filebox.pack_start(file_label)
         filehbox = gtk.HBox(homogeneous=False, spacing=5)
         self.file_entry = gtk.Entry()
-        self.file_entry.set_text(
-                    os.path.join(os.path.expanduser('~'), self.filename))
+        self.file_entry.set_text(self.backend.default_filename)
         filehbox.pack_start(self.file_entry)
         choose_button = gtk.Button(stock=gtk.STOCK_OPEN)
         filehbox.pack_start(choose_button)
@@ -101,7 +100,7 @@ class CSVDialogExport(CSVDialogBase):
     def exportcsv(self):
         """Saves the datasets to a csv file."""
         filepath = os.path.expanduser(self.file_entry.get_text())
-        csv_parser.write_csv(self.datasets, filepath)
+        self.backend.write(self.datasets, filepath)
         title = _('Export successful')
         message = _('The export was successful.')
         MessageDialog(type_='info', title=title, message=message).run()
@@ -109,7 +108,8 @@ class CSVDialogExport(CSVDialogBase):
     def select_file(self, button):
         """Runs the file selection dialog and updates the file entry
         accordingly."""
-        newpath = SaveFileDialog(self.filename, ['.csv']).run()
+        filepath = os.path.expanduser(self.file_entry.get_text())
+        newpath = SaveFileDialog(filepath, ['.csv']).run()
         if newpath is not None:
             self.file_entry.set_text(newpath)
 
@@ -140,7 +140,9 @@ class CSVDialogImport(CSVDialogBase):
 
     def importcsv(self, filepath):
         """Imports the data from the csv file."""
-        if csv_parser.read_csv(self.datasets, filepath):
+        new_datasets = self.backend.read(filepath)
+        if new_datasets:
+            self.datasets.add_list(new_datasets)
             title = _('Import successful')
             message = _('The import was successful.')
             MessageDialog(type_='info', title=title, message=message).run()

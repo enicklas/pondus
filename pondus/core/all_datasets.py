@@ -18,7 +18,9 @@ class AllDatasets(object):
     internally. AllDatasets.datasets is a dictionary of Dataset objects
     with their ids as keys."""
 
-    def __init__(self, datasets):
+    def __init__(self, datasets=None):
+        if datasets is None:
+            datasets = {}
         self.datasets = datasets
 
     def __iter__(self):
@@ -33,6 +35,15 @@ class AllDatasets(object):
         """Adds a given dataset object to the datasets or updates, if
         the id already exists."""
         self.datasets[dataset.id] = dataset
+
+    def add_list(self, datasets, keep_id=False):
+        """Adds a list of datasets and modifies their ids to avoid
+        overwriting existing datasets."""
+        for dataset in datasets:
+            if not keep_id:
+                id_ = self.get_new_id()
+                dataset.id = id_
+            self.add(dataset)
 
     def remove(self, id_):
         """Removes the dataset with the given id from the datasets."""
