@@ -41,8 +41,7 @@ class AllDatasets(object):
         overwriting existing datasets."""
         for dataset in datasets:
             if not keep_id:
-                id_ = self.get_new_id()
-                dataset.id = id_
+                dataset.id = self.get_new_id()
             self.add(dataset)
 
     def remove(self, id_):

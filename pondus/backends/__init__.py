@@ -8,4 +8,5 @@ This program is free software licensed under the MIT license. For details
 see LICENSE or http://www.opensource.org/licenses/mit-license.php
 """
 
-__all__ = ['csv_backend', 'xml_backend', 'xml_backend_old']
+__all__ = ['csv_backend', 'sportstracker_backend', 'xml_backend',
+            'xml_backend_old']

@@ -11,13 +11,13 @@ see LICENSE or http://www.opensource.org/licenses/mit-license.php
 
 def get_backend(name):
     """Returns a backend corresponding to name. Possible names are:
-    xml, xml_old, csv"""
+    xml, xml_old, csv, sportstracker"""
     if name == 'xml':
-        from xml_backend import XmlBackend
-        return XmlBackend()
+        from xml_backend import XmlBackend as Backend
     elif name == 'xml_old':
-        from xml_backend_old import XmlBackendOld
-        return XmlBackendOld()
+        from xml_backend_old import XmlBackendOld as Backend
     elif name == 'csv':
-        from csv_backend import CsvBackend
-        return CsvBackend()
+        from csv_backend import CsvBackend as Backend
+    elif name == 'sportstracker':
+        from sportstracker_backend import SportstrackerBackend as Backend
+    return Backend()

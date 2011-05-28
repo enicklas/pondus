@@ -19,8 +19,7 @@ from pondus.core.dataset import Dataset
 class CsvBackend(object):
     """Backend to read and write AllDataset data to a csv file."""
 
-    default_filename = os.path.join(os.path.expanduser('~'),
-                                    _('weight') + '.csv')
+    default_filename = os.path.join(os.path.expanduser('~'), _('weight.csv'))
 
     def write(self, data, filename):
         """Creates a csv-file at filename containing data."""
