@@ -50,13 +50,13 @@ def get_tooltip(dataset):
 
     tooltip = ''
     if dataset.bodyfat is not None:
-        text = _('Bodyfat') + ': ' + str(round(dataset.bodyfat,1)) + '%'
+        text = _('Bodyfat') + ': ' + str(round(dataset.bodyfat, 1)) + '%'
         tooltip = append_to_tooltip(tooltip, text)
     if dataset.muscle is not None:
-        text = _('Muscle') + ': ' + str(round(dataset.muscle,1)) + '%'
+        text = _('Muscle') + ': ' + str(round(dataset.muscle, 1)) + '%'
         tooltip = append_to_tooltip(tooltip, text)
     if dataset.water is not None:
-        text = _('Water') + ': ' + str(round(dataset.water,1)) + '%'
+        text = _('Water') + ': ' + str(round(dataset.water, 1)) + '%'
         tooltip = append_to_tooltip(tooltip, text)
     if dataset.note is not None:
         text = _('Note') + ': ' + dataset.note

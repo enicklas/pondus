@@ -204,8 +204,7 @@ class AddDataDialog(object):
             # check first for use_calendar; date_entry might not exist
             if (not parameters.config['preferences.use_calendar']
                             and entry == self.date_entry):
-                    gobject.idle_add(
-                            self.date_key_press, entry, text, position)
+                gobject.idle_add(self.date_key_press, entry, text, position)
             if entry == self.weight_entry \
                     or (parameters.config['preferences.use_bodyfat'] \
                         and entry==self.bodyfat_entry) \

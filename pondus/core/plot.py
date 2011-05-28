@@ -25,8 +25,7 @@ class Plot(object):
             'bodyfat': _('Bodyfat') + ' (%)',
             'muscle': _('Muscle') + ' (%)',
             'water': _('Water') + ' (%)',
-            None: ''
-            }
+            None: ''}
     show_plan = False
     smooth = False
     left_datatype = None
@@ -122,41 +121,21 @@ class Plot(object):
 
     def _update_left_data(self):
         """Update the data plotted on the left y-axis."""
-        self.left_data = self._get_plot_data(parameters.user.measurements, \
+        self.left_data = _get_plot_data(parameters.user.measurements, \
                     self.left_datatype)
-        self.left_plan = self._get_plot_data(parameters.user.plan, \
+        self.left_plan = _get_plot_data(parameters.user.plan, \
                     self.left_datatype)
         if self.smooth and len(self.left_data) > 0:
             self.left_data = _smooth_data(self.left_data)
 
     def _update_right_data(self):
         """Update the data plotted on the right y-axis."""
-        self.right_data = self._get_plot_data(parameters.user.measurements, \
+        self.right_data = _get_plot_data(parameters.user.measurements, \
                     self.right_datatype)
-        self.right_plan = self._get_plot_data(parameters.user.plan, \
+        self.right_plan = _get_plot_data(parameters.user.plan, \
                     self.right_datatype)
         if self.smooth and len(self.right_data) > 0:
             self.right_data = _smooth_data(self.right_data)
-
-    def _get_plot_data(self, datasets, datatype):
-        """Returns the list of datatuples to be plotted."""
-        if datatype == 'weight':
-            if parameters.config['preferences.unit_system'] == 'imperial':
-                return sorted((dataset.date, dataset.weight_lbs)
-                        for dataset in datasets)
-            else:
-                return sorted((dataset.date, dataset.weight)
-                        for dataset in datasets)
-        elif datatype == 'bmi':
-            return sorted((dataset.date,
-                    util.bmi(dataset.weight, parameters.user.height))
-                    for dataset in datasets)
-        elif datatype in ['bodyfat', 'muscle', 'water']:
-            return sorted((dataset.date, getattr(dataset, datatype))
-                    for dataset in datasets \
-                        if getattr(dataset, datatype) is not None)
-        elif datatype is None:
-            return []
 
     def _create_figure(self):
         """Creates the figure object containing the plot."""
@@ -286,6 +265,27 @@ class Plot(object):
 
 
 # internal helper functions
+def _get_plot_data(datasets, datatype):
+    """Returns the list of datatuples to be plotted."""
+    if datatype == 'weight':
+        if parameters.config['preferences.unit_system'] == 'imperial':
+            return sorted((dataset.date, dataset.weight_lbs)
+                    for dataset in datasets)
+        else:
+            return sorted((dataset.date, dataset.weight)
+                    for dataset in datasets)
+    elif datatype == 'bmi':
+        return sorted((dataset.date,
+                util.bmi(dataset.weight, parameters.user.height))
+                for dataset in datasets)
+    elif datatype in ['bodyfat', 'muscle', 'water']:
+        return sorted((dataset.date, getattr(dataset, datatype))
+                for dataset in datasets \
+                    if getattr(dataset, datatype) is not None)
+    elif datatype is None:
+        return []
+
+
 def _smooth_data(data):
     """Computes exponential central moving average."""
     # attenuation factor reducing the weight of neighboring datasets
