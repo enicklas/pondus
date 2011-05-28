@@ -76,11 +76,12 @@ def _clean_up():
 
 
 long_description = """
-Pondus keeps track of your body weight. It aims to be simple to use,
-lightweight and fast. The data can be plotted to get a quick overview
-of the history of your weight. A simple weight planner allows to
-define "target weights" and this plan can be compared with the actual
-measurements in a plot.
+Pondus is a personal weight manager that keeps track of your body
+weight and, optionally, the percentage of bodyfat, muscle and water.
+It aims to be simple to use, lightweight and fast. All data
+can be plotted to get a quick overview of the history of your weight.
+A simple weight planner allows to define "target weights" and this
+plan can be compared with the actual measurements in a plot.
 """
 
 data_files = [

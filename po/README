@@ -7,6 +7,7 @@ Transifex
 Translations can be created or updated via
 https://www.transifex.net/projects/p/pondus/[Transifex].
 
+
 The manual way
 ----------------
 
@@ -20,9 +21,6 @@ your language code) and edit the header manually.
 
 Translate the strings and send the resulting `LL.po` to
     mailto:pondus-dev@lists.berlios.de[]
-
-Thanks!
-
 
 Updating a translation:
 ~~~~~~~~~~~~~~~~~~~~~~~~~
