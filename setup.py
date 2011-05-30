@@ -110,7 +110,7 @@ setup(name = 'pondus',
       scripts = _get_scripts(),
       data_files = data_files,
       package_dir = {'pondus': 'pondus'},
-      packages = ['pondus', 'pondus.core', 'pondus.gui'],
+      packages = ['pondus', 'pondus.backends', 'pondus.core', 'pondus.gui'],
       requires = ['python(>= 2.5)', 'pygtk(>=2.12)', 'matplotlib'])
 
 _clean_up()
