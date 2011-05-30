@@ -1,21 +1,26 @@
-# translation of pondus.translations.pondus.po to Bulgarian
-# Copyright (C) 2010-11
-# This file is distributed under the same license as the pondus package.
-#
-# Yasen Pramatarov <yasen@lindeas.com>, 2010.
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# 
+# eike <eike@ephys.de>, 2011
+# Yasen Pramatarov <yasen@lindeas.com>, 2011
 msgid ""
 msgstr ""
-"Project-Id-Version: Pondus 0.7.3+hg\n"
-"Report-Msgid-Bugs-To: pondus-dev@lists.berlios.de\n"
-"POT-Creation-Date: 2011-05-26 19:26+0200\n"
-"PO-Revision-Date: 2010-03-16 12:06+0200\n"
-"Last-Translator: Yasen Pramatarov <yasen@lindeas.com>\n"
-"Language-Team: Bulgarian <dict@fsa-bg.org>\n"
-"Language: bg\n"
+"Project-Id-Version: pondus\n"
+"Report-Msgid-Bugs-To: http://bitbucket.org/eike/pondus/issues\n"
+"POT-Creation-Date: 2011-05-28 20:39+0200\n"
+"PO-Revision-Date: 2011-05-26 17:41+0000\n"
+"Last-Translator: eike <eike@ephys.de>\n"
+"Language-Team: Bulgarian (http://www.transifex.net/projects/p/pondus/team/bg/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: KBabel 1.11.4\n"
+"Language: bg\n"
+"Plural-Forms: nplurals=2; plural=(n != 1)\n"
+
+#: ../pondus/backends/csv_backend.py:22
+msgid "weight.csv"
+msgstr "weight.csv"
 
 #: ../pondus/core/util.py:47
 msgid "kg"
@@ -34,8 +39,8 @@ msgid ""
 "Another instance of pondus seems to be editing the same datafile. Do you "
 "really want to continue and loose all the changes from the other instance?"
 msgstr ""
-"Изглежда друго копие на програмата редактира същия файл с данни. Наистина ли "
-"искате да се продължи и да се загубят всички промени от другото копие?"
+"Изглежда друго копие на програмата редактира същия файл с данни. Наистина ли"
+" искате да се продължи и да се загубят всички промени от другото копие?"
 
 #: ../pondus/core/initialize.py:44
 #, python-format
@@ -63,24 +68,24 @@ msgid "Body Mass Index"
 msgstr "Индекс телесна маса"
 
 #: ../pondus/core/plot.py:25 ../pondus/gui/dialog_plot.py:76
-#: ../pondus/gui/dialog_plot.py:99 ../pondus/gui/dialog_add.py:257
+#: ../pondus/gui/dialog_plot.py:99 ../pondus/gui/dialog_add.py:256
 #: ../pondus/gui/guiutil.py:53
 msgid "Bodyfat"
 msgstr ""
 
 #: ../pondus/core/plot.py:26 ../pondus/gui/dialog_plot.py:79
-#: ../pondus/gui/dialog_plot.py:102 ../pondus/gui/dialog_add.py:259
+#: ../pondus/gui/dialog_plot.py:102 ../pondus/gui/dialog_add.py:258
 #: ../pondus/gui/guiutil.py:56
 msgid "Muscle"
 msgstr ""
 
 #: ../pondus/core/plot.py:27 ../pondus/gui/dialog_plot.py:82
-#: ../pondus/gui/dialog_plot.py:104 ../pondus/gui/dialog_add.py:261
+#: ../pondus/gui/dialog_plot.py:104 ../pondus/gui/dialog_add.py:260
 #: ../pondus/gui/guiutil.py:59
 msgid "Water"
 msgstr ""
 
-#: ../pondus/core/plot.py:114
+#: ../pondus/core/plot.py:113
 #, python-format
 msgid "Saving plot to %s"
 msgstr "Запазване на графиката %s"
@@ -98,10 +103,6 @@ msgstr "Това е директория, а не файл!"
 msgid "Using the standard file ~/.pondus/user_data.xml instead."
 msgstr "Използване вместо това на стандартния файл ~/.pondus/user_data.xml"
 
-#: ../pondus/gui/dialog_csv.py:32
-msgid "weight.csv"
-msgstr "weight.csv"
-
 #: ../pondus/gui/dialog_csv.py:39 ../pondus/gui/window_main.py:134
 msgid "Weight Measurements"
 msgstr "Измервания на теглото"
@@ -110,23 +111,23 @@ msgstr "Измервания на теглото"
 msgid "Weight Plan"
 msgstr "Планиране на теглото"
 
-#: ../pondus/gui/dialog_csv.py:89 ../pondus/gui/window_main.py:93
+#: ../pondus/gui/dialog_csv.py:88 ../pondus/gui/window_main.py:93
 msgid "CSV Export"
 msgstr "Изнасяне в CSV"
 
-#: ../pondus/gui/dialog_csv.py:90
+#: ../pondus/gui/dialog_csv.py:89
 msgid "Data to export:"
 msgstr "Данни за изнасяне:"
 
-#: ../pondus/gui/dialog_csv.py:91
+#: ../pondus/gui/dialog_csv.py:90
 msgid "CSV File to save to:"
 msgstr "Файл CSV за запазване:"
 
-#: ../pondus/gui/dialog_csv.py:105
+#: ../pondus/gui/dialog_csv.py:104
 msgid "Export successful"
 msgstr "Успешно изнасяне"
 
-#: ../pondus/gui/dialog_csv.py:106
+#: ../pondus/gui/dialog_csv.py:105
 msgid "The export was successful."
 msgstr "Изнасянето е успешно."
 
@@ -150,19 +151,19 @@ msgstr "Грешка: Невалиден файл"
 msgid "The given path does not point to a valid file!"
 msgstr "Даденият път не съдържа валиден файл!"
 
-#: ../pondus/gui/dialog_csv.py:144
+#: ../pondus/gui/dialog_csv.py:146
 msgid "Import successful"
 msgstr "Успешно внасяне"
 
-#: ../pondus/gui/dialog_csv.py:145
+#: ../pondus/gui/dialog_csv.py:147
 msgid "The import was successful."
 msgstr "Внасянето е успешно."
 
-#: ../pondus/gui/dialog_csv.py:148
+#: ../pondus/gui/dialog_csv.py:150
 msgid "Import not successful"
 msgstr "Внасянето е неуспешно."
 
-#: ../pondus/gui/dialog_csv.py:149
+#: ../pondus/gui/dialog_csv.py:151
 msgid "An error occured during the import."
 msgstr "Възникна грешка по време на внасянето."
 
@@ -195,9 +196,8 @@ msgid "Last Year"
 msgstr "Последната година"
 
 #: ../pondus/gui/dialog_plot.py:60
-#, fuzzy
 msgid "Last 6 Months"
-msgstr "Последните 3 месеца"
+msgstr "Последните 6 месеца"
 
 #: ../pondus/gui/dialog_plot.py:61
 msgid "Last Month"
@@ -208,9 +208,8 @@ msgid "Custom"
 msgstr "Настроен"
 
 #: ../pondus/gui/dialog_plot.py:69
-#, fuzzy
 msgid "Data Left:"
-msgstr "Данни за изнасяне:"
+msgstr ""
 
 #: ../pondus/gui/dialog_plot.py:85 ../pondus/gui/dialog_plot.py:106
 msgid ""
@@ -220,9 +219,8 @@ msgstr ""
 "настройките височината си."
 
 #: ../pondus/gui/dialog_plot.py:93
-#, fuzzy
 msgid "Right:"
-msgstr "Тегло"
+msgstr ""
 
 #: ../pondus/gui/dialog_plot.py:110
 msgid "None"
@@ -233,9 +231,8 @@ msgid "Smooth"
 msgstr "Усреднено"
 
 #: ../pondus/gui/dialog_plot.py:121
-#, fuzzy
 msgid "Show Plan"
-msgstr "Планиране на теглото"
+msgstr ""
 
 #: ../pondus/gui/dialog_plot.py:125
 msgid "The weight planner can be enabled in the preferences dialog."
@@ -275,9 +272,8 @@ msgid "Date"
 msgstr "Дата"
 
 #: ../pondus/gui/dialog_add.py:65
-#, fuzzy
 msgid "Date (YYYY-MM-DD)"
-msgstr "Дата (ГГГГ-ММ-ДД):"
+msgstr "Дата (ГГГГ-ММ-ДД)"
 
 #: ../pondus/gui/dialog_add.py:109 ../pondus/gui/guiutil.py:62
 msgid "Note"
@@ -325,7 +321,7 @@ msgstr "Включване на планиране на теглото"
 
 #: ../pondus/gui/dialog_preferences.py:103
 msgid "Track Bodyfat"
-msgstr ""
+msgstr "Следене на телесната мазнина"
 
 #: ../pondus/gui/dialog_preferences.py:109
 msgid "Track Muscle"
@@ -337,7 +333,7 @@ msgstr ""
 
 #: ../pondus/gui/dialog_preferences.py:121
 msgid "Append Notes to Datasets"
-msgstr ""
+msgstr "Добавяне на бележки към данните"
 
 #: ../pondus/gui/dialog_preferences.py:128
 msgid "Use Calendar in Add Dialog"
@@ -345,8 +341,8 @@ msgstr "Календар при добавяне на данни"
 
 #: ../pondus/gui/dialog_preferences.py:132
 msgid ""
-"Use a calendar widget instead of a text entry to enter dates in the add/edit "
-"dialog"
+"Use a calendar widget instead of a text entry to enter dates in the add/edit"
+" dialog"
 msgstr ""
 "Използване на календар вместо текстово поле за въвеждане на дати при "
 "добавяне или редакция на данни"
@@ -398,7 +394,8 @@ msgstr "Наистина ли искате да изтриете тези дан
 #: ../pondus/gui/window_main.py:368
 msgid "python-matplotlib is not installed, plotting disabled!"
 msgstr ""
-"python-matplotlib не е инсталирано, затова чертаенето на графики е изключено!"
+"python-matplotlib не е инсталирано, затова чертаенето на графики е "
+"изключено!"
 
 #: ../pondus/gui/window_main.py:378
 msgid "Plot weight data"
@@ -412,20 +409,4 @@ msgstr "Запазване във файл"
 msgid "Save as File Type:"
 msgstr "Запазване като файл от вид:"
 
-#~ msgid "Date:"
-#~ msgstr "Дата:"
 
-#~ msgid "Data to plot:"
-#~ msgstr "Данни за изчертаване:"
-
-#~ msgid "Raw and Smooth"
-#~ msgstr "Точно и усреднено"
-
-#~ msgid "Raw"
-#~ msgstr "Точно"
-
-#~ msgid "Include Weight Plan"
-#~ msgstr "Включване на планиране на теглото"
-
-#~ msgid "Please make sure this library is installed."
-#~ msgstr "Проверете дали тази библиотека е инсталирана."

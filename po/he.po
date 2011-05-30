@@ -1,22 +1,25 @@
-# Translation of pondus to Hebrew.
-# Copyright (C) 2011
-# This file is distributed under the same license as the pondus package.
-# Yaron Shahrabani <sh.yaron@gmail.com>, 2011.
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# 
+# eike <eike@ephys.de>, 2011
 msgid ""
 msgstr ""
-"Project-Id-Version: Pondus 0.7.3+hg\n"
-"Report-Msgid-Bugs-To: pondus-dev@lists.berlios.de\n"
-"POT-Creation-Date: 2011-05-26 19:26+0200\n"
-"PO-Revision-Date: 2011-01-24 10:23+0300\n"
-"Last-Translator: Yaron Shahrabani <sh.yaron@gmail.com>\n"
-"Language-Team: Gezer (Hebrew)\n"
-"Language: he\n"
+"Project-Id-Version: pondus\n"
+"Report-Msgid-Bugs-To: http://bitbucket.org/eike/pondus/issues\n"
+"POT-Creation-Date: 2011-05-28 20:39+0200\n"
+"PO-Revision-Date: 2011-05-26 17:41+0000\n"
+"Last-Translator: eike <eike@ephys.de>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Virtaal 0.7.0-beta4\n"
-"X-Project-Style: default\n"
+"Language: he\n"
+"Plural-Forms: nplurals=2; plural=(n != 1)\n"
+
+#: ../pondus/backends/csv_backend.py:22
+msgid "weight.csv"
+msgstr "weight.csv"
 
 #: ../pondus/core/util.py:47
 msgid "kg"
@@ -64,24 +67,24 @@ msgid "Body Mass Index"
 msgstr "אינדקס מסת הגוף"
 
 #: ../pondus/core/plot.py:25 ../pondus/gui/dialog_plot.py:76
-#: ../pondus/gui/dialog_plot.py:99 ../pondus/gui/dialog_add.py:257
+#: ../pondus/gui/dialog_plot.py:99 ../pondus/gui/dialog_add.py:256
 #: ../pondus/gui/guiutil.py:53
 msgid "Bodyfat"
 msgstr ""
 
 #: ../pondus/core/plot.py:26 ../pondus/gui/dialog_plot.py:79
-#: ../pondus/gui/dialog_plot.py:102 ../pondus/gui/dialog_add.py:259
+#: ../pondus/gui/dialog_plot.py:102 ../pondus/gui/dialog_add.py:258
 #: ../pondus/gui/guiutil.py:56
 msgid "Muscle"
 msgstr ""
 
 #: ../pondus/core/plot.py:27 ../pondus/gui/dialog_plot.py:82
-#: ../pondus/gui/dialog_plot.py:104 ../pondus/gui/dialog_add.py:261
+#: ../pondus/gui/dialog_plot.py:104 ../pondus/gui/dialog_add.py:260
 #: ../pondus/gui/guiutil.py:59
 msgid "Water"
 msgstr ""
 
-#: ../pondus/core/plot.py:114
+#: ../pondus/core/plot.py:113
 #, python-format
 msgid "Saving plot to %s"
 msgstr "שמירת הרישום אל %s"
@@ -99,10 +102,6 @@ msgstr "זוהי תיקייה, לא קובץ!"
 msgid "Using the standard file ~/.pondus/user_data.xml instead."
 msgstr "נעשה שימוש בקובץ התקני ‎~/.pondus/user_data.xml במקום."
 
-#: ../pondus/gui/dialog_csv.py:32
-msgid "weight.csv"
-msgstr "weight.csv"
-
 #: ../pondus/gui/dialog_csv.py:39 ../pondus/gui/window_main.py:134
 msgid "Weight Measurements"
 msgstr "מדידות משקל"
@@ -111,23 +110,23 @@ msgstr "מדידות משקל"
 msgid "Weight Plan"
 msgstr "תכנית משקל"
 
-#: ../pondus/gui/dialog_csv.py:89 ../pondus/gui/window_main.py:93
+#: ../pondus/gui/dialog_csv.py:88 ../pondus/gui/window_main.py:93
 msgid "CSV Export"
 msgstr "יצוא CSV"
 
-#: ../pondus/gui/dialog_csv.py:90
+#: ../pondus/gui/dialog_csv.py:89
 msgid "Data to export:"
 msgstr "נתונים ליצוא:"
 
-#: ../pondus/gui/dialog_csv.py:91
+#: ../pondus/gui/dialog_csv.py:90
 msgid "CSV File to save to:"
 msgstr "קובץ CSV לשמירה:"
 
-#: ../pondus/gui/dialog_csv.py:105
+#: ../pondus/gui/dialog_csv.py:104
 msgid "Export successful"
 msgstr "היצוא הצליח"
 
-#: ../pondus/gui/dialog_csv.py:106
+#: ../pondus/gui/dialog_csv.py:105
 msgid "The export was successful."
 msgstr "היצוא הסתיים בהצלחה."
 
@@ -151,19 +150,19 @@ msgstr "שגיאה: לא קובץ תקני"
 msgid "The given path does not point to a valid file!"
 msgstr "הנתיב הנתון אינו מפנה אל קובץ תקני!"
 
-#: ../pondus/gui/dialog_csv.py:144
+#: ../pondus/gui/dialog_csv.py:146
 msgid "Import successful"
 msgstr "היבוא הושלם"
 
-#: ../pondus/gui/dialog_csv.py:145
+#: ../pondus/gui/dialog_csv.py:147
 msgid "The import was successful."
 msgstr "היבוא הסתיים בהצלחה."
 
-#: ../pondus/gui/dialog_csv.py:148
+#: ../pondus/gui/dialog_csv.py:150
 msgid "Import not successful"
 msgstr "היבוא לא הצליח"
 
-#: ../pondus/gui/dialog_csv.py:149
+#: ../pondus/gui/dialog_csv.py:151
 msgid "An error occured during the import."
 msgstr "אירעה שגיאה במהלך היבוא."
 
@@ -196,9 +195,8 @@ msgid "Last Year"
 msgstr "שנה שעברה"
 
 #: ../pondus/gui/dialog_plot.py:60
-#, fuzzy
 msgid "Last 6 Months"
-msgstr "שלושת החודשים האחרונים"
+msgstr ""
 
 #: ../pondus/gui/dialog_plot.py:61
 msgid "Last Month"
@@ -209,9 +207,8 @@ msgid "Custom"
 msgstr "התאמה אישית"
 
 #: ../pondus/gui/dialog_plot.py:69
-#, fuzzy
 msgid "Data Left:"
-msgstr "נתונים ליצוא:"
+msgstr ""
 
 #: ../pondus/gui/dialog_plot.py:85 ../pondus/gui/dialog_plot.py:106
 msgid ""
@@ -220,9 +217,8 @@ msgstr ""
 "כדי לערוך רישום של ה־BMI שלך עליך להזין את הגובה שלך בתיבת דו־שיח ההעדפות."
 
 #: ../pondus/gui/dialog_plot.py:93
-#, fuzzy
 msgid "Right:"
-msgstr "משקל"
+msgstr ""
 
 #: ../pondus/gui/dialog_plot.py:110
 msgid "None"
@@ -233,9 +229,8 @@ msgid "Smooth"
 msgstr "חלק"
 
 #: ../pondus/gui/dialog_plot.py:121
-#, fuzzy
 msgid "Show Plan"
-msgstr "תכנית משקל"
+msgstr ""
 
 #: ../pondus/gui/dialog_plot.py:125
 msgid "The weight planner can be enabled in the preferences dialog."
@@ -275,9 +270,8 @@ msgid "Date"
 msgstr "תאריך"
 
 #: ../pondus/gui/dialog_add.py:65
-#, fuzzy
 msgid "Date (YYYY-MM-DD)"
-msgstr "תאריך (YYYY-MM-DD):"
+msgstr ""
 
 #: ../pondus/gui/dialog_add.py:109 ../pondus/gui/guiutil.py:62
 msgid "Note"
@@ -345,11 +339,11 @@ msgstr "שימוש בלוח שנה בדו־שיח ההוספה"
 
 #: ../pondus/gui/dialog_preferences.py:132
 msgid ""
-"Use a calendar widget instead of a text entry to enter dates in the add/edit "
-"dialog"
+"Use a calendar widget instead of a text entry to enter dates in the add/edit"
+" dialog"
 msgstr ""
-"שימוש בחלונית לוח שנה במקום הזנת טקסט כדי להזין תאריכים בתיבת הדו־שיח להוספה/"
-"עריכה"
+"שימוש בחלונית לוח שנה במקום הזנת טקסט כדי להזין תאריכים בתיבת הדו־שיח "
+"להוספה/עריכה"
 
 #: ../pondus/gui/dialog_preferences.py:136
 msgid "Remember Window Size"
@@ -411,20 +405,4 @@ msgstr "שמירה לקובץ"
 msgid "Save as File Type:"
 msgstr "שמירת הקובץ כסוג:"
 
-#~ msgid "Date:"
-#~ msgstr "תאריך:"
 
-#~ msgid "Data to plot:"
-#~ msgstr "נתונים לרישום:"
-
-#~ msgid "Raw and Smooth"
-#~ msgstr "גולמי וחלק"
-
-#~ msgid "Raw"
-#~ msgstr "גולמי"
-
-#~ msgid "Include Weight Plan"
-#~ msgstr "הכללת תכנית המשקל"
-
-#~ msgid "Please make sure this library is installed."
-#~ msgstr "נא לוודא שספרייה זו מותקנת."

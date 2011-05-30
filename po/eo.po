@@ -1,21 +1,25 @@
-# Esperanto Translation of Pondus
-# Copyright (C) 2010-11
-# This file is distributed under the same license as the pondus package.
-# Axel Rousseau <axel@esperanto-jeunes.org>, 2010
-#
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# 
+# eike <eike@ephys.de>, 2011
 msgid ""
 msgstr ""
-"Project-Id-Version: Pondus 0.7.3+hg\n"
-"Report-Msgid-Bugs-To: pondus-dev@lists.berlios.de\n"
-"POT-Creation-Date: 2011-05-26 19:26+0200\n"
-"PO-Revision-Date: 2010-06-15 12:18+0100\n"
-"Last-Translator: Axel Rousseau <axel@esperanto-jeunes.org>\n"
-"Language-Team: Esperanto <eo@li.org>\n"
-"Language: \n"
+"Project-Id-Version: pondus\n"
+"Report-Msgid-Bugs-To: http://bitbucket.org/eike/pondus/issues\n"
+"POT-Creation-Date: 2011-05-28 20:39+0200\n"
+"PO-Revision-Date: 2011-05-26 17:41+0000\n"
+"Last-Translator: eike <eike@ephys.de>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
-"Content-Type: text/plain; charset=utf-8\n"
+"Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Poedit-Language: Esperanto\n"
+"Language: eo\n"
+"Plural-Forms: nplurals=2; plural=(n != 1)\n"
+
+#: ../pondus/backends/csv_backend.py:22
+msgid "weight.csv"
+msgstr "weight.csv"
 
 #: ../pondus/core/util.py:47
 msgid "kg"
@@ -63,24 +67,24 @@ msgid "Body Mass Index"
 msgstr "Korpomasa indico"
 
 #: ../pondus/core/plot.py:25 ../pondus/gui/dialog_plot.py:76
-#: ../pondus/gui/dialog_plot.py:99 ../pondus/gui/dialog_add.py:257
+#: ../pondus/gui/dialog_plot.py:99 ../pondus/gui/dialog_add.py:256
 #: ../pondus/gui/guiutil.py:53
 msgid "Bodyfat"
 msgstr ""
 
 #: ../pondus/core/plot.py:26 ../pondus/gui/dialog_plot.py:79
-#: ../pondus/gui/dialog_plot.py:102 ../pondus/gui/dialog_add.py:259
+#: ../pondus/gui/dialog_plot.py:102 ../pondus/gui/dialog_add.py:258
 #: ../pondus/gui/guiutil.py:56
 msgid "Muscle"
 msgstr ""
 
 #: ../pondus/core/plot.py:27 ../pondus/gui/dialog_plot.py:82
-#: ../pondus/gui/dialog_plot.py:104 ../pondus/gui/dialog_add.py:261
+#: ../pondus/gui/dialog_plot.py:104 ../pondus/gui/dialog_add.py:260
 #: ../pondus/gui/guiutil.py:59
 msgid "Water"
 msgstr ""
 
-#: ../pondus/core/plot.py:114
+#: ../pondus/core/plot.py:113
 #, python-format
 msgid "Saving plot to %s"
 msgstr ""
@@ -98,10 +102,6 @@ msgstr "Estas dosierujo, ne dosiero!"
 msgid "Using the standard file ~/.pondus/user_data.xml instead."
 msgstr "Uzi aprioran dosieron  ~/.pondus/user_data.xml anstataŭ."
 
-#: ../pondus/gui/dialog_csv.py:32
-msgid "weight.csv"
-msgstr "weight.csv"
-
 #: ../pondus/gui/dialog_csv.py:39 ../pondus/gui/window_main.py:134
 msgid "Weight Measurements"
 msgstr "Pezaj Mezuroj"
@@ -110,23 +110,23 @@ msgstr "Pezaj Mezuroj"
 msgid "Weight Plan"
 msgstr "Peza Plano"
 
-#: ../pondus/gui/dialog_csv.py:89 ../pondus/gui/window_main.py:93
+#: ../pondus/gui/dialog_csv.py:88 ../pondus/gui/window_main.py:93
 msgid "CSV Export"
 msgstr "CSV Eksportado"
 
-#: ../pondus/gui/dialog_csv.py:90
+#: ../pondus/gui/dialog_csv.py:89
 msgid "Data to export:"
 msgstr "Datumoj por eksporti:"
 
-#: ../pondus/gui/dialog_csv.py:91
+#: ../pondus/gui/dialog_csv.py:90
 msgid "CSV File to save to:"
 msgstr ""
 
-#: ../pondus/gui/dialog_csv.py:105
+#: ../pondus/gui/dialog_csv.py:104
 msgid "Export successful"
 msgstr "Eksportado suksesis"
 
-#: ../pondus/gui/dialog_csv.py:106
+#: ../pondus/gui/dialog_csv.py:105
 msgid "The export was successful."
 msgstr ""
 
@@ -150,19 +150,19 @@ msgstr "Eraro: Ne valida Dosiero"
 msgid "The given path does not point to a valid file!"
 msgstr ""
 
-#: ../pondus/gui/dialog_csv.py:144
+#: ../pondus/gui/dialog_csv.py:146
 msgid "Import successful"
 msgstr ""
 
-#: ../pondus/gui/dialog_csv.py:145
+#: ../pondus/gui/dialog_csv.py:147
 msgid "The import was successful."
 msgstr ""
 
-#: ../pondus/gui/dialog_csv.py:148
+#: ../pondus/gui/dialog_csv.py:150
 msgid "Import not successful"
 msgstr ""
 
-#: ../pondus/gui/dialog_csv.py:149
+#: ../pondus/gui/dialog_csv.py:151
 msgid "An error occured during the import."
 msgstr ""
 
@@ -195,9 +195,8 @@ msgid "Last Year"
 msgstr "Lasta Jaro"
 
 #: ../pondus/gui/dialog_plot.py:60
-#, fuzzy
 msgid "Last 6 Months"
-msgstr "Lastaj 3 Monatoj"
+msgstr "Lastaj 6 Monatoj"
 
 #: ../pondus/gui/dialog_plot.py:61
 msgid "Last Month"
@@ -208,9 +207,8 @@ msgid "Custom"
 msgstr "Propra"
 
 #: ../pondus/gui/dialog_plot.py:69
-#, fuzzy
 msgid "Data Left:"
-msgstr "Datumoj por eksporti:"
+msgstr ""
 
 #: ../pondus/gui/dialog_plot.py:85 ../pondus/gui/dialog_plot.py:106
 msgid ""
@@ -218,9 +216,8 @@ msgid ""
 msgstr ""
 
 #: ../pondus/gui/dialog_plot.py:93
-#, fuzzy
 msgid "Right:"
-msgstr "Pezo"
+msgstr ""
 
 #: ../pondus/gui/dialog_plot.py:110
 msgid "None"
@@ -231,9 +228,8 @@ msgid "Smooth"
 msgstr "Glata"
 
 #: ../pondus/gui/dialog_plot.py:121
-#, fuzzy
 msgid "Show Plan"
-msgstr "Peza Plano"
+msgstr ""
 
 #: ../pondus/gui/dialog_plot.py:125
 msgid "The weight planner can be enabled in the preferences dialog."
@@ -273,7 +269,6 @@ msgid "Date"
 msgstr "Dato"
 
 #: ../pondus/gui/dialog_add.py:65
-#, fuzzy
 msgid "Date (YYYY-MM-DD)"
 msgstr "Dato (JJJJ-MM-TT)"
 
@@ -343,8 +338,8 @@ msgstr ""
 
 #: ../pondus/gui/dialog_preferences.py:132
 msgid ""
-"Use a calendar widget instead of a text entry to enter dates in the add/edit "
-"dialog"
+"Use a calendar widget instead of a text entry to enter dates in the add/edit"
+" dialog"
 msgstr ""
 
 #: ../pondus/gui/dialog_preferences.py:136
@@ -407,17 +402,4 @@ msgstr "Konservi al la dosiero..."
 msgid "Save as File Type:"
 msgstr "Konservi kiel dosiera tipo:"
 
-#~ msgid "Date:"
-#~ msgstr "Dato:"
 
-#~ msgid "Data to plot:"
-#~ msgstr "Datumoj por grafikigi :"
-
-#~ msgid "Raw and Smooth"
-#~ msgstr "Kruda kaj Glata"
-
-#~ msgid "Raw"
-#~ msgstr "Kruda"
-
-#~ msgid "Please make sure this library is installed."
-#~ msgstr "Bonvolu certiĝi ke tiu biblioteko instaliĝis"

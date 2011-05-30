@@ -1,21 +1,25 @@
 # SOME DESCRIPTIVE TITLE.
 # Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the PACKAGE package.
-# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
-#
+# 
+# Muhammet Kara <muhammet.k@gmail.com>, 2011
 msgid ""
 msgstr ""
 "Project-Id-Version: pondus\n"
-"Report-Msgid-Bugs-To: pondus-dev@lists.berlios.de\n"
-"POT-Creation-Date: 2011-05-26 19:26+0200\n"
-"PO-Revision-Date: 2011-03-12 22:19+0000\n"
-"Last-Translator: kara <muhammet.k@gmail.com>\n"
+"Report-Msgid-Bugs-To: http://bitbucket.org/eike/pondus/issues\n"
+"POT-Creation-Date: 2011-05-28 20:39+0200\n"
+"PO-Revision-Date: 2011-05-26 17:41+0000\n"
+"Last-Translator: eike <eike@ephys.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
-"Language: tr\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Language: tr\n"
 "Plural-Forms: nplurals=1; plural=0\n"
+
+#: ../pondus/backends/csv_backend.py:22
+msgid "weight.csv"
+msgstr "weight.csv"
 
 #: ../pondus/core/util.py:47
 msgid "kg"
@@ -64,24 +68,24 @@ msgid "Body Mass Index"
 msgstr "Vücut Kitle İndeksi"
 
 #: ../pondus/core/plot.py:25 ../pondus/gui/dialog_plot.py:76
-#: ../pondus/gui/dialog_plot.py:99 ../pondus/gui/dialog_add.py:257
+#: ../pondus/gui/dialog_plot.py:99 ../pondus/gui/dialog_add.py:256
 #: ../pondus/gui/guiutil.py:53
 msgid "Bodyfat"
 msgstr ""
 
 #: ../pondus/core/plot.py:26 ../pondus/gui/dialog_plot.py:79
-#: ../pondus/gui/dialog_plot.py:102 ../pondus/gui/dialog_add.py:259
+#: ../pondus/gui/dialog_plot.py:102 ../pondus/gui/dialog_add.py:258
 #: ../pondus/gui/guiutil.py:56
 msgid "Muscle"
 msgstr ""
 
 #: ../pondus/core/plot.py:27 ../pondus/gui/dialog_plot.py:82
-#: ../pondus/gui/dialog_plot.py:104 ../pondus/gui/dialog_add.py:261
+#: ../pondus/gui/dialog_plot.py:104 ../pondus/gui/dialog_add.py:260
 #: ../pondus/gui/guiutil.py:59
 msgid "Water"
 msgstr ""
 
-#: ../pondus/core/plot.py:114
+#: ../pondus/core/plot.py:113
 #, python-format
 msgid "Saving plot to %s"
 msgstr "Grafik %s içine kaydediliyor"
@@ -99,10 +103,6 @@ msgstr "Bir dosya değil, dizin girdiniz!"
 msgid "Using the standard file ~/.pondus/user_data.xml instead."
 msgstr "Onun yerine ~/.pondus/User_data.xml standart dosyası kullanılıyor."
 
-#: ../pondus/gui/dialog_csv.py:32
-msgid "weight.csv"
-msgstr "weight.csv"
-
 #: ../pondus/gui/dialog_csv.py:39 ../pondus/gui/window_main.py:134
 msgid "Weight Measurements"
 msgstr "Ağırlık Ölçümleri"
@@ -111,23 +111,23 @@ msgstr "Ağırlık Ölçümleri"
 msgid "Weight Plan"
 msgstr "Ağırlık Planı"
 
-#: ../pondus/gui/dialog_csv.py:89 ../pondus/gui/window_main.py:93
+#: ../pondus/gui/dialog_csv.py:88 ../pondus/gui/window_main.py:93
 msgid "CSV Export"
 msgstr "CSV Dışa Aktar"
 
-#: ../pondus/gui/dialog_csv.py:90
+#: ../pondus/gui/dialog_csv.py:89
 msgid "Data to export:"
 msgstr "Dışa aktarılacak veri:"
 
-#: ../pondus/gui/dialog_csv.py:91
+#: ../pondus/gui/dialog_csv.py:90
 msgid "CSV File to save to:"
 msgstr "Kaydedilecek CSV Dosyası:"
 
-#: ../pondus/gui/dialog_csv.py:105
+#: ../pondus/gui/dialog_csv.py:104
 msgid "Export successful"
 msgstr "Dışa aktarım başarılı"
 
-#: ../pondus/gui/dialog_csv.py:106
+#: ../pondus/gui/dialog_csv.py:105
 msgid "The export was successful."
 msgstr "Dışa aktarım başarıyla gerçekleştirildi."
 
@@ -151,19 +151,19 @@ msgstr "Hata: Geçerli bir dosya değil"
 msgid "The given path does not point to a valid file!"
 msgstr "Verilen yol geçerli bir dosyayı göstermiyor!"
 
-#: ../pondus/gui/dialog_csv.py:144
+#: ../pondus/gui/dialog_csv.py:146
 msgid "Import successful"
 msgstr "İçe aktarım başarılı"
 
-#: ../pondus/gui/dialog_csv.py:145
+#: ../pondus/gui/dialog_csv.py:147
 msgid "The import was successful."
 msgstr "İçe aktarım başarıyla gerçekleştirildi."
 
-#: ../pondus/gui/dialog_csv.py:148
+#: ../pondus/gui/dialog_csv.py:150
 msgid "Import not successful"
 msgstr "İçe aktarım başarısız"
 
-#: ../pondus/gui/dialog_csv.py:149
+#: ../pondus/gui/dialog_csv.py:151
 msgid "An error occured during the import."
 msgstr "İçe aktarım sırasında bir hata oluştu."
 
@@ -196,9 +196,8 @@ msgid "Last Year"
 msgstr "Geçen Yıl"
 
 #: ../pondus/gui/dialog_plot.py:60
-#, fuzzy
 msgid "Last 6 Months"
-msgstr "Son 3 Ay"
+msgstr "Son 6 Ay"
 
 #: ../pondus/gui/dialog_plot.py:61
 msgid "Last Month"
@@ -209,9 +208,8 @@ msgid "Custom"
 msgstr "Özel"
 
 #: ../pondus/gui/dialog_plot.py:69
-#, fuzzy
 msgid "Data Left:"
-msgstr "Dışa aktarılacak veri:"
+msgstr ""
 
 #: ../pondus/gui/dialog_plot.py:85 ../pondus/gui/dialog_plot.py:106
 msgid ""
@@ -221,9 +219,8 @@ msgstr ""
 "girmelisiniz."
 
 #: ../pondus/gui/dialog_plot.py:93
-#, fuzzy
 msgid "Right:"
-msgstr "Ağırlık"
+msgstr ""
 
 #: ../pondus/gui/dialog_plot.py:110
 msgid "None"
@@ -276,9 +273,8 @@ msgid "Date"
 msgstr "Tarih"
 
 #: ../pondus/gui/dialog_add.py:65
-#, fuzzy
 msgid "Date (YYYY-MM-DD)"
-msgstr "Tarih (YYYY-AA-GG):"
+msgstr "Tarih (YYYY-AA-GG)"
 
 #: ../pondus/gui/dialog_add.py:109 ../pondus/gui/guiutil.py:62
 msgid "Note"
@@ -346,8 +342,8 @@ msgstr "Ekle İletişim Kutusunda Takvim Kullan"
 
 #: ../pondus/gui/dialog_preferences.py:132
 msgid ""
-"Use a calendar widget instead of a text entry to enter dates in the add/edit "
-"dialog"
+"Use a calendar widget instead of a text entry to enter dates in the add/edit"
+" dialog"
 msgstr ""
 "Ekle/düzenle iletişim kutusunda tarihleri girmek için metin girişi yerine "
 "bir takvim uygulamacığı kullan"
@@ -412,17 +408,4 @@ msgstr "Dosyaya Kaydet"
 msgid "Save as File Type:"
 msgstr "Farklı Kaydet Dosya Türü:"
 
-#~ msgid "Date:"
-#~ msgstr "Tarih:"
 
-#~ msgid "Data to plot:"
-#~ msgstr "Grafiği çizilecek veri:"
-
-#~ msgid "Raw and Smooth"
-#~ msgstr "Ham ve Pürüzsüz"
-
-#~ msgid "Raw"
-#~ msgstr "Ham"
-
-#~ msgid "Include Weight Plan"
-#~ msgstr "Ağırlık Planını Dahil Et"

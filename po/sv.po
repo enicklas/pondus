@@ -1,21 +1,25 @@
-# translation of sv.po to svenska
-# Copyright (C) 2009-11 THE PACKAGE'S COPYRIGHT HOLDER
-# This file is distributed under the same license as the pondus package.
-#
-# Peter Landgren <peter.talken@telia.com>, 2009.
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# 
+# eike <eike@ephys.de>, 2011
 msgid ""
 msgstr ""
-"Project-Id-Version: sv\n"
-"Report-Msgid-Bugs-To: pondus-dev@lists.berlios.de\n"
-"POT-Creation-Date: 2011-05-26 19:26+0200\n"
-"PO-Revision-Date: 2009-12-22 09:55+0100\n"
-"Last-Translator: Peter Landgren <peter.talken@telia.com>\n"
-"Language-Team: svenska <sv@li.org>\n"
-"Language: \n"
+"Project-Id-Version: pondus\n"
+"Report-Msgid-Bugs-To: http://bitbucket.org/eike/pondus/issues\n"
+"POT-Creation-Date: 2011-05-28 20:39+0200\n"
+"PO-Revision-Date: 2011-05-26 17:41+0000\n"
+"Last-Translator: eike <eike@ephys.de>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: KBabel 1.11.4\n"
+"Language: sv\n"
+"Plural-Forms: nplurals=2; plural=(n != 1)\n"
+
+#: ../pondus/backends/csv_backend.py:22
+msgid "weight.csv"
+msgstr "vikt.csv"
 
 #: ../pondus/core/util.py:47
 msgid "kg"
@@ -63,24 +67,24 @@ msgid "Body Mass Index"
 msgstr "Body Mass Index"
 
 #: ../pondus/core/plot.py:25 ../pondus/gui/dialog_plot.py:76
-#: ../pondus/gui/dialog_plot.py:99 ../pondus/gui/dialog_add.py:257
+#: ../pondus/gui/dialog_plot.py:99 ../pondus/gui/dialog_add.py:256
 #: ../pondus/gui/guiutil.py:53
 msgid "Bodyfat"
 msgstr ""
 
 #: ../pondus/core/plot.py:26 ../pondus/gui/dialog_plot.py:79
-#: ../pondus/gui/dialog_plot.py:102 ../pondus/gui/dialog_add.py:259
+#: ../pondus/gui/dialog_plot.py:102 ../pondus/gui/dialog_add.py:258
 #: ../pondus/gui/guiutil.py:56
 msgid "Muscle"
 msgstr ""
 
 #: ../pondus/core/plot.py:27 ../pondus/gui/dialog_plot.py:82
-#: ../pondus/gui/dialog_plot.py:104 ../pondus/gui/dialog_add.py:261
+#: ../pondus/gui/dialog_plot.py:104 ../pondus/gui/dialog_add.py:260
 #: ../pondus/gui/guiutil.py:59
 msgid "Water"
 msgstr ""
 
-#: ../pondus/core/plot.py:114
+#: ../pondus/core/plot.py:113
 #, python-format
 msgid "Saving plot to %s"
 msgstr "Sparar diagram till %s"
@@ -98,10 +102,6 @@ msgstr "Dette är en mapp, ej en fil!"
 msgid "Using the standard file ~/.pondus/user_data.xml instead."
 msgstr "Använder standardfil ~/.pondus/user_data.xml i stället"
 
-#: ../pondus/gui/dialog_csv.py:32
-msgid "weight.csv"
-msgstr "vikt.csv"
-
 #: ../pondus/gui/dialog_csv.py:39 ../pondus/gui/window_main.py:134
 msgid "Weight Measurements"
 msgstr "Viktmätningar"
@@ -110,23 +110,23 @@ msgstr "Viktmätningar"
 msgid "Weight Plan"
 msgstr "Viktplan"
 
-#: ../pondus/gui/dialog_csv.py:89 ../pondus/gui/window_main.py:93
+#: ../pondus/gui/dialog_csv.py:88 ../pondus/gui/window_main.py:93
 msgid "CSV Export"
 msgstr "CSV-export"
 
-#: ../pondus/gui/dialog_csv.py:90
+#: ../pondus/gui/dialog_csv.py:89
 msgid "Data to export:"
 msgstr "Data att exportera:"
 
-#: ../pondus/gui/dialog_csv.py:91
+#: ../pondus/gui/dialog_csv.py:90
 msgid "CSV File to save to:"
 msgstr "CSV-fil sparas till:"
 
-#: ../pondus/gui/dialog_csv.py:105
+#: ../pondus/gui/dialog_csv.py:104
 msgid "Export successful"
 msgstr "Lyckad export"
 
-#: ../pondus/gui/dialog_csv.py:106
+#: ../pondus/gui/dialog_csv.py:105
 msgid "The export was successful."
 msgstr "Exporten lyckades."
 
@@ -150,19 +150,19 @@ msgstr "Fel: Ogiltig fil"
 msgid "The given path does not point to a valid file!"
 msgstr "Den angivna sökvägen pekar inte på en giltig fil!"
 
-#: ../pondus/gui/dialog_csv.py:144
+#: ../pondus/gui/dialog_csv.py:146
 msgid "Import successful"
 msgstr "Import lyckades"
 
-#: ../pondus/gui/dialog_csv.py:145
+#: ../pondus/gui/dialog_csv.py:147
 msgid "The import was successful."
 msgstr "Importen lyckades."
 
-#: ../pondus/gui/dialog_csv.py:148
+#: ../pondus/gui/dialog_csv.py:150
 msgid "Import not successful"
 msgstr "Importen misslyckades"
 
-#: ../pondus/gui/dialog_csv.py:149
+#: ../pondus/gui/dialog_csv.py:151
 msgid "An error occured during the import."
 msgstr "Ett fel inträffade under import."
 
@@ -195,9 +195,8 @@ msgid "Last Year"
 msgstr "Förra året"
 
 #: ../pondus/gui/dialog_plot.py:60
-#, fuzzy
 msgid "Last 6 Months"
-msgstr "Senaste 3 månaderna"
+msgstr "Senaste 6 månaderna"
 
 #: ../pondus/gui/dialog_plot.py:61
 msgid "Last Month"
@@ -208,9 +207,8 @@ msgid "Custom"
 msgstr "Anpassad"
 
 #: ../pondus/gui/dialog_plot.py:69
-#, fuzzy
 msgid "Data Left:"
-msgstr "Data att exportera:"
+msgstr ""
 
 #: ../pondus/gui/dialog_plot.py:85 ../pondus/gui/dialog_plot.py:106
 msgid ""
@@ -219,9 +217,8 @@ msgstr ""
 "För att rita ditt BMI, måste du mata in din längd i inställningsdialogen."
 
 #: ../pondus/gui/dialog_plot.py:93
-#, fuzzy
 msgid "Right:"
-msgstr "Vikt"
+msgstr ""
 
 #: ../pondus/gui/dialog_plot.py:110
 msgid "None"
@@ -274,9 +271,8 @@ msgid "Date"
 msgstr "Datum"
 
 #: ../pondus/gui/dialog_add.py:65
-#, fuzzy
 msgid "Date (YYYY-MM-DD)"
-msgstr "Datum (YYYY-MM-DD):"
+msgstr "Datum (YYYY-MM-DD)"
 
 #: ../pondus/gui/dialog_add.py:109 ../pondus/gui/guiutil.py:62
 msgid "Note"
@@ -344,8 +340,8 @@ msgstr "Använda kalender i tilläggsdialog"
 
 #: ../pondus/gui/dialog_preferences.py:132
 msgid ""
-"Use a calendar widget instead of a text entry to enter dates in the add/edit "
-"dialog"
+"Use a calendar widget instead of a text entry to enter dates in the add/edit"
+" dialog"
 msgstr ""
 "Använd en kalender i stället för textinmatning av datum i tilläggs/redigera-"
 "dialogen"
@@ -410,20 +406,4 @@ msgstr "Spara till fil"
 msgid "Save as File Type:"
 msgstr "Spara som filtyp:"
 
-#~ msgid "Date:"
-#~ msgstr "Datum:"
 
-#~ msgid "Data to plot:"
-#~ msgstr "Data till diagram:"
-
-#~ msgid "Raw and Smooth"
-#~ msgstr "Grov och utjämnad"
-
-#~ msgid "Raw"
-#~ msgstr "Grov"
-
-#~ msgid "Include Weight Plan"
-#~ msgstr "Ta med viktsplan"
-
-#~ msgid "Please make sure this library is installed."
-#~ msgstr "Se till att detta bibliotek är installerat"

@@ -1,22 +1,27 @@
-# German Translation of Pondus
-# Copyright (C) 2008-11
-# This file is distributed under the same license as the Pondus package.
-# Eike Nicklas <eike@ephys.de>, 2008-11
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# 
 # <fab@fedoraproject.org>, 2011
-#
+# eike <eike@ephys.de>, 2011
+# Fabian Affolter <fab@fedoraproject.org>, 2011
 msgid ""
 msgstr ""
-"Project-Id-Version: Pondus 0.7.3+hg\n"
-"Report-Msgid-Bugs-To: pondus-dev@lists.berlios.de\n"
-"POT-Creation-Date: 2011-05-26 19:26+0200\n"
-"PO-Revision-Date: 2011-05-24 21:57+0000\n"
-"Last-Translator: Eike Nicklas <eike@ephys.de>\n"
-"Language-Team: German <>\n"
-"Language: de\n"
+"Project-Id-Version: pondus\n"
+"Report-Msgid-Bugs-To: http://bitbucket.org/eike/pondus/issues\n"
+"POT-Creation-Date: 2011-05-28 20:39+0200\n"
+"PO-Revision-Date: 2011-05-26 18:43+0000\n"
+"Last-Translator: eike <eike@ephys.de>\n"
+"Language-Team: German (http://www.transifex.net/projects/p/pondus/team/de/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Language: de\n"
 "Plural-Forms: nplurals=2; plural=(n != 1)\n"
+
+#: ../pondus/backends/csv_backend.py:22
+msgid "weight.csv"
+msgstr "gewicht.csv"
 
 #: ../pondus/core/util.py:47
 msgid "kg"
@@ -65,24 +70,24 @@ msgid "Body Mass Index"
 msgstr "Body Mass Index"
 
 #: ../pondus/core/plot.py:25 ../pondus/gui/dialog_plot.py:76
-#: ../pondus/gui/dialog_plot.py:99 ../pondus/gui/dialog_add.py:257
+#: ../pondus/gui/dialog_plot.py:99 ../pondus/gui/dialog_add.py:256
 #: ../pondus/gui/guiutil.py:53
 msgid "Bodyfat"
 msgstr "Körperfett"
 
 #: ../pondus/core/plot.py:26 ../pondus/gui/dialog_plot.py:79
-#: ../pondus/gui/dialog_plot.py:102 ../pondus/gui/dialog_add.py:259
+#: ../pondus/gui/dialog_plot.py:102 ../pondus/gui/dialog_add.py:258
 #: ../pondus/gui/guiutil.py:56
 msgid "Muscle"
 msgstr "Muskelanteil"
 
 #: ../pondus/core/plot.py:27 ../pondus/gui/dialog_plot.py:82
-#: ../pondus/gui/dialog_plot.py:104 ../pondus/gui/dialog_add.py:261
+#: ../pondus/gui/dialog_plot.py:104 ../pondus/gui/dialog_add.py:260
 #: ../pondus/gui/guiutil.py:59
 msgid "Water"
 msgstr "Wasseranteil"
 
-#: ../pondus/core/plot.py:114
+#: ../pondus/core/plot.py:113
 #, python-format
 msgid "Saving plot to %s"
 msgstr "Diagramm wird als %s gespeichert"
@@ -100,10 +105,6 @@ msgstr "Sie haben ein Verzeichnis und keine Datei übergeben!"
 msgid "Using the standard file ~/.pondus/user_data.xml instead."
 msgstr "Benutze stattdessen die Standarddatei ~/.pondus/user_data.xml"
 
-#: ../pondus/gui/dialog_csv.py:32
-msgid "weight.csv"
-msgstr "gewicht.csv"
-
 #: ../pondus/gui/dialog_csv.py:39 ../pondus/gui/window_main.py:134
 msgid "Weight Measurements"
 msgstr "Gewichtsmessungen"
@@ -112,23 +113,23 @@ msgstr "Gewichtsmessungen"
 msgid "Weight Plan"
 msgstr "Gewichtsplaner"
 
-#: ../pondus/gui/dialog_csv.py:89 ../pondus/gui/window_main.py:93
+#: ../pondus/gui/dialog_csv.py:88 ../pondus/gui/window_main.py:93
 msgid "CSV Export"
 msgstr "CSV Export"
 
-#: ../pondus/gui/dialog_csv.py:90
+#: ../pondus/gui/dialog_csv.py:89
 msgid "Data to export:"
 msgstr "Zu exportierende Daten:"
 
-#: ../pondus/gui/dialog_csv.py:91
+#: ../pondus/gui/dialog_csv.py:90
 msgid "CSV File to save to:"
 msgstr "CSV Zieldatei:"
 
-#: ../pondus/gui/dialog_csv.py:105
+#: ../pondus/gui/dialog_csv.py:104
 msgid "Export successful"
 msgstr "Export erfolgreich"
 
-#: ../pondus/gui/dialog_csv.py:106
+#: ../pondus/gui/dialog_csv.py:105
 msgid "The export was successful."
 msgstr "Der Export war erfolgreich."
 
@@ -152,19 +153,19 @@ msgstr "Fehler: Keine Datei"
 msgid "The given path does not point to a valid file!"
 msgstr "Der angegebene Pfad ist keine Datei!"
 
-#: ../pondus/gui/dialog_csv.py:144
+#: ../pondus/gui/dialog_csv.py:146
 msgid "Import successful"
 msgstr "Import erfolgreich"
 
-#: ../pondus/gui/dialog_csv.py:145
+#: ../pondus/gui/dialog_csv.py:147
 msgid "The import was successful."
 msgstr "Der Import war erfolgreich."
 
-#: ../pondus/gui/dialog_csv.py:148
+#: ../pondus/gui/dialog_csv.py:150
 msgid "Import not successful"
 msgstr "Import nicht erfolgreich"
 
-#: ../pondus/gui/dialog_csv.py:149
+#: ../pondus/gui/dialog_csv.py:151
 msgid "An error occured during the import."
 msgstr "Beim Import ist ein Fehler aufgetreten."
 
@@ -342,8 +343,8 @@ msgstr "Benutze Kalender im Hinzufügen-Fenster"
 
 #: ../pondus/gui/dialog_preferences.py:132
 msgid ""
-"Use a calendar widget instead of a text entry to enter dates in the add/edit "
-"dialog"
+"Use a calendar widget instead of a text entry to enter dates in the add/edit"
+" dialog"
 msgstr ""
 "Benutze ein Kalenderwidget anstatt des Texteingabefeldes zum Eingeben von "
 "Daten im Hinzufügen-/Änderndialog"
@@ -408,26 +409,4 @@ msgstr "Speichere in Datei"
 msgid "Save as File Type:"
 msgstr "Speichere Datei im Format:"
 
-#~ msgid "Bodyfat (%)"
-#~ msgstr "Körperfett (%):"
 
-#~ msgid "Date:"
-#~ msgstr "Datum:"
-
-#~ msgid "Bodyfat (%):"
-#~ msgstr "Körperfett (%):"
-
-#~ msgid "Bodyfat:"
-#~ msgstr "Körperfett:"
-
-#~ msgid "Data to plot:"
-#~ msgstr "Zu plottende Daten:"
-
-#~ msgid "Raw and Smooth"
-#~ msgstr "Rohdaten und Geglättet"
-
-#~ msgid "Raw"
-#~ msgstr "Rohdaten"
-
-#~ msgid "Include Weight Plan"
-#~ msgstr "Gewichtsplan anzeigen"
