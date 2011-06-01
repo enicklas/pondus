@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: pondus\n"
 "Report-Msgid-Bugs-To: http://bitbucket.org/eike/pondus/issues\n"
-"POT-Creation-Date: 2011-05-26 19:26+0200\n"
-"PO-Revision-Date: 2011-05-29 18:37+0000\n"
+"POT-Creation-Date: 2011-05-28 20:39+0200\n"
+"PO-Revision-Date: 2011-05-31 13:24+0000\n"
 "Last-Translator: Sl_Alex <alexslabchenko@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -15,6 +15,10 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Language: ru\n"
 "Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2)\n"
+
+#: ../pondus/backends/csv_backend.py:22
+msgid "weight.csv"
+msgstr "weight.csv"
 
 #: ../pondus/core/util.py:47
 msgid "kg"
@@ -56,7 +60,7 @@ msgstr ""
 #: ../pondus/gui/dialog_plot.py:97 ../pondus/gui/dialog_add.py:78
 #: ../pondus/gui/window_main.py:124
 msgid "Weight"
-msgstr "Рост"
+msgstr "Вес"
 
 #: ../pondus/core/plot.py:24 ../pondus/gui/dialog_plot.py:88
 #: ../pondus/gui/dialog_plot.py:109
@@ -64,24 +68,24 @@ msgid "Body Mass Index"
 msgstr "Индекс массы тела"
 
 #: ../pondus/core/plot.py:25 ../pondus/gui/dialog_plot.py:76
-#: ../pondus/gui/dialog_plot.py:99 ../pondus/gui/dialog_add.py:257
+#: ../pondus/gui/dialog_plot.py:99 ../pondus/gui/dialog_add.py:256
 #: ../pondus/gui/guiutil.py:53
 msgid "Bodyfat"
 msgstr "Жир"
 
 #: ../pondus/core/plot.py:26 ../pondus/gui/dialog_plot.py:79
-#: ../pondus/gui/dialog_plot.py:102 ../pondus/gui/dialog_add.py:259
+#: ../pondus/gui/dialog_plot.py:102 ../pondus/gui/dialog_add.py:258
 #: ../pondus/gui/guiutil.py:56
 msgid "Muscle"
 msgstr "Мышцы"
 
 #: ../pondus/core/plot.py:27 ../pondus/gui/dialog_plot.py:82
-#: ../pondus/gui/dialog_plot.py:104 ../pondus/gui/dialog_add.py:261
+#: ../pondus/gui/dialog_plot.py:104 ../pondus/gui/dialog_add.py:260
 #: ../pondus/gui/guiutil.py:59
 msgid "Water"
 msgstr "Вода"
 
-#: ../pondus/core/plot.py:114
+#: ../pondus/core/plot.py:113
 #, python-format
 msgid "Saving plot to %s"
 msgstr "График сохраняется в %s"
@@ -99,10 +103,6 @@ msgstr "Вы передали папку, а не файл!"
 msgid "Using the standard file ~/.pondus/user_data.xml instead."
 msgstr "Используется стандартный файл ~/.pondus/user_data.xml"
 
-#: ../pondus/gui/dialog_csv.py:32
-msgid "weight.csv"
-msgstr "weight.csv"
-
 #: ../pondus/gui/dialog_csv.py:39 ../pondus/gui/window_main.py:134
 msgid "Weight Measurements"
 msgstr "Измерения веса"
@@ -111,23 +111,23 @@ msgstr "Измерения веса"
 msgid "Weight Plan"
 msgstr "План веса"
 
-#: ../pondus/gui/dialog_csv.py:89 ../pondus/gui/window_main.py:93
+#: ../pondus/gui/dialog_csv.py:88 ../pondus/gui/window_main.py:93
 msgid "CSV Export"
 msgstr "Экспорт в CSV"
 
-#: ../pondus/gui/dialog_csv.py:90
+#: ../pondus/gui/dialog_csv.py:89
 msgid "Data to export:"
 msgstr "Данные для экспорта"
 
-#: ../pondus/gui/dialog_csv.py:91
+#: ../pondus/gui/dialog_csv.py:90
 msgid "CSV File to save to:"
 msgstr "Имя CSV-файла для сохранения:"
 
-#: ../pondus/gui/dialog_csv.py:105
+#: ../pondus/gui/dialog_csv.py:104
 msgid "Export successful"
 msgstr "Успешно экспортировано"
 
-#: ../pondus/gui/dialog_csv.py:106
+#: ../pondus/gui/dialog_csv.py:105
 msgid "The export was successful."
 msgstr "Экспорт закончился успешно"
 
@@ -151,19 +151,19 @@ msgstr "Ошибка: Неправильный файл"
 msgid "The given path does not point to a valid file!"
 msgstr "Предоставленный путь не указывает на правильный файл!"
 
-#: ../pondus/gui/dialog_csv.py:144
+#: ../pondus/gui/dialog_csv.py:146
 msgid "Import successful"
 msgstr "Успешно импортировано"
 
-#: ../pondus/gui/dialog_csv.py:145
+#: ../pondus/gui/dialog_csv.py:147
 msgid "The import was successful."
 msgstr "Импорт завершился успешно"
 
-#: ../pondus/gui/dialog_csv.py:148
+#: ../pondus/gui/dialog_csv.py:150
 msgid "Import not successful"
 msgstr "Импорт закончился неудачно"
 
-#: ../pondus/gui/dialog_csv.py:149
+#: ../pondus/gui/dialog_csv.py:151
 msgid "An error occured during the import."
 msgstr "В процессе импорта возникла ошибка"
 
