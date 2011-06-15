@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: pondus\n"
 "Report-Msgid-Bugs-To: http://bitbucket.org/eike/pondus/issues\n"
 "POT-Creation-Date: 2011-05-28 20:39+0200\n"
-"PO-Revision-Date: 2011-05-31 13:24+0000\n"
+"PO-Revision-Date: 2011-06-13 18:20+0000\n"
 "Last-Translator: Sl_Alex <alexslabchenko@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -209,7 +209,7 @@ msgstr "Пользовательский"
 
 #: ../pondus/gui/dialog_plot.py:69
 msgid "Data Left:"
-msgstr "Данных осталось:"
+msgstr "Данные слева:"
 
 #: ../pondus/gui/dialog_plot.py:85 ../pondus/gui/dialog_plot.py:106
 msgid ""
@@ -218,7 +218,7 @@ msgstr "Чтобы построить ваш ИМТ, введите свой р�
 
 #: ../pondus/gui/dialog_plot.py:93
 msgid "Right:"
-msgstr "Верно:"
+msgstr "Справа:"
 
 #: ../pondus/gui/dialog_plot.py:110
 msgid "None"
