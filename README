@@ -64,6 +64,6 @@ the weight planner in the preferences, a selector at the bottom of the
 main window determines whether you are currently editing the weight
 measurements or the weight plan.
 
-The CSV im-/export dialogs allow to im-/export weight data from/to
-other applications. Currently, the only supported format is
-    2008-03-26,81.3 (for example).
+The im-/export dialogs allow to im-/export weight data from/to
+other applications such as SportsTracker or any program supporting
+CSV of the form `2008-03-26,81.3`.
