@@ -6,7 +6,6 @@ features:
  * support multiple users
  * allow selection and deletion of multiple datasets in listview
  * add file-exists-warning on save plot and csv export?
- * add more import/export features in a unified dialog
 
 usability:
 -----------

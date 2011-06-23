@@ -20,6 +20,7 @@ class SportstrackerBackend(object):
 
     default_filename = os.path.join(os.path.expanduser('~'),
                             '.sportstracker', 'weights.xml')
+    fileending = 'xml'
 
     def write(self, data, filename):
         """Creates a sportstracker weights file at filename containing the

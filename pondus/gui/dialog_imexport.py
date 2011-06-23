@@ -2,7 +2,7 @@
 
 """
 This file is part of Pondus, a personal weight manager.
-Copyright (C) 2008-10  Eike Nicklas <eike@ephys.de>
+Copyright (C) 2008-11  Eike Nicklas <eike@ephys.de>
 
 This program is free software licensed under the MIT license. For details
 see LICENSE or http://www.opensource.org/licenses/mit-license.php
@@ -15,21 +15,30 @@ import gtk
 import os
 
 from pondus.core import parameters
-from pondus.backends.util import get_backend
+from pondus.backends.util import get_backend, imexport_backends
 from pondus.gui.dialog_message import MessageDialog
 from pondus.gui.dialog_save_file import SaveFileDialog
 from pondus.gui.dialog_select_file import SelectFileDialog
 
 
-class CSVDialogBase(object):
-    """Common base class for the csv ex-/import dialogs."""
+class ImExportDialogBase(object):
+    """Common base class for the ex-/import dialogs."""
 
     def __init__(self, title, data_label_text, file_label_text):
         self.dialog = gtk.Dialog(flags=gtk.DIALOG_NO_SEPARATOR)
         self.dialog.set_title(title)
 
-        self.datasets = parameters.user.measurements
-        self.backend = get_backend('csv')
+        backendbox = gtk.VBox()
+        backendbox.set_border_width(5)
+        backend_label = gtk.Label(_('Select Backend:'))
+        backend_label.set_alignment(xalign=0, yalign=0.5)
+        backendbox.pack_start(backend_label)
+        backendselector = gtk.combo_box_new_text()
+        for backend in imexport_backends:
+            backendselector.append_text(backend)
+        backendselector.set_active(0)
+        backendbox.pack_start(backendselector)
+        self.dialog.vbox.pack_start(backendbox)
 
         databox = gtk.VBox()
         databox.set_border_width(5)
@@ -39,6 +48,7 @@ class CSVDialogBase(object):
         self.data_button = gtk.RadioButton(label=_('Weight Measurements'))
         self.data_button.set_active(True)
         self.data_button.connect('toggled', self.on_data_change, 'meas')
+        self.on_data_change(self.data_button, 'meas')
         databox.pack_start(self.data_button)
         self.data_button = gtk.RadioButton(
                             group=self.data_button, label=_('Weight Plan'))
@@ -55,12 +65,14 @@ class CSVDialogBase(object):
         filebox.pack_start(file_label)
         filehbox = gtk.HBox(homogeneous=False, spacing=5)
         self.file_entry = gtk.Entry()
-        self.file_entry.set_text(self.backend.default_filename)
         filehbox.pack_start(self.file_entry)
         choose_button = gtk.Button(stock=gtk.STOCK_OPEN)
         filehbox.pack_start(choose_button)
         filebox.pack_start(filehbox)
         self.dialog.vbox.pack_start(filebox)
+
+        # set initial backend
+        self.update_backend(backendselector)
 
         # buttons in action area
         self.dialog.add_button(gtk.STOCK_CANCEL, gtk.RESPONSE_CANCEL)
@@ -68,6 +80,7 @@ class CSVDialogBase(object):
 
         # connect the signals
         choose_button.connect('clicked', self.select_file)
+        backendselector.connect('changed', self.update_backend)
 
         # show the content
         self.dialog.show_all()
@@ -80,25 +93,32 @@ class CSVDialogBase(object):
             elif key == 'plan':
                 self.datasets = parameters.user.plan
 
+    def update_backend(self, backendselector):
+        """Updates backend and default filename."""
+        backend = imexport_backends[backendselector.get_active()]
+        self.backend = get_backend(backend)
+        self.file_entry.set_text(self.backend.default_filename)
 
-class CSVDialogExport(CSVDialogBase):
-    """Constructs the csv export dialog."""
+
+class DialogExport(ImExportDialogBase):
+    """Constructs the export dialog."""
 
     def __init__(self):
-        title = _('CSV Export')
+        title = _('Export')
         data_label_text = _('Data to export:')
-        file_label_text = _('CSV File to save to:')
-        CSVDialogBase.__init__(self, title, data_label_text, file_label_text)
+        file_label_text = _('File to save to:')
+        ImExportDialogBase.__init__(self,
+                title, data_label_text, file_label_text)
 
     def run(self):
         """Runs the dialog and closes it afterwards."""
         response = self.dialog.run()
         if response == gtk.RESPONSE_OK:
-            self.exportcsv()
+            self.export()
         self.dialog.hide()
 
-    def exportcsv(self):
-        """Saves the datasets to a csv file."""
+    def export(self):
+        """Saves the datasets to a file."""
         filepath = os.path.expanduser(self.file_entry.get_text())
         self.backend.write(self.datasets, filepath)
         title = _('Export successful')
@@ -109,19 +129,21 @@ class CSVDialogExport(CSVDialogBase):
         """Runs the file selection dialog and updates the file entry
         accordingly."""
         filepath = os.path.expanduser(self.file_entry.get_text())
-        newpath = SaveFileDialog(filepath, ['.csv']).run()
+        fileending = self.backend.fileending
+        newpath = SaveFileDialog(filepath, ['.' + fileending]).run()
         if newpath is not None:
             self.file_entry.set_text(newpath)
 
 
-class CSVDialogImport(CSVDialogBase):
-    """Constructs the csv import dialog."""
+class DialogImport(ImExportDialogBase):
+    """Constructs the import dialog."""
 
     def __init__(self):
-        title = _('CSV Import')
+        title = _('Import')
         data_label_text = _('Import data to:')
-        file_label_text = _('CSV File to read from:')
-        CSVDialogBase.__init__(self, title, data_label_text, file_label_text)
+        file_label_text = _('File to read from:')
+        ImExportDialogBase.__init__(self,
+                title, data_label_text, file_label_text)
 
     def run(self):
         """Runs the dialog and closes it afterwards."""
@@ -129,7 +151,7 @@ class CSVDialogImport(CSVDialogBase):
         if response == gtk.RESPONSE_OK:
             filepath = os.path.expanduser(self.file_entry.get_text())
             if os.path.isfile(filepath):
-                self.importcsv(filepath)
+                self.import_(filepath)
             else:
                 title = _('Error: Not a valid File')
                 message = _('The given path does not point to a valid file!')
@@ -138,8 +160,8 @@ class CSVDialogImport(CSVDialogBase):
                 return self.run()
         self.dialog.hide()
 
-    def importcsv(self, filepath):
-        """Imports the data from the csv file."""
+    def import_(self, filepath):
+        """Imports the data from the file."""
         new_datasets = self.backend.read(filepath)
         if new_datasets:
             self.datasets.add_list(new_datasets)

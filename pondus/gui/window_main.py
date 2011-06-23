@@ -22,7 +22,7 @@ from pondus.gui import guiutil
 from pondus.gui.dialog_add import AddDataDialog
 from pondus.gui.dialog_message import MessageDialog
 from pondus.gui.dialog_preferences import PreferencesDialog
-from pondus.gui.dialog_csv import CSVDialogExport, CSVDialogImport
+from pondus.gui.dialog_imexport import DialogExport, DialogImport
 
 PlotDialog = None
 
@@ -89,12 +89,12 @@ class MainWindow(object):
         prefbutton = gtk.MenuToolButton(gtk.STOCK_PREFERENCES)
         prefaction.connect_proxy(prefbutton)
         prefmenu = gtk.Menu()
-        csv_import_item = gtk.MenuItem(_('CSV Import'))
-        csv_export_item = gtk.MenuItem(_('CSV Export'))
-        csv_import_item.show()
-        csv_export_item.show()
-        prefmenu.append(csv_import_item)
-        prefmenu.append(csv_export_item)
+        import_item = gtk.MenuItem(_('Import Data'))
+        export_item = gtk.MenuItem(_('Export Data'))
+        import_item.show()
+        export_item.show()
+        prefmenu.append(import_item)
+        prefmenu.append(export_item)
         prefbutton.set_menu(prefmenu)
 
         toolbar = uimanager.get_widget('/Toolbar')
@@ -143,8 +143,8 @@ class MainWindow(object):
         self.check_modeselector()
 
         # connect the signals
-        csv_import_item.connect('activate', self.csv_dialog_import)
-        csv_export_item.connect('activate', self.csv_dialog_export)
+        import_item.connect('activate', self.dialog_import)
+        export_item.connect('activate', self.dialog_export)
         self.dataview.add_events(gtk.gdk.BUTTON_PRESS_MASK)
         self.treeselection.connect('changed', self.set_selection_active)
         self.dataview.connect('button-press-event', self.button_pressed)
@@ -236,16 +236,16 @@ class MainWindow(object):
         self.check_modeselector()
         self.display_data(self.datasetdata)
 
-    def csv_dialog_import(self, widget):
-        """Runs the csv import dialog and updates the display to show
+    def dialog_import(self, widget):
+        """Runs the import dialog and updates the display to show
         the imported data."""
-        CSVDialogImport().run()
+        DialogImport().run()
         self.display_data(self.datasetdata)
         self.set_plot_action_active()
 
-    def csv_dialog_export(self, widget):
-        """Runs the csv export dialog."""
-        CSVDialogExport().run()
+    def dialog_export(self, widget):
+        """Runs the export dialog."""
+        DialogExport().run()
 
     def on_key_press(self, widget, event):
         """Tests, which key was pressed and triggers the appropriate

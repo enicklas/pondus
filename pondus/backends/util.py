@@ -9,6 +9,9 @@ see LICENSE or http://www.opensource.org/licenses/mit-license.php
 """
 
 
+imexport_backends = ('csv', 'sportstracker')
+
+
 def get_backend(name):
     """Returns a backend corresponding to name. Possible names are:
     xml, xml_old, csv, sportstracker"""
