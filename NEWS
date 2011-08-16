@@ -4,6 +4,7 @@ Pondus NEWS
 2011-xx-xx: Version 0.x.x
 --------------------------
  * Unify Im-/Export dialogs to use different data formats
+ * Add Catalan translation (Thanks dmanye)
  * Updated translations: ru
 
 2011-06-09: Version 0.8.0
