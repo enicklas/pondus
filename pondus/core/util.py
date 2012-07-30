@@ -2,11 +2,13 @@
 
 """
 This file is part of Pondus, a personal weight manager.
-Copyright (C) 2007-11  Eike Nicklas <eike@ephys.de>
+Copyright (C) 2007-12  Eike Nicklas <eike@ephys.de>
 
 This program is free software licensed under the MIT license. For details
 see LICENSE or http://www.opensource.org/licenses/mit-license.php
 """
+
+from __future__ import division
 
 from datetime import date
 from time import strptime
@@ -38,7 +40,7 @@ def nonemax(list_):
 def bmi(weight, height):
     """Returns the body mass index. Weight and height should be given
     in kg and cm."""
-    return weight / (height / 100.0)**2
+    return weight / (height / 100)**2
 
 
 def get_weight_unit():
@@ -51,7 +53,7 @@ def get_weight_unit():
 
 def height_to_metric(height):
     """Converts height in cm to m/cm."""
-    meters = int(height) / 100
+    meters = int(height) // 100
     centimeters = height % 100
     return meters, centimeters
 
@@ -59,7 +61,7 @@ def height_to_metric(height):
 def height_to_imperial(height):
     """Converts height in cm to feet/inches."""
     height_inches = height / 2.54
-    feet = int(height_inches) / 12
+    feet = int(height_inches) // 12
     inches = height_inches % 12
     return feet, inches
 
