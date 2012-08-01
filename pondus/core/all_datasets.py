@@ -2,7 +2,7 @@
 
 """
 This file is part of Pondus, a personal weight manager.
-Copyright (C) 2007-11  Eike Nicklas <eike@ephys.de>
+Copyright (C) 2007-12  Eike Nicklas <eike@ephys.de>
 
 This program is free software licensed under the MIT license. For details
 see LICENSE or http://www.opensource.org/licenses/mit-license.php
@@ -25,7 +25,7 @@ class AllDatasets(object):
 
     def __iter__(self):
         """Iterates over the datasets."""
-        return self.datasets.itervalues()
+        return iter(self.datasets.values())
 
     def __len__(self):
         """Returns the number of datasets in self.datasets."""
@@ -71,7 +71,7 @@ class AllDatasets(object):
     def _last_measured_weight(self):
         """Returns the last measured weight."""
         try:
-            latest_dataset = max(self.datasets.itervalues(),
+            latest_dataset = max(self.datasets.values(),
                         key=lambda dataset: dataset.date)
             return latest_dataset.weight
         except ValueError:

@@ -3,11 +3,13 @@
 
 """
 This file is part of Pondus, a personal weight manager.
-Copyright (C) 2007-11  Eike Nicklas <eike@ephys.de>
+Copyright (C) 2007-12  Eike Nicklas <eike@ephys.de>
 
 This program is free software licensed under the MIT license. For details
 see LICENSE or http://www.opensource.org/licenses/mit-license.php
 """
+
+from __future__ import print_function
 
 from distutils.core import setup
 import os
@@ -58,7 +60,7 @@ def _create_mo():
             mofile = os.path.join(modir_lang, 'pondus.mo')
             if not os.path.exists(modir_lang):
                 os.makedirs(modir_lang)
-            print 'generating', mofile
+            print('generating', mofile)
             os.system('msgfmt %s -o %s' % (pofile, mofile))
 
 

@@ -2,13 +2,17 @@
 
 """
 This file is part of Pondus, a personal weight manager.
-Copyright (C) 2008-11  Eike Nicklas <eike@ephys.de>
+Copyright (C) 2008-12  Eike Nicklas <eike@ephys.de>
 
 This program is free software licensed under the MIT license. For details
 see LICENSE or http://www.opensource.org/licenses/mit-license.php
 """
 
-import ConfigParser
+# workaround to support both python2 and python3
+try:
+    import configparser
+except ImportError:
+    import ConfigParser as configparser
 import os
 
 from pondus.core import parameters
@@ -19,7 +23,7 @@ def read_config(default_config, conffile):
     dictionary."""
     config = dict(default_config)
     if os.path.isfile(conffile):
-        conf = ConfigParser.RawConfigParser()
+        conf = configparser.RawConfigParser()
         conf.read(conffile)
         if conf.has_option('window', 'remember_size'):
             if conf.getboolean('window', 'remember_size'):
@@ -48,12 +52,12 @@ def read_config(default_config, conffile):
 
 def write_config(config, conffile):
     """Writes the config dictionary to the configuration file."""
-    conf = ConfigParser.RawConfigParser()
-    for key, value in config.iteritems():
+    conf = configparser.RawConfigParser()
+    for key, value in config.items():
         section, option = key.split('.')
         try:
             conf.set(section, option, str(value))
-        except ConfigParser.NoSectionError:
+        except configparser.NoSectionError:
             conf.add_section(section)
             conf.set(section, option, str(value))
     if not os.path.exists(os.path.dirname(conffile)):

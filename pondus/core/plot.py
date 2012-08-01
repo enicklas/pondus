@@ -2,7 +2,7 @@
 
 """
 This file is part of Pondus, a personal weight manager.
-Copyright (C) 2007-11  Eike Nicklas <eike@ephys.de>
+Copyright (C) 2007-12  Eike Nicklas <eike@ephys.de>
 
 This program is free software licensed under the MIT license. For details
 see LICENSE or http://www.opensource.org/licenses/mit-license.php
@@ -293,10 +293,10 @@ def _smooth_data(data):
     # number of datapoints to average
     avg_datapoints = 3
     smooth_data = []
-    for i in xrange(0, len(data)):
+    for i in range(0, len(data)):
         weights = []
         weighted_data = []
-        for j in xrange(i-avg_datapoints, i+avg_datapoints+1):
+        for j in range(i-avg_datapoints, i+avg_datapoints+1):
             try:
                 delta = abs((data[j][0] - data[i][0]).days)
                 weight = alpha**delta

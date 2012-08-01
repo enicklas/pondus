@@ -2,7 +2,7 @@
 
 """
 This file is part of Pondus, a personal weight manager.
-Copyright (C) 2007-11  Eike Nicklas <eike@ephys.de>
+Copyright (C) 2007-12  Eike Nicklas <eike@ephys.de>
 
 This program is free software licensed under the MIT license. For details
 see LICENSE or http://www.opensource.org/licenses/mit-license.php
@@ -21,6 +21,8 @@ def sort_function_weight(listmodel, iter1, iter2, data):
     data as floats instead of strings."""
     weight1 = float(listmodel.get_value(iter1, 2))
     weight2 = float(listmodel.get_value(iter2, 2))
+    #TODO: cmp() is removed in python3
+    #return int(100*(weight2 - weight1))
     return cmp(weight1, weight2)
 
 
