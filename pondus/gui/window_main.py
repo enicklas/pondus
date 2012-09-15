@@ -12,6 +12,7 @@ import pygtk
 pygtk.require('2.0')
 
 import gtk
+from gtk import gdk
 import os
 import threading
 
@@ -36,7 +37,7 @@ class MainWindow(object):
         self.datasetdata = parameters.user.measurements
 
         # create the window
-        self.window = gtk.Window(gtk.WINDOW_TOPLEVEL)
+        self.window = gtk.Window(type=gtk.WINDOW_TOPLEVEL)
         self.window.set_title('Pondus')
         self.window.set_default_size(
                             parameters.config['window.width'],
@@ -71,7 +72,6 @@ class MainWindow(object):
         self.editaction = action_group.get_action('edit')
         self.removeaction = action_group.get_action('remove')
         self.plotaction = action_group.get_action('plot')
-        prefaction = action_group.get_action('preferences')
         uimanager.insert_action_group(action_group, 0)
 
         ui = """
@@ -86,11 +86,11 @@ class MainWindow(object):
         </ui>"""
         uimanager.add_ui_from_string(ui)
 
-        prefbutton = gtk.MenuToolButton(gtk.STOCK_PREFERENCES)
-        prefaction.connect_proxy(prefbutton)
+        prefbutton = gtk.MenuToolButton(stock_id=gtk.STOCK_PREFERENCES)
+        prefbutton.set_related_action(action_group.get_action('preferences'))
         prefmenu = gtk.Menu()
-        import_item = gtk.MenuItem(_('Import Data'))
-        export_item = gtk.MenuItem(_('Export Data'))
+        import_item = gtk.MenuItem(label=_('Import Data'))
+        export_item = gtk.MenuItem(label=_('Export Data'))
         import_item.show()
         export_item.show()
         prefmenu.append(import_item)
@@ -102,7 +102,7 @@ class MainWindow(object):
         toolbar.insert(prefbutton, -1)
         for action in action_group.list_actions():
             action.connect_accelerator()
-        mainbox.pack_start(toolbar, False, True)
+        mainbox.pack_start(toolbar, False, True, 0)
 
         # hide quit action
         action_group.get_action('quit').set_visible(False)
@@ -119,7 +119,7 @@ class MainWindow(object):
         datawindow.set_shadow_type(gtk.SHADOW_IN)
         self.datalist = gtk.ListStore(int, str, str, str)
         self.display_data(self.datasetdata)
-        self.dataview = gtk.TreeView(self.datalist)
+        self.dataview = gtk.TreeView(model=self.datalist)
         self.add_column(_('Date'), 1)
         self.add_column(_('Weight'), 2)
         self.datalist.set_sort_func(2, guiutil.sort_function_weight, None)
@@ -127,14 +127,14 @@ class MainWindow(object):
         self.dataview.set_rules_hint(True)
         self.dataview.set_tooltip_column(3)
         datawindow.add(self.dataview)
-        self.contentbox.pack_start(datawindow)
+        self.contentbox.pack_start(datawindow, True, True, 0)
 
         # measurement or plan selector
         self.modeselector = gtk.combo_box_new_text()
         self.modeselector.append_text(_('Weight Measurements'))
         self.modeselector.append_text(_('Weight Planner'))
         self.modeselector.set_active(0)
-        mainbox.pack_start(self.contentbox)
+        mainbox.pack_start(self.contentbox, True, True, 0)
 
         # get treeselection and deactivate actions if no selection
         self.treeselection = self.dataview.get_selection()
@@ -145,7 +145,7 @@ class MainWindow(object):
         # connect the signals
         import_item.connect('activate', self.dialog_import)
         export_item.connect('activate', self.dialog_export)
-        self.dataview.add_events(gtk.gdk.BUTTON_PRESS_MASK)
+        self.dataview.add_events(gdk.BUTTON_PRESS_MASK)
         self.treeselection.connect('changed', self.set_selection_active)
         self.dataview.connect('button-press-event', self.button_pressed)
         self.dataview.connect('key-press-event', self.on_key_press)
@@ -166,7 +166,7 @@ class MainWindow(object):
         initialize.shutdown()
         gtk.main_quit()
 
-    def add_dialog(self, widget):
+    def add_dialog(self, widget, data=None):
         """Runs the dialog to add a new dataset and then adds it to
         self.datasetdata and self.datalist."""
         dialog = AddDataDialog(self.window,
@@ -181,7 +181,7 @@ class MainWindow(object):
             self.dataview.scroll_to_cell(path)
             self.set_plot_action_active()
 
-    def remove_dialog(self, widget):
+    def remove_dialog(self, widget, data=None):
         """Runs the dialog to remove the selected dataset and then
         deletes it from self.datasetdata and self.datalist."""
         title = _('Remove Data?')
@@ -206,7 +206,7 @@ class MainWindow(object):
                     self.set_selection_active(self.treeselection)
                     self.set_plot_action_active()
 
-    def edit_dialog(self, widget):
+    def edit_dialog(self, widget, data=None):
         """Runs the dialog to edit the selected dataset and then adds it
         to self.datasetdata and self.datalist."""
         (listmodel, treeiter) = self.treeselection.get_selected()
@@ -225,25 +225,25 @@ class MainWindow(object):
                 2, str(new_weight),
                 3, guiutil.get_tooltip(newdata))
 
-    def plot_dialog(self, widget):
+    def plot_dialog(self, widget, data=None):
         """Runs the plotting dialog."""
         PlotDialog().run()
 
-    def preferences_dialog(self, widget):
+    def preferences_dialog(self, widget, data=None):
         """Runs the preferences dialog."""
         PreferencesDialog().run()
         self.set_plot_action_active()
         self.check_modeselector()
         self.display_data(self.datasetdata)
 
-    def dialog_import(self, widget):
+    def dialog_import(self, widget, data=None):
         """Runs the import dialog and updates the display to show
         the imported data."""
         DialogImport().run()
         self.display_data(self.datasetdata)
         self.set_plot_action_active()
 
-    def dialog_export(self, widget):
+    def dialog_export(self, widget, data=None):
         """Runs the export dialog."""
         DialogExport().run()
 
@@ -305,7 +305,7 @@ class MainWindow(object):
         hides or shows it accordingly."""
         if (parameters.config['preferences.use_weight_plan']
             and self.modeselector not in self.contentbox.get_children()):
-            self.contentbox.pack_end(self.modeselector, False, True)
+            self.contentbox.pack_end(self.modeselector, False, True, 0)
         elif (not parameters.config['preferences.use_weight_plan']
             and self.modeselector in self.contentbox.get_children()):
             self.modeselector.set_active(0)
@@ -332,7 +332,7 @@ class MainWindow(object):
             weight = dataset.weight_lbs
         else:
             weight = round(dataset.weight, 1)
-        dataset_list = [dataset.id, dataset.date, weight, \
+        dataset_list = [dataset.id, str(dataset.date), str(weight), \
                 guiutil.get_tooltip(dataset)]
         return self.datalist.append(dataset_list)
 
@@ -340,7 +340,7 @@ class MainWindow(object):
     def main(self):
         """Starts the gtk main loop."""
         if os.name == 'posix':
-            gtk.gdk.threads_init()
+            gdk.threads_init()
             MplTester().start()
         else:
             import_mpl()

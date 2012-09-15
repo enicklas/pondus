@@ -43,6 +43,9 @@ class AddDataDialog(object):
         else:
             self.dialog.set_title(_('Add Dataset'))
 
+        # get content area
+        content_area = self.dialog.get_content_area()
+
         # create the labels and entry boxes
         date_box = gtk.VBox(spacing=5)
         date_box.set_border_width(5)
@@ -58,8 +61,8 @@ class AddDataDialog(object):
                                             gtk.CALENDAR_WEEK_START_MONDAY)
             self.calendar.select_month(date_.month-1, date_.year)
             self.calendar.select_day(date_.day)
-            date_box.pack_start(date_label, False, True)
-            date_box.pack_start(self.calendar, False, True)
+            date_box.pack_start(date_label, False, True, 0)
+            date_box.pack_start(self.calendar, False, True, 0)
         else:
             date_ = str(self.dataset.date)
             date_label = gtk.Label(_('Date (YYYY-MM-DD)') + ':')
@@ -67,9 +70,9 @@ class AddDataDialog(object):
             self.date_entry = gtk.Entry()
             self.date_entry.set_text(date_)
             self.date_entry.set_activates_default(True)
-            date_box.pack_start(date_label, False, True)
-            date_box.pack_start(self.date_entry, False, True)
-        self.dialog.vbox.pack_start(date_box, False, True)
+            date_box.pack_start(date_label, True, False, 0)
+            date_box.pack_start(self.date_entry, False, True, 0)
+        content_area.pack_start(date_box, False, True, 0)
 
         weight_bodyfat_box = gtk.HBox(spacing=5)
         weight_box = gtk.VBox(spacing=5)
@@ -82,24 +85,24 @@ class AddDataDialog(object):
         self.weight_entry = gtk.SpinButton(adjustment=weight_adj, digits=1)
         self.weight_entry.set_numeric(True)
         self.weight_entry.set_activates_default(True)
-        weight_box.pack_start(weight_label, False, True)
-        weight_box.pack_start(self.weight_entry, False, True)
-        weight_bodyfat_box.pack_start(weight_box)
+        weight_box.pack_start(weight_label, False, True, 0)
+        weight_box.pack_start(self.weight_entry, False, True, 0)
+        weight_bodyfat_box.pack_start(weight_box, True, True, 0)
 
         if parameters.config['preferences.use_bodyfat']:
             bodyfat_box = self._get_percentage_box('bodyfat')
-            weight_bodyfat_box.pack_start(bodyfat_box)
+            weight_bodyfat_box.pack_start(bodyfat_box, True, True, 0)
 
-        self.dialog.vbox.pack_start(weight_bodyfat_box, False, True)
+        content_area.pack_start(weight_bodyfat_box, False, True, 0)
 
         muscle_water_box = gtk.HBox(spacing=5)
         if parameters.config['preferences.use_muscle']:
             muscle_box = self._get_percentage_box('muscle')
-            muscle_water_box.pack_start(muscle_box)
+            muscle_water_box.pack_start(muscle_box, True, True, 0)
         if parameters.config['preferences.use_water']:
             water_box = self._get_percentage_box('water')
-            muscle_water_box.pack_start(water_box)
-        self.dialog.vbox.pack_start(muscle_water_box, False, True)
+            muscle_water_box.pack_start(water_box, True, True, 0)
+        content_area.pack_start(muscle_water_box, False, True, 0)
 
         if parameters.config['preferences.use_note']:
             note_box = gtk.VBox(spacing=5)
@@ -114,9 +117,9 @@ class AddDataDialog(object):
             self.note_buffer = self.note_view.get_buffer()
             self.note_buffer.set_text(note)
             textwindow.add(self.note_view)
-            note_box.pack_start(note_label, False, True)
-            note_box.pack_start(textwindow, True, True)
-            self.dialog.vbox.pack_start(note_box)
+            note_box.pack_start(note_label, False, True, 0)
+            note_box.pack_start(textwindow, True, True, 0)
+            content_area.pack_start(note_box, True, True, 0)
 
         # buttons in action area
         self.dialog.add_button(gtk.STOCK_CANCEL, gtk.RESPONSE_CANCEL)
@@ -268,6 +271,6 @@ class AddDataDialog(object):
             entry.set_numeric(True)
             entry.set_activates_default(True)
             setattr(self, key+'_entry', entry)
-            box.pack_start(label, False, True)
-            box.pack_start(entry, False, True)
+            box.pack_start(label, False, True, 0)
+            box.pack_start(entry, False, True, 0)
             return box

@@ -26,11 +26,14 @@ class PreferencesDialog(object):
         self.dialog = gtk.Dialog(flags=gtk.DIALOG_NO_SEPARATOR)
         self.dialog.set_title(_('Preferences'))
 
+        # get content area
+        content_area = self.dialog.get_content_area()
+
         height_box = gtk.VBox()
         height_box.set_border_width(5)
         height_label = gtk.Label(_('User Height:'))
         height_label.set_alignment(xalign=0, yalign=0.5)
-        height_box.pack_start(height_label)
+        height_box.pack_start(height_label, True, True, 0)
         height_hbox = gtk.HBox(spacing=3)
         self.m_adj = gtk.Adjustment(value=0,
                                     lower=0,
@@ -67,62 +70,62 @@ class PreferencesDialog(object):
             self.set_metric(parameters.user.height)
         else:
             self.set_imperial(parameters.user.height)
-        height_hbox.pack_start(self.height_entry1)
+        height_hbox.pack_start(self.height_entry1, True, True, 0)
         height_hbox.pack_start(self.height_label1, False, True)
-        height_hbox.pack_start(self.height_entry2)
+        height_hbox.pack_start(self.height_entry2, True, True, 0)
         height_hbox.pack_start(self.height_label2, False, True)
-        height_box.pack_start(height_hbox)
-        self.dialog.vbox.pack_start(height_box)
+        height_box.pack_start(height_hbox, True, True, 0)
+        content_area.pack_start(height_box, True, True, 0)
 
         unit_box = gtk.VBox()
         unit_box.set_border_width(5)
         unit_label = gtk.Label(_('Preferred Unit System:'))
         unit_label.set_alignment(xalign=0, yalign=0.5)
-        unit_box.pack_start(unit_label)
+        unit_box.pack_start(unit_label, True, True, 0)
         unit_hbox = gtk.HBox(homogeneous=True)
         self.unit_button = gtk.RadioButton(label=_('metric'))
         self.unit_button.connect('toggled', self.on_unit_change, 'metric')
         if self.newconfig['preferences.unit_system'] == 'metric':
             self.unit_button.set_active(True)
-        unit_hbox.pack_start(self.unit_button)
+        unit_hbox.pack_start(self.unit_button, True, True, 0)
         self.unit_button = gtk.RadioButton(
                             group=self.unit_button, label=_('imperial'))
         self.unit_button.connect('toggled', self.on_unit_change, 'imperial')
         if self.newconfig['preferences.unit_system'] == 'imperial':
             self.unit_button.set_active(True)
-        unit_hbox.pack_start(self.unit_button)
-        unit_box.pack_start(unit_hbox)
-        self.dialog.vbox.pack_start(unit_box)
+        unit_hbox.pack_start(self.unit_button, True, True, 0)
+        unit_box.pack_start(unit_hbox, True, True, 0)
+        content_area.pack_start(unit_box, True, True, 0)
 
         self.use_plan_button = gtk.CheckButton(_('Enable Weight Planner'))
         self.use_plan_button.set_border_width(5)
         self.use_plan_button.set_active(
                         self.newconfig['preferences.use_weight_plan'])
-        self.dialog.vbox.pack_start(self.use_plan_button)
+        content_area.pack_start(self.use_plan_button, True, True, 0)
 
         self.use_bodyfat_button = gtk.CheckButton(_('Track Bodyfat'))
         self.use_bodyfat_button.set_border_width(5)
         self.use_bodyfat_button.set_active(
                         self.newconfig['preferences.use_bodyfat'])
-        self.dialog.vbox.pack_start(self.use_bodyfat_button)
+        content_area.pack_start(self.use_bodyfat_button, True, True, 0)
 
         self.use_muscle_button = gtk.CheckButton(_('Track Muscle'))
         self.use_muscle_button.set_border_width(5)
         self.use_muscle_button.set_active(
                         self.newconfig['preferences.use_muscle'])
-        self.dialog.vbox.pack_start(self.use_muscle_button)
+        content_area.pack_start(self.use_muscle_button, True, True, 0)
 
         self.use_water_button = gtk.CheckButton(_('Track Water'))
         self.use_water_button.set_border_width(5)
         self.use_water_button.set_active(
                         self.newconfig['preferences.use_water'])
-        self.dialog.vbox.pack_start(self.use_water_button)
+        content_area.pack_start(self.use_water_button, True, True, 0)
 
         self.use_note_button = gtk.CheckButton(_('Append Notes to Datasets'))
         self.use_note_button.set_border_width(5)
         self.use_note_button.set_active(
                         self.newconfig['preferences.use_note'])
-        self.dialog.vbox.pack_start(self.use_note_button)
+        content_area.pack_start(self.use_note_button, True, True, 0)
 
         self.use_calendar_button = \
                     gtk.CheckButton(_('Use Calendar in Add Dialog'))
@@ -131,12 +134,12 @@ class PreferencesDialog(object):
                         self.newconfig['preferences.use_calendar'])
         self.use_calendar_button.set_tooltip_text(_('Use a calendar widget \
 instead of a text entry to enter dates in the add/edit dialog'))
-        self.dialog.vbox.pack_start(self.use_calendar_button)
+        content_area.pack_start(self.use_calendar_button, True, True, 0)
 
         self.remember_button = gtk.CheckButton(_('Remember Window Size'))
         self.remember_button.set_border_width(5)
         self.remember_button.set_active(self.newconfig['window.remember_size'])
-        self.dialog.vbox.pack_start(self.remember_button)
+        content_area.pack_start(self.remember_button, True, True, 0)
 
         # buttons in action area
         self.dialog.add_button(gtk.STOCK_CANCEL, gtk.RESPONSE_CANCEL)

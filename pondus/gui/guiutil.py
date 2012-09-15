@@ -12,6 +12,7 @@ import pygtk
 pygtk.require('2.0')
 
 import gtk
+from gtk import gdk
 
 from pondus.core import parameters
 
@@ -35,7 +36,7 @@ def register_icons():
         # only load image files when our stock_id is not present
         if stock_id not in stock_ids:
             icon_file = icon_info[stock_id]
-            pixbuf = gtk.gdk.pixbuf_new_from_file(icon_file)
+            pixbuf = gdk.pixbuf_new_from_file(icon_file)
             iconset = gtk.IconSet(pixbuf)
             iconfactory.add(stock_id, iconset)
     iconfactory.add_default()

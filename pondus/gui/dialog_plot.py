@@ -31,11 +31,15 @@ class PlotDialog(object):
     def __init__(self):
         self.dialog = gtk.Dialog(title=_('Plot Weight'))
         self.dialog.set_default_size(600, 450)
+
+        # get content area
+        content_area = self.dialog.get_content_area()
+
         # drawing area for the plot
         self.plot = Plot()
         self.canvas = FigureCanvas(self.plot.figure)
-        self.dialog.vbox.set_spacing(5)
-        self.dialog.vbox.pack_start(self.canvas)
+        content_area.set_spacing(5)
+        content_area.pack_start(self.canvas, True, True, 0)
         # date selection
         date_selection_box = gtk.HBox(homogeneous=False, spacing=5)
         date_label = gtk.Label(_('Select Date Range:'))
@@ -62,7 +66,7 @@ class PlotDialog(object):
         self.dateselector.append_text(_('Custom'))
         self.set_dateselector_default()
         date_selection_box.pack_start(self.dateselector, False, False)
-        self.dialog.vbox.pack_start(date_selection_box, False, False)
+        content_area.pack_start(date_selection_box, False, False)
         # select data to plot
         plot_options_box = gtk.HBox(homogeneous=False, spacing=5)
         # left data type selector
@@ -125,7 +129,7 @@ you need to enter your height in the preferences dialog.'))
             self.plot_plan.set_tooltip_text(_('The weight planner can be \
 enabled in the preferences dialog.'))
         plot_options_box.pack_start(self.plot_plan, True, False)
-        self.dialog.vbox.pack_start(plot_options_box, False, False)
+        content_area.pack_start(plot_options_box, False, False)
         # buttons in action field
         save_button = gtk.Button(label=_('Save Plot'))
         self.dialog.action_area.pack_start(save_button, False, False)
