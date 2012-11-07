@@ -38,9 +38,12 @@ class FileLock(object):
             return
         elif not self.own_lock():
             title = _('Datafile locked, continue?')
-            message = _('Another instance of pondus seems to be editing \
+            message1 = _('Another instance of pondus seems to be editing \
 the same datafile. Do you really want to continue and loose all the changes \
 from the other instance?')
+            message2 = _('If in doubt (e.g. no other instance of pondus is \
+running), choose YES.')
+            message = '\n\n'.join([message1, message2])
             response = MessageDialog('question', title, message).run()
             if response == gtk.RESPONSE_YES:
                 self.take_over_lock()
