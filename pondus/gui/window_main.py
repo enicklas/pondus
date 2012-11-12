@@ -2,7 +2,7 @@
 
 """
 This file is part of Pondus, a personal weight manager.
-Copyright (C) 2007-11  Eike Nicklas <eike@ephys.de>
+Copyright (C) 2007-12  Eike Nicklas <eike@ephys.de>
 
 This program is free software licensed under the MIT license. For details
 see LICENSE or http://www.opensource.org/licenses/mit-license.php
@@ -125,6 +125,7 @@ class MainWindow(object):
         self.datalist.set_sort_func(2, guiutil.sort_function_weight, None)
         self.datalist.set_sort_column_id(1, gtk.SORT_DESCENDING)
         self.dataview.set_rules_hint(True)
+        self.dataview.set_rubber_banding(True)
         self.dataview.set_tooltip_column(3)
         datawindow.add(self.dataview)
         self.contentbox.pack_start(datawindow, True, True, 0)
@@ -138,6 +139,7 @@ class MainWindow(object):
 
         # get treeselection and deactivate actions if no selection
         self.treeselection = self.dataview.get_selection()
+        self.treeselection.set_mode(gtk.SELECTION_MULTIPLE)
         self.set_selection_active(self.treeselection)
         self.set_plot_action_active()
         self.check_modeselector()
@@ -175,6 +177,7 @@ class MainWindow(object):
         if newdata is not None:
             self.datasetdata.add(newdata)
             newiter = self.append_dataset(newdata)
+            self.treeselection.unselect_all()
             self.treeselection.select_iter(newiter)
             listmodel = self.dataview.get_model()
             path = listmodel.get_path(newiter)
@@ -185,15 +188,17 @@ class MainWindow(object):
         """Runs the dialog to remove the selected dataset and then
         deletes it from self.datasetdata and self.datalist."""
         title = _('Remove Data?')
-        message = _('Do you really want to delete this dataset?')
+        message = _('Do you really want to delete the selected datasets?')
         dialog = MessageDialog('question', title, message)
         if dialog.run() == gtk.RESPONSE_YES:
-            (listmodel, treeiter) = self.treeselection.get_selected()
-            id_selected = listmodel.get_value(treeiter, 0)
-            # remove selected dataset from self.datasetdata
-            self.datasetdata.remove(id_selected)
-            # remove selected dataset from displayed list
-            listmodel.remove(treeiter)
+            (listmodel, treepaths) = self.treeselection.get_selected_rows()
+            treeiters = [listmodel.get_iter(path) for path in treepaths]
+            for treeiter in treeiters:
+                id_selected = listmodel.get_value(treeiter, 0)
+                # remove selected dataset from self.datasetdata
+                self.datasetdata.remove(id_selected)
+                # remove selected dataset from displayed list
+                listmodel.remove(treeiter)
             # select next row if it exists (treeiter was advanced by
             # listmodel.remove(treeiter))
             if self.datalist.iter_is_valid(treeiter):
@@ -209,7 +214,8 @@ class MainWindow(object):
     def edit_dialog(self, widget, data=None):
         """Runs the dialog to edit the selected dataset and then adds it
         to self.datasetdata and self.datalist."""
-        (listmodel, treeiter) = self.treeselection.get_selected()
+        (listmodel, treepaths) = self.treeselection.get_selected_rows()
+        treeiter = listmodel.get_iter(treepaths[0])
         id_selected = listmodel.get_value(treeiter, 0)
         dialog = AddDataDialog(self.window,
                             self.datasetdata.get(id_selected), edit=True)
@@ -280,13 +286,18 @@ class MainWindow(object):
 
     def set_selection_active(self, widget):
         """Tests, whether a dataset is selected and sets sensitivity of
-        actions accordingly."""
-        if widget.get_selected()[1] is None:
+        actions accordingly. A selection of multiple datasets can be deleted,
+        but not edited."""
+        number_rows_selected = widget.count_selected_rows()
+        if number_rows_selected == 0:
             self.removeaction.set_sensitive(False)
             self.editaction.set_sensitive(False)
-        elif not self.removeaction.get_sensitive():
-            self.removeaction.set_sensitive(True)
+        elif number_rows_selected == 1:
             self.editaction.set_sensitive(True)
+            self.removeaction.set_sensitive(True)
+        elif number_rows_selected > 1:
+            self.editaction.set_sensitive(False)
+            self.removeaction.set_sensitive(True)
 
     # helper methods
     def set_plot_action_active(self):

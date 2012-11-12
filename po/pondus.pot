@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Pondus 0.8.0+hg\n"
 "Report-Msgid-Bugs-To: pondus-dev@lists.berlios.de\n"
-"POT-Creation-Date: 2012-11-07 16:56+0100\n"
+"POT-Creation-Date: 2012-11-12 17:47+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -219,7 +219,7 @@ msgstr ""
 msgid "Select Backend:"
 msgstr ""
 
-#: ../pondus/gui/dialog_imexport.py:51 ../pondus/gui/window_main.py:134
+#: ../pondus/gui/dialog_imexport.py:51 ../pondus/gui/window_main.py:135
 msgid "Weight Measurements"
 msgstr ""
 
@@ -396,22 +396,22 @@ msgstr ""
 msgid "Export Data"
 msgstr ""
 
-#: ../pondus/gui/window_main.py:135
+#: ../pondus/gui/window_main.py:136
 msgid "Weight Planner"
 msgstr ""
 
-#: ../pondus/gui/window_main.py:187
+#: ../pondus/gui/window_main.py:190
 msgid "Remove Data?"
 msgstr ""
 
-#: ../pondus/gui/window_main.py:188
-msgid "Do you really want to delete this dataset?"
+#: ../pondus/gui/window_main.py:191
+msgid "Do you really want to delete the selected datasets?"
 msgstr ""
 
-#: ../pondus/gui/window_main.py:368
+#: ../pondus/gui/window_main.py:379
 msgid "python-matplotlib is not installed, plotting disabled!"
 msgstr ""
 
-#: ../pondus/gui/window_main.py:378
+#: ../pondus/gui/window_main.py:389
 msgid "Plot weight data"
 msgstr ""

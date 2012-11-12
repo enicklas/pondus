@@ -4,7 +4,6 @@ TODO-List for Pondus
 features:
 ----------
  * support multiple users
- * allow selection and deletion of multiple datasets in listview
  * add file-exists-warning on save plot and csv export?
 
 usability:
