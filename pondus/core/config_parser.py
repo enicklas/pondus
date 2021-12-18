@@ -12,7 +12,7 @@ see LICENSE or http://www.opensource.org/licenses/mit-license.php
 try:
     import configparser
 except ImportError:
-    import ConfigParser as configparser
+    import configparser as configparser
 import os
 
 from pondus.core import parameters

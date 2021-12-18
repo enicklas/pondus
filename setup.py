@@ -9,7 +9,6 @@ This program is free software licensed under the MIT license. For details
 see LICENSE or http://www.opensource.org/licenses/mit-license.php
 """
 
-from __future__ import print_function
 
 from distutils.core import setup
 import os

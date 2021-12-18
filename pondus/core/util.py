@@ -8,7 +8,6 @@ This program is free software licensed under the MIT license. For details
 see LICENSE or http://www.opensource.org/licenses/mit-license.php
 """
 
-from __future__ import division
 
 from datetime import date
 from time import strptime
