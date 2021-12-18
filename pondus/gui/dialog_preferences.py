@@ -23,7 +23,7 @@ class PreferencesDialog(object):
     def __init__(self):
         self.newconfig = dict(parameters.config)
 
-        self.dialog = Gtk.Dialog(flags=Gtk.DialogFlags.NO_SEPARATOR)
+        self.dialog = Gtk.Dialog()
         self.dialog.set_title(_('Preferences'))
 
         # get content area
@@ -71,9 +71,9 @@ class PreferencesDialog(object):
         else:
             self.set_imperial(parameters.user.height)
         height_hbox.pack_start(self.height_entry1, True, True, 0)
-        height_hbox.pack_start(self.height_label1, False, True)
+        height_hbox.pack_start(self.height_label1, False, True, 0)
         height_hbox.pack_start(self.height_entry2, True, True, 0)
-        height_hbox.pack_start(self.height_label2, False, True)
+        height_hbox.pack_start(self.height_label2, False, True, 0)
         height_box.pack_start(height_hbox, True, True, 0)
         content_area.pack_start(height_box, True, True, 0)
 

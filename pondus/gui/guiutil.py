@@ -12,7 +12,7 @@ import gi
 gi.require_version('Gtk', '3.0')
 
 from gi.repository import Gtk
-from gi.repository import Gdk
+from gi.repository import GdkPixbuf
 
 from pondus.core import parameters
 
@@ -22,9 +22,7 @@ def sort_function_weight(listmodel, iter1, iter2, data):
     data as floats instead of strings."""
     weight1 = float(listmodel.get_value(iter1, 2))
     weight2 = float(listmodel.get_value(iter2, 2))
-    #TODO: cmp() is removed in python3
-    #return int(100*(weight2 - weight1))
-    return cmp(weight1, weight2)
+    return int(100*(weight2 - weight1))
 
 
 def register_icons():

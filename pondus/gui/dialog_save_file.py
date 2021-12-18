@@ -28,13 +28,13 @@ class SaveFileDialog(object):
 
         file_type_box = Gtk.HBox(homogeneous=False, spacing=10)
         file_type_label = Gtk.Label(label=_('Save as File Type:'))
-        file_type_box.pack_start(file_type_label, False, False)
+        file_type_box.pack_start(file_type_label, False, False, 0)
         self.filetypeselector = Gtk.ComboBoxText()
         for ending in file_formats:
             self.filetypeselector.append_text(ending)
         self.filetypeselector.set_active(0)
-        file_type_box.pack_end(self.filetypeselector, True, True)
-        self.chooser.vbox.pack_start(file_type_box, False, False)
+        file_type_box.pack_end(self.filetypeselector, True, True, 0)
+        self.chooser.vbox.pack_start(file_type_box, False, False, 0)
 
         # connect the signals
         self.filetypeselector.connect('changed', self.update_file_ending)

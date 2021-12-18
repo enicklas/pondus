@@ -35,8 +35,7 @@ class AddDataDialog(object):
             if note is None:
                 note = ''
 
-        self.dialog = Gtk.Dialog(parent=parent_window,
-                                flags=Gtk.DialogFlags.NO_SEPARATOR)
+        self.dialog = Gtk.Dialog(parent=parent_window)
         # set the title
         if edit:
             self.dialog.set_title(_('Edit Dataset'))
@@ -56,9 +55,8 @@ class AddDataDialog(object):
             self.calendar = Gtk.Calendar()
             if parameters.config['preferences.unit_system'] == 'metric':
                 self.calendar.set_display_options(
-                                            Gtk.CALENDAR_SHOW_HEADING |
-                                            Gtk.CALENDAR_SHOW_DAY_NAMES |
-                                            Gtk.CALENDAR_WEEK_START_MONDAY)
+                                            Gtk.CalendarDisplayOptions.SHOW_HEADING |
+                                            Gtk.CalendarDisplayOptions.SHOW_DAY_NAMES)
             self.calendar.select_month(date_.month-1, date_.year)
             self.calendar.select_day(date_.day)
             date_box.pack_start(date_label, False, True, 0)
@@ -175,7 +173,8 @@ class AddDataDialog(object):
                 if parameters.config['preferences.use_note']:
                     note = self.note_buffer.get_text(
                             self.note_buffer.get_start_iter(),
-                            self.note_buffer.get_end_iter()).strip()
+                            self.note_buffer.get_end_iter(),
+                            False).strip()
                     if note != '':
                         self.dataset.note = note
                     else:
@@ -198,7 +197,7 @@ class AddDataDialog(object):
         of the entry instead."""
         GObject.idle_add(entry.set_position, -1)
 
-    def on_insert(self, entry, text, length, *args):
+    def on_insert(self, entry, text, length, position):
         """Prevents '+' and '-' from being inserted into the entry and
         triggers the appropriate callback function instead."""
         if text in ['+', '-']:

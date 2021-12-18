@@ -25,7 +25,7 @@ class ImExportDialogBase(object):
     """Common base class for the ex-/import dialogs."""
 
     def __init__(self, title, data_label_text, file_label_text):
-        self.dialog = Gtk.Dialog(flags=Gtk.DialogFlags.NO_SEPARATOR)
+        self.dialog = Gtk.Dialog()
         self.dialog.set_title(title)
 
         # get content area

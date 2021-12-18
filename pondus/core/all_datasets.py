@@ -25,7 +25,7 @@ class AllDatasets(object):
 
     def __iter__(self):
         """Iterates over the datasets."""
-        return self.datasets.values()
+        return iter(self.datasets.values())
 
     def __len__(self):
         """Returns the number of datasets in self.datasets."""

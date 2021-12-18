@@ -42,7 +42,7 @@ class MainWindow(object):
         self.window.set_default_size(
                             parameters.config['window.width'],
                             parameters.config['window.height'])
-        Gtk.window_set_default_icon_from_file(parameters.logo_path)
+        self.window.set_default_icon_from_file(parameters.logo_path)
 
         # build the content
         mainbox = Gtk.VBox()
