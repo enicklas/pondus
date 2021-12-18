@@ -60,9 +60,9 @@ def _test_icon_availability():
 def _test_gtk_availability():
     """Tests availability of pygtk and quits if not found."""
     try:
-        import pygtk
-        pygtk.require('2.0')
-        import gtk
+        import gi
+        gi.require_version('Gtk', '3.0')
+        from gi.repository import Gtk
     except ImportError:
         logger.error(_('Please make sure pygtk is installed.'))
         sys.exit(1)

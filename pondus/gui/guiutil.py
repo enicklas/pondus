@@ -8,11 +8,11 @@ This program is free software licensed under the MIT license. For details
 see LICENSE or http://www.opensource.org/licenses/mit-license.php
 """
 
-import pygtk
-pygtk.require('2.0')
+import gi
+gi.require_version('Gtk', '3.0')
 
-import gtk
-from gtk import gdk
+from gi.repository import Gtk
+from gi.repository import Gdk
 
 from pondus.core import parameters
 
@@ -30,14 +30,14 @@ def sort_function_weight(listmodel, iter1, iter2, data):
 def register_icons():
     """Adds custom icons to the list of stock IDs."""
     icon_info = {'pondus_plot': parameters.plot_button_path}
-    iconfactory = gtk.IconFactory()
-    stock_ids = gtk.stock_list_ids()
+    iconfactory = Gtk.IconFactory()
+    stock_ids = Gtk.stock_list_ids()
     for stock_id in icon_info:
         # only load image files when our stock_id is not present
         if stock_id not in stock_ids:
             icon_file = icon_info[stock_id]
-            pixbuf = gdk.pixbuf_new_from_file(icon_file)
-            iconset = gtk.IconSet(pixbuf)
+            pixbuf = GdkPixbuf.Pixbuf.new_from_file(icon_file)
+            iconset = Gtk.IconSet(pixbuf)
             iconfactory.add(stock_id, iconset)
     iconfactory.add_default()
 
