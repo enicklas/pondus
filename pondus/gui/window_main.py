@@ -152,19 +152,22 @@ class MainWindow(object):
         self.dataview.connect('button-press-event', self.button_pressed)
         self.dataview.connect('key-press-event', self.on_key_press)
         self.modeselector.connect('changed', self.update_mode)
+        self.window.connect('delete_event', self.delete_event)
         self.window.connect('destroy', self.destroy)
 
         # display window with content
         self.window.show_all()
 
     # callback functions
+    def delete_event(self, widget, data=None):
+        if parameters.config['window.remember_size']:
+            (width, height) = self.window.get_size()
+            print(width, height)
+            parameters.config['window.width'] = width
+            parameters.config['window.height'] = height
+
     def destroy(self, widget, data=None):
         """Quits the application cleanly."""
-        if parameters.config['window.remember_size']:
-            parameters.config['window.width'] = \
-                                    self.window.get_allocation().width
-            parameters.config['window.height'] = \
-                                    self.window.get_allocation().height
         initialize.shutdown()
         Gtk.main_quit()
 
