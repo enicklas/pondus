@@ -106,12 +106,12 @@ setup(name = 'pondus',
       long_description = long_description,
       author = 'Eike Nicklas',
       author_email = 'eike@ephys.de',
-      url = 'http://bitbucket.org/eike/pondus/',
+      url = 'https://github.com/enicklas/pondus/',
       license = 'MIT',
       scripts = _get_scripts(),
       data_files = data_files,
       package_dir = {'pondus': 'pondus'},
       packages = ['pondus', 'pondus.backends', 'pondus.core', 'pondus.gui'],
-      requires = ['python(>= 2.5)', 'pygtk(>=2.12)', 'matplotlib'])
+      requires = ['python(>= 3.6)', 'PyGObject(>=3.38)', 'matplotlib(>=3.0'])
 
 _clean_up()

@@ -40,7 +40,7 @@ def _create_pot(version, files_to_translate):
             '-o pondus.pot',
             '--package-name=Pondus',
             ''.join(['--package-version=', version]),
-            '--msgid-bugs-address=pondus-dev@lists.berlios.de']
+            '--msgid-bugs-address=https://github.com/enicklas/pondus/issues']
     gettext_command.extend(gettext_options)
     gettext_command.extend(files_to_translate)
     os.system(' '.join(gettext_command))
