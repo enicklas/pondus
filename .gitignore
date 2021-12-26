@@ -1,3 +1,10 @@
+# project-specific build artifacts
+*.html
+data/*.gz
+data/*.xml
+po/*.po~
+po/mo
+
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]
