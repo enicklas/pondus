@@ -2,7 +2,7 @@
 
 """
 This file is part of Pondus, a personal weight manager.
-Copyright (C) 2007-12  Eike Nicklas <eike@ephys.de>
+Copyright (C) 2007-21  Eike Nicklas <eike@ephys.de>
 
 This program is free software licensed under the MIT license. For details
 see LICENSE or http://www.opensource.org/licenses/mit-license.php
@@ -162,7 +162,6 @@ class MainWindow(object):
     def delete_event(self, widget, data=None):
         if parameters.config['window.remember_size']:
             (width, height) = self.window.get_size()
-            print(width, height)
             parameters.config['window.width'] = width
             parameters.config['window.height'] = height
 
