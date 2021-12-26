@@ -1,17 +1,16 @@
-Pondus Authors
-================
+# Authors
 
-Eike Nicklas <mailto:eike@ephys.de[]>
+- Eike Nicklas &lt;<eike@ephys.de>&gt;
 
-Contributors:
----------------
- * niqueco
- * Sindre Pedersen Bjørdal
- * Stefano Maggiolo
- * Stefano Costa
+# Contributors
 
-Translators:
---------------
+- niqueco
+- Sindre Pedersen Bjørdal
+- Stefano Maggiolo
+- Stefano Costa
+
+# Translators:
+
     [bg]    Yasen Pramatarov
     [ca]    dmanye
     [de]    Eike Nicklas
@@ -26,8 +25,8 @@ Translators:
     [sv]    Peter Landgren
     [tr]    Muhammet Kara
 
-Former Translators:
----------------------
+# Former Translators:
+
     [es]    Enrique José Hernández Blasco
     [es_CO] Admin Abdón Sánchez
     [fr]    Fabrice Haberer-Proust

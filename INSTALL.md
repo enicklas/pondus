@@ -1,23 +1,19 @@
-Installation Instructions for Pondus
-======================================
+# Installation Instructions
 
 Pondus is developed and tested on Debian GNU/Linux, but should run on
-every system where Python (>= 2.5) and PyGTK (>= 2.12) are available.
-Matplotlib is recommended.
+every system where Python (&gt;= 2.5) and PyGTK (&gt;= 2.12) are
+available. Matplotlib is recommended.
 
-Testing without installation
-------------------------------
+## Testing without installation
 
 You can test pondus without installing it by executing `pondus.py`.
 
+## Installation Instructions
 
-Installation Instructions
----------------------------
+### Linux/Unix:
 
-Linux/Unix:
-~~~~~~~~~~~~~
-
-Pondus is available in Debian, Ubuntu, Fedora, Arch Linux and Frugalware.
+Pondus is available in Debian, Ubuntu, Fedora, Arch Linux and
+Frugalware.
 
 On other systems, install Pondus by executing in the source directory
 (as root):
@@ -34,17 +30,14 @@ with:
 
 or from the menu of your desktop environment.
 
+### Windows:
 
-Windows:
-~~~~~~~~~~
-
-A Windows installer can be found at
-    http://bitbucket.org/eike/pondus/[]
+A Windows installer can be found at <https://github.com/enicklas/pondus/>
 
 However, before installing Pondus, you have to make sure that Python,
 GTK+, and PyGTK are installed (NumPy and Matplotlib are recommended).
 The installation directions for (Py)GTK can be found at
-    http://faq.pygtk.org/index.py?req=show&file=faq21.001.htp[]
+<http://faq.pygtk.org/index.py?req=show&file=faq21.001.htp>
 
 Then, Pondus can be installed by executing the provided installer.
 
@@ -52,17 +45,14 @@ The executable script to start Pondus should now be in
 
     C:\Python<version>\Scripts\pondus-win.py
 
+## User setup
 
-User setup
-----------
-System dependencies
-apt install gir1.2-gtk-3.0 
+System dependencies apt install gir1.2-gtk-3.0
 
-Python package dependencies
-apt install python3-gi python3-matplotlib python3-gi-cairo
+Python package dependencies apt install python3-gi python3-matplotlib
+python3-gi-cairo
 
-Development setup
------------------
-
-In addition to user setup:
-apt install build-essential libgirepository1.0-dev python3-dev libcairo2-dev
+## Development setup
+ 
+In addition to user setup: apt install build-essential
+libgirepository1.0-dev python3-dev libcairo2-dev

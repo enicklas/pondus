@@ -67,12 +67,12 @@ CSV of the form `2008-03-26,81.3`.
 BUGS
 ----
 Look for known bugs and report new bugs at
-http://bitbucket.org/eike/pondus/issues/[]
+https://github.com/enicklas/pondus/issues/[]
 
 
 RESOURCES
 ---------
-Homepage: http://bitbucket.org/eike/pondus/[]
+Homepage: https://github.com/enicklas/pondus/[]
 
 Mailing List: <mailto:pondus-dev@lists.berlios.de[]>
 

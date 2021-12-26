@@ -5,7 +5,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: pondus\n"
-"Report-Msgid-Bugs-To: http://bitbucket.org/eike/pondus/issues\n"
+"Report-Msgid-Bugs-To: https://github.com/enicklas/pondus/issues\n"
 "POT-Creation-Date: 2011-05-28 20:39+0200\n"
 "PO-Revision-Date: 2011-06-13 18:20+0000\n"
 "Last-Translator: Sl_Alex <alexslabchenko@gmail.com>\n"
