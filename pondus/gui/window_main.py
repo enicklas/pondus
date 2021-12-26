@@ -2,17 +2,17 @@
 
 """
 This file is part of Pondus, a personal weight manager.
-Copyright (C) 2007-12  Eike Nicklas <eike@ephys.de>
+Copyright (C) 2007-21  Eike Nicklas <eike@ephys.de>
 
 This program is free software licensed under the MIT license. For details
 see LICENSE or http://www.opensource.org/licenses/mit-license.php
 """
 
-import pygtk
-pygtk.require('2.0')
+import gi
+gi.require_version('Gtk', '3.0')
 
-import gtk
-from gtk import gdk
+from gi.repository import Gtk
+from gi.repository import Gdk
 import os
 import threading
 
@@ -37,37 +37,37 @@ class MainWindow(object):
         self.datasetdata = parameters.user.measurements
 
         # create the window
-        self.window = gtk.Window(type=gtk.WINDOW_TOPLEVEL)
+        self.window = Gtk.Window(type=Gtk.WindowType.TOPLEVEL)
         self.window.set_title('Pondus')
         self.window.set_default_size(
                             parameters.config['window.width'],
                             parameters.config['window.height'])
-        gtk.window_set_default_icon_from_file(parameters.logo_path)
+        self.window.set_default_icon_from_file(parameters.logo_path)
 
         # build the content
-        mainbox = gtk.VBox()
+        mainbox = Gtk.VBox()
         self.window.add(mainbox)
 
         # register icons
         guiutil.register_icons()
 
         # set up UIManager
-        uimanager = gtk.UIManager()
+        uimanager = Gtk.UIManager()
         accelgroup = uimanager.get_accel_group()
         self.window.add_accel_group(accelgroup)
-        action_group = gtk.ActionGroup('pondus_actions')
+        action_group = Gtk.ActionGroup('pondus_actions')
         action_group.add_actions([
-            ('add', gtk.STOCK_ADD, None, '<Control>a',
+            ('add', Gtk.STOCK_ADD, None, '<Control>a',
                 _('Add dataset'), self.add_dialog),
-            ('edit', gtk.STOCK_EDIT, None, '<Control>e',
+            ('edit', Gtk.STOCK_EDIT, None, '<Control>e',
                 _('Edit selected dataset'), self.edit_dialog),
-            ('remove', gtk.STOCK_REMOVE, None, '<Control>d',
+            ('remove', Gtk.STOCK_REMOVE, None, '<Control>d',
                 _('Delete selected dataset'), self.remove_dialog),
             ('plot', 'pondus_plot', _('Plot'), '<Control>p',
                 _('Matplotlib not available!'), self.plot_dialog),
-            ('preferences', gtk.STOCK_PREFERENCES, None, None,
+            ('preferences', Gtk.STOCK_PREFERENCES, None, None,
                 _('Preferences'), self.preferences_dialog),
-            ('quit', gtk.STOCK_QUIT, None, '<Control>q',
+            ('quit', Gtk.STOCK_QUIT, None, '<Control>q',
                 _('Quit'), self.destroy)])
         self.editaction = action_group.get_action('edit')
         self.removeaction = action_group.get_action('remove')
@@ -86,11 +86,11 @@ class MainWindow(object):
         </ui>"""
         uimanager.add_ui_from_string(ui)
 
-        prefbutton = gtk.MenuToolButton(stock_id=gtk.STOCK_PREFERENCES)
+        prefbutton = Gtk.MenuToolButton(stock_id=Gtk.STOCK_PREFERENCES)
         prefbutton.set_related_action(action_group.get_action('preferences'))
-        prefmenu = gtk.Menu()
-        import_item = gtk.MenuItem(label=_('Import Data'))
-        export_item = gtk.MenuItem(label=_('Export Data'))
+        prefmenu = Gtk.Menu()
+        import_item = Gtk.MenuItem(label=_('Import Data'))
+        export_item = Gtk.MenuItem(label=_('Export Data'))
         import_item.show()
         export_item.show()
         prefmenu.append(import_item)
@@ -98,7 +98,7 @@ class MainWindow(object):
         prefbutton.set_menu(prefmenu)
 
         toolbar = uimanager.get_widget('/Toolbar')
-        toolbar.set_style(gtk.TOOLBAR_ICONS)
+        toolbar.set_style(Gtk.ToolbarStyle.ICONS)
         toolbar.insert(prefbutton, -1)
         for action in action_group.list_actions():
             action.connect_accelerator()
@@ -113,17 +113,17 @@ class MainWindow(object):
         self.plotbutton = uimanager.get_widget('/Toolbar/plot')
 
         # add list displaying the datasets
-        self.contentbox = gtk.VBox(spacing=5)
-        datawindow = gtk.ScrolledWindow()
-        datawindow.set_policy(gtk.POLICY_AUTOMATIC, gtk.POLICY_AUTOMATIC)
-        datawindow.set_shadow_type(gtk.SHADOW_IN)
-        self.datalist = gtk.ListStore(int, str, str, str)
+        self.contentbox = Gtk.VBox(spacing=5)
+        datawindow = Gtk.ScrolledWindow()
+        datawindow.set_policy(Gtk.PolicyType.AUTOMATIC, Gtk.PolicyType.AUTOMATIC)
+        datawindow.set_shadow_type(Gtk.ShadowType.IN)
+        self.datalist = Gtk.ListStore(int, str, str, str)
         self.display_data(self.datasetdata)
-        self.dataview = gtk.TreeView(model=self.datalist)
+        self.dataview = Gtk.TreeView(model=self.datalist)
         self.add_column(_('Date'), 1)
         self.add_column(_('Weight'), 2)
         self.datalist.set_sort_func(2, guiutil.sort_function_weight, None)
-        self.datalist.set_sort_column_id(1, gtk.SORT_DESCENDING)
+        self.datalist.set_sort_column_id(1, Gtk.SortType.DESCENDING)
         self.dataview.set_rules_hint(True)
         self.dataview.set_rubber_banding(True)
         self.dataview.set_tooltip_column(3)
@@ -131,7 +131,7 @@ class MainWindow(object):
         self.contentbox.pack_start(datawindow, True, True, 0)
 
         # measurement or plan selector
-        self.modeselector = gtk.combo_box_new_text()
+        self.modeselector = Gtk.ComboBoxText()
         self.modeselector.append_text(_('Weight Measurements'))
         self.modeselector.append_text(_('Weight Planner'))
         self.modeselector.set_active(0)
@@ -139,7 +139,7 @@ class MainWindow(object):
 
         # get treeselection and deactivate actions if no selection
         self.treeselection = self.dataview.get_selection()
-        self.treeselection.set_mode(gtk.SELECTION_MULTIPLE)
+        self.treeselection.set_mode(Gtk.SelectionMode.MULTIPLE)
         self.set_selection_active(self.treeselection)
         self.set_plot_action_active()
         self.check_modeselector()
@@ -147,26 +147,28 @@ class MainWindow(object):
         # connect the signals
         import_item.connect('activate', self.dialog_import)
         export_item.connect('activate', self.dialog_export)
-        self.dataview.add_events(gdk.BUTTON_PRESS_MASK)
+        self.dataview.add_events(Gdk.EventMask.BUTTON_PRESS_MASK)
         self.treeselection.connect('changed', self.set_selection_active)
         self.dataview.connect('button-press-event', self.button_pressed)
         self.dataview.connect('key-press-event', self.on_key_press)
         self.modeselector.connect('changed', self.update_mode)
+        self.window.connect('delete_event', self.delete_event)
         self.window.connect('destroy', self.destroy)
 
         # display window with content
         self.window.show_all()
 
     # callback functions
+    def delete_event(self, widget, data=None):
+        if parameters.config['window.remember_size']:
+            (width, height) = self.window.get_size()
+            parameters.config['window.width'] = width
+            parameters.config['window.height'] = height
+
     def destroy(self, widget, data=None):
         """Quits the application cleanly."""
-        if parameters.config['window.remember_size']:
-            parameters.config['window.width'] = \
-                                    self.window.get_allocation().width
-            parameters.config['window.height'] = \
-                                    self.window.get_allocation().height
         initialize.shutdown()
-        gtk.main_quit()
+        Gtk.main_quit()
 
     def add_dialog(self, widget, data=None):
         """Runs the dialog to add a new dataset and then adds it to
@@ -190,7 +192,7 @@ class MainWindow(object):
         title = _('Remove Data?')
         message = _('Do you really want to delete the selected datasets?')
         dialog = MessageDialog('question', title, message)
-        if dialog.run() == gtk.RESPONSE_YES:
+        if dialog.run() == Gtk.ResponseType.YES:
             (listmodel, treepaths) = self.treeselection.get_selected_rows()
             treeiters = [listmodel.get_iter(path) for path in treepaths]
             for treeiter in treeiters:
@@ -257,11 +259,11 @@ class MainWindow(object):
         """Tests, which key was pressed and triggers the appropriate
         callback function."""
         # delete selected dataset
-        if (event.keyval == gtk.keysyms.Delete
+        if (event.keyval == Gdk.KEY_Delete
                 and self.removeaction.get_sensitive()):
             self.remove_dialog(widget)
         # edit selected dataset
-        if (event.keyval in [gtk.keysyms.Return, gtk.keysyms.KP_Enter]
+        if (event.keyval in [Gdk.KEY_Return, Gdk.KEY_KP_Enter]
                     and self.editaction.get_sensitive()):
             self.edit_dialog(widget)
 
@@ -325,9 +327,9 @@ class MainWindow(object):
 
     def add_column(self, title, column_id):
         """Adds a column to the list view: First, create the
-        gtk.TreeViewColumn and then set some needed properties."""
-        column = gtk.TreeViewColumn(
-                            title, gtk.CellRendererText(), text=column_id)
+        Gtk.TreeViewColumn and then set some needed properties."""
+        column = Gtk.TreeViewColumn(
+                            title, Gtk.CellRendererText(), text=column_id)
         column.set_sort_column_id(column_id)
         self.dataview.append_column(column)
 
@@ -351,11 +353,11 @@ class MainWindow(object):
     def main(self):
         """Starts the gtk main loop."""
         if os.name == 'posix':
-            gdk.threads_init()
+            Gdk.threads_init()
             MplTester().start()
         else:
             import_mpl()
-        gtk.main()
+        Gtk.main()
 
 
 class MplTester(threading.Thread):

@@ -8,10 +8,10 @@ This program is free software licensed under the MIT license. For details
 see LICENSE or http://www.opensource.org/licenses/mit-license.php
 """
 
-import pygtk
-pygtk.require('2.0')
+import gi
+gi.require_version('Gtk', '3.0')
 
-import gtk
+from gi.repository import Gtk
 
 
 class MessageDialog(object):
@@ -20,14 +20,14 @@ class MessageDialog(object):
 
     def __init__(self, type_, title, message):
         if type_ == 'error':
-            self.dialog = gtk.MessageDialog(
-                    type=gtk.MESSAGE_ERROR, buttons=gtk.BUTTONS_CLOSE)
+            self.dialog = Gtk.MessageDialog(
+                    type=Gtk.MessageType.ERROR, buttons=Gtk.ButtonsType.CLOSE)
         elif type_ == 'info':
-            self.dialog = gtk.MessageDialog(
-                    type=gtk.MESSAGE_INFO, buttons=gtk.BUTTONS_CLOSE)
+            self.dialog = Gtk.MessageDialog(
+                    type=Gtk.MessageType.INFO, buttons=Gtk.ButtonsType.CLOSE)
         elif type_ == 'question':
-            self.dialog = gtk.MessageDialog(
-                    type=gtk.MESSAGE_QUESTION, buttons=gtk.BUTTONS_YES_NO)
+            self.dialog = Gtk.MessageDialog(
+                    type=Gtk.MessageType.QUESTION, buttons=Gtk.ButtonsType.YES_NO)
         self.dialog.set_title(title)
         self.dialog.set_markup(message)
         self.dialog.show_all()

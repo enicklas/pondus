@@ -8,10 +8,10 @@ This program is free software licensed under the MIT license. For details
 see LICENSE or http://www.opensource.org/licenses/mit-license.php
 """
 
-import pygtk
-pygtk.require('2.0')
+import gi
+gi.require_version('Gtk', '3.0')
 
-import gtk
+from gi.repository import Gtk
 import os
 
 from pondus.core import parameters
@@ -25,35 +25,35 @@ class ImExportDialogBase(object):
     """Common base class for the ex-/import dialogs."""
 
     def __init__(self, title, data_label_text, file_label_text):
-        self.dialog = gtk.Dialog(flags=gtk.DIALOG_NO_SEPARATOR)
+        self.dialog = Gtk.Dialog()
         self.dialog.set_title(title)
 
         # get content area
         content_area = self.dialog.get_content_area()
 
-        backendbox = gtk.VBox()
+        backendbox = Gtk.VBox()
         backendbox.set_border_width(5)
-        backend_label = gtk.Label(_('Select Backend:'))
+        backend_label = Gtk.Label(label=_('Select Backend:'))
         backend_label.set_alignment(xalign=0, yalign=0.5)
         backendbox.pack_start(backend_label, True, True, 0)
-        backendselector = gtk.combo_box_new_text()
+        backendselector = Gtk.ComboBoxText()
         for backend in imexport_backends:
             backendselector.append_text(backend)
         backendselector.set_active(0)
         backendbox.pack_start(backendselector, True, True, 0)
         content_area.pack_start(backendbox, True, True, 0)
 
-        databox = gtk.VBox()
+        databox = Gtk.VBox()
         databox.set_border_width(5)
-        data_label = gtk.Label(data_label_text)
+        data_label = Gtk.Label(label=data_label_text)
         data_label.set_alignment(xalign=0, yalign=0.5)
         databox.pack_start(data_label, True, True, 0)
-        self.data_button = gtk.RadioButton(label=_('Weight Measurements'))
+        self.data_button = Gtk.RadioButton(label=_('Weight Measurements'))
         self.data_button.set_active(True)
         self.data_button.connect('toggled', self.on_data_change, 'meas')
         self.on_data_change(self.data_button, 'meas')
         databox.pack_start(self.data_button, True, True, 0)
-        self.data_button = gtk.RadioButton(
+        self.data_button = Gtk.RadioButton(
                             group=self.data_button, label=_('Weight Plan'))
         self.data_button.connect('toggled', self.on_data_change, 'plan')
         if not parameters.config['preferences.use_weight_plan']:
@@ -61,15 +61,15 @@ class ImExportDialogBase(object):
         databox.pack_start(self.data_button, True, True, 0)
         content_area.pack_start(databox, True, True, 0)
 
-        filebox = gtk.VBox()
+        filebox = Gtk.VBox()
         filebox.set_border_width(5)
-        file_label = gtk.Label(file_label_text)
+        file_label = Gtk.Label(label=file_label_text)
         file_label.set_alignment(xalign=0, yalign=0.5)
         filebox.pack_start(file_label, True, True, 0)
-        filehbox = gtk.HBox(homogeneous=False, spacing=5)
-        self.file_entry = gtk.Entry()
+        filehbox = Gtk.HBox(homogeneous=False, spacing=5)
+        self.file_entry = Gtk.Entry()
         filehbox.pack_start(self.file_entry, True, True, 0)
-        choose_button = gtk.Button(stock=gtk.STOCK_OPEN)
+        choose_button = Gtk.Button(stock=Gtk.STOCK_OPEN)
         filehbox.pack_start(choose_button, True, True, 0)
         filebox.pack_start(filehbox, True, True, 0)
         content_area.pack_start(filebox, True, True, 0)
@@ -78,8 +78,8 @@ class ImExportDialogBase(object):
         self.update_backend(backendselector)
 
         # buttons in action area
-        self.dialog.add_button(gtk.STOCK_CANCEL, gtk.RESPONSE_CANCEL)
-        self.dialog.add_button(gtk.STOCK_OK, gtk.RESPONSE_OK)
+        self.dialog.add_button(Gtk.STOCK_CANCEL, Gtk.ResponseType.CANCEL)
+        self.dialog.add_button(Gtk.STOCK_OK, Gtk.ResponseType.OK)
 
         # connect the signals
         choose_button.connect('clicked', self.select_file)
@@ -116,7 +116,7 @@ class DialogExport(ImExportDialogBase):
     def run(self):
         """Runs the dialog and closes it afterwards."""
         response = self.dialog.run()
-        if response == gtk.RESPONSE_OK:
+        if response == Gtk.ResponseType.OK:
             self.export()
         self.dialog.hide()
 
@@ -151,7 +151,7 @@ class DialogImport(ImExportDialogBase):
     def run(self):
         """Runs the dialog and closes it afterwards."""
         response = self.dialog.run()
-        if response == gtk.RESPONSE_OK:
+        if response == Gtk.ResponseType.OK:
             filepath = os.path.expanduser(self.file_entry.get_text())
             if os.path.isfile(filepath):
                 self.import_(filepath)

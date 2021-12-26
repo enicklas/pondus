@@ -8,13 +8,13 @@ This program is free software licensed under the MIT license. For details
 see LICENSE or http://www.opensource.org/licenses/mit-license.php
 """
 
-import pygtk
-pygtk.require('2.0')
+import gi
+gi.require_version('Gtk', '3.0')
 
-import gtk
+from gi.repository import Gtk
 from datetime import date, timedelta
 
-from matplotlib.backends.backend_gtkagg import FigureCanvasGTKAgg \
+from matplotlib.backends.backend_gtk3agg import FigureCanvasGTK3Agg \
     as FigureCanvas
 
 from pondus.core import parameters
@@ -29,7 +29,7 @@ class PlotDialog(object):
     range."""
 
     def __init__(self):
-        self.dialog = gtk.Dialog(title=_('Plot Weight'))
+        self.dialog = Gtk.Dialog(title=_('Plot Weight'))
         self.dialog.set_default_size(600, 450)
 
         # get content area
@@ -41,22 +41,22 @@ class PlotDialog(object):
         content_area.set_spacing(5)
         content_area.pack_start(self.canvas, True, True, 0)
         # date selection
-        date_selection_box = gtk.HBox(homogeneous=False, spacing=5)
-        date_label = gtk.Label(_('Select Date Range:'))
-        date_selection_box.pack_start(date_label, False, False)
+        date_selection_box = Gtk.HBox(homogeneous=False, spacing=5)
+        date_label = Gtk.Label(label=_('Select Date Range:'))
+        date_selection_box.pack_start(date_label, False, False, 0)
         # start date
-        self.start_date_entry = gtk.Entry()
+        self.start_date_entry = Gtk.Entry()
         self.start_date_entry.set_width_chars(10)
         self.start_date_entry.set_tooltip_text(_('Start date'))
-        date_selection_box.pack_start(self.start_date_entry, False, False)
-        date_selection_box.pack_start(gtk.Label('-'), False, False)
+        date_selection_box.pack_start(self.start_date_entry, False, False, 0)
+        date_selection_box.pack_start(Gtk.Label('-', True, True, 0), False, False, 0)
         # end date
-        self.end_date_entry = gtk.Entry()
+        self.end_date_entry = Gtk.Entry()
         self.end_date_entry.set_width_chars(10)
         self.end_date_entry.set_tooltip_text(_('End date'))
-        date_selection_box.pack_start(self.end_date_entry, False, False)
+        date_selection_box.pack_start(self.end_date_entry, False, False, 0)
         # preset date ranges
-        self.dateselector = gtk.combo_box_new_text()
+        self.dateselector = Gtk.ComboBoxText()
         self.dateselector.set_tooltip_text(
                     _('Select date range of plot'))
         self.dateselector.append_text(_('All Time'))
@@ -65,14 +65,14 @@ class PlotDialog(object):
         self.dateselector.append_text(_('Last Month'))
         self.dateselector.append_text(_('Custom'))
         self.set_dateselector_default()
-        date_selection_box.pack_start(self.dateselector, False, False)
-        content_area.pack_start(date_selection_box, False, False)
+        date_selection_box.pack_start(self.dateselector, False, False, 0)
+        content_area.pack_start(date_selection_box, False, False, 0)
         # select data to plot
-        plot_options_box = gtk.HBox(homogeneous=False, spacing=5)
+        plot_options_box = Gtk.HBox(homogeneous=False, spacing=5)
         # left data type selector
-        data_label_left = gtk.Label(_('Data Left:'))
-        plot_options_box.pack_start(data_label_left, False, False)
-        self.plotselector_left = gtk.combo_box_new_text()
+        data_label_left = Gtk.Label(label=_('Data Left:'))
+        plot_options_box.pack_start(data_label_left, False, False, 0)
+        self.plotselector_left = Gtk.ComboBoxText()
         self.plotselector_left.set_name('left')
         self.plotselector_left.append_text(_('Weight'))
         self.plotselector_keys = ['weight']
@@ -92,11 +92,11 @@ you need to enter your height in the preferences dialog.'))
             self.plotselector_left.append_text(_('Body Mass Index'))
             self.plotselector_keys.append('bmi')
         self.plotselector_left.set_active(0)
-        plot_options_box.pack_start(self.plotselector_left, False, False)
+        plot_options_box.pack_start(self.plotselector_left, False, False, 0)
         # right data type selector
-        data_label_right = gtk.Label(_('Right:'))
-        plot_options_box.pack_start(data_label_right, False, False)
-        self.plotselector_right = gtk.combo_box_new_text()
+        data_label_right = Gtk.Label(label=_('Right:'))
+        plot_options_box.pack_start(data_label_right, False, False, 0)
+        self.plotselector_right = Gtk.ComboBoxText()
         self.plotselector_right.set_name('right')
         self.plotselector_right.append_text(_('Weight'))
         if parameters.config['preferences.use_bodyfat']:
@@ -116,24 +116,24 @@ you need to enter your height in the preferences dialog.'))
         if not parameters.config['preferences.use_bodyfat']:
             self.plotselector_right.set_active( \
                     self.plotselector_keys.index(None))
-        plot_options_box.pack_start(self.plotselector_right, False, False)
+        plot_options_box.pack_start(self.plotselector_right, False, False, 0)
         # smooth data checkbox
-        self.smooth_data = gtk.CheckButton(_('Smooth'))
+        self.smooth_data = Gtk.CheckButton(_('Smooth'))
         self.smooth_data.set_active(self.plot.get_smooth())
-        plot_options_box.pack_start(self.smooth_data, True, False)
+        plot_options_box.pack_start(self.smooth_data, True, False, 0)
         # plot plan checkbox
-        self.plot_plan = gtk.CheckButton(_('Show Plan'))
+        self.plot_plan = Gtk.CheckButton(_('Show Plan'))
         self.plot_plan.set_active(self.plot.get_show_plan())
         self.plot_plan.set_sensitive(self.plot.get_show_plan())
         if not self.plot.get_show_plan():
             self.plot_plan.set_tooltip_text(_('The weight planner can be \
 enabled in the preferences dialog.'))
-        plot_options_box.pack_start(self.plot_plan, True, False)
-        content_area.pack_start(plot_options_box, False, False)
+        plot_options_box.pack_start(self.plot_plan, True, False, 0)
+        content_area.pack_start(plot_options_box, False, False, 0)
         # buttons in action field
-        save_button = gtk.Button(label=_('Save Plot'))
-        self.dialog.action_area.pack_start(save_button, False, False)
-        self.dialog.add_button(gtk.STOCK_CLOSE, gtk.RESPONSE_CLOSE)
+        save_button = Gtk.Button(label=_('Save Plot'))
+        self.dialog.action_area.pack_start(save_button, False, False, 0)
+        self.dialog.add_button(Gtk.STOCK_CLOSE, Gtk.ResponseType.CLOSE)
         # initialize text entries and format plot
         self.update_daterange(self.dateselector)
         # connect the signals
@@ -203,7 +203,7 @@ enabled in the preferences dialog.'))
 
     def on_keypress_in_entry(self, entry, event):
         """Updates the plot when Enter is pressed."""
-        if event.keyval in [gtk.keysyms.Return, gtk.keysyms.KP_Enter]:
+        if event.keyval in [Gdk.KEY_Return, Gdk.KEY_KP_Enter]:
             self.set_custom_date_range()
 
     def on_toggle_plot_plan(self, plot_plan_button):

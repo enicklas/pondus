@@ -51,3 +51,18 @@ Then, Pondus can be installed by executing the provided installer.
 The executable script to start Pondus should now be in
 
     C:\Python<version>\Scripts\pondus-win.py
+
+
+User setup
+----------
+System dependencies
+apt install gir1.2-gtk-3.0 
+
+Python package dependencies
+apt install python3-gi python3-matplotlib python3-gi-cairo
+
+Development setup
+-----------------
+
+In addition to user setup:
+apt install build-essential libgirepository1.0-dev python3-dev libcairo2-dev

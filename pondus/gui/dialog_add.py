@@ -8,11 +8,11 @@ This program is free software licensed under the MIT license. For details
 see LICENSE or http://www.opensource.org/licenses/mit-license.php
 """
 
-import pygtk
-pygtk.require('2.0')
+import gi
+gi.require_version('Gtk', '3.0')
 
-import gtk
-import gobject
+from gi.repository import Gtk
+from gi.repository import GObject
 from datetime import date, timedelta
 
 from pondus.core import parameters
@@ -35,8 +35,7 @@ class AddDataDialog(object):
             if note is None:
                 note = ''
 
-        self.dialog = gtk.Dialog(parent=parent_window,
-                                flags=gtk.DIALOG_NO_SEPARATOR)
+        self.dialog = Gtk.Dialog(parent=parent_window)
         # set the title
         if edit:
             self.dialog.set_title(_('Edit Dataset'))
@@ -47,42 +46,41 @@ class AddDataDialog(object):
         content_area = self.dialog.get_content_area()
 
         # create the labels and entry boxes
-        date_box = gtk.VBox(spacing=5)
+        date_box = Gtk.VBox(spacing=5)
         date_box.set_border_width(5)
         if parameters.config['preferences.use_calendar']:
             date_ = self.dataset.date
-            date_label = gtk.Label(_('Date') + ':')
+            date_label = Gtk.Label(label=_('Date') + ':')
             date_label.set_alignment(xalign=0, yalign=0.5)
-            self.calendar = gtk.Calendar()
+            self.calendar = Gtk.Calendar()
             if parameters.config['preferences.unit_system'] == 'metric':
                 self.calendar.set_display_options(
-                                            gtk.CALENDAR_SHOW_HEADING |
-                                            gtk.CALENDAR_SHOW_DAY_NAMES |
-                                            gtk.CALENDAR_WEEK_START_MONDAY)
+                                            Gtk.CalendarDisplayOptions.SHOW_HEADING |
+                                            Gtk.CalendarDisplayOptions.SHOW_DAY_NAMES)
             self.calendar.select_month(date_.month-1, date_.year)
             self.calendar.select_day(date_.day)
             date_box.pack_start(date_label, False, True, 0)
             date_box.pack_start(self.calendar, False, True, 0)
         else:
             date_ = str(self.dataset.date)
-            date_label = gtk.Label(_('Date (YYYY-MM-DD)') + ':')
+            date_label = Gtk.Label(label=_('Date (YYYY-MM-DD)') + ':')
             date_label.set_alignment(xalign=0, yalign=0.5)
-            self.date_entry = gtk.Entry()
+            self.date_entry = Gtk.Entry()
             self.date_entry.set_text(date_)
             self.date_entry.set_activates_default(True)
             date_box.pack_start(date_label, True, False, 0)
             date_box.pack_start(self.date_entry, False, True, 0)
         content_area.pack_start(date_box, False, True, 0)
 
-        weight_bodyfat_box = gtk.HBox(spacing=5)
-        weight_box = gtk.VBox(spacing=5)
+        weight_bodyfat_box = Gtk.HBox(spacing=5)
+        weight_box = Gtk.VBox(spacing=5)
         weight_box.set_border_width(5)
-        weight_label = gtk.Label(
+        weight_label = Gtk.Label(label=
                 (_('Weight') + ' (' + util.get_weight_unit() + '):'))
         weight_label.set_alignment(xalign=0, yalign=0.5)
-        weight_adj = gtk.Adjustment(value=weight, lower=0, upper=1000,
+        weight_adj = Gtk.Adjustment(value=weight, lower=0, upper=1000,
                                     step_incr=0.1, page_incr=1.0)
-        self.weight_entry = gtk.SpinButton(adjustment=weight_adj, digits=1)
+        self.weight_entry = Gtk.SpinButton(adjustment=weight_adj, digits=1)
         self.weight_entry.set_numeric(True)
         self.weight_entry.set_activates_default(True)
         weight_box.pack_start(weight_label, False, True, 0)
@@ -95,7 +93,7 @@ class AddDataDialog(object):
 
         content_area.pack_start(weight_bodyfat_box, False, True, 0)
 
-        muscle_water_box = gtk.HBox(spacing=5)
+        muscle_water_box = Gtk.HBox(spacing=5)
         if parameters.config['preferences.use_muscle']:
             muscle_box = self._get_percentage_box('muscle')
             muscle_water_box.pack_start(muscle_box, True, True, 0)
@@ -105,15 +103,15 @@ class AddDataDialog(object):
         content_area.pack_start(muscle_water_box, False, True, 0)
 
         if parameters.config['preferences.use_note']:
-            note_box = gtk.VBox(spacing=5)
+            note_box = Gtk.VBox(spacing=5)
             note_box.set_border_width(5)
-            textwindow = gtk.ScrolledWindow()
-            textwindow.set_policy(gtk.POLICY_AUTOMATIC, gtk.POLICY_AUTOMATIC)
-            note_label = gtk.Label(_('Note') + ':')
+            textwindow = Gtk.ScrolledWindow()
+            textwindow.set_policy(Gtk.PolicyType.AUTOMATIC, Gtk.PolicyType.AUTOMATIC)
+            note_label = Gtk.Label(label=_('Note') + ':')
             note_label.set_alignment(xalign=0, yalign=0.5)
-            self.note_view = gtk.TextView()
+            self.note_view = Gtk.TextView()
             self.note_view.set_editable(True)
-            self.note_view.set_wrap_mode(gtk.WRAP_WORD)
+            self.note_view.set_wrap_mode(Gtk.WrapMode.WORD)
             self.note_buffer = self.note_view.get_buffer()
             self.note_buffer.set_text(note)
             textwindow.add(self.note_view)
@@ -122,10 +120,10 @@ class AddDataDialog(object):
             content_area.pack_start(note_box, True, True, 0)
 
         # buttons in action area
-        self.dialog.add_button(gtk.STOCK_CANCEL, gtk.RESPONSE_CANCEL)
-        self.dialog.add_button(gtk.STOCK_OK, gtk.RESPONSE_OK)
+        self.dialog.add_button(Gtk.STOCK_CANCEL, Gtk.ResponseType.CANCEL)
+        self.dialog.add_button(Gtk.STOCK_OK, Gtk.ResponseType.OK)
 
-        self.dialog.set_default_response(gtk.RESPONSE_OK)
+        self.dialog.set_default_response(Gtk.ResponseType.OK)
 
         # connect the signals
         self.weight_insert_signal = \
@@ -150,7 +148,7 @@ class AddDataDialog(object):
     def run(self):
         """Runs the dialog and returns the new/updated dataset."""
         response = self.dialog.run()
-        if response == gtk.RESPONSE_OK:
+        if response == Gtk.ResponseType.OK:
             # try to create a new dataset from the given data
             try:
                 if parameters.config['preferences.use_calendar']:
@@ -175,7 +173,8 @@ class AddDataDialog(object):
                 if parameters.config['preferences.use_note']:
                     note = self.note_buffer.get_text(
                             self.note_buffer.get_start_iter(),
-                            self.note_buffer.get_end_iter()).strip()
+                            self.note_buffer.get_end_iter(),
+                            False).strip()
                     if note != '':
                         self.dataset.note = note
                     else:
@@ -196,9 +195,9 @@ class AddDataDialog(object):
     def on_focus(self, entry, event):
         """Prevents a selection and puts the cursor at the end
         of the entry instead."""
-        gobject.idle_add(entry.set_position, -1)
+        GObject.idle_add(entry.set_position, -1)
 
-    def on_insert(self, entry, text, length, *args):
+    def on_insert(self, entry, text, length, position):
         """Prevents '+' and '-' from being inserted into the entry and
         triggers the appropriate callback function instead."""
         if text in ['+', '-']:
@@ -207,7 +206,7 @@ class AddDataDialog(object):
             # check first for use_calendar; date_entry might not exist
             if (not parameters.config['preferences.use_calendar']
                             and entry == self.date_entry):
-                gobject.idle_add(self.date_key_press, entry, text, position)
+                GObject.idle_add(self.date_key_press, entry, text, position)
             if entry == self.weight_entry \
                     or (parameters.config['preferences.use_bodyfat'] \
                         and entry==self.bodyfat_entry) \
@@ -215,7 +214,7 @@ class AddDataDialog(object):
                         and entry==self.muscle_entry) \
                     or (parameters.config['preferences.use_water'] \
                         and entry==self.water_entry):
-                gobject.idle_add(self.spin_key_press, entry, text)
+                GObject.idle_add(self.spin_key_press, entry, text)
 
     # helper methods
     def date_key_press(self, entry, text, position):
@@ -245,29 +244,29 @@ class AddDataDialog(object):
         """Tests, which key was pressed and increments/decrements the
         value in the given entry by 0.1 if possible."""
         if text == '+':
-            entry.spin(gtk.SPIN_STEP_FORWARD, increment=0.1)
+            entry.spin(Gtk.SPIN_STEP_FORWARD, increment=0.1)
         elif text == '-':
-            entry.spin(gtk.SPIN_STEP_BACKWARD, increment=0.1)
+            entry.spin(Gtk.SPIN_STEP_BACKWARD, increment=0.1)
 
     def _get_percentage_box(self, key):
         """Returns a box containing label and spinbutton for entering one of
         bodyfat, muscle or water percentage."""
         if parameters.config['preferences.use_' + key]:
-            box = gtk.VBox(spacing=5)
+            box = Gtk.VBox(spacing=5)
             box.set_border_width(5)
             if key == 'bodyfat':
-                label = gtk.Label(_('Bodyfat') + ' (%):')
+                label = Gtk.Label(label=_('Bodyfat') + ' (%):')
             if key == 'muscle':
-                label = gtk.Label(_('Muscle') + ' (%):')
+                label = Gtk.Label(label=_('Muscle') + ' (%):')
             if key == 'water':
-                label = gtk.Label(_('Water') + ' (%):')
+                label = Gtk.Label(label=_('Water') + ' (%):')
             label.set_alignment(xalign=0, yalign=0.5)
             data = getattr(self.dataset, key)
             if data is None:
                 data = 0.0
-            adj = gtk.Adjustment(value=data, lower=0, upper=100,
+            adj = Gtk.Adjustment(value=data, lower=0, upper=100,
                                         step_incr=0.1, page_incr=1.0)
-            entry = gtk.SpinButton(adjustment=adj, digits=1)
+            entry = Gtk.SpinButton(adjustment=adj, digits=1)
             entry.set_numeric(True)
             entry.set_activates_default(True)
             setattr(self, key+'_entry', entry)

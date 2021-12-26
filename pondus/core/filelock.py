@@ -11,9 +11,9 @@ see LICENSE or http://www.opensource.org/licenses/mit-license.php
 import os
 import sys
 
-import pygtk
-pygtk.require('2.0')
-import gtk
+import gi
+gi.require_version('Gtk', '3.0')
+from gi.repository import Gtk
 
 from pondus.core import parameters
 from pondus.gui.dialog_message import MessageDialog
@@ -45,10 +45,10 @@ from the other instance?')
 running), choose YES.')
             message = '\n\n'.join([message1, message2])
             response = MessageDialog('question', title, message).run()
-            if response == gtk.RESPONSE_YES:
+            if response == Gtk.ResponseType.YES:
                 self.take_over_lock()
                 return
-            elif response == gtk.RESPONSE_NO:
+            elif response == Gtk.ResponseType.NO:
                 sys.exit(1)
 
     def lock(self):
