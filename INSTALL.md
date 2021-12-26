@@ -5,14 +5,16 @@ every system where Python 3 and GTK 3 are available.
 
 ## Software Requirements
 
-System dependencies are Python and GTK 3. In particular, you need to `apt install gir1.2-gtk-3.0` on Debian-like systems and correspondingly on other systems.
+System dependencies are Python and GTK 3. In particular, you need to
+`apt install gir1.2-gtk-3.0` on Debian-like systems and correspondingly
+on other systems.
 
 Required Python packages can be installed with
 `apt install python3-gi python3-matplotlib python3-gi-cairo`
 
 ## Testing without installation
 
-You can test Pondus without installing it by executing `pondus.py`.
+You can test Pondus without installing it by executing `python pondus/run.py`.
 
 ## Installation Instructions
 
@@ -35,7 +37,7 @@ or from the menu of your desktop environment.
 
 ### Windows:
 
-A Windows installer can be found at <https://github.com/enicklas/pondus/>
+A Windows installer can be found at <https://github.com/enicklas/pondus>
 
 However, before installing Pondus, you have to make sure that Python and
 GTK are installed. The installation directions for GTK can be found at
@@ -49,8 +51,6 @@ The executable script to start Pondus should now be in
 
 ## Development setup
  
-In order to build Pondus distrubition packages, you need to
+In order to build Pondus distribution packages, you need to
 
-`apt install build-essential
-libgirepository1.0-dev python3-dev libcairo2-dev`
-
+`apt install build-essential libgirepository1.0-dev python3-dev libcairo2-dev pandoc gettext`

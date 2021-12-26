@@ -46,7 +46,7 @@ def _get_scripts():
             scriptpath = os.path.join(tmpdir, 'pondus')
         if not os.path.exists(tmpdir):
             os.makedirs(tmpdir)
-        shutil.copyfile('pondus.py', scriptpath)
+        shutil.copyfile('pondus/run.py', scriptpath)
         return [scriptpath]
 
 
@@ -66,7 +66,7 @@ def _create_mo():
 def _create_man():
     """Creates the gzipped man file to be distributed with the source."""
     if not os.path.exists('data/pondus.1.gz'):
-        os.system('a2x -f manpage data/pondus.1.txt')
+        os.system('pandoc data/pondus.1.md -s -t man -o data/pondus.1')
         os.system('gzip -9 data/pondus.1')
 
 
@@ -106,12 +106,12 @@ setup(name = 'pondus',
       long_description = long_description,
       author = 'Eike Nicklas',
       author_email = 'eike@ephys.de',
-      url = 'https://github.com/enicklas/pondus/',
+      url = 'https://github.com/enicklas/pondus',
       license = 'MIT',
       scripts = _get_scripts(),
       data_files = data_files,
       package_dir = {'pondus': 'pondus'},
       packages = ['pondus', 'pondus.backends', 'pondus.core', 'pondus.gui'],
-      requires = ['python(>= 3.6)', 'PyGObject(>=3.38)', 'matplotlib(>=3.0'])
+      requires = ['python(>= 3.6)', 'PyGObject(>=3.38)', 'matplotlib(>=3.0)'])
 
 _clean_up()

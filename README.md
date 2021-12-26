@@ -9,7 +9,7 @@ the actual measurements in a plot.
 
 For installation instructions read `INSTALL`.
 
-GitHub: <https://github.com/enicklas/pondus/>
+GitHub: <https://github.com/enicklas/pondus>
 
 ## Requirements
 

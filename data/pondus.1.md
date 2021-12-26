@@ -1,6 +1,10 @@
-# PONDUS(1)
-
-Eike Nicklas <eike@ephys.de>
+---
+title: PONDUS
+section: 1
+header: User Manual
+footer: pondus 0.9.0
+date: December 26, 2021
+---
 
 ## NAME
 
@@ -71,11 +75,11 @@ form `2008-03-26,81.3`.
 ## BUGS
 
 Look for known bugs and report new bugs at
-<https://github.com/enicklas/pondus/issues/>
+<https://github.com/enicklas/pondus/issues>
 
 ## RESOURCES
 
-Homepage: <https://github.com/enicklas/pondus/>
+Homepage: <https://github.com/enicklas/pondus>
 
 ## AUTHOR
 

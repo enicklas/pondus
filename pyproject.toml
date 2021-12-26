@@ -1,9 +1,33 @@
 [tool.poetry]
 name = "pondus"
 version = "0.8.1+git"
-description = ""
+description = "personal weight manager"
 authors = ["Eike Nicklas <eike@ephys.de>"]
 license = "MIT"
+homepage = "https://github.com/enicklas/pondus"
+repository = "https://github.com/enicklas/pondus"
+readme = "README.md"
+include = [
+    "AUTHORS.md",
+    "CONTRIBUTING.md",
+    "INSTALL.md",
+    "NEWS.md",
+    "README.md",
+    "TODO.md",
+    "data/pondus.1.gz",
+    "data/pondus.desktop",
+    "data/icons/*",
+    "po/README.md",
+    "po/pondus.pot",
+    "po/update_po.py",
+    "po/*.po",
+]
+exclude = [
+    "data/icons/plot.svg",
+]
+
+[tool.poetry.scripts]
+pondus = "pondus.run:run"
 
 [tool.poetry.dependencies]
 python = "^3.6"

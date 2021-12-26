@@ -8,5 +8,5 @@ This program is free software licensed under the MIT license. For details
 see LICENSE or http://www.opensource.org/licenses/mit-license.php
 """
 
-__all__ = ['backends', 'core', 'gui']
+__all__ = ['backends', 'core', 'gui', 'run']
 __version__ = '0.8.1+git'
