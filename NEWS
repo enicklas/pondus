@@ -1,10 +1,11 @@
 Pondus NEWS
 =============
 
-201x-xx-xx: Version 0.x.x
+2021-12-26: Version 0.8.1
 --------------------------
  * Allow selection and deletion of multiple datasets
  * Unify Im-/Export dialogs using different data formats
+ * Prepare for migration to Python 3
  * Add Catalan translation (Thanks dmanye)
  * Updated translations: ru
 
