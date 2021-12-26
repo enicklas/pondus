@@ -9,4 +9,4 @@ see LICENSE or http://www.opensource.org/licenses/mit-license.php
 """
 
 __all__ = ['backends', 'core', 'gui']
-__version__ = '0.8.1'
+__version__ = '0.8.1+git'
