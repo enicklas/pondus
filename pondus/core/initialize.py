@@ -64,7 +64,7 @@ def _test_gtk_availability():
         gi.require_version('Gtk', '3.0')
         from gi.repository import Gtk
     except ImportError:
-        logger.error(_('Please make sure pygtk is installed.'))
+        logger.error(_('Please make sure that PyGObject is installed.'))
         sys.exit(1)
 
 

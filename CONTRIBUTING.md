@@ -1,10 +1,9 @@
-# How to Contribute to Pondus
+# How to Contribute
 
 ## Feedback, Comments, Suggestions, Bugreports
 
 The easiest way to contribute to Pondus is to give feedback. Let us know
-what you think about Pondus, suggest changes or improvements to the
-mailing list &lt;<pondus-dev@lists.berlios.de>&gt; or report bugs at
+what you think about Pondus, suggest changes or improvements or report bugs at
 <https://github.com/enicklas/pondus/issues/>. We are looking forward to
 your feedback.
 
@@ -23,7 +22,5 @@ another language. Instructions how to do so can be found in `po/README`.
 
 ## Contributing Code
 
-If you want to implement a feature yourself, we will be happy to accept
-patches sent to us via the mailing list. Alternatively, you can fork the
-project at <https://github.com/enicklas/pondus/> and ask me to pull the
-changes.
+If you want to implement a feature yourself, we will be happy to review pull
+requests at <https://github.com/enicklas/pondus/>.

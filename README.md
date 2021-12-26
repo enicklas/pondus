@@ -9,18 +9,13 @@ the actual measurements in a plot.
 
 For installation instructions read `INSTALL`.
 
-Homepage with Bugtracker: <https://github.com/enicklas/pondus/>
-
-Mailing List: &lt;<pondus-dev@lists.berlios.de>&gt;
+GitHub: <https://github.com/enicklas/pondus/>
 
 ## Requirements
 
--   python (>= 2.5)
--   pygtk (>= 2.12)
-
-### Recommended
-
--   matplotlib to enable plotting functions
+- python (>= 3.6)
+- PyGObject (>= 3.38)
+- matplotlib (>= 3.0) is recommended to enable plotting functionality
 
 ## Usage:
 
