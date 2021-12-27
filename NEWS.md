@@ -4,7 +4,8 @@
 - Moved repository from bitbucket to https://github.com/enicklas/pondus
 - Migrated to Python 3 and GTK 3
 - Converted asciidoc documentation to markdown
-- Updated documentation 
+- Updated documentation
+- Added experimental setup with poetry
 
 ## 2021-12-26: Version 0.8.1
 

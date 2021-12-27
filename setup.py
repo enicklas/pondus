@@ -116,6 +116,6 @@ setup(name = 'pondus',
       data_files = data_files,
       package_dir = {'pondus': 'pondus'},
       packages = ['pondus', 'pondus.backends', 'pondus.core', 'pondus.gui', 'pondus.gui.resources'],
-      requires = ['python(>= 3.6)', 'PyGObject(>=3.38)', 'matplotlib(>=3.0)'])
+      requires = ['python(>= 3.7)', 'PyGObject(>=3.38)', 'matplotlib(>=3.0)'])
 
 _clean_up()

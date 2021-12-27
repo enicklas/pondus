@@ -14,26 +14,32 @@ Required Python packages can be installed with
 
 ## Testing without installation
 
-You can test Pondus without installing it by executing `python pondus/run.py`.
+Get the source code via `git clone https://github.com/enicklas/pondus.git` or
+download and unpack it from `https://github.com/enicklas/pondus`.
+
+Run Pondus without installation it by executing `python run_pondus.py` within
+the source directory.
+
+Note: An experimental setup with [poetry](https://python-poetry.org/) is
+available as well. After installation of poetry, you can install pondus to
+a virtual environment using `poetry install` and then start the application
+with `poetry run pondus`. Some features (e.g. internationalization) may not
+work with this approach.
 
 ## Installation Instructions
 
 ### Linux/Unix:
 
-Install Pondus by executing in the source directory
-(as root):
+The simplest way is to download the package from
+https://github.com/enicklas/pondus/releases and install it with
+`pip install <path/to/package>`
 
-    python setup.py install
+Alternatively, you can install Pondus from the source directory via
+`python setup.py install --user`. The development dependencies (see below) are
+needed for this, so please install them first.
 
-The development package for python (python3-dev or similar) is needed
-for this, so please install it first.
-
-Then, you can start Pondus from the command line (remember to switch back to
-the normal user) with:
-
-    pondus
-
-or from the menu of your desktop environment.
+Then, you can run `pondus` from the command line or from the menu of your
+desktop environment.
 
 ### Windows:
 
