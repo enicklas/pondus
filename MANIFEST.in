@@ -18,4 +18,5 @@ include po/README.md
 include po/update_po.py
 include po/pondus.pot
 include po/*.po
+include run_pondus.py
 recursive-include po/mo *.mo

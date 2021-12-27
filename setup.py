@@ -46,7 +46,7 @@ def _get_scripts():
             scriptpath = os.path.join(tmpdir, 'pondus')
         if not os.path.exists(tmpdir):
             os.makedirs(tmpdir)
-        shutil.copyfile('pondus/run.py', scriptpath)
+        shutil.copyfile('run_pondus.py', scriptpath)
         return [scriptpath]
 
 
