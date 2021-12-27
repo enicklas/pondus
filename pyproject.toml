@@ -20,6 +20,7 @@ include = [
     "po/pondus.pot",
     "po/update_po.py",
     "po/*.po",
+    "run_pondus.py",
 ]
 
 [tool.poetry.scripts]
