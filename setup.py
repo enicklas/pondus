@@ -46,27 +46,28 @@ def _get_scripts():
             scriptpath = os.path.join(tmpdir, 'pondus')
         if not os.path.exists(tmpdir):
             os.makedirs(tmpdir)
-        shutil.copyfile('pondus.py', scriptpath)
+        shutil.copyfile('run_pondus.py', scriptpath)
         return [scriptpath]
 
 
 def _create_mo():
     """Creates the .mo files to be distributed with the source."""
-    if not os.path.exists(modir):
-        for lang in _get_language_codes():
-            pofile = os.path.join('po', lang + '.po')
-            modir_lang = os.path.join(modir, lang, 'LC_MESSAGES')
-            mofile = os.path.join(modir_lang, 'pondus.mo')
-            if not os.path.exists(modir_lang):
-                os.makedirs(modir_lang)
-            print('generating', mofile)
-            os.system('msgfmt %s -o %s' % (pofile, mofile))
+    if os.path.exists(modir):
+        shutil.rmtree(modir)
+    for lang in _get_language_codes():
+        pofile = os.path.join('po', lang + '.po')
+        modir_lang = os.path.join(modir, lang, 'LC_MESSAGES')
+        mofile = os.path.join(modir_lang, 'pondus.mo')
+        if not os.path.exists(modir_lang):
+            os.makedirs(modir_lang)
+        print('generating', mofile)
+        os.system('msgfmt %s -o %s' % (pofile, mofile))
 
 
 def _create_man():
     """Creates the gzipped man file to be distributed with the source."""
     if not os.path.exists('data/pondus.1.gz'):
-        os.system('a2x -f manpage data/pondus.1.txt')
+        os.system('pandoc data/pondus.1.md -s -t man -o data/pondus.1')
         os.system('gzip -9 data/pondus.1')
 
 
@@ -88,7 +89,7 @@ plan can be compared with the actual measurements in a plot.
 data_files = [
         ('share/applications', ['data/pondus.desktop']),
         ('share/man/man1', ['data/pondus.1.gz']),
-        ('share/doc/pondus', ['AUTHORS', 'NEWS', 'README', 'TODO']),
+        ('share/doc/pondus', ['AUTHORS.md', 'NEWS.md', 'README.md', 'TODO.md']),
         ('share/pondus', ['data/icons/plot.png']),
         ('share/pixmaps', ['data/icons/pondus.xpm']),
         ('share/icons/hicolor/48x48/apps', ['data/icons/pondus.png']),
@@ -96,6 +97,8 @@ data_files = [
 for lang in _get_language_codes():
     data_files.append((os.path.join('share/locale', lang, 'LC_MESSAGES'),
             [os.path.join(modir, lang, 'LC_MESSAGES/pondus.mo')]))
+
+package_data = {'pondus.gui.resources': ['pondus.png', 'plot.png']}
 
 _create_mo()
 _create_man()
@@ -106,12 +109,13 @@ setup(name = 'pondus',
       long_description = long_description,
       author = 'Eike Nicklas',
       author_email = 'eike@ephys.de',
-      url = 'https://github.com/enicklas/pondus/',
+      url = 'https://github.com/enicklas/pondus',
       license = 'MIT',
       scripts = _get_scripts(),
+      package_data = package_data,
       data_files = data_files,
       package_dir = {'pondus': 'pondus'},
-      packages = ['pondus', 'pondus.backends', 'pondus.core', 'pondus.gui'],
-      requires = ['python(>= 3.6)', 'PyGObject(>=3.38)', 'matplotlib(>=3.0'])
+      packages = ['pondus', 'pondus.backends', 'pondus.core', 'pondus.gui', 'pondus.gui.resources'],
+      requires = ['python(>= 3.7)', 'PyGObject(>=3.38)', 'matplotlib(>=3.0)'])
 
 _clean_up()

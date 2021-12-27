@@ -12,6 +12,7 @@ import gettext
 import logging
 import os
 import sys
+from importlib import resources
 
 from pondus.core import parameters
 from pondus.core import config_parser
@@ -25,28 +26,25 @@ def _set_paths_and_po():
     """Sets the correct paths to icons and translations depending
     on where the executable is located and which platform is run."""
     basepath = os.path.abspath(sys.path[0])
+    with resources.path("pondus.gui.resources", "plot.png") as plot_icon_path:
+        parameters.plot_button_path = plot_icon_path.resolve()
+    with resources.path("pondus.gui.resources", "pondus.png") as logo_icon_path:
+        parameters.logo_path = logo_icon_path.resolve()
     if sys.platform == 'win32':
         # running windows
-        parameters.plot_button_path = \
-                os.path.join(basepath, '../share/pondus/plot.png')
-        parameters.logo_path = os.path.join(basepath, \
-                '../share/icons/hicolor/48x48/apps/pondus.png')
         gettext.install('pondus', os.path.join(basepath, 'share/locale'))
-    elif not basepath.startswith('/usr/'):
-        # using local package without installation
-        parameters.plot_button_path = \
-                os.path.join(basepath, 'data/icons/plot.png')
-        parameters.logo_path = os.path.join(basepath, 'data/icons/pondus.png')
-        gettext.install('pondus', os.path.join(basepath, 'po/mo'))
     elif basepath.startswith('/usr/local/'):
         # installed to /usr/local/
-        parameters.plot_button_path = '/usr/local/share/pondus/plot.png'
-        parameters.logo_path = \
-                '/usr/local/share/icons/hicolor/48x48/apps/pondus.png'
         gettext.install('pondus', '/usr/local/share/locale')
-    else:
+    elif basepath.startswith('/usr/'):
         # installed to /usr/, which is default in parameters
         gettext.install('pondus', '/usr/share/locale')
+    elif basepath.endswith('.local/bin'):
+        # installed as user package
+        gettext.install('pondus', os.path.join(basepath, '..', 'share/locale'))
+    else:
+        # using local package without installation
+        gettext.install('pondus', os.path.join(basepath, 'po/mo'))
 
 
 def _test_icon_availability():
@@ -58,7 +56,7 @@ def _test_icon_availability():
 
 
 def _test_gtk_availability():
-    """Tests availability of pygtk and quits if not found."""
+    """Tests availability of PyGObject and quits if not found."""
     try:
         import gi
         gi.require_version('Gtk', '3.0')

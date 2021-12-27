@@ -7,13 +7,13 @@ quick overview of the history of your weight. A simple weight planner
 allows one to define “target weights” and this plan can be compared with
 the actual measurements in a plot.
 
-For installation instructions read `INSTALL`.
+For installation instructions read `INSTALL.md`.
 
-GitHub: <https://github.com/enicklas/pondus/>
+GitHub: <https://github.com/enicklas/pondus>
 
 ## Requirements
 
-- python (>= 3.6)
+- python (>= 3.7)
 - PyGObject (>= 3.38)
 - matplotlib (>= 3.0) is recommended to enable plotting functionality
 

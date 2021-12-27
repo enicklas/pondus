@@ -27,7 +27,7 @@ def sort_function_weight(listmodel, iter1, iter2, data):
 
 def register_icons():
     """Adds custom icons to the list of stock IDs."""
-    icon_info = {'pondus_plot': parameters.plot_button_path}
+    icon_info = {'pondus_plot': str(parameters.plot_button_path)}
     iconfactory = Gtk.IconFactory()
     stock_ids = Gtk.stock_list_ids()
     for stock_id in icon_info:

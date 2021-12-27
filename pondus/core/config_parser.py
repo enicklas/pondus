@@ -8,11 +8,7 @@ This program is free software licensed under the MIT license. For details
 see LICENSE or http://www.opensource.org/licenses/mit-license.php
 """
 
-# workaround to support both python2 and python3
-try:
-    import configparser
-except ImportError:
-    import configparser as configparser
+import configparser
 import os
 
 from pondus.core import parameters

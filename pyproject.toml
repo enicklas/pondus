@@ -1,0 +1,38 @@
+[tool.poetry]
+name = "pondus"
+version = "0.8.1+git"
+description = "personal weight manager"
+authors = ["Eike Nicklas <eike@ephys.de>"]
+license = "MIT"
+homepage = "https://github.com/enicklas/pondus"
+repository = "https://github.com/enicklas/pondus"
+readme = "README.md"
+include = [
+    "AUTHORS.md",
+    "CONTRIBUTING.md",
+    "INSTALL.md",
+    "NEWS.md",
+    "README.md",
+    "TODO.md",
+    "data/pondus.1.gz",
+    "data/pondus.desktop",
+    "po/README.md",
+    "po/pondus.pot",
+    "po/update_po.py",
+    "po/*.po",
+    "run_pondus.py",
+]
+
+[tool.poetry.scripts]
+pondus = "run_pondus:run"
+
+[tool.poetry.dependencies]
+python = "^3.7"
+PyGObject = "^3.38.0"
+matplotlib = "^3.0"
+
+[tool.poetry.dev-dependencies]
+
+[build-system]
+requires = ["poetry-core>=1.0.0"]
+build-backend = "poetry.core.masonry.api"
