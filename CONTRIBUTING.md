@@ -11,9 +11,8 @@ your feedback.
 
 If you want to use the latest development version of Pondus and help
 finding new bugs or other problems, you can get the latest version from
-<https://github.com/enicklas/pondus> or, if you have Git installed,
-type `git clone https://github.com/enicklas/pondus.git`. This version can be
-tested without installation by executing `python pondus/run.py`.
+<https://github.com/enicklas/pondus>. See `INSTALL.md` for instructions on
+how to run Pondus without installation.
 
 ## Translating
 
