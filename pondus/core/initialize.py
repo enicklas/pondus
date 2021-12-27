@@ -33,15 +33,18 @@ def _set_paths_and_po():
     if sys.platform == 'win32':
         # running windows
         gettext.install('pondus', os.path.join(basepath, 'share/locale'))
-    elif not basepath.startswith('/usr/'):
-        # using local package without installation
-        gettext.install('pondus', os.path.join(basepath, 'po/mo'))
     elif basepath.startswith('/usr/local/'):
         # installed to /usr/local/
         gettext.install('pondus', '/usr/local/share/locale')
-    else:
+    elif basepath.startswith('/usr/'):
         # installed to /usr/, which is default in parameters
         gettext.install('pondus', '/usr/share/locale')
+    elif basepath.endswith('.local/bin'):
+        # installed as user package
+        gettext.install('pondus', os.path.join(basepath, '..', 'share/locale'))
+    else:
+        # using local package without installation
+        gettext.install('pondus', os.path.join(basepath, 'po/mo'))
 
 
 def _test_icon_availability():

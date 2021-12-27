@@ -98,6 +98,8 @@ for lang in _get_language_codes():
     data_files.append((os.path.join('share/locale', lang, 'LC_MESSAGES'),
             [os.path.join(modir, lang, 'LC_MESSAGES/pondus.mo')]))
 
+package_data = {'pondus.gui.resources': ['pondus.png', 'plot.png']}
+
 _create_mo()
 _create_man()
 
@@ -110,9 +112,10 @@ setup(name = 'pondus',
       url = 'https://github.com/enicklas/pondus',
       license = 'MIT',
       scripts = _get_scripts(),
+      package_data = package_data,
       data_files = data_files,
       package_dir = {'pondus': 'pondus'},
-      packages = ['pondus', 'pondus.backends', 'pondus.core', 'pondus.gui'],
+      packages = ['pondus', 'pondus.backends', 'pondus.core', 'pondus.gui', 'pondus.gui.resources'],
       requires = ['python(>= 3.6)', 'PyGObject(>=3.38)', 'matplotlib(>=3.0)'])
 
 _clean_up()
