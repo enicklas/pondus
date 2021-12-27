@@ -27,9 +27,9 @@ def _set_paths_and_po():
     on where the executable is located and which platform is run."""
     basepath = os.path.abspath(sys.path[0])
     with resources.path("pondus.gui.resources", "plot.png") as plot_icon_path:
-        parameters.plot_button_path = plot_icon_path.absolute()
+        parameters.plot_button_path = plot_icon_path.resolve()
     with resources.path("pondus.gui.resources", "pondus.png") as logo_icon_path:
-        parameters.logo_path = logo_icon_path.absolute()
+        parameters.logo_path = logo_icon_path.resolve()
     if sys.platform == 'win32':
         # running windows
         gettext.install('pondus', os.path.join(basepath, 'share/locale'))
