@@ -52,15 +52,16 @@ def _get_scripts():
 
 def _create_mo():
     """Creates the .mo files to be distributed with the source."""
-    if not os.path.exists(modir):
-        for lang in _get_language_codes():
-            pofile = os.path.join('po', lang + '.po')
-            modir_lang = os.path.join(modir, lang, 'LC_MESSAGES')
-            mofile = os.path.join(modir_lang, 'pondus.mo')
-            if not os.path.exists(modir_lang):
-                os.makedirs(modir_lang)
-            print('generating', mofile)
-            os.system('msgfmt %s -o %s' % (pofile, mofile))
+    if os.path.exists(modir):
+        shutil.rmtree(modir)
+    for lang in _get_language_codes():
+        pofile = os.path.join('po', lang + '.po')
+        modir_lang = os.path.join(modir, lang, 'LC_MESSAGES')
+        mofile = os.path.join(modir_lang, 'pondus.mo')
+        if not os.path.exists(modir_lang):
+            os.makedirs(modir_lang)
+        print('generating', mofile)
+        os.system('msgfmt %s -o %s' % (pofile, mofile))
 
 
 def _create_man():
@@ -88,7 +89,7 @@ plan can be compared with the actual measurements in a plot.
 data_files = [
         ('share/applications', ['data/pondus.desktop']),
         ('share/man/man1', ['data/pondus.1.gz']),
-        ('share/doc/pondus', ['AUTHORS', 'NEWS', 'README', 'TODO']),
+        ('share/doc/pondus', ['AUTHORS.md', 'NEWS.md', 'README.md', 'TODO.md']),
         ('share/pondus', ['data/icons/plot.png']),
         ('share/pixmaps', ['data/icons/pondus.xpm']),
         ('share/icons/hicolor/48x48/apps', ['data/icons/pondus.png']),
