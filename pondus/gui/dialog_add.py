@@ -244,9 +244,9 @@ class AddDataDialog(object):
         """Tests, which key was pressed and increments/decrements the
         value in the given entry by 0.1 if possible."""
         if text == '+':
-            entry.spin(Gtk.SPIN_STEP_FORWARD, increment=0.1)
+            entry.spin(Gtk.SpinType.STEP_FORWARD, increment=0.1)
         elif text == '-':
-            entry.spin(Gtk.SPIN_STEP_BACKWARD, increment=0.1)
+            entry.spin(Gtk.SpinType.STEP_BACKWARD, increment=0.1)
 
     def _get_percentage_box(self, key):
         """Returns a box containing label and spinbutton for entering one of
