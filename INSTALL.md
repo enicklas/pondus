@@ -23,8 +23,8 @@ the source directory.
 Note: An experimental setup with [poetry](https://python-poetry.org/) is
 available as well. After installation of poetry, you can install pondus to
 a virtual environment using `poetry install` and then start the application
-with `poetry run pondus`. Some features (e.g. internationalization) may not
-work with this approach.
+with `poetry run pondus`. Currently, translations and the manpage are not
+included in poetry builds, but everything else should be functional.
 
 ## Installation Instructions
 
